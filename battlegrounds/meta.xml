@@ -17,6 +17,7 @@ Version: 0.0.1 Pre-Alpha
 	<script src="hud/hud_s.lua" type="server" />
 	<script src="hud/hud_c.lua" type="client" />
 	<script src="init/spawn_items.lua" type="server" />
+	<script src="handlers/client/damage_c.lua" type="client" />
 	
 	
 	<file src="hud/radius.png" />
