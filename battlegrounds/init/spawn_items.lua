@@ -78,31 +78,38 @@ addEventHandler("createLootPointObject",root,createLootPointObject)
 
 function createSpotsOnStart()
 	local SpotsID = 0
+	outputDebugString("[MTA:BG] Spawning Industry Loot Points(20%)")
 	for i, position in ipairs(lootPoints["Industry"]) do
 		SpotsID = SpotsID+1
 		createLootPoint("Industry",position[1],position[2],position[3],SpotsID)
 	end
+	outputDebugString("[MTA:BG] Spawning Residential Loot Points(40%)")
 	for i, position in ipairs(lootPoints["Residential"]) do
 		SpotsID = SpotsID+1
 		createLootPoint("Residential",position[1],position[2],position[3],SpotsID)
 	end
+	outputDebugString("[MTA:BG] Spawning Supermarket Loot Points(60%)")
 	for i, position in ipairs(lootPoints["Supermarket"]) do
 		SpotsID = SpotsID+1
 		createLootPoint("Supermarket",position[1],position[2],position[3],SpotsID)
 	end
+	outputDebugString("[MTA:BG] Spawning Farm Loot Points(80%)")
 	for i, position in ipairs(lootPoints["Farm"]) do
 		SpotsID = SpotsID+1
 		createLootPoint("Farm",position[1],position[2],position[3],SpotsID)
 	end
+	outputDebugString("[MTA:BG] Spawning Military Loot Points(100%)")
 	for i, position in ipairs(lootPoints["Military"]) do
 		SpotsID = SpotsID+1
 		createLootPoint("Military",position[1],position[2],position[3],SpotsID)
 	end
+	outputDebugString("[MTA:BG] All loot points spawned!")
 end
+-- Dev command, remove on release
 addCommandHandler("spot",createSpotsOnStart)
 
 function refreshLootSpots()
-	outputServerLog("Refresh initiated")
+	outputDebugString("[MTA:BG] Item Refresh Started!")
 	for i, col in ipairs(getElementsByType("colshape")) do
 		if lootpointData[col]["objects"] then
 			for k, items in ipairs(lootpointData[col]["objects"]) do
@@ -121,6 +128,10 @@ function refreshLootSpots()
 		lootPointID = 0
 	end
 	createSpotsOnStart()
-	outputServerLog("Refresh executed")
 end
+
+addEvent("MTA:BG_refreshLoot", true)
+addEventHandler("MTA:BG_refreshLoot", root, refreshLootSpots)
+
+-- Dev command, remove on release
 addCommandHandler("loot",refreshLootSpots)
