@@ -1,12 +1,10 @@
 --[[
-#-----------------------------------------------------------------------------#
-----*					MTA DayZ: utilities.lua							*----
-----* Original Author: Marwin W., Germany, Lower Saxony, Otterndorf		*----
+	
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: L, CiBeR, neves768, 1BOY
 
-----* This gamemode is being developed by L, CiBeR96, 1B0Y				*----
-----* Type: SHARED														*----
-#-----------------------------------------------------------------------------#
-]]
+]]--
 
 function getGroundMaterial(x, y, z)
 	local hit, hitX, hitY, hitZ, hitElement, normalX, normalY, normalZ, material = processLineOfSight(x, y, z, x, y, z-10, true, false, false, true, false, false, false, false, nil)

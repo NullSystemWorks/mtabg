@@ -1,3 +1,10 @@
+--[[
+	
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: L, CiBeR, neves768, 1BOY
+
+]]--
 
 local zoneBlip = false
 function createCustomBlip(zone,radius)

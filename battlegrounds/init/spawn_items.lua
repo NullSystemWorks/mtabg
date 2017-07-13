@@ -1,4 +1,10 @@
+--[[
+	
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: L, CiBeR, neves768, 1BOY
 
+]]--
 
 
 function createItemPickup(item,x,y,z,tableStringName)

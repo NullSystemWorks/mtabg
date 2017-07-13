@@ -1,3 +1,11 @@
+--[[
+	
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: L, CiBeR, neves768, 1BOY
+
+]]--
+
 lootItems = {
 
 ["Residential"] = {
