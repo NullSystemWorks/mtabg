@@ -9,4 +9,10 @@
 -- // For Setup // --
 gameplayVariables = {}
 
+-- // Language Table // --
+sLang = {}
+
+-- // Item Language Table // --
+sItemLang = {}
+
 outputDebugString("[MTA:BG] cfgBaseDefines loaded")
