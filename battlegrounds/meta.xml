@@ -8,24 +8,33 @@ Version: 0.0.1 Pre-Alpha
 <meta>
     <info author="L, CiBeR96, 1B0Y, neves768" name="MTA:BG 0.0.1" description="MTA Battlegrounds" version="0.0.1 PA" type="gamemode" />
 	<min_mta_version server="1.5" client="1.5" />
+
+	<!-- configs folder -->
+	<script src="configs/cfgBaseDefines.lua" type="shared" cache="false" />
+
+	<!-- Init -->
+	<script src="init/spawn_items.lua" type="server" />
 	
+	<!-- Logs and Utilities -->
 	<script src="utilities.lua" type="shared" />
 	<script src="log_sys.lua" type="server" />
 
+	<!-- Tables -->
 	<script src="tables/general_table.lua" type="shared" />
 	<script src="tables/item_table.lua" type="shared" />
 	<script src="tables/lootpoints.lua" type="shared" />
 	
+	<!-- Hud -->
 	<script src="hud/hud_s.lua" type="server" />
 	<script src="hud/hud_c.lua" type="client" />
-	<script src="init/spawn_items.lua" type="server" />
+
+	<!-- Handlers -->
 	<script src="handlers/client/damage_c.lua" type="client" />
 	
-	
+	<!-- Files -->
 	<file src="hud/radius.png" />
 
-<!-- Exports -->
-
+	<!-- Exports -->
 	<export function="saveLog" type="server" />
 	
 	<!-- <oop>true</oop> -->
