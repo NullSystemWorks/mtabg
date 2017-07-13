@@ -7,13 +7,13 @@
 ]]--
 
 -- FORMAT: ["internalname"] = "TRANSLATION",
-sLang["es_ES"] = {
+sLang["es"] = {
 
     ["welcome"] = "Bienvenido a MTA:BG!",
     ["logedin"] = "Has iniciado sesión correctamente!"
 
 }
 
-sItemLang["es_ES"] = {
+sItemLang["es"] = {
 
 }

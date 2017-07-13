@@ -14,7 +14,7 @@ Version: 0.0.1 Pre-Alpha
 
 	<!-- Translations -->
 	<script src="locale/lang-en_US.lua" type="shared" cache="false" />
-	<script src="locale/lang-es_ES.lua" type="shared" cache="false" />
+	<script src="locale/lang-es.lua" type="shared" cache="false" />
 
 
 	<!-- Init -->
