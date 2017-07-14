@@ -38,7 +38,20 @@ function killBattleGroundsPlayer(killer,headshot)
 		end
 	end
 	setTimer(setElementPosition,500,1,source,6000,6000,0)
+	if gameplayVariables['multipleMatch'] then
+		local ID = playerInfo[player]["matchID"]
+		playingPlayers[source] = false
+		if games[ID]["config"]["gameType"] == "Solo" then
+			playerInfo[player]["matchID"] = false
+			-- removePlayerFromMatch()
+		end
+		games[ID]["deathplayers"][source] = true
+		-- OR: table.insert(games[ID]["deathplayers"],source)
+		checkMatch(ID)
+	else
+		--
+	end
 	--outputSideChat("Player "..getPlayerName(source).." was killed",root,255,255,255)
 end
-addEvent("mtabg_killBattleGroundsPlayer",true)
-addEventHandler("mtabg_killBattleGroundsPlayer",root,killBattleGroundsPlayer)
+addEvent("killBattleGroundsPlayer",true)
+addEventHandler("killBattleGroundsPlayer",root,killBattleGroundsPlayer)
