@@ -126,7 +126,7 @@ local infoTable = {
 
 function outputInfo()
 	for i, info in ipairs(infoTable) do
-		triggerClientEvent(root,"displayClientInfo",root,"Info",info[math.random(1,#infoTable)],0,255,0)
+		triggerClientEvent(root,"mtabg_displayClientInfo",root,"Info",info[math.random(1,#infoTable)],0,255,0)
 	end
 end
 --setTimer(outputInfo,infoTimer,0)

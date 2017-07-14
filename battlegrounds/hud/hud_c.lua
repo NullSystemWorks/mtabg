@@ -15,8 +15,8 @@ function createCustomBlip(zone,radius)
 	zoneBlip = exports.customblips:createCustomBlip(x,y,radius/4,radius/4,"hud/radius.png",radius)
 	exports.customblips:setCustomBlipRadarScale(zoneBlip,1)
 end
-addEvent("createCustomBlip",true)
-addEventHandler("createCustomBlip",root,createCustomBlip)
+addEvent("mtabg_createCustomBlip",true)
+addEventHandler("mtabg_createCustomBlip",root,createCustomBlip)
 
 local screenW, screenH = guiGetScreenSize()
 function displayStatus()

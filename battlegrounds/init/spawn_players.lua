@@ -53,10 +53,10 @@ function returnPlayerInfoToClient(key)
 			info = data[3]
 		end
 	end
-	triggerClientEvent("returnPlayerInfoFromServer",client,info)
+	triggerClientEvent("mtabg_returnPlayerInfoFromServer",client,info)
 end
-addEvent("returnPlayerInfoToClient",true)
-addEventHandler("returnPlayerInfoToClient",root,returnPlayerInfoToClient)
+addEvent("mtabg_returnPlayerInfoToClient",true)
+addEventHandler("mtabg_returnPlayerInfoToClient",root,returnPlayerInfoToClient)
 
 function sendClientPlayerInfoToServer(key,action,value)
 	for i, data in ipairs(playerInfo[client]) do
@@ -74,8 +74,8 @@ function sendClientPlayerInfoToServer(key,action,value)
 	end
 	checkPlayerStatus(key)
 end
-addEvent("sendClientPlayerInfoToServer",true)
-addEventHandler("sendClientPlayerInfoToServer",root,sendClientPlayerInfoToServer)
+addEvent("mtabg_sendClientPlayerInfoToServer",true)
+addEventHandler("mtabg_sendClientPlayerInfoToServer",root,sendClientPlayerInfoToServer)
 
 function checkPlayerStatus(key)
 	for i, data in ipairs(playerInfo[client]) do
@@ -88,8 +88,8 @@ function checkPlayerStatus(key)
 		end
 	end
 end
-addEvent("checkPlayerStatus",true)
-addEventHandler("checkPlayerStatus",root,checkPlayerStatus)
+addEvent("mtabg_checkPlayerStatus",true)
+addEventHandler("mtabg_checkPlayerStatus",root,checkPlayerStatus)
 
 
 -- Debug

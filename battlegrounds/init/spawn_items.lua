@@ -70,8 +70,8 @@ function createLootPointObject(lootCol,lootSpot)
 		--outputServerLog(tostring(quick[1])..", "..tostring(quick[2]))
 	end
 end
-addEvent("createLootPointObject",true)
-addEventHandler("createLootPointObject",root,createLootPointObject)
+addEvent("mtabg_createLootPointObject",true)
+addEventHandler("mtabg_createLootPointObject",root,createLootPointObject)
 
 --local async = Async()
 --async:setPriority("normal")

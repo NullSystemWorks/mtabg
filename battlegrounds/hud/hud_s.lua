@@ -15,7 +15,7 @@ function createZone(plr)
 	local x,y,z = getElementPosition(theZone)
 	outputServerLog("Zone has been created: "..tostring(x)..", "..tostring(y))
 	setTimer(decreaseZoneSize,radiusTimer,0)
-	triggerClientEvent("createCustomBlip",root,theZone,zoneRadius) 
+	triggerClientEvent("mtabg_createCustomBlip",root,theZone,zoneRadius) 
 end
 addCommandHandler("zone",createZone)
 
@@ -29,6 +29,6 @@ function decreaseZoneSize()
 		end
 		theZone = createColSphere(oldX,oldY,oldZ,zoneRadius)
 		outputServerLog("Zonesize has been decreased!")
-		triggerClientEvent("createCustomBlip",root,theZone,zoneRadius)
+		triggerClientEvent("mtabg_createCustomBlip",root,theZone,zoneRadius)
 	end
 end

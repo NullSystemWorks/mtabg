@@ -40,5 +40,5 @@ function killBattleGroundsPlayer(killer,headshot)
 	setTimer(setElementPosition,500,1,source,6000,6000,0)
 	--outputSideChat("Player "..getPlayerName(source).." was killed",root,255,255,255)
 end
-addEvent("killBattleGroundsPlayer",true)
-addEventHandler("killBattleGroundsPlayer",root,killBattleGroundsPlayer)
+addEvent("mtabg_killBattleGroundsPlayer",true)
+addEventHandler("mtabg_killBattleGroundsPlayer",root,killBattleGroundsPlayer)
