@@ -130,8 +130,8 @@ function refreshLootSpots()
 	createSpotsOnStart()
 end
 
-addEvent("MTA:BG_refreshLoot", true)
-addEventHandler("MTA:BG_refreshLoot", root, refreshLootSpots)
+addEvent("mtabg_refreshLoot", true)
+addEventHandler("mtabg_refreshLoot", root, refreshLootSpots)
 
 -- Dev command, remove on release
 addCommandHandler("loot",refreshLootSpots)
