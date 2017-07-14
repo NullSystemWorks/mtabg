@@ -6,6 +6,7 @@
 
 ]]--
 
+guiPlayerHealth = 100
 function onBattleGroundsPlayerDamage(attacker,weapon,bodypart,loss)
 	cancelEvent()
 	local damage,weaponDistance = 0,0
@@ -29,9 +30,7 @@ function onBattleGroundsPlayerDamage(attacker,weapon,bodypart,loss)
 	if weapon == 54 then
 		finalDamage = loss
 	end
-	setElementHealth(localPlayer,getElementHealth(localPlayer)-finalDamage)
-	if getElementHealth(localPlayer) <= 0 then
-		--triggerServerEvent("killBattleGroundsPlayer",localPlayer,attacker,headshot)
-	end
+	triggerServerEvent("sendClientPlayerInfoToServer",localPlayer,"health","damage",finalDamage)
+	guiPlayerHealth = guiPlayerHealth-finalDamage
 end
 addEventHandler("onClientPlayerDamage",localPlayer,onBattleGroundsPlayerDamage)
