@@ -6,17 +6,19 @@
 
 ]]--
 
-gameCommenced = false
-function isGameRunning()
-	if gameCommenced then
+-- Init game status
+gameCache['status'] = false
+
+function onLoginIsGameRunning()
+	if gameCache['status'] then
 		outputChatBox("Please wait until the current game is over!",source,255,0,0,false)
 	end
 end
-addEventHandler("onPlayerJoin",root,isGameRunning)
+addEventHandler("onPlayerJoin",root,onLoginIsGameRunning)
 
 playerInfo = {}
 function startGame()
-	gameCommenced = false
+	gameCache['status'] = false
 	for i, player in ipairs(getElementsByType("player")) do
 		local dataID = -1
 		playerInfo[player] = {}
@@ -40,7 +42,7 @@ function startGame()
 		attachElements(playerCol,player,0,0,0)
 	end
 	--createZone()
-	gameCommenced = true
+	gameCache['status'] = true
 end
 addCommandHandler("game",startGame)
 
