@@ -17,6 +17,9 @@ playerDataTable = {
 {"currentweapon_2",false},
 {"currentweapon_3",false},
 {"headshots",0},
+}
+
+playerInventoryTable = {
 {"M1911",0},
 {"Revolver",0},
 {"Bizon PP-19 SD",0},

@@ -155,3 +155,6 @@ weaponDamageTable = {
 {"Shovel",30},
 {"Grenade",100},
 }
+
+playerInfo = {}
+playerDataInfo = {}

@@ -6,15 +6,14 @@
 
 ]]--
 
-
-function createItemPickup(item,x,y,z,tableStringName)
+function createItemPickup(item,x,y,z,itemName)
 	if item and x and y and z then
-		local object = createObject(lootStuff[tostring(tableStringName)][item][2],x,y,z-0.875,lootStuff[tostring(tableStringName)][item][4],0,math.random(0,360))
-		setObjectScale(object,lootStuff[tostring(tableStringName)][item][3])
+		local object = createObject(lootItems["FullList"][item][2],x,y,z-0.875,lootItems["FullList"][item][4],0,math.random(0,360))
+		setObjectScale(object,lootItems["FullList"][item][3])
 		setElementCollisionsEnabled(object, false)
 		setElementFrozen (object,true)
 		local col = createColSphere(x,y,z,0.75)
-		setElementData(col,"item",lootStuff[tostring(tableStringName)][item][1])
+		setElementData(col,"droppedItem",itemName)
 		setElementData(col,"parent",object)
 		setTimer(function()
 			if isElement(col) then
@@ -42,6 +41,8 @@ function createLootPoint(lootSpot,x,y,z,ID)
 		local itemChance = math.percentChance(item[5],5)
 		table.insert(lootpointData[lootCol],{item[1],itemChance})
 	end
+	setElementData(lootCol,"itemloot",true)
+	setElementData(lootCol,"parent",lootSpot)
 	createLootPointObject(lootCol,lootSpot)
 	return lootpointData[lootCol]
 end
@@ -73,16 +74,16 @@ end
 addEvent("mtabg_createLootPointObject",true)
 addEventHandler("mtabg_createLootPointObject",root,createLootPointObject)
 
---local async = Async()
---async:setPriority("normal")
+local async = Async()
+async:setPriority("normal")
 
 function createSpotsOnStart()
 	local SpotsID = 0
 	outputDebugString("[MTA:BG] Spawning Industry Loot Points(20%)")
-	for i, position in ipairs(lootPoints["Industry"]) do
+	async:foreach(lootPoints["Industry"], function(position)
 		SpotsID = SpotsID+1
 		createLootPoint("Industry",position[1],position[2],position[3],SpotsID)
-	end
+	end)
 	outputDebugString("[MTA:BG] Spawning Residential Loot Points(40%)")
 	for i, position in ipairs(lootPoints["Residential"]) do
 		SpotsID = SpotsID+1
@@ -130,8 +131,8 @@ function refreshLootSpots()
 	createSpotsOnStart()
 end
 
-addEvent("mtabg_refreshLoot", true)
-addEventHandler("mtabg_refreshLoot", root, refreshLootSpots)
+--addEvent("mtabg_refreshLoot", true)
+--addEventHandler("mtabg_refreshLoot", root, refreshLootSpots)
 
 -- Dev command, remove on release
 addCommandHandler("loot",refreshLootSpots)

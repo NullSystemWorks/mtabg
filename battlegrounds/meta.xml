@@ -22,6 +22,9 @@ Version: 0.0.1 Pre-Alpha
 	<script src="tables/item_table.lua" type="shared" />
 	<script src="tables/lootpoints.lua" type="shared" />
 	<script src="tables/player_table.lua" type="shared" />
+	
+	<script src="tools/async/slither.lua" type="shared" />
+	<script src="tools/async/async.lua" type="shared" />
 
 	<!-- Init -->
 	<script src="init/spawn_items.lua" type="server" />
@@ -30,7 +33,6 @@ Version: 0.0.1 Pre-Alpha
 	<!-- Logs and Utilities -->
 	<script src="utilities.lua" type="shared" />
 	<script src="log_sys.lua" type="server" />
-
 	
 	
 	<!-- Hud -->
@@ -43,8 +45,16 @@ Version: 0.0.1 Pre-Alpha
 	<script src="handlers/server/damage_s.lua" type="server" />
 	<script src="handlers/server/match.lua" type="server" />
 	
+	<file src="gui/images/solo_slot.png" />
+	
+	<script src="gui/inventory.lua" type="client" />
+	<script src="gui/inventory_s.lua" type="server" />
+	<script src="gui/sidemenu.lua" type="client" />
+	
 	<!-- Files -->
 	<file src="hud/radius.png" />
+	
+	<file src="fonts/etelka.ttf" />
 
 	<!-- Exports -->
 	<script src="exports_s.lua" type="server" />

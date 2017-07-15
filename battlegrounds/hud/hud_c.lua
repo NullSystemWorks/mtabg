@@ -20,10 +20,22 @@ addEventHandler("mtabg_createCustomBlip",root,createCustomBlip)
 
 local screenW, screenH = guiGetScreenSize()
 function displayStatus()
-	dxDrawLine((screenW * 0.2612) - 1, (screenH * 0.9017) - 1, (screenW * 0.2612) - 1, screenH * 0.9450, tocolor(0, 0, 0, 255), 1, true)
-	dxDrawLine(screenW * 0.7688, (screenH * 0.9017) - 1, (screenW * 0.2612) - 1, (screenH * 0.9017) - 1, tocolor(0, 0, 0, 255), 1, true)
-	dxDrawLine((screenW * 0.2612) - 1, screenH * 0.9450, screenW * 0.7688, screenH * 0.9450, tocolor(0, 0, 0, 255), 1, true)
-	dxDrawLine(screenW * 0.7688, screenH * 0.9450, screenW * 0.7688, (screenH * 0.9017) - 1, tocolor(0, 0, 0, 255), 1, true)
-	dxDrawRectangle(screenW * 0.2612, screenH * 0.9017, screenW * (0.5075/(100/guiPlayerHealth)), screenH * 0.0433, tocolor(218, 218, 218, 254), true)
+	if not inventoryIsShowing then
+		dxDrawLine((screenW * 0.2612) - 1, (screenH * 0.9017) - 1, (screenW * 0.2612) - 1, screenH * 0.9450, tocolor(0, 0, 0, 255), 1, true)
+		dxDrawLine(screenW * 0.7688, (screenH * 0.9017) - 1, (screenW * 0.2612) - 1, (screenH * 0.9017) - 1, tocolor(0, 0, 0, 255), 1, true)
+		dxDrawLine((screenW * 0.2612) - 1, screenH * 0.9450, screenW * 0.7688, screenH * 0.9450, tocolor(0, 0, 0, 255), 1, true)
+		dxDrawLine(screenW * 0.7688, screenH * 0.9450, screenW * 0.7688, (screenH * 0.9017) - 1, tocolor(0, 0, 0, 255), 1, true)
+		dxDrawRectangle(screenW * 0.2612, screenH * 0.9017, screenW * (0.5075/(100/guiPlayerHealth)), screenH * 0.0433, tocolor(218, 218, 218, 254), true)
+	end
 end
 addEventHandler("onClientRender", root,displayStatus)
+
+function setHealthToClient(value)
+	guiPlayerHealth = tonumber(value)
+end
+addEvent("mtabg_setHealthToClient",true)
+addEventHandler("mtabg_setHealthToClient",root,setHealthToClient)
+
+
+
+
