@@ -80,7 +80,7 @@ inventoryGUI = {
 	progressbar = {}
 }
 
-inventoryGUI.window[1] = guiCreateWindow(0.00, 0.00, 1.00, 1.00, "[PLAYERNAME]", true)
+inventoryGUI.window[1] = guiCreateWindow(0.00, 0.00, 1.00, 1.00, "#alpha/"..getPlayerName(localPlayer), true)
 guiWindowSetMovable(inventoryGUI.window[1], false)
 guiWindowSetSizable(inventoryGUI.window[1], false)
 
@@ -98,10 +98,12 @@ inventoryGUI.label[1] = guiCreateLabel(0.01, 0.09, 0.24, 0.04, "YOUR INVENTORY",
 guiLabelSetHorizontalAlign(inventoryGUI.label[1], "center", false)
 inventoryGUI.label[2] = guiCreateLabel(0.34, 0.09, 0.24, 0.04, "LOOT", true, inventoryGUI.window[1])
 guiLabelSetHorizontalAlign(inventoryGUI.label[2], "center", false)
+
 inventoryGUI.progressbar[1] = guiCreateProgressBar(0.01, 0.74, 0.24, 0.04, true, inventoryGUI.window[1])
 inventoryGUI.label[3] = guiCreateLabel(0.01, 0.74, 0.24, 0.04, "CAPACITY: 50/50", true, inventoryGUI.window[1])
 guiLabelSetColor(inventoryGUI.label[3], 0, 0, 0)
 guiLabelSetHorizontalAlign(inventoryGUI.label[3], "center", false)
+
 inventoryGUI.label[4] = guiCreateLabel(0.66, 0.13, 0.04, 0.05, "1", true, inventoryGUI.window[1])
 guiLabelSetHorizontalAlign(inventoryGUI.label[4], "center", false)
 guiLabelSetVerticalAlign(inventoryGUI.label[4], "center")
@@ -113,16 +115,18 @@ guiLabelSetHorizontalAlign(inventoryGUI.label[6], "center", false)
 guiLabelSetVerticalAlign(inventoryGUI.label[6], "center")
 inventoryGUI.label[7] = guiCreateLabel(0.69, 0.13, 0.27, 0.05, "PRIMARY WEAPON:", true, inventoryGUI.window[1])
 guiLabelSetVerticalAlign(inventoryGUI.label[7], "center")
-inventoryGUI.label[8] = guiCreateLabel(0.69, 0.18, 0.27, 0.05, "<WEAPONNAME>", true, inventoryGUI.window[1])
-guiLabelSetVerticalAlign(inventoryGUI.label[8], "center")
-inventoryGUI.label[9] = guiCreateLabel(0.69, 0.41, 0.27, 0.05, "<WEAPONNAME>", true, inventoryGUI.window[1])
-guiLabelSetVerticalAlign(inventoryGUI.label[9], "center")
-inventoryGUI.label[10] = guiCreateLabel(0.69, 0.65, 0.27, 0.05, "<WEAPONNAME>", true, inventoryGUI.window[1])
-guiLabelSetVerticalAlign(inventoryGUI.label[10], "center")
+inventoryGUI.label["Equip Primary Weapon"] = guiCreateLabel(0.69, 0.18, 0.27, 0.05, "", true, inventoryGUI.window[1])
+guiLabelSetVerticalAlign(inventoryGUI.label["Equip Primary Weapon"], "center")
+inventoryGUI.label["Equip Secondary Weapon"] = guiCreateLabel(0.69, 0.41, 0.27, 0.05, "", true, inventoryGUI.window[1])
+guiLabelSetVerticalAlign(inventoryGUI.label["Equip Secondary Weapon"], "center")
+inventoryGUI.label["Equip Special Weapon"] = guiCreateLabel(0.69, 0.65, 0.27, 0.05, "", true, inventoryGUI.window[1])
+guiLabelSetVerticalAlign(inventoryGUI.label["Equip Special Weapon"], "center")
 inventoryGUI.label[11] = guiCreateLabel(0.69, 0.61, 0.27, 0.05, "SPECIAL WEAPON:", true, inventoryGUI.window[1])
 guiLabelSetVerticalAlign(inventoryGUI.label[11], "center")
 inventoryGUI.label[12] = guiCreateLabel(0.69, 0.37, 0.27, 0.05, "SECONDARY WEAPON:", true, inventoryGUI.window[1])
-guiLabelSetVerticalAlign(inventoryGUI.label[12], "center")  
+guiLabelSetVerticalAlign(inventoryGUI.label[12], "center") 
+
+inventoryGUI.label[13] = guiCreateLabel(0.01, 0.84, 0.24, 0.04, "", true, inventoryGUI.window[1])
 
 guiSetVisible(inventoryGUI.window[1],false)
 
@@ -187,6 +191,20 @@ end
 addEvent("refreshLootManually",true)
 addEventHandler("refreshLootManually",localPlayer,refreshLootManually)
 
+function sendErrorToInventory(info)
+	guiSetText(inventoryGUI.label[13],info)
+	setTimer(guiSetText,3000,1,inventoryGUI.label[13],"")
+end
+addEvent("mtabg_sendErrorToInventory",true)
+addEventHandler("mtabg_sendErrorToInventory",localPlayer,sendErrorToInventory)
+
+function changeEquippedWeaponGUI(weaponType,weaponName)
+	-- 8 = Primary, 9 = Secondary, 10 = Special
+	guiSetText(inventoryGUI.label[weaponType],weaponName)
+end
+addEvent("mtabg_changeEquippedWeaponGUI",true)
+addEventHandler("mtabg_changeEquippedWeaponGUI",localPlayer,changeEquippedWeaponGUI)
+
 function sendDataToClient(theTable)
 	playerInventory = {
 		[localPlayer] = {}
@@ -223,7 +241,7 @@ function moveItemFromInventoryToLoot()
 	local itemName = guiGridListGetItemText(inventoryGUI.gridlist[1],guiGridListGetSelectedItem(inventoryGUI.gridlist[1]),1)
 	triggerServerEvent("mtabg_onItemFromInventoryToLoot",localPlayer,itemName,col)
 end
-addEventHandler("onClientGUIClick", inventoryGUI.button[1], moveItemFromInventoryToLoot)
+addEventHandler("onClientGUIClick", inventoryGUI.button[1], moveItemFromInventoryToLoot,false)
 
 function moveItemFromLootToInventory()
 	if isPlayerInLoot() then
@@ -232,7 +250,7 @@ function moveItemFromLootToInventory()
 	local itemName = guiGridListGetItemText(inventoryGUI.gridlist[2],guiGridListGetSelectedItem(inventoryGUI.gridlist[2]),1)
 	triggerServerEvent("mtabg_onItemFromLootToInventory",localPlayer,itemName,col)
 end
-addEventHandler("onClientGUIClick",inventoryGUI.button[2],moveItemFromLootToInventory)
+addEventHandler("onClientGUIClick",inventoryGUI.button[2],moveItemFromLootToInventory,false)
 
 rightClick = {}
 
@@ -265,10 +283,10 @@ function hideRightClickInventoryMenu()
 end
 
 function showRightClickMenu(itemName, itemInfo)
-	if itemInfo then
+	if itemInfo and itemInfo ~= "" then
 		local screenx, screeny, worldx, worldy, worldz = getCursorPosition()
 		guiSetVisible(rightClick["window"], true)
-		guiSetText(rightClick["label"], itemInfo)
+		guiSetText(rightClick["label"], itemInfo.." "..itemName)
 		local width = guiLabelGetTextExtent(rightClick["label"])
 		guiSetPosition(rightClick["window"], screenx, screeny, true)
 		local x, y = guiGetSize(rightClick["window"], false)

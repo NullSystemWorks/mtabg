@@ -97,7 +97,11 @@ function onPlayerUseItem(itemName,itemInfo)
 	if itemInfo then
 		local itemUsed = false
 		if itemInfo == "Equip Primary Weapon" then
-			outputDebugString("Equip Primary Weapon: "..tostring(itemName))
+			equipWeapon(itemName,itemInfo,client)
+		elseif itemInfo == "Equip Secondary Weapon" then
+			equipWeapon(itemName,itemInfo,client)
+		elseif itemInfo == "Equip Special Weapon" then
+			equipWeapon(itemName,itemInfo,client)
 		elseif itemInfo == "Use" then
 			for i, data in ipairs(playerDataInfo[client]) do
 				if itemName == "Bandage" then
@@ -109,6 +113,8 @@ function onPlayerUseItem(itemName,itemInfo)
 							end
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_setHealthToClient",client,data[3])
+						else
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
 						end
 					end
 				elseif itemName == "First Aid Kit" then
@@ -117,6 +123,8 @@ function onPlayerUseItem(itemName,itemInfo)
 							data[3] = 100
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_setHealthToClient",client,data[3])
+						else
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
 						end
 					end
 				elseif itemName == "Painkiller" then
@@ -128,6 +136,8 @@ function onPlayerUseItem(itemName,itemInfo)
 							end
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_setHealthToClient",client,data[3])
+						else
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
 						end
 					end
 				end	
@@ -147,13 +157,92 @@ end
 addEvent("mtabg_onPlayerUseItem",true)
 addEventHandler("mtabg_onPlayerUseItem",root,onPlayerUseItem)
 
-function debugSetHealth(player,value)
-	for i, data in ipairs(playerDataInfo[player]) do
-		if data[2] == "health" then
-			data[3] = tonumber(value)
-			triggerClientEvent(player,"mtabg_setHealthToClient",player,tonumber(data[3]))
+local currentWeapon_1 = ""
+local currentWeapon_2 = ""
+local currentWeapon_3 = ""
+local weaponType = ""
+function equipWeapon(weapon,info,player)
+	local weaponID = 0
+	local ammoType = ""
+	for i, weap in ipairs(weaponDataTable) do
+		if weapon == weap[1] then
+			weaponID = weap[2]
+			ammoType = weap[6]
+			weaponType = weap[7]
+			break
 		end
 	end
-	
+	for i, data in ipairs(playerInfo[player]) do
+		if ammoType == data[2] then
+			if data[3] > 0 then	
+				giveWeapon(client,weaponID,data[3],true)
+				triggerClientEvent(client,"mtabg_changeEquippedWeaponGUI",client,info,weapon)
+				for k, playData in ipairs(playerDataInfo[player]) do
+					if weaponType == "Primary" then
+						currentWeapon_1 = weapon
+					elseif weaponType == "Secondary" then
+						currentWeapon_2 = weapon
+					elseif weaponType == "Special" then
+						currentWeapon_3 = weapon
+					end
+					break
+				end
+			else
+				triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Not enough ammo!")
+				break
+			end
+		end
+	end
 end
-addCommandHandler("health",debugSetHealth)
+
+function removeWeapon(weaponID,player)
+	takeWeapon(player,weaponID)
+end
+
+function depleteAmmoCountWhenFiring(weapon,x,y,z,hitElement,startX,startY,startZ)
+	local weaponName = ""
+	local weaponID = 0
+	local ammoType = ""
+	for i, weap in ipairs(weaponDataTable) do
+		if weapon == 22 or weapon == 23 or weapon == 24 or weapon == 28 or weapon == 29 or weapon == 32 then
+			if currentWeapon_2 == weap[1] then
+				weaponName = weap[1]
+				weaponID = weap[2]
+				ammoType = weap[6]
+			end
+		elseif weapon == 25 or weapon == 26 or weapon == 27 or weapon == 30 or weapon == 31 or weapon == 33 or weapon == 34 then
+			if currentWeapon_1 == weap[1] then
+				weaponName = weap[1]
+				weaponID = weap[2]
+				ammoType = weap[6]
+			end
+		else
+			if currentWeapon_3 == weap[1] then
+				weaponName = weap[1]
+				weaponID = weap[2]
+				ammoType = weap[6]
+			end
+		end
+	end
+	for i, data in ipairs(playerInfo[source]) do
+		if ammoType == data[2] then
+			data[3] = data[3]-1
+			if data[3] <= 0 then
+				data[3] = 0
+				removeWeapon(weaponID,source)
+			end
+		end
+	end
+end
+addEventHandler("onPlayerWeaponFire",root,depleteAmmoCountWhenFiring)
+
+
+
+function debugGiveItem(player,cmd,item,amount)
+	for i, data in ipairs(playerInfo[player]) do
+		if data[2] == item then
+			data[3] = data[3]+amount
+		end
+	end
+end
+addCommandHandler("give",debugGiveItem)

@@ -15,6 +15,7 @@ sLang["en_US"] = {
 }
 
 sItemLang["en_US"] = {
+-- DO NOT TRANSLATE THIS FOR NOW!
 {"M1911","Equip Secondary Weapon"},
 {"Revolver","Equip Secondary Weapon"},
 {"Bizon PP-19 SD","Equip Secondary Weapon"},

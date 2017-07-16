@@ -8,6 +8,7 @@
 
 -- Init game status
 gameCache['status'] = false
+gameCache["initialPlayerAmount"] = 0
 
 function onLoginIsGameRunning()
 	if gameCache['status'] then
@@ -20,6 +21,7 @@ addEventHandler("onPlayerJoin",root,onLoginIsGameRunning)
 function startGame()
 	gameCache['status'] = false
 	for i, player in ipairs(getElementsByType("player")) do
+		gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
 		local dataID = -1
 		playerInfo[player] = {}
 		playerDataInfo[player] = {}
@@ -44,11 +46,9 @@ function startGame()
 			table.insert(playerInfo[player],{i,data[1],data[2]})
 		end
 		attachElements(playerCol,player,0,0,0)
-		setElementData(player,"participatingInGame",true)
-		--triggerClientEvent(player,"mtabg_sendDataToClient",player,playerInfo[player])
-		
+		setElementData(player,"participatingInGame",true)		
 	end
-	--createZone()
+	createZone()
 	gameCache['status'] = true
 end
 addCommandHandler("game",startGame)
@@ -65,7 +65,7 @@ end
 addEvent("mtabg_returnPlayerInfoToClient",true)
 addEventHandler("mtabg_returnPlayerInfoToClient",root,returnPlayerInfoToClient)
 
-function sendClientPlayerInfoToServer(key,action,value)
+function sendClientPlayerInfoToServer(key,action,value,other)
 	for i, data in ipairs(playerDataInfo[client]) do
 		if data[2] == key then
 			if action == "damage" then
@@ -79,17 +79,18 @@ function sendClientPlayerInfoToServer(key,action,value)
 			end
 		end
 	end
-	checkPlayerStatus(key)
+	checkPlayerStatus(key,false,other)
 end
 addEvent("mtabg_sendClientPlayerInfoToServer",true)
 addEventHandler("mtabg_sendClientPlayerInfoToServer",root,sendClientPlayerInfoToServer)
 
-function checkPlayerStatus(key)
-	for i, data in ipairs(playerDataInfo[client]) do
+function checkPlayerStatus(key,player,other)
+	if not player then player = client end
+	for i, data in ipairs(playerDataInfo[player]) do
 		if data[2] == key then
 			if key == "health" then
 				if data[3] <= 0 then
-					killBattleGroundsPlayer(client)
+					killBattleGroundsPlayer(player,other,false)
 				end
 			end
 		end
@@ -97,12 +98,3 @@ function checkPlayerStatus(key)
 end
 addEvent("mtabg_checkPlayerStatus",true)
 addEventHandler("mtabg_checkPlayerStatus",root,checkPlayerStatus)
-
-
--- Debug
-function checkTable(source,cmd)
-	for i, data in ipairs(playerDataInfo[source]) do
-		outputDebugString(tostring(data[1])..", "..tostring(data[2])..", "..tostring(data[3]))
-	end
-end
-addCommandHandler("data",checkTable)

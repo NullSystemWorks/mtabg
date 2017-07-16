@@ -30,7 +30,10 @@ function onBattleGroundsPlayerDamage(attacker,weapon,bodypart,loss)
 	if weapon == 54 then
 		finalDamage = loss
 	end
-	triggerServerEvent("mtabg_sendClientPlayerInfoToServer",localPlayer,"health","damage",finalDamage)
-	guiPlayerHealth = guiPlayerHealth-finalDamage
+	if finalDamage > 100 then
+		finalDamage = 100
+	end
+	triggerServerEvent("mtabg_sendClientPlayerInfoToServer",localPlayer,"health","damage",finalDamage,attacker)
+	setHealthToClient(guiPlayerHealth-finalDamage)
 end
 addEventHandler("onClientPlayerDamage",localPlayer,onBattleGroundsPlayerDamage)

@@ -7,58 +7,34 @@
 ]]--
 
 weaponDataTable = {
-
-["Pistols"] = {
-{"M1911",346,1,90},
-{"Revolver",348,1,90},
-{"M9",346,1,90},
-{"Makarov SD",347,1,90},
-},
-
-["SubmachineGuns"] = {
-{"Bizon PP-19 SD",353,1,90},
-{"PDW",352,1,90},
-{"MP5A5",353,1,90},
-},
-
-["Sniper"] = {
-{"M24",358,1,90},
-{"SVD Dragunov",358,1,90},
-{"Mosin-Nagant",357,1,90},
-},
-
-["AssaultRifle"] = {
-{"AK-74",355,1,90},
-{"AKM",355,1,90},
-{"Sa58V CCO",355,1,90},
-{"FN FAL",355,1,90},
-{"G36C",356,1,90},
-{"M16A2",356,1,90},
-{"M4A1",356,1,90},
-},
-
-["Shotguns"] = {
-{"Winchester 1866",349,1,90},
-{"Double-barreled Shotgun",351,1,90},
-{"M1014",351,1,90},
-},
-
-["Crossbow"] = {
-{"Compound Crossbow",349,1,90},
-},
-
-["Melee"] = {
-{"Baseball Bat",336,1,90},
-{"Axe",339,1,90},
-{"Hunting Knife",335,1,90},
-{"Shovel",337,1,90},
-},
-
-["Special"] = {
-{"Grenade",342,1,90},
-{"Binoculars",369,1,90},
-{"Range Finder",369,1,90},
-},
+-- {"WeaponName",weaponID,modelID,size,Rotation,"ammoType","weaponType"}
+{"M1911",22,346,1,90,"9x19mm Cartridge","Secondary"},
+{"Revolver",24,348,1,90,"11.43x23mm Cartridge","Secondary"},
+{"M9",22,346,1,90,"9x19mm Cartridge","Secondary"},
+{"Makarov SD",23,347,1,90,"9x18mm Cartridge","Secondary"},
+{"Bizon PP-19 SD",29,353,1,90,"9x19mm Cartridge","Secondary"},
+{"PDW",28,352,1,90,"9x19mm Cartridge","Secondary"},
+{"MP5A5",29,353,1,90,"9x19mm Cartridge","Secondary"},
+{"M24",34,358,1,90,"7.62x54mm Cartridge","Primary"},
+{"SVD Dragunov",34,358,1,90,"7.62x54mm Cartridge","Primary"},
+{"Mosin-Nagant",33,357,1,90,".303 British Cartridge","Primary"},
+{"AK-74",30,355,1,90,"7.62x39mm Cartridge","Primary"},
+{"AKM",30,355,1,90,"7.62x39mm Cartridge","Primary"},
+{"Sa58V CCO",30,355,1,90,"7.62x39mm Cartridge","Primary"},
+{"FN FAL",30,355,1,90,"7.62x39mm Cartridge","Primary"},
+{"G36C",31,356,1,90,"5.56x45mm Cartridge","Primary"},
+{"M16A2",31,356,1,90,"5.56x45mm Cartridge","Primary"},
+{"M4A1",31,356,1,90,"5.56x45mm Cartridge","Primary"},
+{"Winchester 1866",25,349,1,90,"1866 Slug","Primary"},
+{"Double-barreled Shotgun",25,351,1,90,"1866 Slug","Primary"},
+{"M1014",27,351,1,90,"12 Gauge Pellet","Primary"},
+{"Baseball Bat",5,336,1,90,"Melee","Special"},
+{"Axe",8,339,1,90,"Melee","Special"},
+{"Hunting Knife",4,335,1,90,"Melee","Special"},
+{"Shovel",6,337,1,90,"Melee","Special"},
+{"Grenade",16,342,1,90,"Melee","Special"},
+{"Binoculars",43,369,1,90,"Melee","Special"},
+{"Range Finder",43,369,1,90,"Melee","Special"},
 }
 
 weaponAmmoTable = {
@@ -98,8 +74,6 @@ weaponAmmoTable = {
 ["7.62x54mm Cartridge"] = {
 {"SVD Dragunov",34},
 {"M24",34},
-{"CZ 550",34},
-
 },
 
 ["1866 Slug"] = {
@@ -125,6 +99,39 @@ weaponAmmoTable = {
 {"Range Finder",43},
 {"Shovel",6},
 },
+}
+
+weaponModelIDTable = {
+{"M1911",22},
+{"Revolver",24},
+{"Bizon PP-19 SD",29},
+{"M9",22},
+{"Makarov SD",23},
+{"PDW",28},
+{"MP5A5",29},
+{"Mosin-Nagant",33},
+{"AKM",30},
+{"AK-74",30},
+{"Sa58V CCO",30},
+{"FN FAL",30},
+{"G36C",31},
+{"M16A2",31},
+{"M4A1",31},
+{"SVD Dragunov",34},
+{"M24",34},
+{"CZ 550",34},
+{"Winchester 1866",25},
+{"Double-barreled Shotgun",25},
+{"M1014",27},
+{"Compound Crossbow",25},
+{"Baseball Bat",5},
+{"Axe",8},
+{"Parachute",46},
+{"Grenade",16},
+{"Hunting Knife",4},
+{"Binoculars",43},
+{"Range Finder",43},
+{"Shovel",6},
 }
 
 weaponDamageTable = {
