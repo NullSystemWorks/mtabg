@@ -52,7 +52,12 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	else
 		--
 	end
+	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]-1
+	checkPlayerAmount()
 	--outputSideChat("Player "..getPlayerName(player).." was killed",root,255,255,255)
 end
 addEvent("killBattleGroundsPlayer",true)
 addEventHandler("killBattleGroundsPlayer",root,killBattleGroundsPlayer)
+
+function checkPlayerAmount()
+end

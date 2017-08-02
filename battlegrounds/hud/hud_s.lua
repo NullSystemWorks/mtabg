@@ -6,51 +6,73 @@
 
 ]]--
 
-local theZone
-local theMarker
-local zoneRadius = 3000
+--[[
+CURRENT PROBLEMS:
+
+- Endposition of both zones are predictable (since zones spawn at specific location and get smaller from there)
+POSSIBLE SOLUTION: let safeZone create somewhere within dangerZone
+
+- Zones are visible on map only, not GPS, due to sizing issues on GPS
+POSSIBLE SOLUTION: edit customblips appropriately
+
+- Markers are needed so players can see outline of dangerZone even if not looking at the map
+PROBLEM HERE: markers behave sketchy when beyond a certain radius
+
+]]
+
+local dangerZone
+local safeZone
+local zoneRadius = 4000
+local zoneRadiusOffsetX,zoneRadiusOffsetY = 0,0
 local radiusTimer = 20000
 local firstZone = false
 function createZone()
 	firstZone = true
 	local x,y = math.random(-2500,2500), math.random(-2500,2500)
-	theZone = createColCircle(x,y,zoneRadius)
-	--theMarker = createMarker(x,y,1000,"checkpoint",zoneRadius,0,0,255,255)
-	local x,y,z = getElementPosition(theZone)
-	outputServerLog("Zone has been created: "..tostring(x)..", "..tostring(y).."Marker Size: "..tostring(getMarkerSize(theMarker)))
+	dangerZone = createColCircle(x,y,zoneRadius)
+	local initialZoneRadius = zoneRadius-(zoneRadius*0.25)
+	safeZone = createColCircle(x,y,initialZoneRadius)
 	setTimer(decreaseZoneSize,radiusTimer,0)
 	setTimer(getPlayersInsideZone,5000,0)
-	triggerClientEvent("mtabg_createCustomBlip",root,theZone,zoneRadius) 
+	triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius) 
 end
 addCommandHandler("zone",createZone)
 
 function decreaseZoneSize()
 	if zoneRadius > 39.75 then
 		firstZone = false
-		local oldX,oldY,oldZ = getElementPosition(theZone)
-		destroyElement(theZone)
+		local oldX,oldY,oldZ = getElementPosition(dangerZone)
+		local oldX2,oldY2,oldZ2 = getElementPosition(safeZone)
+		destroyElement(dangerZone)
+		destroyElement(safeZone)
 		zoneRadius = zoneRadius-(zoneRadius*0.25)
 		if radiusTimer > 60000 then
 			radiusTimer = radiusTimer-60000
+			--zoneRadiusOffsetX,zoneRadiusOffsetY = math.random(zoneRadiusOffsetX,-zoneRadiusOffsetX)-math.random(-30,30),math.random(zoneRadiusOffsetY,-zoneRadiusOffsetY)-math.random(-30,30)
 		end
-		--setMarkerSize(theMarker,zoneRadius)
-		theZone = createColSphere(oldX,oldY,oldZ,zoneRadius)
-		triggerClientEvent("mtabg_createCustomBlip",root,theZone,zoneRadius)
+		local initialZoneRadius = zoneRadius-(zoneRadius*0.25)
+		dangerZone = createColCircle(oldX,oldY,zoneRadius)
+		safeZone = createColCircle(oldX2,oldY2,initialZoneRadius)
+		triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius)
 	end
 end
 
 function getPlayersInsideZone()
 	if not firstZone then
-		if theZone then
+		if safeZone and dangerZone then
 			for i, players in ipairs(getElementsByType("player")) do
-				if isElementWithinColShape(players,theZone) then
+				if isElementWithinColShape(players,safeZone) then
 					return
 				else
-					for k, data in ipairs(playerDataInfo[players]) do
-						if data[2] == "health" then
-							data[3] = data[3]-5
-							triggerClientEvent("mtabg_setHealthToClient",players,data[3])
-							checkPlayerStatus("health",players,false)
+					if isElementWithinColShape(players,dangerZone) then
+						return
+					else
+						for k, data in ipairs(playerDataInfo[players]) do
+							if data[2] == "health" then
+								data[3] = data[3]-5
+								triggerClientEvent("mtabg_setHealthToClient",players,data[3])
+								checkPlayerStatus("health",players,false)
+							end
 						end
 					end
 				end

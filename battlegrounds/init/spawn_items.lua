@@ -6,27 +6,41 @@
 
 ]]--
 
+local lootPointID = 0
+lootpointData = {}
+
 function createItemPickup(item,x,y,z,itemName)
 	if item and x and y and z then
-		local object = createObject(lootItems["FullList"][item][2],x,y,z-0.875,lootItems["FullList"][item][4],0,math.random(0,360))
-		setObjectScale(object,lootItems["FullList"][item][3])
-		setElementCollisionsEnabled(object, false)
-		setElementFrozen (object,true)
-		local col = createColSphere(x,y,z,0.75)
-		setElementData(col,"droppedItem",itemName)
-		setElementData(col,"parent",object)
-		setTimer(function()
-			if isElement(col) then
-				destroyElement(col)
-				destroyElement(object)
-			end	
-		end,900000,1)
-		return object
+		lootPointID = lootPointID+1
+		local lootCol = createColSphere(x,y,z,1.25)
+		lootpointData[lootCol] = {
+			["itemloot"] = true,
+			["parent"] = "FullList",
+			["Space"] = 20,
+			["lootID"] = lootPointID,
+			["objects"] = {}
+		}
+		table.insert(lootpointData[lootCol],{itemName,1})
+		setElementData(lootCol,"itemloot",true)
+		setElementData(lootCol,"parent","FullList")	
+		local objectTable = {}
+		for i, item in ipairs(lootItems["FullList"]) do
+			for k, spot in ipairs(lootpointData[lootCol]) do
+				if item[1] == spot[1] then
+					local x,y,z = getElementPosition(lootCol)
+					objectTable[1] = createObject(item[2],x+math.random(-1,1),y+math.random(-1,1),z-0.875,item[4])
+					setObjectScale(objectTable[1],item[3])
+					setElementCollisionsEnabled(objectTable[1], false)
+					setElementFrozen(objectTable[1],true)
+				end
+			end
+		end	
+		table.insert(lootpointData[lootCol]["objects"],{objectTable[1]})
+		return lootpointData[lootCol]
 	end
 end
 
-local lootPointID = 0
-lootpointData = {}
+
 function createLootPoint(lootSpot,x,y,z,ID)
 	lootPointID = lootPointID+1
 	local lootCol = createColSphere(x,y,z,1.25)
@@ -67,9 +81,6 @@ function createLootPointObject(lootCol,lootSpot)
 		end
 	end
 	table.insert(lootpointData[lootCol]["objects"],{objectTable[1],objectTable[2],objectTable[3]})
-	for i, quick in ipairs(lootpointData[lootCol]["objects"]) do
-		--outputServerLog(tostring(quick[1])..", "..tostring(quick[2]))
-	end
 end
 addEvent("mtabg_createLootPointObject",true)
 addEventHandler("mtabg_createLootPointObject",root,createLootPointObject)

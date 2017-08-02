@@ -6,7 +6,7 @@ Version: 0.0.1 Pre-Alpha
 #-----------------------------------------------------------------------------#
 -->
 <meta>
-    <info author="L, CiBeR96, 1B0Y, neves768" name="MTA:BG 0.0.1" description="MTA Battlegrounds" version="0.0.1 PA" type="gamemode" />
+    <info author="L, CiBeR96, 1B0Y, neves768" name="MTA:BG 0.0.1" description="MTA Battlegrounds" version="0.0.1 PA" type="script" />
 	<min_mta_version server="1.5" client="1.5" />
 
 	<!-- configs folder -->
@@ -53,7 +53,8 @@ Version: 0.0.1 Pre-Alpha
 	
 	<!-- Files -->
 	<file src="hud/radius.png" />
-	
+	<file src="hud/radius2.png" />
+	<file src="hud/running.png" />
 	<file src="fonts/etelka.ttf" />
 
 	<!-- Exports -->

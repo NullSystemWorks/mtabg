@@ -29,6 +29,19 @@ function refreshLoot(loot,gearName)
 			if item[1] ~= nil then
 				if item[2] > 0 then
 					triggerClientEvent(client,"mtabg_populateGridListWithItems",client,2,"loot","lootamount",item[1],item[2])
+				else
+					for k, data in ipairs(lootpointData[loot]["objects"]) do
+						if data[1] then
+							destroyElement(data[1])
+							if data[2] then
+								destroyElement(data[2])
+								if data[3] then
+									destroyElement(data[3])
+								end
+							end
+						end
+						return loot
+					end
 				end
 			end
 		end
@@ -65,7 +78,7 @@ function onItemFromInventoryToLoot(itemName,loot)
 		else
 			local x,y,z = getElementPosition(client)
 			local item = getItemFromTablePosition(itemName)
-			local itemPickup = createItemPickup(item,x+math.random(-1.25,1.25),y+math.random(-1.25,1.25),z,itemName)
+			createItemPickup(item,x+math.random(-1.25,1.25),y+math.random(-1.25,1.25),z,itemName)
 		end
 	end
 end
@@ -236,6 +249,39 @@ function depleteAmmoCountWhenFiring(weapon,x,y,z,hitElement,startX,startY,startZ
 end
 addEventHandler("onPlayerWeaponFire",root,depleteAmmoCountWhenFiring)
 
+function getItemWeight(theItem)
+	for i, weight in ipairs(lootItems["FullList"]) do
+		if theItem == weight[1] then
+			return weight[5]
+		end
+	end
+end
+
+function getPlayerCapacity(item)
+	local usedCapacity = 0
+	local maxCapacity = 0
+	local itemWeight = getItemWeight(item)
+	for i, data in ipairs(playerDataInfo[client]) do
+		if data[2] == "InventoryCapacity" then
+			maxCapacity = data[3]
+		end
+		if data[2] == "usedCapacity" then
+			usedCapacity = data[3]
+		end
+	end
+	if usedCapacity+itemWeight >= maxCapacity then
+		triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Not enough inventory capacity!")
+	else
+		for i, data in ipairs(playerInfo[client]) do
+			if data[2] == item then
+				data[3] = data[3]+1
+				break
+			end
+		end
+	end
+end
+addEvent("mtabg_getPlayerCapacity",true)
+addEventHandler("mtabg_getPlayerCapacity",root,getPlayerCapacity)
 
 
 function debugGiveItem(player,cmd,item,amount)

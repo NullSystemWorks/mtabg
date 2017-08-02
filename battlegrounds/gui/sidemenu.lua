@@ -167,23 +167,12 @@ if ( keyState == "down" ) then
 			return
 		end
 		if not playerPickedUpItem then
-			if itemName == "Assault Pack (ACU)" or itemName == "ALICE Pack" or itemName == "Czech Backpack" or itemName == "Backpack (Coyote)" or itemName == "British Assault Pack" or itemName == "Czech Vest Pouch" or itemName == "Survival ACU" then
-				local col = getElementData(getLocalPlayer(),"currentCol")
-				triggerServerEvent("onPlayerTakeItemFromGround",getLocalPlayer(),itemName,col)
-				disableMenu()
-				return
-			end
-			if getPlayerCurrentSlots() + getItemSlots(itemName) <= getPlayerMaxAviableSlots() then	
-				local col = getElementData(getLocalPlayer(),"currentCol")
-				triggerServerEvent("onPlayerTakeItemFromGround",getLocalPlayer(),itemName,col)
-				disableMenu()
-			else
-				startRollMessage2("Inventory", "Inventory is full!", 255, 22, 0 )
-			end
+			triggerServerEvent("mtabg_getPlayerCapacity",localPlayer,itemName)
+			disableMenu()
 			playerPickedUpItem = true
 			setTimer(function()
 				playerPickedUpItem = false
-			end,10000,1)
+			end,3000,1)
 		end
 	end
 end

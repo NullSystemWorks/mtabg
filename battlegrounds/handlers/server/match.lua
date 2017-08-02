@@ -10,12 +10,25 @@
 games = {}
 playingPlayers = {}
 
-function createLobby(roomName, slots)
+function createLobby(gameType,roomName,slots)
 	local ID = #games+1
-	games[ID] = {["config"] = {["gameType"] = "solo", ["RoomName"] = roomName, ["slots"] = slots, ["minPlayers"] = 1, ["started"] = false}, ["players"] = {[client] = true}, ["deathplayers"] = {}, ["spectating"] = {}}
+	games[ID] = {
+		["config"] = {
+			["gameType"] = "solo", 
+			["RoomName"] = roomName, 
+			["slots"] = slots, 
+			["minPlayers"] = 1, 
+			["started"] = false
+			}, 
+			["players"] = {
+				[client] = true
+				}, 
+			["deadPlayers"] = {}, 
+			["spectating"] = {}
+		}
 end
-addEvent("mtabg_createLobby", true)
-addEventHandler("mtabg_createLobby", getRootElement(), createLobby)
+addEvent("mtabg_createLobby",true)
+addEventHandler("mtabg_createLobby",root,createLobby)
 
 function joinMatch(ID)
 	if not games[ID]["config"]["started"] then

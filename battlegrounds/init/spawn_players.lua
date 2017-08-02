@@ -10,13 +10,42 @@
 gameCache['status'] = false
 gameCache["initialPlayerAmount"] = 0
 
+lobbyInteriors = {
+
+{2,2558,-1292,1032},
+{4,-1435,-662,1052},
+{14,-1464,1557,1052},
+
+}
+
 function onLoginIsGameRunning()
 	if gameCache['status'] then
 		outputChatBox("Please wait until the current game is over!",source,255,0,0,false)
+	else
+		outputDebugString("Player detected, sending to lobby.")
+		sendPlayerToLobby(source)
 	end
 end
 addEventHandler("onPlayerJoin",root,onLoginIsGameRunning)
 
+function sendPlayerToLobby(player)
+	local number = math.random(table.size(lobbyInteriors))
+	outputDebugString("number: "..tostring(number))
+	spawnID,spawnX,spawnY,spawnZ = lobbyInteriors[number][1],lobbyInteriors[number][2],lobbyInteriors[number][3],lobbyInteriors[number][4]
+	outputDebugString("ID: "..tostring(spawnID))
+	spawnPlayer(player,spawnX+math.random(-10,10),spawnY+math.random(-10,10),spawnZ+1,math.random(0,359),0,spawnID)
+	setCameraTarget(player, player)
+	setPlayerHudComponentVisible(player,"radar",false)
+	setPlayerHudComponentVisible(player,"clock",false)
+	setPlayerHudComponentVisible(player,"health",false)
+	setPlayerHudComponentVisible(player,"area_name",false)
+	setPlayerHudComponentVisible(player,"money",false)
+	playerDataInfo[player] = {}
+	for i, data in ipairs(playerDataTable) do
+		table.insert(playerDataInfo[player],{i,data[1],data[2]})
+	end
+	table.insert(playerDataInfo[player],{-1,"inLobby",true})
+end
 
 function startGame()
 	gameCache['status'] = false
@@ -26,6 +55,10 @@ function startGame()
 		playerInfo[player] = {}
 		playerDataInfo[player] = {}
 		setPlayerHudComponentVisible(player,"radar",false)
+		setPlayerHudComponentVisible(player,"clock",false)
+		setPlayerHudComponentVisible(player,"health",false)
+		setPlayerHudComponentVisible(player,"area_name",false)
+		setPlayerHudComponentVisible(player,"money",false)
 		x,y,z = math.random(-2500,2500),math.random(-2500,2500),500
 		spawnPlayer(player,x,y,z, math.random(0,360), 0, 0, 0)
 		giveWeapon(player,46,1)
@@ -48,12 +81,14 @@ function startGame()
 		attachElements(playerCol,player,0,0,0)
 		setElementData(player,"participatingInGame",true)		
 	end
-	createZone()
+	--createZone()
 	gameCache['status'] = true
+	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"])
 end
 addCommandHandler("game",startGame)
 
 function returnPlayerInfoToClient(key)
+	if not gameCache["status"] then return end
 	local info
 	for i, data in ipairs(playerDataInfo[client]) do
 		if data[2] == key then
@@ -66,6 +101,7 @@ addEvent("mtabg_returnPlayerInfoToClient",true)
 addEventHandler("mtabg_returnPlayerInfoToClient",root,returnPlayerInfoToClient)
 
 function sendClientPlayerInfoToServer(key,action,value,other)
+	if not gameCache["status"] then return end
 	for i, data in ipairs(playerDataInfo[client]) do
 		if data[2] == key then
 			if action == "damage" then
@@ -85,6 +121,7 @@ addEvent("mtabg_sendClientPlayerInfoToServer",true)
 addEventHandler("mtabg_sendClientPlayerInfoToServer",root,sendClientPlayerInfoToServer)
 
 function checkPlayerStatus(key,player,other)
+	if not gameCache["status"] then return end
 	if not player then player = client end
 	for i, data in ipairs(playerDataInfo[player]) do
 		if data[2] == key then
