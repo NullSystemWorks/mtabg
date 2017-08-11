@@ -24,19 +24,24 @@ local dangerZone
 local safeZone
 local zoneRadius = 4000
 local zoneRadiusOffsetX,zoneRadiusOffsetY = 0,0
-local radiusTimer = 20000
+local radiusTimer = 480000
 local firstZone = false
+local zoneTimer
+local firstWarning,secondWarning,thirdWarning = false,false,false
+
 function createZone()
 	firstZone = true
 	local x,y = math.random(-2500,2500), math.random(-2500,2500)
 	dangerZone = createColCircle(x,y,zoneRadius)
 	local initialZoneRadius = zoneRadius-(zoneRadius*0.25)
 	safeZone = createColCircle(x,y,initialZoneRadius)
-	setTimer(decreaseZoneSize,radiusTimer,0)
+	zoneTimer = setTimer(decreaseZoneSize,radiusTimer,0)
 	setTimer(getPlayersInsideZone,5000,0)
 	triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius) 
 end
+-- Debug Command
 addCommandHandler("zone",createZone)
+
 
 function decreaseZoneSize()
 	if zoneRadius > 39.75 then
@@ -53,11 +58,35 @@ function decreaseZoneSize()
 		local initialZoneRadius = zoneRadius-(zoneRadius*0.25)
 		dangerZone = createColCircle(oldX,oldY,zoneRadius)
 		safeZone = createColCircle(oldX2,oldY2,initialZoneRadius)
-		triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius)
+		triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius)	
 	end
+	firstWarning = false
+	secondWarning = false
+	thirdWarning = false
 end
 
+
+
 function getPlayersInsideZone()
+	timeLeft = getTimerDetails(zoneTimer)
+	if not firstWarning then
+		if timeLeft < 60001 then
+			outputChatBox("Zone size will decrease in 60 seconds!",root,255,0,0,true)
+			firstWarning = true
+		end
+	end
+	if not secondWarning then
+		if timeLeft < 30001 then
+			outputChatBox("Zone size will decrease in 30 seconds!",root,255,0,0,true)
+			secondWarning = true
+		end
+	end
+	if not thirdWarning then
+		if timeLeft < 10001 then
+			outputChatBox("Zone size will decrease in 10 seconds!",root,255,0,0,true)
+			thirdWarning = true
+		end
+	end
 	if not firstZone then
 		if safeZone and dangerZone then
 			for i, players in ipairs(getElementsByType("player")) do
@@ -69,9 +98,11 @@ function getPlayersInsideZone()
 					else
 						for k, data in ipairs(playerDataInfo[players]) do
 							if data[2] == "health" then
-								data[3] = data[3]-5
-								triggerClientEvent("mtabg_setHealthToClient",players,data[3])
-								checkPlayerStatus("health",players,false)
+								if data[3] > 0 then
+									data[3] = data[3]-5
+									triggerClientEvent("mtabg_setHealthToClient",players,data[3])
+									checkPlayerStatus("health",players,false)
+								end
 							end
 						end
 					end

@@ -77,10 +77,17 @@ inventoryGUI = {
     button = {},
     window = {},
     gridlist = {},
-	progressbar = {}
+	progressbar = {},
+	font = {}
 }
 
-inventoryGUI.window[1] = guiCreateWindow(0.00, 0.00, 1.00, 1.00, "#alpha/"..getPlayerName(localPlayer), true)
+inventoryGUI.font[1] = guiCreateFont("/fonts/etelka.ttf",12)
+inventoryGUI.font[2] = guiCreateFont("/fonts/etelka.ttf",15)
+inventoryGUI.font[3] = guiCreateFont("/fonts/etelka.ttf",20)
+inventoryGUI.font[4] = guiCreateFont("/fonts/etelka.ttf",25)
+
+
+inventoryGUI.window[1] = guiCreateWindow(0.00, 0.00, 1.00, 1.00, "#alpha - "..getPlayerName(localPlayer), true)
 guiWindowSetMovable(inventoryGUI.window[1], false)
 guiWindowSetSizable(inventoryGUI.window[1], false)
 
@@ -121,12 +128,16 @@ inventoryGUI.label["Equip Secondary Weapon"] = guiCreateLabel(0.69, 0.41, 0.27, 
 guiLabelSetVerticalAlign(inventoryGUI.label["Equip Secondary Weapon"], "center")
 inventoryGUI.label["Equip Special Weapon"] = guiCreateLabel(0.69, 0.65, 0.27, 0.05, "", true, inventoryGUI.window[1])
 guiLabelSetVerticalAlign(inventoryGUI.label["Equip Special Weapon"], "center")
-inventoryGUI.label[11] = guiCreateLabel(0.69, 0.61, 0.27, 0.05, "SPECIAL WEAPON:", true, inventoryGUI.window[1])
-guiLabelSetVerticalAlign(inventoryGUI.label[11], "center")
-inventoryGUI.label[12] = guiCreateLabel(0.69, 0.37, 0.27, 0.05, "SECONDARY WEAPON:", true, inventoryGUI.window[1])
-guiLabelSetVerticalAlign(inventoryGUI.label[12], "center") 
+inventoryGUI.label[8] = guiCreateLabel(0.69, 0.61, 0.27, 0.05, "SPECIAL WEAPON:", true, inventoryGUI.window[1])
+guiLabelSetVerticalAlign(inventoryGUI.label[8], "center")
+inventoryGUI.label[9] = guiCreateLabel(0.69, 0.37, 0.27, 0.05, "SECONDARY WEAPON:", true, inventoryGUI.window[1])
+guiLabelSetVerticalAlign(inventoryGUI.label[9], "center") 
 
-inventoryGUI.label[13] = guiCreateLabel(0.01, 0.84, 0.24, 0.04, "", true, inventoryGUI.window[1])
+inventoryGUI.label[10] = guiCreateLabel(0.01, 0.84, 0.24, 0.04, "", true, inventoryGUI.window[1])
+
+for i=1,10 do
+	guiSetFont(inventoryGUI.label[i],inventoryGUI.font[1])
+end
 
 guiSetVisible(inventoryGUI.window[1],false)
 

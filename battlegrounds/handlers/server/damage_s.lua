@@ -15,8 +15,8 @@ function killBattleGroundsPlayer(player,killer,headshot)
 			local x,y,z = getElementPosition(player)
 			local rotX,rotY,rotZ = getElementRotation(player)
 			local skin = getElementModel(player)
-			ped = createPed(skin,x,y,z,rotZ)
-			pedCol = createColSphere(x,y,z,1.5)
+			ped = createPed(skin,6000,6000,0,rotZ)
+			pedCol = createColSphere(6000,6000,0,1.5)
 			deadPlayerTable[pedCol] = {}
 			killPed(ped)
 			setTimer(destroyDeadPlayer,600000,1,ped,pedCol)
@@ -24,6 +24,7 @@ function killBattleGroundsPlayer(player,killer,headshot)
 			setElementData(pedCol,"parent",ped)
 			setElementData(pedCol,"playername",getPlayerName(player))
 			setElementData(pedCol,"deadman",true)
+			setElementPosition(ped,x,y,z)
 		end	
 	end
 	if killer and killer ~= player then
@@ -39,6 +40,17 @@ function killBattleGroundsPlayer(player,killer,headshot)
 		end
 	end
 	setTimer(setElementPosition,500,1,player,6000,6000,0)
+	setCameraMatrix(player,x,y,z+10,x,y,z)
+	setTimer(function()
+		fadeCamera(player,false,5000,0,0,0)
+		setCameraMatrix(player,x,y,3000)
+		setTimer(function(player)
+			if isElement(player) then
+				setElementFrozen(player, false)
+				fadeCamera(player,true)
+			end
+		end,500,1,player)
+	end,4000,1,player)
 	if gameplayVariables['multipleMatch'] then
 		local ID = playerInfo[player]["matchID"]
 		playingPlayers[player] = false
@@ -52,12 +64,15 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	else
 		--
 	end
-	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]-1
+	triggerClientEvent(player,"mtabg_showEndscreen",player,gameCache["playerAmount"])
+	gameCache["playerAmount"] = gameCache["playerAmount"]-1
 	checkPlayerAmount()
+	
 	--outputSideChat("Player "..getPlayerName(player).." was killed",root,255,255,255)
 end
 addEvent("killBattleGroundsPlayer",true)
 addEventHandler("killBattleGroundsPlayer",root,killBattleGroundsPlayer)
 
+-- To check if there is a player remaining (= winner)
 function checkPlayerAmount()
 end

@@ -36,6 +36,7 @@ local r,g,b = 218,218,218
 local alpha = 150
 local playerAmount = 0
 local gameStatus = false
+local countDown = 10
 function displayStatus()
 	if gameStatus then
 		if not inventoryIsShowing then
@@ -46,6 +47,9 @@ function displayStatus()
 			dxDrawLine(screenW * 0.7688, (screenH * 0.9017) - 1, (screenW * 0.2612) - 1, (screenH * 0.9017) - 1, tocolor(0, 0, 0, 150), 1, true)
 			dxDrawLine((screenW * 0.2612) - 1, screenH * 0.9450, screenW * 0.7688, screenH * 0.9450, tocolor(0, 0, 0, 150), 1, true)
 			dxDrawLine(screenW * 0.7688, screenH * 0.9450, screenW * 0.7688, (screenH * 0.9017) - 1, tocolor(0, 0, 0, 150), 1, true)
+			if guiPlayerHealth < 0 then
+				guiPlayerHealth = 0 
+			end
 			dxDrawRectangle(screenW * 0.2612, screenH * 0.9017, screenW * (0.5075/(100/guiPlayerHealth)), screenH * 0.0433, tocolor(r,g,b, alpha), true)
 			
 			dxDrawText("ALIVE:", (screenW * 0.8488) - 1, (screenH * 0.0483) - 1, (screenW * 0.9375) - 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
@@ -59,6 +63,31 @@ function displayStatus()
 			dxDrawText(playerAmount, (screenW * 0.9437) + 1, (screenH * 0.0483) + 1, (screenW * 1.0325) + 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 			dxDrawText(playerAmount, screenW * 0.9437, screenH * 0.0483, screenW * 1.0325, screenH * 0.1050, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 		end
+	else
+		if playerAmount > 0 then
+			if not countdownTimer then
+				countdownTimer = setTimer(function()
+					countDown = countDown-1
+					if countDown == 0 then
+						if playerAmount <= 1 then
+							triggerServerEvent("mtabg_startGame",root)
+							killTimer(countdownTimer)
+						else
+							outputChatBox("Not enough players, resetting countdown!",255,0,0,false)
+							killTimer(countdownTimer)
+							countDown = 10
+						end
+					end
+				end,1000,10)
+			end
+		else
+			if isTimer(countdownTimer) then killTimer(countdownTimer) end
+		end
+	
+		dxDrawText("COUNTDOWN:", screenW * 0.6350, screenH * 0.1683, screenW * 0.8413, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
+		dxDrawText("PLAYERS:", screenW * 0.6350, screenH * 0.2250, screenW * 0.8413, screenH * 0.2817, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
+		dxDrawText(countDown.." SEC.", screenW * 0.8538, screenH * 0.1683, screenW * 0.9825, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+		dxDrawText(playerAmount, screenW * 0.8538, screenH * 0.2250, screenW * 0.9825, screenH * 0.2817, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 	end
 end
 addEventHandler("onClientRender", root,displayStatus)
@@ -83,6 +112,43 @@ end
 addEvent("mtabg_setPlayerAmountToClient",true)
 addEventHandler("mtabg_setPlayerAmountToClient",root,setPlayerAmountToClient)
 
+endScreen = {
+    label = {},
+    button = {},
+	image = {}
+}
+
+function showEndScreen(rank)
+local text = ""
+	if rank ~= 1 then
+		text = "BETTER LUCK NEXT TIME!"
+	else
+		text = "A WINNER IS YOU!"
+	end
+	endScreen.image[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.17, "/gui/images/solo_slot.png", true)
+	guiSetProperty(endScreen.image[1], "ImageColours", "tl:EB000000 tr:EB000000 bl:EB000000 br:EB000000")
+
+	endScreen.label[1] = guiCreateLabel(0.02, 0.06, 0.38, 0.08, getPlayerName(localPlayer), true, endScreen.image[1])
+	endScreen.label[2] = guiCreateLabel(0.02, 0.14, 1, 0.09, text, true, endScreen.image[1])
+	guiLabelSetHorizontalAlign(endScreen.label[2], "center", false)
+	guiLabelSetVerticalAlign(endScreen.label[2], "center")
+	endScreen.label[3] = guiCreateLabel(0.05, 0.39, 0.20, 0.04, "RANK:", true, endScreen.image[1])
+	guiLabelSetHorizontalAlign(endScreen.label[3], "center", false)
+	endScreen.label[4] = guiCreateLabel(0.05, 0.47, 0.20, 0.04, "KILLS:", true, endScreen.image[1])
+	guiLabelSetHorizontalAlign(endScreen.label[4], "center", false)
+	endScreen.label[5] = guiCreateLabel(0.25, 0.39, 0.20, 0.04, "#"..rank, true, endScreen.image[1])
+	endScreen.label[6] = guiCreateLabel(0.25, 0.47, 0.20, 0.04, "N/A", true, endScreen.image[1])
+	
+	guiSetFont(endScreen.label[1],inventoryGUI.font[4])
+	guiSetFont(endScreen.label[2],inventoryGUI.font[3])
+	for i=3,6 do
+		guiSetFont(endScreen.label[i],inventoryGUI.font[2])
+	end
+	
+end
+addEvent("mtabg_showEndscreen",true)
+addEventHandler("mtabg_showEndscreen",root,showEndScreen)
+
 --[[
 zoneIndicators = {
 	label = {},
@@ -90,11 +156,11 @@ zoneIndicators = {
 }
 
 zoneIndicators.label[1] = guiCreateLabel(0.02, 0.73, 0.24, 0.03, "MM:SS", true)
-zoneIndicators.image[1] = guiCreateStaticImage(0.02, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
+zoneIndicators.image[1] = guiCreateimage(0.02, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
 guiSetProperty(zoneIndicators.image[1], "ImageColours", "tl:FEFB0000 tr:FEFB0000 bl:FEFB0000 br:FEFB0000")
-zoneIndicators.image[2] = guiCreateStaticImage(0.25, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
+zoneIndicators.image[2] = guiCreateimage(0.25, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
 guiSetProperty(zoneIndicators.image[2], "ImageColours", "tl:FE000CFA tr:FE000CFA bl:FE000CFA br:FE000CFA")
-zoneIndicators.image[3] = guiCreateStaticImage(0.00, 0.69, 0.04, 0.04, "/hud/running.png", true)
+zoneIndicators.image[3] = guiCreateimage(0.00, 0.69, 0.04, 0.04, "/hud/running.png", true)
 guiSetProperty(zoneIndicators.image[3], "ImageColours", "tl:FEFEFEFF tr:FEFEFEFF bl:FEFEFEFF br:FEFEFEFF")   
 
 function calculateZoneIndicatorDistance()

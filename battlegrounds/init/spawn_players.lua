@@ -9,32 +9,43 @@
 -- Init game status
 gameCache['status'] = false
 gameCache["initialPlayerAmount"] = 0
+gameCache["playerAmount"] = 0
 
 lobbyInteriors = {
+-- This is just temporary, we need a proper lobby mapping
 
 {2,2558,-1292,1032},
-{4,-1435,-662,1052},
-{14,-1464,1557,1052},
+{14,-1437,1591,1052},
 
 }
 
-function onLoginIsGameRunning()
+function onJoinIsGameRunning()
 	if gameCache['status'] then
 		outputChatBox("Please wait until the current game is over!",source,255,0,0,false)
 	else
-		outputDebugString("Player detected, sending to lobby.")
 		sendPlayerToLobby(source)
 	end
 end
-addEventHandler("onPlayerJoin",root,onLoginIsGameRunning)
+addEventHandler("onPlayerJoin",root,onJoinIsGameRunning)
+
+function onPlayerLeavingGame()
+	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]-1
+	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"])
+end
+addEventHandler("onPlayerQuit",root,onPlayerLeavingGame)
 
 function sendPlayerToLobby(player)
 	local number = math.random(table.size(lobbyInteriors))
-	outputDebugString("number: "..tostring(number))
 	spawnID,spawnX,spawnY,spawnZ = lobbyInteriors[number][1],lobbyInteriors[number][2],lobbyInteriors[number][3],lobbyInteriors[number][4]
-	outputDebugString("ID: "..tostring(spawnID))
-	spawnPlayer(player,spawnX+math.random(-10,10),spawnY+math.random(-10,10),spawnZ+1,math.random(0,359),0,spawnID)
-	setCameraTarget(player, player)
+	spawnPlayer(player,spawnX+math.random(-10,10),spawnY+math.random(-10,10),spawnZ+3,math.random(0,359),0,spawnID)
+	fadeCamera (player, false,2000,0,0,0)
+		setCameraTarget (player, player)
+		setTimer( function(player)
+			if isElement(player) then
+				setElementFrozen(player, false)
+				fadeCamera(player,true)
+			end
+		end,500,1,player)
 	setPlayerHudComponentVisible(player,"radar",false)
 	setPlayerHudComponentVisible(player,"clock",false)
 	setPlayerHudComponentVisible(player,"health",false)
@@ -45,12 +56,16 @@ function sendPlayerToLobby(player)
 		table.insert(playerDataInfo[player],{i,data[1],data[2]})
 	end
 	table.insert(playerDataInfo[player],{-1,"inLobby",true})
+	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
+	setTimer(function()
+		triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"])
+	end,3000,1,gameCache["initialPlayerAmount"],gameCache["status"])
 end
 
 function startGame()
 	gameCache['status'] = false
+	gameCache["initialPlayerAmount"] = 0
 	for i, player in ipairs(getElementsByType("player")) do
-		gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
 		local dataID = -1
 		playerInfo[player] = {}
 		playerDataInfo[player] = {}
@@ -79,12 +94,17 @@ function startGame()
 			table.insert(playerInfo[player],{i,data[1],data[2]})
 		end
 		attachElements(playerCol,player,0,0,0)
-		setElementData(player,"participatingInGame",true)		
+		setElementData(player,"participatingInGame",true)
+		gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
 	end
-	--createZone()
+	createZone()
 	gameCache['status'] = true
 	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"])
+	gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
 end
+addEvent("mtabg_startGame",true)
+addEventHandler("mtabg_startGame",root,startGame)
+-- Debug Command
 addCommandHandler("game",startGame)
 
 function returnPlayerInfoToClient(key)

@@ -126,6 +126,7 @@ function onPlayerUseItem(itemName,itemInfo)
 							end
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_setHealthToClient",client,data[3])
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
 						else
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
 						end
@@ -136,6 +137,7 @@ function onPlayerUseItem(itemName,itemInfo)
 							data[3] = 100
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_setHealthToClient",client,data[3])
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
 						else
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
 						end
@@ -149,6 +151,7 @@ function onPlayerUseItem(itemName,itemInfo)
 							end
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_setHealthToClient",client,data[3])
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
 						else
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
 						end
