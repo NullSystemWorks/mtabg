@@ -203,8 +203,8 @@ addEvent("refreshLootManually",true)
 addEventHandler("refreshLootManually",localPlayer,refreshLootManually)
 
 function sendErrorToInventory(info)
-	guiSetText(inventoryGUI.label[13],info)
-	setTimer(guiSetText,3000,1,inventoryGUI.label[13],"")
+	guiSetText(inventoryGUI.label[10],info)
+	setTimer(guiSetText,3000,1,inventoryGUI.label[10],"")
 end
 addEvent("mtabg_sendErrorToInventory",true)
 addEventHandler("mtabg_sendErrorToInventory",localPlayer,sendErrorToInventory)

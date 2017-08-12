@@ -35,7 +35,7 @@ function createZone()
 	dangerZone = createColCircle(x,y,zoneRadius)
 	local initialZoneRadius = zoneRadius-(zoneRadius*0.25)
 	safeZone = createColCircle(x,y,initialZoneRadius)
-	zoneTimer = setTimer(decreaseZoneSize,radiusTimer,0)
+	zoneTimer = setTimer(decreaseZoneSize,radiusTimer,1)
 	setTimer(getPlayersInsideZone,5000,0)
 	triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius) 
 end
@@ -58,6 +58,8 @@ function decreaseZoneSize()
 		local initialZoneRadius = zoneRadius-(zoneRadius*0.25)
 		dangerZone = createColCircle(oldX,oldY,zoneRadius)
 		safeZone = createColCircle(oldX2,oldY2,initialZoneRadius)
+		if zoneTimer then killTimer(zoneTimer) end
+		zoneTimer = setTimer(decreaseZoneSize,radiusTimer,1)
 		triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius)	
 	end
 	firstWarning = false
@@ -65,6 +67,13 @@ function decreaseZoneSize()
 	thirdWarning = false
 end
 
+function sendRadiusTimerToClient()
+	if safeZone then
+		local timeDetails = getTimerDetails(zoneTimer)
+		triggerClientEvent("mtabg_setRadiusTimerToClient",root,timeDetails)
+	end
+end
+setTimer(sendRadiusTimerToClient,1000,0)
 
 
 function getPlayersInsideZone()

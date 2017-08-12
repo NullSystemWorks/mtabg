@@ -53,7 +53,9 @@ function createLootPoint(lootSpot,x,y,z,ID)
 	}
 	for i, item in ipairs(lootItems[lootSpot]) do
 		local itemChance = math.percentChance(item[5],5)
-		table.insert(lootpointData[lootCol],{item[1],itemChance})
+		if itemChance > 0 then
+			table.insert(lootpointData[lootCol],{item[1],itemChance})
+		end
 	end
 	setElementData(lootCol,"itemloot",true)
 	setElementData(lootCol,"parent",lootSpot)

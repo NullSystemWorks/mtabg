@@ -65,6 +65,7 @@ end
 function startGame()
 	gameCache['status'] = false
 	gameCache["initialPlayerAmount"] = 0
+	createSpotsOnStart()
 	for i, player in ipairs(getElementsByType("player")) do
 		local dataID = -1
 		playerInfo[player] = {}

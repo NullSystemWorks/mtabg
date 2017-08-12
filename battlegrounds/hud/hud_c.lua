@@ -19,8 +19,8 @@ function createCustomBlip(dangerZone,safeZone,radius,initialZoneRadius)
 	end
 	x,y,z = getElementPosition(dangerZone)
 	x2,y2,z2 = getElementPosition(safeZone)
-	dangerBlip = exports.customblips:createCustomBlip(x,y,radius/4,radius/4,"hud/radius.png",radius)
-	safeBlip = exports.customblips:createCustomBlip(x2,y2,initialZoneRadius/4,initialZoneRadius/4,"hud/radius2.png",initialZoneRadius)
+	dangerBlip = exports.customblips:createCustomBlip(x,y,radius/4.2,radius/4.2,"hud/radius.png",radius)
+	safeBlip = exports.customblips:createCustomBlip(x2,y2,initialZoneRadius/4.2,initialZoneRadius/4.2,"hud/radius2.png",initialZoneRadius)
 	exports.customblips:setCustomBlipRadarScale(dangerBlip,1)
 	exports.customblips:setCustomBlipStreamRadius(dangerBlip,0)
 	exports.customblips:setCustomBlipRadarScale(safeBlip,1)
@@ -30,6 +30,14 @@ function createCustomBlip(dangerZone,safeZone,radius,initialZoneRadius)
 end
 addEvent("mtabg_createCustomBlip",true)
 addEventHandler("mtabg_createCustomBlip",root,createCustomBlip)
+
+function formatMilliseconds(milliseconds) 
+    local totalseconds = math.floor( milliseconds / 1000 ) 
+    local seconds = totalseconds % 60 
+    local minutes = math.floor( totalseconds / 60 ) 
+    minutes = minutes % 60 
+    return string.format( "%02d:%02d", minutes, seconds)   
+end 
 
 local screenW, screenH = guiGetScreenSize()
 local r,g,b = 218,218,218
@@ -126,11 +134,11 @@ local text = ""
 		text = "A WINNER IS YOU!"
 	end
 	endScreen.image[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.17, "/gui/images/solo_slot.png", true)
+	endScreen.image[2] = guiCreateStaticImage(0.83, 0.87, 0.15, 0.06,"/gui/images/solo_slot.png", true)
 	guiSetProperty(endScreen.image[1], "ImageColours", "tl:EB000000 tr:EB000000 bl:EB000000 br:EB000000")
 
 	endScreen.label[1] = guiCreateLabel(0.02, 0.06, 0.38, 0.08, getPlayerName(localPlayer), true, endScreen.image[1])
 	endScreen.label[2] = guiCreateLabel(0.02, 0.14, 1, 0.09, text, true, endScreen.image[1])
-	guiLabelSetHorizontalAlign(endScreen.label[2], "center", false)
 	guiLabelSetVerticalAlign(endScreen.label[2], "center")
 	endScreen.label[3] = guiCreateLabel(0.05, 0.39, 0.20, 0.04, "RANK:", true, endScreen.image[1])
 	guiLabelSetHorizontalAlign(endScreen.label[3], "center", false)
@@ -138,38 +146,52 @@ local text = ""
 	guiLabelSetHorizontalAlign(endScreen.label[4], "center", false)
 	endScreen.label[5] = guiCreateLabel(0.25, 0.39, 0.20, 0.04, "#"..rank, true, endScreen.image[1])
 	endScreen.label[6] = guiCreateLabel(0.25, 0.47, 0.20, 0.04, "N/A", true, endScreen.image[1])
+	endScreen.label[7] = guiCreateLabel(0.83, 0.87, 0.15, 0.06, "Back to Lobby", true, endScreen.image[1])
+	guiLabelSetHorizontalAlign(endScreen.label[7], "center", false)
+	guiLabelSetVerticalAlign(endScreen.label[7], "center")  
+	
+	guiLabelSetColor(endScreen.label[2],255,255,0)
 	
 	guiSetFont(endScreen.label[1],inventoryGUI.font[4])
 	guiSetFont(endScreen.label[2],inventoryGUI.font[3])
+	guiSetFont(endScreen.label[7],inventoryGUI.font[1])
 	for i=3,6 do
 		guiSetFont(endScreen.label[i],inventoryGUI.font[2])
 	end
-	
+	guiBringToFront(endScreen.label[7])
 end
 addEvent("mtabg_showEndscreen",true)
 addEventHandler("mtabg_showEndscreen",root,showEndScreen)
 
---[[
+function setRadiusTimerToClient(timer)
+	local time = formatMilliseconds(timer)
+	guiSetText(zoneIndicators.label[1],tostring(time))
+end
+addEvent("mtabg_setRadiusTimerToClient",true)
+addEventHandler("mtabg_setRadiusTimerToClient",root,setRadiusTimerToClient)
+
 zoneIndicators = {
 	label = {},
 	image = {},
 }
 
-zoneIndicators.label[1] = guiCreateLabel(0.02, 0.73, 0.24, 0.03, "MM:SS", true)
-zoneIndicators.image[1] = guiCreateimage(0.02, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
+zoneIndicators.label[1] = guiCreateLabel(0.02, 0.73, 0.24, 0.03, "", true)
+zoneIndicators.image[1] = guiCreateStaticImage(0.02, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
 guiSetProperty(zoneIndicators.image[1], "ImageColours", "tl:FEFB0000 tr:FEFB0000 bl:FEFB0000 br:FEFB0000")
-zoneIndicators.image[2] = guiCreateimage(0.25, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
+zoneIndicators.image[2] = guiCreateStaticImage(0.25, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
 guiSetProperty(zoneIndicators.image[2], "ImageColours", "tl:FE000CFA tr:FE000CFA bl:FE000CFA br:FE000CFA")
-zoneIndicators.image[3] = guiCreateimage(0.00, 0.69, 0.04, 0.04, "/hud/running.png", true)
+zoneIndicators.image[3] = guiCreateStaticImage(0.00, 0.69, 0.04, 0.04, "/hud/running.png", true)
 guiSetProperty(zoneIndicators.image[3], "ImageColours", "tl:FEFEFEFF tr:FEFEFEFF bl:FEFEFEFF br:FEFEFEFF")   
 
+
+-- Currently not working
 function calculateZoneIndicatorDistance()
 	local dX,dY,dZ = getElementPosition(localPlayer)
 	local safeZoneDistance = getDistanceBetweenPoints3D(dX,dY,dZ,x2,y2,z2)
 	safeZoneDistance = safeZoneDistance-safeZoneRadius
 	guiSetPosition(zoneIndicators.image[3],math.min(0.25,math.max(1,safeZoneDistance*0.25)),0.69,true)
 end
-]]
+
 
 
 

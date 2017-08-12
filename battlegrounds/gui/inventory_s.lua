@@ -29,7 +29,10 @@ function refreshLoot(loot,gearName)
 			if item[1] ~= nil then
 				if item[2] > 0 then
 					triggerClientEvent(client,"mtabg_populateGridListWithItems",client,2,"loot","lootamount",item[1],item[2])
+				end
+				--[[
 				else
+				
 					for k, data in ipairs(lootpointData[loot]["objects"]) do
 						if data[1] then
 							destroyElement(data[1])
@@ -43,6 +46,7 @@ function refreshLoot(loot,gearName)
 						return loot
 					end
 				end
+				]]
 			end
 		end
 	end
