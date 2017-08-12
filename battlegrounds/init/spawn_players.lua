@@ -137,6 +137,7 @@ function sendClientPlayerInfoToServer(key,action,value,other)
 		end
 	end
 	checkPlayerStatus(key,false,other)
+	checkPlayerAmount()
 end
 addEvent("mtabg_sendClientPlayerInfoToServer",true)
 addEventHandler("mtabg_sendClientPlayerInfoToServer",root,sendClientPlayerInfoToServer)

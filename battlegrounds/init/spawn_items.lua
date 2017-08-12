@@ -35,7 +35,7 @@ function createItemPickup(item,x,y,z,itemName)
 				end
 			end
 		end	
-		table.insert(lootpointData[lootCol]["objects"],{objectTable[1]})
+		table.insert(lootpointData[lootCol]["objects"],{objectTable[1],itemName})
 		return lootpointData[lootCol]
 	end
 end
@@ -70,19 +70,17 @@ function createLootPointObject(lootCol,lootSpot)
 	for i, item in ipairs(lootItems[lootSpot]) do
 		for k, spot in ipairs(lootpointData[lootCol]) do
 			if item[1] == spot[1] then
-				if objectCounter == 3 then
-					break
-				end
+				itemName = spot[1]
 				objectCounter = objectCounter + 1
 				local x,y,z = getElementPosition(lootCol)
 				objectTable[objectCounter] = createObject(item[2],x+math.random(-1,1),y+math.random(-1,1),z-0.875,item[4])
 				setObjectScale(objectTable[objectCounter],item[3])
 				setElementCollisionsEnabled(objectTable[objectCounter], false)
 				setElementFrozen(objectTable[objectCounter],true)
+				table.insert(lootpointData[lootCol]["objects"],{objectTable[objectCounter],itemName})
 			end
 		end
 	end
-	table.insert(lootpointData[lootCol]["objects"],{objectTable[1],objectTable[2],objectTable[3]})
 end
 addEvent("mtabg_createLootPointObject",true)
 addEventHandler("mtabg_createLootPointObject",root,createLootPointObject)

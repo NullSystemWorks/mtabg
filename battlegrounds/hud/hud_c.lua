@@ -176,6 +176,7 @@ zoneIndicators = {
 }
 
 zoneIndicators.label[1] = guiCreateLabel(0.02, 0.73, 0.24, 0.03, "", true)
+--[[
 zoneIndicators.image[1] = guiCreateStaticImage(0.02, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
 guiSetProperty(zoneIndicators.image[1], "ImageColours", "tl:FEFB0000 tr:FEFB0000 bl:FEFB0000 br:FEFB0000")
 zoneIndicators.image[2] = guiCreateStaticImage(0.25, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
@@ -191,8 +192,7 @@ function calculateZoneIndicatorDistance()
 	safeZoneDistance = safeZoneDistance-safeZoneRadius
 	guiSetPosition(zoneIndicators.image[3],math.min(0.25,math.max(1,safeZoneDistance*0.25)),0.69,true)
 end
-
-
+]]
 
 
 

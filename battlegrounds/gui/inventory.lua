@@ -81,7 +81,7 @@ inventoryGUI = {
 	font = {}
 }
 
-inventoryGUI.font[1] = guiCreateFont("/fonts/etelka.ttf",12)
+inventoryGUI.font[1] = guiCreateFont("/fonts/etelka.ttf",11)
 inventoryGUI.font[2] = guiCreateFont("/fonts/etelka.ttf",15)
 inventoryGUI.font[3] = guiCreateFont("/fonts/etelka.ttf",20)
 inventoryGUI.font[4] = guiCreateFont("/fonts/etelka.ttf",25)

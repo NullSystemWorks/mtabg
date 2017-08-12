@@ -75,4 +75,13 @@ addEventHandler("killBattleGroundsPlayer",root,killBattleGroundsPlayer)
 
 -- To check if there is a player remaining (= winner)
 function checkPlayerAmount()
+	if gameCache["playerAmount"] <= 1 then
+		for i, players in ipairs(getElementsByType("player")) do
+			if not isPedDead(players) then
+				outputDebugString("Winner found: "..getPlayerName(players))
+				setElementFrozen(players,true)
+				triggerClientEvent(players,"mtabg_showEndscreen",players,gameCache["playerAmount"])
+			end
+		end
+	end
 end
