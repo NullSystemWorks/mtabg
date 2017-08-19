@@ -19,7 +19,7 @@ local r,g,b = 218,218,218
 local alpha = 150
 local playerAmount = 0
 local gameStatus = false
-local countDown = 10 -- 180
+local countDown = 180 -- 180
 
 local maxDistance = 100 --max distance represented by littleDude
 local littleDudeDistance = maxDistance --relative distance from littleDude to safe area
@@ -101,13 +101,13 @@ function displayStatus()
 				countdownTimer = setTimer(function()
 					countDown = countDown-1
 					if countDown == 0 then
-						if playerAmount <= 1 then
+						if playerAmount > 1 then
 							triggerServerEvent("mtabg_startGame",root)
 							killTimer(countdownTimer)
 						else
 							outputChatBox("Not enough players, resetting countdown!",255,0,0,false)
 							killTimer(countdownTimer)
-							countDown = 10
+							countDown = 180
 						end
 					end
 				end,1000,10)

@@ -51,8 +51,29 @@ function createLootPoint(lootSpot,x,y,z,ID)
 		["lootID"] = lootPointID,
 		["objects"] = {}
 	}
+	local itemChance = 1
 	for i, item in ipairs(lootItems[lootSpot]) do
-		local itemChance = math.percentChance(item[5],5)
+		if item[1] == "11.43x23mm Cartridge" then
+			itemChance = 20
+		elseif item[1] == "9x18mm Cartridge" then
+			itemChance = 20
+		elseif item[1] == "9x19mm Cartridge" then
+			itemChance = 20
+		elseif item[1] == ".303 British Cartridge" then
+			itemChance = 20
+		elseif item[1] == "7.62x39mm Cartridge" then
+			itemChance = 20
+		elseif item[1] == "5.56x45mm Cartridge" then
+			itemChance = 20
+		elseif item[1] == "7.62x54mm Cartridge" then
+			itemChance = 20
+		elseif item[1] == "1866 Slug" then
+			itemChance = 20
+		elseif item[1] == "12 Gauge Pellet" then
+			itemChance = 20
+		else
+			itemChance = math.percentChance(item[5],5)
+		end
 		if itemChance > 0 then
 			table.insert(lootpointData[lootCol],{item[1],itemChance})
 		end

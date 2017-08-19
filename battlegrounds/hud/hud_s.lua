@@ -24,7 +24,7 @@ local dangerZone
 local safeZone
 local zoneRadius = 4000
 local zoneRadiusOffsetX,zoneRadiusOffsetY = 0,0
-local radiusTimer = 120000 --480000
+local radiusTimer = 480000 --120000 for testing
 local firstZone = false
 local zoneTimer
 local firstWarning,secondWarning,thirdWarning = false,false,false
