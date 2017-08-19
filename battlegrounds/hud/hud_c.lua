@@ -102,7 +102,6 @@ function displayStatus()
 					countDown = countDown-1
 					if countDown == 0 then
 						if playerAmount > 1 then
-							triggerServerEvent("mtabg_startGame",root)
 							killTimer(countdownTimer)
 						else
 							outputChatBox("Not enough players, resetting countdown!",255,0,0,false)
@@ -110,7 +109,7 @@ function displayStatus()
 							countDown = 180
 						end
 					end
-				end,1000,10)
+				end,1000,180)
 			end
 		else
 			if isTimer(countdownTimer) then killTimer(countdownTimer) end

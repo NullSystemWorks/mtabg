@@ -19,6 +19,13 @@ lobbyInteriors = {
 
 }
 
+function sendPlayersOnServerToLobby()
+	for i, players in ipairs(getElementsByType("player")) do
+		sendPlayerToLobby(players)
+	end
+end
+addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),sendPlayersOnServerToLobby)
+
 function onJoinIsGameRunning()
 	if gameCache['status'] then
 		outputChatBox("Please wait until the current game is over!",source,255,0,0,false)
@@ -31,6 +38,9 @@ addEventHandler("onPlayerJoin",root,onJoinIsGameRunning)
 function onPlayerLeavingGame()
 	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]-1
 	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"])
+	if gameCache["initialPlayerAmount"] == 0 then
+		startCountDown(false)
+	end
 end
 addEventHandler("onPlayerQuit",root,onPlayerLeavingGame)
 
@@ -57,9 +67,31 @@ function sendPlayerToLobby(player)
 	end
 	table.insert(playerDataInfo[player],{-1,"inLobby",true})
 	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
+	if gameCache["initialPlayerAmount"] == 1 then
+		startCountDown(true)
+	end
 	setTimer(function()
 		triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"])
-	end,3000,1,gameCache["initialPlayerAmount"],gameCache["status"])
+	end,2000,1,gameCache["initialPlayerAmount"],gameCache["status"])
+end
+
+function startCountDown(state)
+local countdown = 180
+local countDownTimer
+	if state then
+		if isTimer(countdownTimer) then killTimer(countdownTimer) end
+		countdownTimer = setTimer(function()
+			countdown = countdown-1
+			if countdown == 0 then
+				if gameCache["initialPlayerAmount"] > 1 then
+					startGame()
+				end
+			end
+		end,1000,180,countdown)
+	else
+		countdown = 180
+		if isTimer(countdownTimer) then killTimer(countdownTimer) end
+	end
 end
 
 function startGame()
