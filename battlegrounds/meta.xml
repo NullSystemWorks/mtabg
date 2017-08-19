@@ -62,6 +62,6 @@ Version: 0.0.1 Pre-Alpha
 	<export function="saveLog" type="server" />
 	<export function="isGameRunning" type="server" />
 	
-	<!-- <oop>true</oop> -->
+	 <oop>true</oop>
 	<include resource="customblips" />
 </meta>

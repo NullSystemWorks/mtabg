@@ -24,7 +24,7 @@ local dangerZone
 local safeZone
 local zoneRadius = 4000
 local zoneRadiusOffsetX,zoneRadiusOffsetY = 0,0
-local radiusTimer = 480000
+local radiusTimer = 120000 --480000
 local firstZone = false
 local zoneTimer
 local firstWarning,secondWarning,thirdWarning = false,false,false
@@ -37,7 +37,7 @@ function createZone()
 	safeZone = createColCircle(x,y,initialZoneRadius)
 	zoneTimer = setTimer(decreaseZoneSize,radiusTimer,1)
 	setTimer(getPlayersInsideZone,5000,0)
-	triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius) 
+	triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius,radiusTimer) 
 end
 -- Debug Command
 addCommandHandler("zone",createZone)
@@ -60,7 +60,7 @@ function decreaseZoneSize()
 		safeZone = createColCircle(oldX2,oldY2,initialZoneRadius)
 		if zoneTimer then killTimer(zoneTimer) end
 		zoneTimer = setTimer(decreaseZoneSize,radiusTimer,1)
-		triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius)	
+		triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius,radiusTimer)	
 	end
 	firstWarning = false
 	secondWarning = false
@@ -73,29 +73,10 @@ function sendRadiusTimerToClient()
 		triggerClientEvent("mtabg_setRadiusTimerToClient",root,timeDetails)
 	end
 end
-setTimer(sendRadiusTimerToClient,1000,0)
+--setTimer(sendRadiusTimerToClient,1000,0)
 
 
 function getPlayersInsideZone()
-	timeLeft = getTimerDetails(zoneTimer)
-	if not firstWarning then
-		if timeLeft < 60001 then
-			outputChatBox("Zone size will decrease in 60 seconds!",root,255,0,0,true)
-			firstWarning = true
-		end
-	end
-	if not secondWarning then
-		if timeLeft < 30001 then
-			outputChatBox("Zone size will decrease in 30 seconds!",root,255,0,0,true)
-			secondWarning = true
-		end
-	end
-	if not thirdWarning then
-		if timeLeft < 10001 then
-			outputChatBox("Zone size will decrease in 10 seconds!",root,255,0,0,true)
-			thirdWarning = true
-		end
-	end
 	if not firstZone then
 		if safeZone and dangerZone then
 			for i, players in ipairs(getElementsByType("player")) do

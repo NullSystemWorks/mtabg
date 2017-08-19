@@ -12,7 +12,24 @@ local x,y,z = 0,0,0
 local x2,y2,z2 = 0,0,0
 local dangerZoneRadius = 0
 local safeZoneRadius = 0
-function createCustomBlip(dangerZone,safeZone,radius,initialZoneRadius)
+local zoneTimer
+
+local screenW, screenH = guiGetScreenSize()
+local r,g,b = 218,218,218
+local alpha = 150
+local playerAmount = 0
+local gameStatus = false
+local countDown = 10 -- 180
+
+local maxDistance = 100 --max distance represented by littleDude
+local littleDudeDistance = maxDistance --relative distance from littleDude to safe area
+local distanceToSafeArea --distance from player to safe area
+local screenx, screeny = guiGetScreenSize() --screen size
+local safeAreaCol
+
+
+
+function createCustomBlip(dangerZone,safeZone,radius,initialZoneRadius,timer)
 	if dangerBlip then
 		exports.customblips:destroyCustomBlip(dangerBlip)
 		exports.customblips:destroyCustomBlip(safeBlip)
@@ -27,24 +44,31 @@ function createCustomBlip(dangerZone,safeZone,radius,initialZoneRadius)
 	exports.customblips:setCustomBlipStreamRadius(safeBlip,0)
 	dangerZoneRadius = radius
 	safeZoneRadius = initialZoneRadius
+	safeAreaCol = false
+	maxDistance = radius-safeZoneRadius
+	safeAreaCol = safeZone
+	if isTimer(zoneTimer) then killTimer(zoneTimer) end
+	zoneTimer = setTimer(function() end,timer,0)
+	local radiusTimer = setTimer(setRadiusTimerToClient,1000,0,zoneTimer)
+	for i=1,3 do
+		if not guiGetVisible(zoneIndicators.image[i]) then
+			guiSetVisible(zoneIndicators.image[i],true)
+		end
+	end
 end
 addEvent("mtabg_createCustomBlip",true)
 addEventHandler("mtabg_createCustomBlip",root,createCustomBlip)
 
-function formatMilliseconds(milliseconds) 
-    local totalseconds = math.floor( milliseconds / 1000 ) 
-    local seconds = totalseconds % 60 
-    local minutes = math.floor( totalseconds / 60 ) 
-    minutes = minutes % 60 
-    return string.format( "%02d:%02d", minutes, seconds)   
+function formatMilliseconds(milliseconds)
+	if milliseconds then
+		local totalseconds = math.floor( milliseconds / 1000 ) 
+		local seconds = totalseconds % 60 
+		local minutes = math.floor( totalseconds / 60 ) 
+		minutes = minutes % 60 
+		return string.format( "%02d:%02d", minutes, seconds)
+	end
 end 
 
-local screenW, screenH = guiGetScreenSize()
-local r,g,b = 218,218,218
-local alpha = 150
-local playerAmount = 0
-local gameStatus = false
-local countDown = 10
 function displayStatus()
 	if gameStatus then
 		if not inventoryIsShowing then
@@ -164,8 +188,11 @@ addEvent("mtabg_showEndscreen",true)
 addEventHandler("mtabg_showEndscreen",root,showEndScreen)
 
 function setRadiusTimerToClient(timer)
-	local time = formatMilliseconds(timer)
-	guiSetText(zoneIndicators.label[1],tostring(time))
+	if isTimer(timer) then
+		local timeDetails = getTimerDetails(timer)
+		local time = formatMilliseconds(timeDetails)
+		guiSetText(zoneIndicators.label[1],tostring(time))
+	end
 end
 addEvent("mtabg_setRadiusTimerToClient",true)
 addEventHandler("mtabg_setRadiusTimerToClient",root,setRadiusTimerToClient)
@@ -176,23 +203,49 @@ zoneIndicators = {
 }
 
 zoneIndicators.label[1] = guiCreateLabel(0.02, 0.73, 0.24, 0.03, "", true)
---[[
-zoneIndicators.image[1] = guiCreateStaticImage(0.02, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
+zoneIndicators.image[1] = guiCreateStaticImage (0.02, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true) --starting position
 guiSetProperty(zoneIndicators.image[1], "ImageColours", "tl:FEFB0000 tr:FEFB0000 bl:FEFB0000 br:FEFB0000")
-zoneIndicators.image[2] = guiCreateStaticImage(0.25, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true)
+zoneIndicators.image[2] = guiCreateStaticImage (0.25, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true) --finishing position
 guiSetProperty(zoneIndicators.image[2], "ImageColours", "tl:FE000CFA tr:FE000CFA bl:FE000CFA br:FE000CFA")
-zoneIndicators.image[3] = guiCreateStaticImage(0.00, 0.69, 0.04, 0.04, "/hud/running.png", true)
-guiSetProperty(zoneIndicators.image[3], "ImageColours", "tl:FEFEFEFF tr:FEFEFEFF bl:FEFEFEFF br:FEFEFEFF")   
+zoneIndicators.image[3] = guiCreateStaticImage (0.02, 0.69, 0.04, 0.04, "hud/running.png", true) --our littledude
 
-
--- Currently not working
-function calculateZoneIndicatorDistance()
-	local dX,dY,dZ = getElementPosition(localPlayer)
-	local safeZoneDistance = getDistanceBetweenPoints3D(dX,dY,dZ,x2,y2,z2)
-	safeZoneDistance = safeZoneDistance-safeZoneRadius
-	guiSetPosition(zoneIndicators.image[3],math.min(0.25,math.max(1,safeZoneDistance*0.25)),0.69,true)
+for i=1,3 do
+	guiSetVisible(zoneIndicators.image[i],false)
 end
-]]
+
+local function mapValues(x, in_min, in_max, out_min, out_max) --rescales values
+	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+end
+
+local getDistanceBetweenPoints2D = getDistanceBetweenPoints2D
+local localPlayer = localPlayer
+local math = math
+local function calculateLittleDudeDistance()
+	local px, py = localPlayer.position.x, localPlayer.position.y --player coordinates
+	local sx,sy
+	if safeAreaCol then
+		sx, sy = safeAreaCol.position.x, safeAreaCol.position.y --safe area coords
+	end
+	distanceToSafeArea = (getDistanceBetweenPoints2D(px, py, sx, sy) - safeZoneRadius > 0) and
+	getDistanceBetweenPoints2D(px, py, sx, sy) - safeZoneRadius or 0 --show positive or 0
+	if distanceToSafeArea > maxDistance then --if too far
+		return 0 --stay at max
+	else
+		return mapValues(distanceToSafeArea, 0, maxDistance, 0.23, 0.02) --calculate relative distance
+	end
+end
+
+local guiSetPosition = guiSetPosition
+local dxDrawText = dxDrawText
+local function moveLittleDude() --moves littleDude
+	if gameStatus then
+		littleDudeDistance = calculateLittleDudeDistance()
+		guiSetPosition(zoneIndicators.image[3], littleDudeDistance, 0.69, true) --set littleDudes position
+		--dxDrawText(math.floor(distanceToSafeArea), screenx*(littleDudeDistance + 0.027) , screeny*0.96) --draw distance
+	end
+end
+addEventHandler("onClientRender", root, moveLittleDude)
+
 
 
 
