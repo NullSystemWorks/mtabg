@@ -1,5 +1,5 @@
 --[[
-	
+
 				MTA:BG
 			MTA Battlegrounds
 	Developed By: L, CiBeR, neves768, 1BOY
@@ -61,13 +61,13 @@ addEventHandler("mtabg_createCustomBlip",root,createCustomBlip)
 
 function formatMilliseconds(milliseconds)
 	if milliseconds then
-		local totalseconds = math.floor( milliseconds / 1000 ) 
-		local seconds = totalseconds % 60 
-		local minutes = math.floor( totalseconds / 60 ) 
-		minutes = minutes % 60 
+		local totalseconds = math.floor( milliseconds / 1000 )
+		local seconds = totalseconds % 60
+		local minutes = math.floor( totalseconds / 60 )
+		minutes = minutes % 60
 		return string.format( "%02d:%02d", minutes, seconds)
 	end
-end 
+end
 
 function displayStatus()
 	if gameStatus then
@@ -80,10 +80,10 @@ function displayStatus()
 			dxDrawLine((screenW * 0.2612) - 1, screenH * 0.9450, screenW * 0.7688, screenH * 0.9450, tocolor(0, 0, 0, 150), 1, true)
 			dxDrawLine(screenW * 0.7688, screenH * 0.9450, screenW * 0.7688, (screenH * 0.9017) - 1, tocolor(0, 0, 0, 150), 1, true)
 			if guiPlayerHealth < 0 then
-				guiPlayerHealth = 0 
+				guiPlayerHealth = 0
 			end
 			dxDrawRectangle(screenW * 0.2612, screenH * 0.9017, screenW * (0.5075/(100/guiPlayerHealth)), screenH * 0.0433, tocolor(r,g,b, alpha), true)
-			
+
 			dxDrawText("ALIVE:", (screenW * 0.8488) - 1, (screenH * 0.0483) - 1, (screenW * 0.9375) - 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 			dxDrawText("ALIVE:", (screenW * 0.8488) + 1, (screenH * 0.0483) - 1, (screenW * 0.9375) + 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 			dxDrawText("ALIVE:", (screenW * 0.8488) - 1, (screenH * 0.0483) + 1, (screenW * 0.9375) - 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
@@ -115,7 +115,7 @@ function displayStatus()
 		else
 			if isTimer(countdownTimer) then killTimer(countdownTimer) end
 		end
-	
+
 		dxDrawText("COUNTDOWN:", screenW * 0.6350, screenH * 0.1683, screenW * 0.8413, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
 		dxDrawText("PLAYERS:", screenW * 0.6350, screenH * 0.2250, screenW * 0.8413, screenH * 0.2817, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
 		dxDrawText(countDown.." SEC.", screenW * 0.8538, screenH * 0.1683, screenW * 0.9825, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
@@ -173,10 +173,10 @@ local text = ""
 	endScreen.label[6] = guiCreateLabel(0.25, 0.47, 0.20, 0.04, "N/A", true, endScreen.image[1])
 	endScreen.label[7] = guiCreateLabel(0.83, 0.87, 0.15, 0.06, "Back to Lobby", true, endScreen.image[1])
 	guiLabelSetHorizontalAlign(endScreen.label[7], "center", false)
-	guiLabelSetVerticalAlign(endScreen.label[7], "center")  
-	
+	guiLabelSetVerticalAlign(endScreen.label[7], "center")
+
 	guiLabelSetColor(endScreen.label[2],255,255,0)
-	
+
 	guiSetFont(endScreen.label[1],inventoryGUI.font[4])
 	guiSetFont(endScreen.label[2],inventoryGUI.font[3])
 	guiSetFont(endScreen.label[7],inventoryGUI.font[1])
@@ -214,10 +214,7 @@ for i=1,3 do
 	guiSetVisible(zoneIndicators.image[i],false)
 end
 
-local function mapValues(x, in_min, in_max, out_min, out_max) --rescales values
-	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
-end
-
+local mapValues = mapValues
 local getDistanceBetweenPoints2D = getDistanceBetweenPoints2D
 local localPlayer = localPlayer
 local math = math
@@ -246,7 +243,3 @@ local function moveLittleDude() --moves littleDude
 	end
 end
 addEventHandler("onClientRender", root, moveLittleDude)
-
-
-
-

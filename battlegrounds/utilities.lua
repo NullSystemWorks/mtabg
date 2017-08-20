@@ -1,5 +1,5 @@
 --[[
-	
+
 				MTA:BG
 			MTA Battlegrounds
 	Developed By: L, CiBeR, neves768, 1BOY
@@ -17,7 +17,7 @@ function isInBuilding(x, y, z)
 	return false
 end
 
-function findRotation(x1,y1,x2,y2) 
+function findRotation(x1,y1,x2,y2)
   local t = -math.deg(math.atan2(x2-x1,y2-y1))
   if t < 0 then t = t + 360 end;
   return t;
@@ -64,17 +64,17 @@ function getRotationOfCamera()
     local rotx = math.atan2 ( lz - pz, getDistanceBetweenPoints2D ( lx, ly, px, py ) )
     --Convert to degrees
     rotx = math.deg(rotx)
-    rotz = -math.deg(rotz)	
+    rotz = -math.deg(rotz)
     return rotx, 180, rotz
 end
 
 function math.round(number, decimals, method)
     decimals = decimals or 0
     local factor = 10 ^ decimals
-    if (method == "ceil" or method == "floor") then 
+    if (method == "ceil" or method == "floor") then
 		return math[method](number * factor) / factor
-    else 
-		return tonumber(("%."..decimals.."f"):format(number)) 
+    else
+		return tonumber(("%."..decimals.."f"):format(number))
 	end
 end
 
@@ -130,3 +130,7 @@ function outputInfo()
 	end
 end
 --setTimer(outputInfo,infoTimer,0)
+
+function mapValues(x, in_min, in_max, out_min, out_max) --rescales values
+	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+end
