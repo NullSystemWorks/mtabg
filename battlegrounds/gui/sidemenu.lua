@@ -40,7 +40,7 @@ local number = 0
 	end
 	if arg1 == "stop" then
 		disableMenu()
-		triggerServerEvent("mtabg_refreshLoot",localPlayer,false,gearName)
+		--triggerServerEvent("mtabg_refreshLoot",localPlayer,false,gearName)
 	end
 	if arg1 == "Dead" then
 		number = number+1

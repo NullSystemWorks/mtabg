@@ -9,7 +9,7 @@
 local lootPointID = 0
 lootpointData = {}
 
-function createItemPickup(item,x,y,z,itemName)
+function createItemPickup(item,x,y,z,itemName,itemAmount)
 	if item and x and y and z then
 		lootPointID = lootPointID+1
 		local lootCol = createColSphere(x,y,z,1.25)
@@ -20,7 +20,7 @@ function createItemPickup(item,x,y,z,itemName)
 			["lootID"] = lootPointID,
 			["objects"] = {}
 		}
-		table.insert(lootpointData[lootCol],{itemName,1})
+		table.insert(lootpointData[lootCol],{itemName,itemAmount})
 		setElementData(lootCol,"itemloot",true)
 		setElementData(lootCol,"parent","FullList")	
 		local objectTable = {}
@@ -40,6 +40,8 @@ function createItemPickup(item,x,y,z,itemName)
 	end
 end
 
+local async = Async()
+async:setPriority("normal")
 
 function createLootPoint(lootSpot,x,y,z,ID)
 	lootPointID = lootPointID+1
@@ -51,32 +53,30 @@ function createLootPoint(lootSpot,x,y,z,ID)
 		["lootID"] = lootPointID,
 		["objects"] = {}
 	}
-	local itemChance = 1
 	for i, item in ipairs(lootItems[lootSpot]) do
-		if item[1] == "11.43x23mm Cartridge" then
-			itemChance = 20
-		elseif item[1] == "9x18mm Cartridge" then
-			itemChance = 20
-		elseif item[1] == "9x19mm Cartridge" then
-			itemChance = 20
-		elseif item[1] == ".303 British Cartridge" then
-			itemChance = 20
-		elseif item[1] == "7.62x39mm Cartridge" then
-			itemChance = 20
-		elseif item[1] == "5.56x45mm Cartridge" then
-			itemChance = 20
-		elseif item[1] == "7.62x54mm Cartridge" then
-			itemChance = 20
-		elseif item[1] == "1866 Slug" then
-			itemChance = 20
-		elseif item[1] == "12 Gauge Pellet" then
-			itemChance = 20
-		else
-			itemChance = math.percentChance(item[5],5)
-		end
+		local itemChance = math.percentChance(item[5],5)
 		if itemChance > 0 then
-			table.insert(lootpointData[lootCol],{item[1],itemChance})
+			if item[1] == "11.43x23mm Cartridge" then
+				itemChance = 20
+			elseif item[1] == "9x18mm Cartridge" then
+				itemChance = 20
+			elseif item[1] == "9x19mm Cartridge" then
+				itemChance = 20
+			elseif item[1] == ".303 British Cartridge" then
+				itemChance = 20
+			elseif item[1] == "7.62x39mm Cartridge" then
+				itemChance = 20
+			elseif item[1] == "5.56x45mm Cartridge" then
+				itemChance = 20
+			elseif item[1] == "7.62x54mm Cartridge" then
+				itemChance = 20
+			elseif item[1] == "1866 Slug" then
+				itemChance = 20
+			elseif item[1] == "12 Gauge Pellet" then
+				itemChance = 20		
+			end
 		end
+		table.insert(lootpointData[lootCol],{item[1],itemChance})
 	end
 	setElementData(lootCol,"itemloot",true)
 	setElementData(lootCol,"parent",lootSpot)
@@ -91,14 +91,16 @@ function createLootPointObject(lootCol,lootSpot)
 	for i, item in ipairs(lootItems[lootSpot]) do
 		for k, spot in ipairs(lootpointData[lootCol]) do
 			if item[1] == spot[1] then
-				itemName = spot[1]
-				objectCounter = objectCounter + 1
-				local x,y,z = getElementPosition(lootCol)
-				objectTable[objectCounter] = createObject(item[2],x+math.random(-1,1),y+math.random(-1,1),z-0.875,item[4])
-				setObjectScale(objectTable[objectCounter],item[3])
-				setElementCollisionsEnabled(objectTable[objectCounter], false)
-				setElementFrozen(objectTable[objectCounter],true)
-				table.insert(lootpointData[lootCol]["objects"],{objectTable[objectCounter],itemName})
+				if spot[2] > 0 then
+					itemName = spot[1]
+					objectCounter = objectCounter + 1
+					local x,y,z = getElementPosition(lootCol)
+					objectTable[objectCounter] = createObject(item[2],x+math.random(-1,1),y+math.random(-1,1),z-0.875,item[4])
+					setObjectScale(objectTable[objectCounter],item[3])
+					setElementCollisionsEnabled(objectTable[objectCounter], false)
+					setElementFrozen(objectTable[objectCounter],true)
+					table.insert(lootpointData[lootCol]["objects"],{objectTable[objectCounter],itemName})
+				end
 			end
 		end
 	end
@@ -106,8 +108,7 @@ end
 addEvent("mtabg_createLootPointObject",true)
 addEventHandler("mtabg_createLootPointObject",root,createLootPointObject)
 
-local async = Async()
-async:setPriority("normal")
+
 
 function createSpotsOnStart()
 	local SpotsID = 0
@@ -117,25 +118,25 @@ function createSpotsOnStart()
 		createLootPoint("Industry",position[1],position[2],position[3],SpotsID)
 	end)
 	outputDebugString("[MTA:BG] Spawning Residential Loot Points(40%)")
-	for i, position in ipairs(lootPoints["Residential"]) do
+	async:foreach(lootPoints["Residential"], function(position)
 		SpotsID = SpotsID+1
 		createLootPoint("Residential",position[1],position[2],position[3],SpotsID)
-	end
+	end)
 	outputDebugString("[MTA:BG] Spawning Supermarket Loot Points(60%)")
-	for i, position in ipairs(lootPoints["Supermarket"]) do
+	async:foreach(lootPoints["Supermarket"], function(position)
 		SpotsID = SpotsID+1
 		createLootPoint("Supermarket",position[1],position[2],position[3],SpotsID)
-	end
+	end)
 	outputDebugString("[MTA:BG] Spawning Farm Loot Points(80%)")
-	for i, position in ipairs(lootPoints["Farm"]) do
+	async:foreach(lootPoints["Farm"], function(position)
 		SpotsID = SpotsID+1
 		createLootPoint("Farm",position[1],position[2],position[3],SpotsID)
-	end
+	end)
 	outputDebugString("[MTA:BG] Spawning Military Loot Points(100%)")
-	for i, position in ipairs(lootPoints["Military"]) do
+	async:foreach(lootPoints["Military"], function(position)
 		SpotsID = SpotsID+1
 		createLootPoint("Military",position[1],position[2],position[3],SpotsID)
-	end
+	end)
 	outputDebugString("[MTA:BG] All loot points spawned!")
 end
 -- Dev command, remove on release

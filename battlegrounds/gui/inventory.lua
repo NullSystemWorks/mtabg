@@ -228,11 +228,13 @@ addEvent("mtabg_sendDataToClient",true)
 addEventHandler("mtabg_sendDataToClient",root,sendDataToClient)
 
 function populateGridListWithItems(gridList,columnName,columnAmount,itemName,itemAmount)
-	if itemName ~= guiGridListGetItemText(inventoryGUI.gridlist[gridList],guiGridListGetSelectedItem(inventoryGUI.gridlist[gridList]),1) then
-		row = guiGridListAddRow(inventoryGUI.gridlist[gridList])
-		guiGridListSetItemText(inventoryGUI.gridlist[gridList], row, inventoryGUI.gridlist[columnName],itemName, false, false)
+	if itemAmount > 0 then
+		if itemName ~= guiGridListGetItemText(inventoryGUI.gridlist[gridList],guiGridListGetSelectedItem(inventoryGUI.gridlist[gridList]),1) then
+			row = guiGridListAddRow(inventoryGUI.gridlist[gridList])
+			guiGridListSetItemText(inventoryGUI.gridlist[gridList], row, inventoryGUI.gridlist[columnName],itemName, false, false)
+		end
+		guiGridListSetItemText(inventoryGUI.gridlist[gridList], row, inventoryGUI.gridlist[columnAmount],itemAmount, false, false)
 	end
-	guiGridListSetItemText(inventoryGUI.gridlist[gridList], row, inventoryGUI.gridlist[columnAmount],itemAmount, false, false)
 end
 addEvent("mtabg_populateGridListWithItems",true)
 addEventHandler("mtabg_populateGridListWithItems",localPlayer,populateGridListWithItems)

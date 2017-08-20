@@ -24,19 +24,16 @@ function refreshLoot(loot,gearName)
 		triggerClientEvent(client,"mtabg_clearGridList",client,2)
 		return
 	end
+	triggerClientEvent(client,"mtabg_clearGridList",client,2)
 	for i, item in ipairs(lootpointData[loot]) do
-		if tonumber(item[2]) then
-			if item[1] ~= nil then
-				if item[2] > 0 then
-					triggerClientEvent(client,"mtabg_populateGridListWithItems",client,2,"loot","lootamount",item[1],item[2])
-				else
-					for k, data in ipairs(lootpointData[loot]["objects"]) do
-						if item[1] == data[2] then
-							if isElement(data[1]) then
-								destroyElement(data[1])
-								return loot
-							end
-						end
+		triggerClientEvent(client,"mtabg_populateGridListWithItems",client,2,"loot","lootamount",item[1],item[2])
+		
+		for k, data in ipairs(lootpointData[loot]["objects"]) do
+			if item[1] == data[2] then
+				if item[2] < 1 then
+					if isElement(data[1]) then
+						destroyElement(data[1])
+						return loot
 					end
 				end
 			end
@@ -57,24 +54,98 @@ end
 
 function onItemFromInventoryToLoot(itemName,loot)
 	if itemName then
+		local itemDeduct = 1
 		for i, item in ipairs(playerInfo[client]) do
 			if item[2] == itemName then
-				item[3] = item[3]-1
+				if item[2] == "11.43x23mm Cartridge" then
+					if item[3] <= 10 then
+						itemDeduct = item[3]
+						item[3] = 0
+					else
+						item[3] = item[3]-10
+						itemDeduct = 10
+					end
+				elseif item[2] == "9x18mm Cartridge" then
+					if item[3] <= 10 then
+						itemDeduct = item[3]
+						item[3] = 0
+					else
+						item[3] = item[3]-10
+						itemDeduct = 10
+					end
+				elseif item[2] == "9x19mm Cartridge" then
+					if item[3] <= 10 then
+						itemDeduct = item[3]
+						item[3] = 0
+					else
+						item[3] = item[3]-10
+						itemDeduct = 10
+					end
+				elseif item[2] == ".303 British Cartridge" then
+					if item[3] <= 10 then
+						itemDeduct = item[3]
+						item[3] = 0
+					else
+						item[3] = item[3]-10
+						itemDeduct = 10
+					end
+				elseif item[2] == "7.62x39mm Cartridge" then
+					if item[3] <= 10 then
+						itemDeduct = item[3]
+						item[3] = 0
+					else
+						item[3] = item[3]-10
+						itemDeduct = 10
+					end
+				elseif item[2] == "5.56x45mm Cartridge" then
+					if item[3] <= 10 then
+						itemDeduct = item[3]
+						item[3] = 0
+					else
+						item[3] = item[3]-10
+						itemDeduct = 10
+					end
+				elseif item[2] == "7.62x54mm Cartridge" then
+					if item[3] <= 10 then
+						itemDeduct = item[3]
+						item[3] = 0
+					else
+						item[3] = item[3]-10
+						itemDeduct = 10
+					end
+				elseif item[2] == "1866 Slug" then
+					if item[3] <= 10 then
+						itemDeduct = item[3]
+						item[3] = 0
+					else
+						item[3] = item[3]-10
+						itemDeduct = 10
+					end
+				elseif item[2] == "12 Gauge Pellet" then
+					if item[3] <= 10 then
+						itemDeduct = item[3]
+						item[3] = 0
+					else
+						item[3] = item[3]-10
+						itemDeduct = 10
+					end
+				else
+					item[3] = item[3]-itemDeduct
+				end
 			end
 		end
-		refreshInventory()
 		if loot then
 			for i, item in ipairs(lootpointData[loot]) do
 				if item[1] == itemName then
-					item[2] = item[2]+1
-				end
+					item[2] = item[2]+itemDeduct
+				end		
 			end
-			triggerClientEvent(client,"mtabg_clearGridList",client,2)
+			refreshInventory()
 			refreshLoot(loot,"")
 		else
 			local x,y,z = getElementPosition(client)
 			local item = getItemFromTablePosition(itemName)
-			createItemPickup(item,x+math.random(-1.25,1.25),y+math.random(-1.25,1.25),z,itemName)
+			createItemPickup(item,x+math.random(-1.25,1.25),y+math.random(-1.25,1.25),z,itemName,itemDeduct)
 		end
 	end
 end
@@ -86,16 +157,101 @@ function onItemFromLootToInventory(itemName,loot)
 	if itemName then
 		for i, item in ipairs(playerInfo[client]) do
 			if item[2] == itemName then
-				item[3] = item[3]+1
+				if item[2] == "11.43x23mm Cartridge" then
+					for k, loot in ipairs(lootpointData[loot]) do
+						if item[2] == loot[1] then
+							item[3] = item[3]+loot[2]
+							loot[2] = 0
+						end
+					end
+				elseif item[2] == "9x18mm Cartridge" then
+					for k, loot in ipairs(lootpointData[loot]) do
+						if item[2] == loot[1] then
+							item[3] = item[3]+loot[2]
+							loot[2] = 0
+						end
+					end
+				elseif item[2] == "9x19mm Cartridge" then
+					for k, loot in ipairs(lootpointData[loot]) do
+						if item[2] == loot[1] then
+							item[3] = item[3]+loot[2]
+							loot[2] = 0
+						end
+					end
+				elseif item[2] == ".303 British Cartridge" then
+					for k, loot in ipairs(lootpointData[loot]) do
+						if item[2] == loot[1] then
+							item[3] = item[3]+loot[2]
+							loot[2] = 0
+						end
+					end
+				elseif item[2] == "7.62x39mm Cartridge" then
+					for k, loot in ipairs(lootpointData[loot]) do
+						if item[2] == loot[1] then
+							item[3] = item[3]+loot[2]
+							loot[2] = 0
+						end
+					end
+				elseif item[2] == "5.56x45mm Cartridge" then
+					for k, loot in ipairs(lootpointData[loot]) do
+						if item[2] == loot[1] then
+							item[3] = item[3]+loot[2]
+							loot[2] = 0
+						end
+					end
+				elseif item[2] == "7.62x54mm Cartridge" then
+					for k, loot in ipairs(lootpointData[loot]) do
+						if item[2] == loot[1] then
+							item[3] = item[3]+loot[2]
+							loot[2] = 0
+						end
+					end
+				elseif item[2] == "1866 Slug" then
+					for k, loot in ipairs(lootpointData[loot]) do
+						if item[2] == loot[1] then
+							item[3] = item[3]+loot[2]
+							loot[2] = 0
+						end
+					end
+				elseif item[2] == "12 Gauge Pellet" then
+					for k, loot in ipairs(lootpointData[loot]) do
+						if item[2] == loot[1] then
+							item[3] = item[3]+loot[2]
+							loot[2] = 0
+						end
+					end
+				else
+					item[3] = item[3]+1
+				end
+			end
+		end
+		
+		for i, item in ipairs(lootpointData[loot]) do
+			if item[1] == itemName then
+				if item[1] == "11.43x23mm Cartridge" then
+					return refreshLoot(loot,"")
+				elseif item[1] == "9x18mm Cartridge" then
+					return refreshLoot(loot,"")
+				elseif item[1] == "9x19mm Cartridge" then
+					return refreshLoot(loot,"")
+				elseif item[1] == ".303 British Cartridge" then
+					return refreshLoot(loot,"")
+				elseif item[1] == "7.62x39mm Cartridge" then
+					return refreshLoot(loot,"")
+				elseif item[1] == "5.56x45mm Cartridge" then
+					return refreshLoot(loot,"")
+				elseif item[1] == "7.62x54mm Cartridge" then
+					return refreshLoot(loot,"")
+				elseif item[1] == "1866 Slug" then
+					return refreshLoot(loot,"")
+				elseif item[1] == "12 Gauge Pellet" then
+					return refreshLoot(loot,"")
+				else
+					item[2] = item[2]-1
+				end
 			end
 		end
 		refreshInventory()
-		for i, item in ipairs(lootpointData[loot]) do
-			if item[1] == itemName then
-				item[2] = item[2]-1
-			end
-		end
-		triggerClientEvent(client,"mtabg_clearGridList",client,2)
 		refreshLoot(loot,"")
 	end
 end

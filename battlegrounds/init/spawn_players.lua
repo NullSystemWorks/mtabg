@@ -10,6 +10,7 @@
 gameCache['status'] = false
 gameCache["initialPlayerAmount"] = 0
 gameCache["playerAmount"] = 0
+gameCache["countdown"] = 10
 
 lobbyInteriors = {
 -- This is just temporary, we need a proper lobby mapping
@@ -37,7 +38,7 @@ addEventHandler("onPlayerJoin",root,onJoinIsGameRunning)
 
 function onPlayerLeavingGame()
 	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]-1
-	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"])
+	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 	if gameCache["initialPlayerAmount"] == 0 then
 		startCountDown(false)
 	end
@@ -71,25 +72,24 @@ function sendPlayerToLobby(player)
 		startCountDown(true)
 	end
 	setTimer(function()
-		triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"])
-	end,2000,1,gameCache["initialPlayerAmount"],gameCache["status"])
+		triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
+	end,2000,1,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 end
 
 function startCountDown(state)
-local countdown = 180
 local countDownTimer
 	if state then
 		if isTimer(countdownTimer) then killTimer(countdownTimer) end
 		countdownTimer = setTimer(function()
-			countdown = countdown-1
-			if countdown == 0 then
-				if gameCache["initialPlayerAmount"] > 1 then
+			gameCache["countdown"] = gameCache["countdown"]-1
+			if gameCache["countdown"] == 0 then
+				if gameCache["initialPlayerAmount"] > 0 then
 					startGame()
 				end
 			end
-		end,1000,180,countdown)
+		end,1000,10,gameCache["countdown"])
 	else
-		countdown = 180
+		gameCache["countdown"] = 10
 		if isTimer(countdownTimer) then killTimer(countdownTimer) end
 	end
 end
