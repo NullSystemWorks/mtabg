@@ -7,6 +7,19 @@
 ]]--
 
 mysql_link = false
+dataStore = {
+    ['kills'] = 0,
+    ['deaths'] = 0,
+    ['ratio'] = 0,
+    ['headshots'] = 0,
+    ['wins'] = 0,
+    ['defeats'] = 0,
+    ['rank'] = 0,
+    ['battlepoints'] = 0,
+    ['items'] = {},
+    ['achievement'] = {},
+    ['crates'] = 0
+}
 
 function mtabg_mysql_init()
     if gameplayVariables['database'] == 0 then
@@ -35,6 +48,28 @@ function checkAccount(serial)
         else
             return 0
         end
+    else
+        return 2
+    end
+end
+-- Returns 0 if account was created | 1 if account already existing | 2 if there was an error
+function registerAccount(player, email)
+    if not player or not email then return end
+    local ip = getPlayerIP(player)
+    local serial = getPlayerSerial(player)
+    local isAccount = checkAccount(serial)
+    local data = toJSON(dataStore)
+    if isAccount == 0 then
+        local query = "INSERT INTO accounts(id,serial,email,data,ip) VALUES(0, "..serial..","..email..","..data..","..ip..";"
+        local rQuery = dbQuery(mysql_link, query)
+        local rPoll = dbPoll(rQuery, -1)
+        if #rPoll > 0 then
+            return 0
+        else
+            return 2
+        end
+    elseif isAccount == 1 then
+        return 1
     else
         return 2
     end
