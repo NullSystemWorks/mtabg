@@ -8,9 +8,12 @@
 
 -- Init game status
 gameCache['status'] = false
+gameCache['status_duo'] = false -- Currently not in use
+gameCache['status_squad'] = false -- Currently not in use
 gameCache["initialPlayerAmount"] = 0
 gameCache["playerAmount"] = 0
 gameCache["countdown"] = 10
+gameCache["playingField"] = 0 -- = Dimension (Dimension 500 is reserved for home screen!)
 
 lobbyInteriors = {
 -- This is just temporary, we need a proper lobby mapping
@@ -20,32 +23,33 @@ lobbyInteriors = {
 
 }
 
-function sendPlayersOnServerToLobby()
+function sendPlayersOnServerToHomeScreen()
 	for i, players in ipairs(getElementsByType("player")) do
-		sendPlayerToLobby(players)
+		setTimer(function(players)
+			triggerClientEvent(players,"mtabg_sendToHomeScreen",players)
+		end,1000,1,players)
 	end
 end
-addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),sendPlayersOnServerToLobby)
+addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),sendPlayersOnServerToHomeScreen)
 
 function onJoinIsGameRunning()
-	if gameCache['status'] then
-		outputChatBox("Please wait until the current game is over!",source,255,0,0,false)
-	else
-		sendPlayerToLobby(source)
-	end
+	triggerClientEvent(source,"mtabg_sendToHomeScreen",source)
 end
 addEventHandler("onPlayerJoin",root,onJoinIsGameRunning)
 
 function onPlayerLeavingGame()
-	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]-1
-	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
-	if gameCache["initialPlayerAmount"] == 0 then
-		startCountDown(false)
+	if not gameCache["status"] then
+		gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]-1
+		triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
+		if gameCache["initialPlayerAmount"] == 0 then
+			startCountDown(false)
+		end
 	end
 end
 addEventHandler("onPlayerQuit",root,onPlayerLeavingGame)
 
 function sendPlayerToLobby(player)
+	if client then player = client end
 	local number = math.random(table.size(lobbyInteriors))
 	spawnID,spawnX,spawnY,spawnZ = lobbyInteriors[number][1],lobbyInteriors[number][2],lobbyInteriors[number][3],lobbyInteriors[number][4]
 	spawnPlayer(player,spawnX+math.random(-10,10),spawnY+math.random(-10,10),spawnZ+3,math.random(0,359),0,spawnID)
@@ -75,6 +79,8 @@ function sendPlayerToLobby(player)
 		triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 	end,2000,1,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 end
+addEvent("mtabg_sendPlayerToLobby",true)
+addEventHandler("mtabg_sendPlayerToLobby",root,sendPlayerToLobby)
 
 function startCountDown(state)
 local countDownTimer
@@ -97,6 +103,7 @@ end
 function startGame()
 	gameCache['status'] = false
 	gameCache["initialPlayerAmount"] = 0
+	gameCache["playingField"] = gameCache["playingField"]+1
 	createSpotsOnStart()
 	for i, player in ipairs(getElementsByType("player")) do
 		local dataID = -1
@@ -107,8 +114,8 @@ function startGame()
 		setPlayerHudComponentVisible(player,"health",false)
 		setPlayerHudComponentVisible(player,"area_name",false)
 		setPlayerHudComponentVisible(player,"money",false)
-		x,y,z = math.random(-2500,2500),math.random(-2500,2500),500
-		spawnPlayer(player,x,y,z, math.random(0,360), 0, 0, 0)
+		x,y,z = math.random(-2500,2500),math.random(-2500,2500),1000
+		spawnPlayer(player,x,y,z, math.random(0,360), 0, 0, gameCache["playingField"])
 		giveWeapon(player,46,1)
 		fadeCamera (player, false,2000,0,0,0)
 		setCameraTarget (player, player)
@@ -137,8 +144,6 @@ function startGame()
 end
 addEvent("mtabg_startGame",true)
 addEventHandler("mtabg_startGame",root,startGame)
--- Debug Command
-addCommandHandler("game",startGame)
 
 function returnPlayerInfoToClient(key)
 	if not gameCache["status"] then return end

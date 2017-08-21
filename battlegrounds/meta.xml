@@ -40,6 +40,7 @@ Version: 0.0.1 Pre-Alpha
 	<script src="hud/hud_s.lua" type="server" />
 	<script src="hud/hud_c.lua" type="client" cache="false"/>
 	<script src="hud/matchud.lua" type="client" cache="false"/>
+	
 
 	<!-- Handlers -->
 	<script src="handlers/client/damage_c.lua" type="client" cache="false"/>
@@ -47,10 +48,15 @@ Version: 0.0.1 Pre-Alpha
 	<script src="handlers/server/match.lua" type="server" />
 
 	<file src="gui/images/solo_slot.png" />
+	<file src="gui/images/button.png" />
+	<file src="gui/images/battlepointsicon.png" />
+	<file src="sounds/Unsung Briefing.mp3" />
+	<file src="gui/images/background_transparent.png" />
 
 	<script src="gui/inventory.lua" type="client" cache="false"/>
 	<script src="gui/inventory_s.lua" type="server" />
 	<script src="gui/sidemenu.lua" type="client" cache="false"/>
+	<script src="gui/homescreen_c.lua" type="client" cache="false" />
 
 	<!-- Files -->
 	<file src="hud/radius.png" />
