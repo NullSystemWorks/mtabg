@@ -217,6 +217,8 @@ addEventHandler("MTABG_LoginError", getRootElement(), showError)
 
 
 function loadLoginScreen(accountCheck, serial, avatar)
+	setLSVisibility(true)
+	showCursor(true)
 	if accountCheck == 1 then
 		registerPanel(false)
 		loginPanel(true)
@@ -237,7 +239,5 @@ addEventHandler("openLoginPanel", getRootElement(), loadLoginScreen)
 
 
 addEventHandler("onClientResourceStart", getResourceRootElement(), function()
-	setLSVisibility(true)
-	--registerPanel(true)
-	showCursor(true)	
+	triggerServerEvent("mtabg_onJoin", getLocalPlayer())
 end)
