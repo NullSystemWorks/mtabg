@@ -29,7 +29,7 @@ end
 
 function loginPanel(state)
 	if not LoginScreen.staticimage[2] and Loginbg and state then
-		LoginScreen.staticimage[2] = guiCreateStaticImage(0.46, 0.16, 0.08, 0.14, ":login/img/white.png", true, Loginbg)
+		LoginScreen.staticimage[2] = guiCreateStaticImage(0.46, 0.16, 0.08, 0.14, ":login/img/defaultavatar.png", true, Loginbg)
 		LoginScreen.edit[1] = guiCreateEdit(0.44, 0.43, 0.11, 0.03, "password", true, Loginbg)
 		guiEditSetMasked(LoginScreen.edit[1], true)
 		LoginScreen.label[1] = guiCreateLabel(0.44, 0.41, 0.11, 0.02, "Password", true, Loginbg)
@@ -62,6 +62,7 @@ function loginPanel(state)
 		guiSetFont(LoginScreen.label[5], "default-bold-small")
 		guiLabelSetColor(LoginScreen.label[5], 231, 232, 255)
 		guiLabelSetHorizontalAlign(LoginScreen.label[5], "left", true)
+		guiBringToFront(Loginbg)
 	elseif LoginScreen.staticimage[2] then
 		--setLSVisibility(state)
 		for index, guiOpt in pairs(LoginScreen) do
@@ -82,7 +83,8 @@ RegisterScreen = {
 
 function registerPanel(state)
 	if not RegisterScreen.staticimage[2] and Loginbg and state then
-		RegisterScreen.staticimage[2] = guiCreateStaticImage(0.46, 0.16, 0.08, 0.14, ":login/img/white.png", true, Loginbg)
+		RegisterScreen.staticimage[2] = guiCreateStaticImage(0.46, 0.16, 0.08, 0.14, ":login/img/defaultavatar.png", true, Loginbg)
+		
 		RegisterScreen.edit[1] = guiCreateEdit(0.44, 0.49, 0.11, 0.03, "password", true, Loginbg)
 		guiEditSetMasked(RegisterScreen.edit[1], true)
 		RegisterScreen.label[1] = guiCreateLabel(0.44, 0.47, 0.11, 0.02, "Password", true, Loginbg)
@@ -165,6 +167,7 @@ function registerPanel(state)
 				triggerServerEvent("mtabg_logdownloadAvatarimg", getLocalPlayer(), stringEd)
 			end
 		end, false)
+		guiBringToFront(Loginbg)
 	elseif RegisterScreen.staticimage[2] then
 		-- WTF? Bugs...
 		for index, guiOpt in pairs(RegisterScreen) do

@@ -122,7 +122,7 @@ end
 addEvent("mtabg_register", true)
 addEventHandler("mtabg_register", getRootElement(), register)
 
-function onJoin(source)
+function onJoin()
 	local accountCheck, avatar = checkAccount(getPlayerSerial(source), "avatar")
 	if accountCheck == 1 then
 		if avatar ~= "none" then
@@ -135,4 +135,3 @@ function onJoin(source)
 	end
 end
 addEventHandler("onPlayerJoin", getRootElement(), onJoin)
-addCommandHandler("p",onJoin) -- testing only
