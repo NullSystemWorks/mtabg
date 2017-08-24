@@ -1,9 +1,9 @@
 --[[
 	
-				MTA:BG
-			MTA Battlegrounds
+					MTA:BG
+				MTA Battlegrounds
 	Developed By: L, CiBeR, neves768, 1BOY, expert975
-
+			 © 2017 Null System Works 
 ]]--
 
 mysql_link = false
@@ -74,3 +74,46 @@ function registerAccount(player, email)
         return 2
     end
 end
+
+
+
+
+
+
+
+
+--- DATA Management
+
+usersData = {}
+
+function setUserData(user, data, value)
+	if user and data and value then
+		usersData[user][data] = value
+	end
+end
+
+function getUserData(user, data)
+	if user and data and usersData[user] then
+		return usersData[user][data]
+	else
+		return false
+	end
+end
+
+-- Example usage: getEUserData("kills", "setScoreKillsEvent")
+function getEUserData(data, event) -- "E" functions return value by event
+	if not client then client = source end
+	triggerClientEvent(client, event, client, usersData[user][data])
+end
+addEvent("getEUserData", true)
+addEventHandler("getEUserData", getRootElement(), getEUserData)
+
+
+function LoginMagic(player, data)
+	-- do something
+	usersData[player] = fromJSON(data)
+	triggerClientEvent(player, "mtabg_sendToHomeScreen", player)
+	return true
+end
+--addEvent("MTABG_onLogin", true)
+--addEventHandler("MTABG_onLogin", getRootElement(), MTABG_onLogin)

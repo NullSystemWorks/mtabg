@@ -1,0 +1,7 @@
+<meta>
+	<script src="login_s.lua" type="server" />
+	<script src="login_c.lua" type="client" />
+	<file src="img/pubglogo.png" />
+	<file src="img/bg01.png" />
+	<file src="img/white.png" />
+</meta>

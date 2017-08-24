@@ -26,7 +26,9 @@ lobbyInteriors = {
 function sendPlayersOnServerToHomeScreen()
 	for i, players in ipairs(getElementsByType("player")) do
 		setTimer(function(players)
-			triggerClientEvent(players,"mtabg_sendToHomeScreen",players)
+			if getUserData(players, "items") then -- logged check
+				triggerClientEvent(players,"mtabg_sendToHomeScreen",players)
+			end
 		end,1000,1,players)
 	end
 end

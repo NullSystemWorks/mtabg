@@ -1,12 +1,12 @@
 <!--
 #-----------------------------------------------------------------------------#
 MTA: Battlegrounds
-Devs: L, CiBeR96, 1B0Y, neves768
+Devs: L, CiBeR96, 1B0Y, neves768 & expert975
 Version: 0.0.1 Pre-Alpha
 #-----------------------------------------------------------------------------#
 -->
 <meta>
-    <info author="L, CiBeR96, 1B0Y, neves768" name="MTA:BG 0.0.1" description="MTA Battlegrounds" version="0.0.1 PA" type="gamemode" />
+    <info author="L, CiBeR96, 1B0Y, neves768 & expert975" name="MTA:BG 0.0.1" description="MTA Battlegrounds" version="0.0.1 PA" type="gamemode" />
 	<min_mta_version server="1.5" client="1.5" />
 
 	<!-- configs folder -->
@@ -27,6 +27,7 @@ Version: 0.0.1 Pre-Alpha
 	<script src="tools/async/async.lua" type="shared" cache="false" />
 
 	<!-- Init -->
+	<script src="accounting/account_system.lua" type="server" />
 	<script src="init/spawn_items.lua" type="server" />
 	<script src="init/spawn_players.lua" type="server" />
 
@@ -70,9 +71,11 @@ Version: 0.0.1 Pre-Alpha
 
 	<!-- Exports -->
 	<script src="exports_s.lua" type="server" />
+	<export function="LoginMagic" type="server" />
 	<export function="saveLog" type="server" />
 	<export function="isGameRunning" type="server" />
 
 	 <oop>true</oop>
 	<include resource="customblips" />
+	<include resource="login" />
 </meta>
