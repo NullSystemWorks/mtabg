@@ -149,13 +149,34 @@ homeScreen.label[35] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "COMMON CRATE", tr
 guiLabelSetHorizontalAlign(homeScreen.label[35], "center", false)
 guiLabelSetVerticalAlign(homeScreen.label[35], "center")
  
+homeScreen.staticimage[18] = guiCreateStaticImage(0.21, 0.28, 0.29, 0.04, "gui/images/solo_slot.png", true)
+guiSetProperty(homeScreen.staticimage[18], "ImageColours", "tl:E3020202 tr:E3020202 bl:E3020202 br:E3020202")
+homeScreen.label[36] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "NOT AVAILABLE YET", true, homeScreen.staticimage[18]) -- CUSTOMIZABLE SKIN
+guiLabelSetHorizontalAlign(homeScreen.label[36], "center", false)
+guiLabelSetVerticalAlign(homeScreen.label[36], "center")
 
+homeScreen.staticimage[19] = guiCreateStaticImage(0.50, 0.28, 0.28, 0.05, "gui/images/solo_slot.png", true)
+guiSetProperty(homeScreen.staticimage[19], "ImageColours", "tl:DDAFAFAF tr:DDAFAFAF bl:DDAFAFAF br:DDAFAFAF")
+homeScreen.label[37] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "PRESET SKINS", true, homeScreen.staticimage[19])
+guiLabelSetHorizontalAlign(homeScreen.label[37], "center", false)
+guiLabelSetVerticalAlign(homeScreen.label[37], "center")
 
+homeScreen.staticimage[20] = guiCreateStaticImage(0.18, 0.32, 0.03, 0.59, "gui/images/solo_slot.png", true)
+guiSetProperty(homeScreen.staticimage[20], "ImageColours", "tl:DD484848 tr:DD484848 bl:DD484848 br:DD484848")
+homeScreen.label[38] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "<-", true, homeScreen.staticimage[20])
+guiLabelSetHorizontalAlign(homeScreen.label[38], "center", false)
+guiLabelSetVerticalAlign(homeScreen.label[38], "center")
+
+homeScreen.staticimage[21] = guiCreateStaticImage(0.78, 0.32, 0.03, 0.59, "gui/images/solo_slot.png", true)
+guiSetProperty(homeScreen.staticimage[21], "ImageColours", "tl:DD484848 tr:DD484848 bl:DD484848 br:DD484848")
+homeScreen.label[39] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "->", true, homeScreen.staticimage[21])
+guiLabelSetHorizontalAlign(homeScreen.label[39], "center", false)
+guiLabelSetVerticalAlign(homeScreen.label[39], "center")   
  
 	
 guiSetVisible(homeScreen.staticimage[1],false)
 guiSetVisible(homeScreen.staticimage[5],false)
-for i=6,17 do
+for i=6,21 do
 	guiSetVisible(homeScreen.staticimage[i],false)
 end
 
@@ -167,7 +188,6 @@ addEventHandler("onClientResourceStart", getResourceRootElement(),
 		x,y = guiGetSize(versionLabel,true)
 		guiSetPosition( versionLabel, 1-x, 1-y*1.8, true )
 		guiSetAlpha(versionLabel,0.5)
-		getStatisticsTableFromDB(testTable) -- Just for testing purposes!
 	end
 )
 
@@ -175,11 +195,8 @@ local screenX,screenY = guiGetScreenSize()
 function sendToHomeScreen()
 	soundtrack = playSound("/sounds/Unsung Briefing.mp3",true)
 	setSoundVolume(soundtrack,0.4)
-	--setCameraMatrix(230.7577,1821.9936,7.97499,229.7822,1822.2131,7.9858,0,70)
 	setCameraMatrix(1720.41125,-1646.7942,21.0576,1721.21911,-1647.3781,20.9919,0,70)
 	setElementModel(localPlayer,0)
-	--setElementPosition(localPlayer,227.483932,1822.46862,7.4140625)
-	--setElementRotation(localPlayer,0,0,257.32000732422)
 	setElementPosition(localPlayer,1724.22998,-1647.8363,20.2283)
 	setElementRotation(localPlayer,0,0,80.0553)
 	setElementDimension(localPlayer,500)
@@ -189,8 +206,7 @@ function sendToHomeScreen()
 	guiSetVisible(homeScreen.staticimage[1],true)
 	myScreenSource = dxCreateScreenSource ( screenX,screenY)
 	showCursor(true)
-	getStatisticsTableFromDB(testTable) -- Testing purposes!
-	
+	doItNow() -- Test
 end
 addEvent("mtabg_sendToHomeScreen",true)
 addEventHandler("mtabg_sendToHomeScreen",root,sendToHomeScreen)
@@ -205,6 +221,22 @@ function changeColorOfOptionOnMouseOver(guiLabel,state)
 	else
 		if selectedOption ~= guiGetText(guiLabel) then
 			guiLabelSetColor(guiLabel,197,197,197)
+		end
+	end
+end
+
+function changeColorOfArrowCharacterScreen(guiLabel,state)
+	if state then
+		if guiLabel == homeScreen.label[38] then
+			guiSetProperty(homeScreen.staticimage[20], "ImageColours", "tl:E3020202 tr:E3020202 bl:E3020202 br:E3020202")
+		else
+			guiSetProperty(homeScreen.staticimage[21], "ImageColours", "tl:E3020202 tr:E3020202 bl:E3020202 br:E3020202")
+		end
+	else
+		if guiLabel == homeScreen.label[38] then
+			guiSetProperty(homeScreen.staticimage[20], "ImageColours", "tl:DD484848 tr:DD484848 bl:DD484848 br:DD484848")
+		else
+			guiSetProperty(homeScreen.staticimage[21], "ImageColours", "tl:DD484848 tr:DD484848 bl:DD484848 br:DD484848")
 		end
 	end
 end
@@ -258,6 +290,26 @@ function changeColorOfDeselectedOptionStatistics()
 	getCurrentSelectedOption(source)
 end
 addEventHandler("onClientMouseLeave",homeScreen.label[4],changeColorOfDeselectedOptionStatistics,false)
+
+function changeColorOfSelectedArrowCharacter()
+	changeColorOfArrowCharacterScreen(source,true)
+end
+addEventHandler("onClientMouseEnter",homeScreen.label[38],changeColorOfSelectedArrowCharacter,false)
+
+function changeColorOfDeselectedArrowCharacter()
+	changeColorOfArrowCharacterScreen(source,false)
+end
+addEventHandler("onClientMouseLeave",homeScreen.label[38],changeColorOfDeselectedArrowCharacter,false)
+
+function changeColorOfSelectedArrowCharacter()
+	changeColorOfArrowCharacterScreen(source,true)
+end
+addEventHandler("onClientMouseEnter",homeScreen.label[39],changeColorOfSelectedArrowCharacter,false)
+
+function changeColorOfDeselectedArrowCharacter()
+	changeColorOfArrowCharacterScreen(source,false)
+end
+addEventHandler("onClientMouseLeave",homeScreen.label[39],changeColorOfDeselectedArrowCharacter,false)
 
 function changeColorOfSelectedOptionPlay()
 	guiLabelSetColor(source,255,0,0)
@@ -350,21 +402,36 @@ function openUpSelectedOption(theOption)
 				guiSetVisible(homeScreen.staticimage[i],false)
 			end
 		end
-		if smoothMoveForward then		
+		if guiGetVisible(homeScreen.staticimage[18]) then
+			for i=18,21 do
+				guiSetVisible(homeScreen.staticimage[i],false)
+			end
+		end
+		if not smoothMoveForward then		
 			local a,b,c,d,e,f = getCameraMatrix(localPlayer)
 			smoothMoveCamera(a,b,c,d,e,f,1720.41125,-1646.7942,21.0576,1721.21911,-1647.3781,20.9919,1000)
-			smoothMoveForward = false
+			smoothMoveForward = true
 		end
 	elseif theOption == "REWARDS" then
 		if guiGetVisible(homeScreen.staticimage[5]) then
 			guiSetVisible(homeScreen.staticimage[5],false)
 		end
+		if guiGetVisible(homeScreen.staticimage[6]) then
+			for i=6,17 do
+				guiSetVisible(homeScreen.staticimage[i],false)
+			end
+		end
+		if guiGetVisible(homeScreen.staticimage[18]) then
+			for i=18,21 do
+				guiSetVisible(homeScreen.staticimage[i],false)
+			end
+		end
 		if not smoothMoveForward then
 			local a,b,c,d,e,f = getCameraMatrix(localPlayer)
 			smoothMoveCamera(a,b,c,d,e,f,1720.41125,-1646.7942,21.0576,1721.21911+4,-1647.3781+1,20.9919,1000)
 			smoothMoveForward = true
+			showRewards()
 		end
-		showRewards()
 	elseif theOption == "CHARACTER" then
 		if guiGetVisible(homeScreen.staticimage[5]) then
 			guiSetVisible(homeScreen.staticimage[5],false)
@@ -374,21 +441,26 @@ function openUpSelectedOption(theOption)
 				guiSetVisible(homeScreen.staticimage[i],false)
 			end
 		end
+		showCharacters()
 		-- CHARACTER OPTION CODE
-		local a,b,c,d,e,f = getCameraMatrix(localPlayer)
-		smoothMoveCamera(a,b,c,d,e,f,1720.41125,-1646.7942,21.0576,1721.21911,-1647.3781,20.9919,1000)
-		smoothMoveForward = false
+		if not smoothMoveForward then
+			local a,b,c,d,e,f = getCameraMatrix(localPlayer)
+			smoothMoveCamera(a,b,c,d,e,f,1720.41125,-1646.7942,21.0576,1721.21911+1,-1647.3781+0.1,20.9919,1000)
+			smoothMoveForward = true
+		end
 	elseif theOption == "STATISTICS" then
 		if guiGetVisible(homeScreen.staticimage[6]) then
 			for i=6,17 do
 				guiSetVisible(homeScreen.staticimage[i],false)
 			end
 		end
-		if not smoothMoveForward then
-			local a,b,c,d,e,f = getCameraMatrix(localPlayer)
-			smoothMoveCamera(a,b,c,d,e,f,1720.41125,-1646.7942,21.0576,1721.21911+4,-1647.3781+1,20.9919,1000)
-			smoothMoveForward = true
+		if guiGetVisible(homeScreen.staticimage[18]) then
+			for i=18,21 do
+				guiSetVisible(homeScreen.staticimage[i],false)
+			end
 		end
+		local a,b,c,d,e,f = getCameraMatrix(localPlayer)
+		smoothMoveCamera(a,b,c,d,e,f,1720.41125,-1646.7942,21.0576,1721.21911,-1647.3781,20.9919,1000)
 		showStatistics()
 	else
 		-- IN CASE ALL FAILS, SEND TO HOME
@@ -400,13 +472,18 @@ function openUpSelectedOption(theOption)
 				guiSetVisible(homeScreen.staticimage[i],false)
 			end
 		end
+		if guiGetVisible(homeScreen.staticimage[18]) then
+			for i=18,21 do
+				guiSetVisible(homeScreen.staticimage[i],false)
+			end
+		end
 		local a,b,c,d,e,f = getCameraMatrix(localPlayer)
 		smoothMoveCamera(a,b,c,d,e,f,1720.41125,-1646.7942,21.0576,1721.21911,-1647.3781,20.9919,1000)
 		smoothMoveForward = false
 	end
+	setTimer(function() smoothMoveForward = false end,500,1)
 end
 
--- To test if STATISTICS works properly, delete once done
 testTable = {
 ["gamesplayed"] = 3,
 ["wins"] = 99,
@@ -418,23 +495,25 @@ testTable = {
 ["headshots"] = 1,
 ["battlepoints"] = -5,
 ["battlepointsspent"] = 69,
+["skins"] = {57,90,125,127,128}
 }
 
 function doItNow()
 	getStatisticsTableFromDB(testTable)
-	outputDebugString("Did it")
 end
-addCommandHandler("table",doItNow)
 
 local statisticsTable = {}
+local temporarySkinTable = {}
 -- Is there a better way to accomplish this?
 function getStatisticsTableFromDB(theTable)
-	if theTable then outputDebugString("Received table: "..tostring(theTable)) end
 	statisticsTable[localPlayer] = {}
+	temporarySkinTable[localPlayer] = {}
 	for i, data in pairs(theTable) do
-		-- Assuming data[1] = name of stat, data[2] = value
-		table.insert(statisticsTable[localPlayer],{i,data})
-		
+		if type(data) ~= "table" then
+			table.insert(statisticsTable[localPlayer],{i,data})
+		else
+			table.insert(temporarySkinTable[localPlayer],{data})
+		end
 	end
 end
 addEvent("mtabg_getStatisticsTableFromDB",true)
@@ -443,20 +522,64 @@ addEventHandler("mtabg_getStatisticsTableFromDB",root,getStatisticsTableFromDB)
 function showStatistics()
 	-- triggerServerEvent to get player statistics from database, then send table back to client?
 	for i, data in ipairs(statisticsTable[localPlayer]) do
-		outputDebugString(tostring(data[1]))
-		guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2]))
-		outputDebugString("Set text to "..guiGetText(homeScreen.label[data[1].."_value"]))
+		if type(data[2]) ~= "table" then
+			guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2]))
+		end
 	end
 	guiSetVisible(homeScreen.staticimage[5],true)
 end
 
 function showRewards()
 	for i=6,17 do
-	guiSetVisible(homeScreen.staticimage[i],true)
-end
+		guiSetVisible(homeScreen.staticimage[i],true)
+	end
 end
 
--- World sound group 5 disable shooting sounds in background
+function showCharacters()
+	for i=18,21 do
+		guiSetVisible(homeScreen.staticimage[i],true)
+	end
+	for i, data in ipairs(temporarySkinTable[localPlayer]) do
+		for k, skin in ipairs(data) do
+			setElementModel(localPlayer,skin[1])
+		end
+	end
+	setTimer(setElementRotation,50,1,localPlayer,0,0,80.0553)
+end
+
+
+local arrowLeftRight = 1
+function changeCharacterOnArrowClick(guiLabel,state)
+	if state then
+		if source == homeScreen.label[39] then -- ->
+			for i, data in ipairs(temporarySkinTable[localPlayer]) do
+				for k, skin in ipairs(data) do
+					arrowLeftRight = arrowLeftRight+1
+					if arrowLeftRight > #skin then
+						arrowLeftRight = 1
+					end
+					setElementModel(localPlayer,skin[arrowLeftRight])
+					setElementRotation(localPlayer,0,0,80.0553)
+				end
+			end
+		else -- <-
+			for i, data in ipairs(temporarySkinTable[localPlayer]) do
+				for k, skin in ipairs(data) do
+					arrowLeftRight = arrowLeftRight-1
+					if arrowLeftRight <= 0 then
+						arrowLeftRight = #skin
+					end
+					setElementModel(localPlayer,skin[arrowLeftRight])
+					setElementRotation(localPlayer,0,0,80.0553)
+				end
+			end
+		end
+	end
+end
+addEventHandler("onClientGUIClick",homeScreen.label[38],changeCharacterOnArrowClick,false)
+addEventHandler("onClientGUIClick",homeScreen.label[39],changeCharacterOnArrowClick,false)
+
+-- World sound group 5
 function getMatrixAgain()
 	local x,y,z = getElementPosition(localPlayer)
 	local r,v,w = getElementRotation(localPlayer)
@@ -467,12 +590,4 @@ function getMatrixAgain()
 	outputChatBox(tostring(d)..", "..tostring(e)..", "..tostring(f))
 	outputChatBox(tostring(g)..", "..tostring(h))
 end
---Debug
 addCommandHandler("getit",getMatrixAgain)
-
-addEventHandler("onClientRender",root,function()
-	if myScreenSource then
-		dxUpdateScreenSource(myScreenSource)
-		dxDrawImage(0,0,screenX,screenY,myScreenSource)
-	end
-end)

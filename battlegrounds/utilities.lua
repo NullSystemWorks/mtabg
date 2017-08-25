@@ -116,21 +116,6 @@ function table.merge(table1,...)
 	return table1
 end
 
-local infoTimer = 240000
-local infoTable = {
-"Press - to interact with the left side menu",
-"Encountered a bug? Please report it to the development team!",
-"Visit our forum: mta-dayz.org/forum",
-"MTA:DayZ 0.9.8a",
-}
-
-function outputInfo()
-	for i, info in ipairs(infoTable) do
-		triggerClientEvent(root,"mtabg_displayClientInfo",root,"Info",info[math.random(1,#infoTable)],0,255,0)
-	end
-end
---setTimer(outputInfo,infoTimer,0)
-
 function mapValues(x, in_min, in_max, out_min, out_max) --rescales values
 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 end

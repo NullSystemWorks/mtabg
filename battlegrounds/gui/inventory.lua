@@ -209,17 +209,39 @@ end
 addEvent("mtabg_sendErrorToInventory",true)
 addEventHandler("mtabg_sendErrorToInventory",localPlayer,sendErrorToInventory)
 
-function changeEquippedWeaponGUI(weaponType,weaponName)
+local playerDataInfoClient = {}
+
+function getWeaponDamage(weapon,attacker)
+local weapon_1 = ""
+local weapon_2 = ""
+	for i, data in ipairs(playerDataInfoClient[attacker]) do
+		if data[1] == "currentweapon_1" then
+			weapon_1 = data[2]
+		end
+		if data[1] == "currentweapon_2" then
+			weapon_2 = data[2]
+		end
+	end
+	for i,weap in ipairs(weaponDamageTable) do
+		if weap[1] == weapon_1 or weap[1] == weapon_2 then
+			return weap[2]
+		end
+	end
+end
+
+function changeEquippedWeaponGUI(weaponType,weaponName,weapon1,weapon2,weapon3)
 	-- 8 = Primary, 9 = Secondary, 10 = Special
 	guiSetText(inventoryGUI.label[weaponType],weaponName)
+	playerDataInfoClient[localPlayer] = {}
+	table.insert(playerDataInfoClient[localPlayer],{"currentweapon_1",weapon1})
+	table.insert(playerDataInfoClient[localPlayer],{"currentweapon_2",weapon2})
+	table.insert(playerDataInfoClient[localPlayer],{"currentweapon_3",weapon3})
 end
 addEvent("mtabg_changeEquippedWeaponGUI",true)
 addEventHandler("mtabg_changeEquippedWeaponGUI",localPlayer,changeEquippedWeaponGUI)
 
 function sendDataToClient(theTable)
-	playerInventory = {
-		[localPlayer] = {}
-	}
+	playerInventory[localPlayer] = {}
 	for i, data in ipairs(theTable) do
 		table.insert(playerInventory[localPlayer],{data[1],data[2],data[3]})
 	end
