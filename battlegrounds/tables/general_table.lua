@@ -8,7 +8,7 @@
 
 weaponDataTable = {
 -- {"WeaponName",weaponID,modelID,size,Rotation,"ammoType","weaponType"}
-{"M1911",22,346,1,90,"9x19mm Cartridge","Secondary"},
+{"M1911",22,346,1,90,"11.43x23mm Cartridge","Secondary"},
 {"Revolver",24,348,1,90,"11.43x23mm Cartridge","Secondary"},
 {"M9",22,346,1,90,"9x19mm Cartridge","Secondary"},
 {"Makarov SD",23,347,1,90,"9x18mm Cartridge","Secondary"},

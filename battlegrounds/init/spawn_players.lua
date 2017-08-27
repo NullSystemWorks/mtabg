@@ -16,11 +16,7 @@ gameCache["countdown"] = 10
 gameCache["playingField"] = 0 -- = Dimension (Dimension 500 is reserved for home screen!)
 
 lobbyInteriors = {
--- This is just temporary, we need a proper lobby mapping
-
-{2,2558,-1292,1032},
-{14,-1437,1591,1052},
-
+{0,3971,3276,16},
 }
 
 function sendPlayersOnServerToHomeScreen()
@@ -51,6 +47,7 @@ addEventHandler("onPlayerQuit",root,onPlayerLeavingGame)
 function sendPlayerToLobby(player)
 	if client then player = client end
 	local number = math.random(table.size(lobbyInteriors))
+	
 	spawnID,spawnX,spawnY,spawnZ = lobbyInteriors[number][1],lobbyInteriors[number][2],lobbyInteriors[number][3],lobbyInteriors[number][4]
 	spawnPlayer(player,spawnX+math.random(-10,10),spawnY+math.random(-10,10),spawnZ+3,math.random(0,359),0,spawnID)
 	fadeCamera (player, false,2000,0,0,0)

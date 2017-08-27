@@ -32,6 +32,7 @@ function createItemPickup(item,x,y,z,itemName,itemAmount)
 					setObjectScale(objectTable[1],item[3])
 					setElementCollisionsEnabled(objectTable[1], false)
 					setElementFrozen(objectTable[1],true)
+					setElementDimension(objectTable[1],gameCache["playingField"])
 				end
 			end
 		end	
@@ -57,23 +58,23 @@ function createLootPoint(lootSpot,x,y,z,ID)
 		local itemChance = math.percentChance(item[5],5)
 		if itemChance > 0 then
 			if item[1] == "11.43x23mm Cartridge" then
-				itemChance = 20
+				itemChance = math.ceil(itemChance*7)
 			elseif item[1] == "9x18mm Cartridge" then
-				itemChance = 20
+				itemChance = math.ceil(itemChance*8)
 			elseif item[1] == "9x19mm Cartridge" then
-				itemChance = 20
+				itemChance = math.ceil(itemChance*17)
 			elseif item[1] == ".303 British Cartridge" then
-				itemChance = 20
+				itemChance = math.ceil(itemChance*10)
 			elseif item[1] == "7.62x39mm Cartridge" then
-				itemChance = 20
+				itemChance = math.ceil(itemChance*30)
 			elseif item[1] == "5.56x45mm Cartridge" then
-				itemChance = 20
+				itemChance = math.ceil(itemChance*20)
 			elseif item[1] == "7.62x54mm Cartridge" then
-				itemChance = 20
+				itemChance = math.ceil(itemChance*10)
 			elseif item[1] == "1866 Slug" then
-				itemChance = 20
+				itemChance = math.ceil(itemChance*15)
 			elseif item[1] == "12 Gauge Pellet" then
-				itemChance = 20		
+				itemChance = math.ceil(itemChance*7)	
 			end
 		end
 		table.insert(lootpointData[lootCol],{item[1],itemChance})
@@ -84,21 +85,25 @@ function createLootPoint(lootSpot,x,y,z,ID)
 	return lootpointData[lootCol]
 end
 
+
 function createLootPointObject(lootCol,lootSpot)
 	local objectCounter = 0
 	local objectTable = {}
-	--Tables
 	for i, item in ipairs(lootItems[lootSpot]) do
 		for k, spot in ipairs(lootpointData[lootCol]) do
 			if item[1] == spot[1] then
 				if spot[2] > 0 then
 					itemName = spot[1]
-					objectCounter = objectCounter + 1
+					if objectCounter == 3 then
+						break
+					end
+					objectCounter = objectCounter+1
 					local x,y,z = getElementPosition(lootCol)
 					objectTable[objectCounter] = createObject(item[2],x+math.random(-1,1),y+math.random(-1,1),z-0.875,item[4])
 					setObjectScale(objectTable[objectCounter],item[3])
 					setElementCollisionsEnabled(objectTable[objectCounter], false)
 					setElementFrozen(objectTable[objectCounter],true)
+					setElementDimension(objectTable[objectCounter],gameCache["playingField"])
 					table.insert(lootpointData[lootCol]["objects"],{objectTable[objectCounter],itemName})
 				end
 			end

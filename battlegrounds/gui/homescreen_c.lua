@@ -109,11 +109,11 @@ guiLabelSetVerticalAlign(homeScreen.label[31], "center")
 
 homeScreen.staticimage[6] = guiCreateStaticImage(0.09, 0.29, 0.08, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[6], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.staticimage[7] = guiCreateStaticImage(0.05, 0.08, 1.00, 1.00, "gui/images/legendary_crate.png", true, homeScreen.staticimage[6])
+homeScreen.staticimage[7] = guiCreateStaticImage(0, 0, 1.00, 1.00, "gui/images/legendary_crate.png", true, homeScreen.staticimage[6])
 
 homeScreen.staticimage[8] = guiCreateStaticImage(0.09, 0.41, 0.08, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[8], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.staticimage[9] = guiCreateStaticImage(0, 0, 66, 66, "gui/images/epic_crate.png", false, homeScreen.staticimage[8])
+homeScreen.staticimage[9] = guiCreateStaticImage(0, 0, 1, 1, "gui/images/epic_crate.png", true, homeScreen.staticimage[8])
 
 homeScreen.staticimage[10] = guiCreateStaticImage(0.09, 0.53, 0.08, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[10], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
@@ -121,33 +121,29 @@ homeScreen.staticimage[11] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "gui/i
 
 homeScreen.staticimage[12] = guiCreateStaticImage(0.09, 0.65, 0.08, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[12], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.staticimage[13] = guiCreateStaticImage(0, 0, 66, 66, "gui/images/common_crate.png", false, homeScreen.staticimage[12])
+homeScreen.staticimage[13] = guiCreateStaticImage(0, 0, 1, 1, "gui/images/common_crate.png", true, homeScreen.staticimage[12])
 
 homeScreen.staticimage[14] = guiCreateStaticImage(0.18, 0.29, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[14], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.label[32] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "LEGENDARY CRATE", true, homeScreen.staticimage[14])
-guiLabelSetHorizontalAlign(homeScreen.label[32], "center", false)
-guiLabelSetVerticalAlign(homeScreen.label[32], "center")
+homeScreen.label["Legendary"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "LEGENDARY CRATES:", true, homeScreen.staticimage[14])
+guiLabelSetVerticalAlign(homeScreen.label["Legendary"], "center")
 
 homeScreen.staticimage[15] = guiCreateStaticImage(0.18, 0.41, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[15], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.label[33] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "EPIC CRATE", true, homeScreen.staticimage[15])
-guiLabelSetHorizontalAlign(homeScreen.label[33], "center", false)
-guiLabelSetVerticalAlign(homeScreen.label[33], "center")
+homeScreen.label["Epic"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "EPIC CRATES:", true, homeScreen.staticimage[15])
+guiLabelSetVerticalAlign(homeScreen.label["Epic"], "center")
 
 
 homeScreen.staticimage[16] = guiCreateStaticImage(0.18, 0.53, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[16], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.label[34] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "UNCOMMON CRATE", true, homeScreen.staticimage[16])
-guiLabelSetHorizontalAlign(homeScreen.label[34], "center", false)
-guiLabelSetVerticalAlign(homeScreen.label[34], "center")
+homeScreen.label["Uncommon"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "UNCOMMON CRATES:", true, homeScreen.staticimage[16])
+guiLabelSetVerticalAlign(homeScreen.label["Uncommon"], "center")
 
 
 homeScreen.staticimage[17] = guiCreateStaticImage(0.18, 0.65, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[17], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.label[35] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "COMMON CRATE", true, homeScreen.staticimage[17])
-guiLabelSetHorizontalAlign(homeScreen.label[35], "center", false)
-guiLabelSetVerticalAlign(homeScreen.label[35], "center")
+homeScreen.label["Common"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "COMMON CRATES:", true, homeScreen.staticimage[17])
+guiLabelSetVerticalAlign(homeScreen.label["Common"], "center")
  
 homeScreen.staticimage[18] = guiCreateStaticImage(0.21, 0.28, 0.29, 0.04, "gui/images/solo_slot.png", true)
 guiSetProperty(homeScreen.staticimage[18], "ImageColours", "tl:E3020202 tr:E3020202 bl:E3020202 br:E3020202")
@@ -391,6 +387,10 @@ function smoothMoveCamera(x1,y1,z1,x1t,y1t,z1t,x2,y2,z2,x2t,y2t,z2t,time)
 end
 
 local smoothMoveForward = false
+local legendaryText = guiGetText(homeScreen.label["Legendary"])
+local epicText = guiGetText(homeScreen.label["Epic"])
+local uncommonText = guiGetText(homeScreen.label["Uncommon"])
+local commonText = guiGetText(homeScreen.label["Common"])
 function openUpSelectedOption(theOption)
 	if theOption == "HOME" then
 		-- HOME OPTION CODE
@@ -413,6 +413,9 @@ function openUpSelectedOption(theOption)
 			smoothMoveForward = true
 		end
 	elseif theOption == "REWARDS" then
+		return
+		--[[
+		-- Rewards will be disabled until we have a playable alpha and did some serious playtesting of other features!
 		if guiGetVisible(homeScreen.staticimage[5]) then
 			guiSetVisible(homeScreen.staticimage[5],false)
 		end
@@ -430,8 +433,13 @@ function openUpSelectedOption(theOption)
 			local a,b,c,d,e,f = getCameraMatrix(localPlayer)
 			smoothMoveCamera(a,b,c,d,e,f,1720.41125,-1646.7942,21.0576,1721.21911+4,-1647.3781+1,20.9919,1000)
 			smoothMoveForward = true
+			guiSetText(homeScreen.label["Legendary"],legendaryText)
+			guiSetText(homeScreen.label["Epic"],epicText)
+			guiSetText(homeScreen.label["Uncommon"],uncommonText)
+			guiSetText(homeScreen.label["Common"],commonText)
 			showRewards()
 		end
+		]]
 	elseif theOption == "CHARACTER" then
 		if guiGetVisible(homeScreen.staticimage[5]) then
 			guiSetVisible(homeScreen.staticimage[5],false)
@@ -495,7 +503,13 @@ testTable = {
 ["headshots"] = 1,
 ["battlepoints"] = -5,
 ["battlepointsspent"] = 69,
-["skins"] = {57,90,125,127,128}
+["skins"] = {57,90,125,127,128},
+["crates"] = {
+	["Legendary"] = 20,
+	["Epic"] = -1,
+	["Uncommon"] = 3,
+	["Common"] = 69,
+	},
 }
 
 function doItNow()
@@ -504,15 +518,23 @@ end
 
 local statisticsTable = {}
 local temporarySkinTable = {}
+local temporaryCrateTable = {}
 -- Is there a better way to accomplish this?
 function getStatisticsTableFromDB(theTable)
 	statisticsTable[localPlayer] = {}
 	temporarySkinTable[localPlayer] = {}
+	temporaryCrateTable[localPlayer] = {}
 	for i, data in pairs(theTable) do
 		if type(data) ~= "table" then
 			table.insert(statisticsTable[localPlayer],{i,data})
 		else
-			table.insert(temporarySkinTable[localPlayer],{data})
+			if i == "skins" then
+				table.insert(temporarySkinTable[localPlayer],{data})
+			elseif i == "crates" then
+				for k, crate in pairs(data) do
+					table.insert(temporaryCrateTable[localPlayer],{k,crate})
+				end
+			end
 		end
 	end
 end
@@ -529,9 +551,14 @@ function showStatistics()
 	guiSetVisible(homeScreen.staticimage[5],true)
 end
 
+
 function showRewards()
 	for i=6,17 do
 		guiSetVisible(homeScreen.staticimage[i],true)
+	end
+	
+	for i, data in ipairs(temporaryCrateTable[localPlayer]) do
+		guiSetText(homeScreen.label[data[1]],guiGetText(homeScreen.label[data[1]]).." "..tostring(data[2]))
 	end
 end
 

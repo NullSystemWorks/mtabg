@@ -107,7 +107,7 @@ inventoryGUI.label[2] = guiCreateLabel(0.34, 0.09, 0.24, 0.04, "LOOT", true, inv
 guiLabelSetHorizontalAlign(inventoryGUI.label[2], "center", false)
 
 inventoryGUI.progressbar[1] = guiCreateProgressBar(0.01, 0.74, 0.24, 0.04, true, inventoryGUI.window[1])
-inventoryGUI.label[3] = guiCreateLabel(0.01, 0.74, 0.24, 0.04, "CAPACITY: 50/50", true, inventoryGUI.window[1])
+inventoryGUI.label[3] = guiCreateLabel(0.01, 0.74, 0.24, 0.04, "CAPACITY: 0/70", true, inventoryGUI.window[1])
 guiLabelSetColor(inventoryGUI.label[3], 0, 0, 0)
 guiLabelSetHorizontalAlign(inventoryGUI.label[3], "center", false)
 
@@ -240,14 +240,17 @@ end
 addEvent("mtabg_changeEquippedWeaponGUI",true)
 addEventHandler("mtabg_changeEquippedWeaponGUI",localPlayer,changeEquippedWeaponGUI)
 
-function sendDataToClient(theTable)
-	playerInventory[localPlayer] = {}
-	for i, data in ipairs(theTable) do
-		table.insert(playerInventory[localPlayer],{data[1],data[2],data[3]})
-	end
+local playerCapacity = {}
+function sendCapacityToPlayerClient(maxCapacity,used)
+	playerCapacity[localPlayer] = {}
+	table.insert(playerCapacity[localPlayer],{maxCapacity,used})
+	guiSetText(inventoryGUI.label[3],"CAPACITY: "..tostring(used).."/"..tostring(maxCapacity))
+	local progress = (used/maxCapacity)*100
+	guiProgressBarSetProgress(inventoryGUI.progressbar[1],progress)
 end
-addEvent("mtabg_sendDataToClient",true)
-addEventHandler("mtabg_sendDataToClient",root,sendDataToClient)
+addEvent("mtabg_sendCapacityToPlayerClient",true)
+addEventHandler("mtabg_sendCapacityToPlayerClient",root,sendCapacityToPlayerClient)
+	
 
 function populateGridListWithItems(gridList,columnName,columnAmount,itemName,itemAmount)
 	if itemAmount > 0 then
@@ -262,6 +265,7 @@ addEvent("mtabg_populateGridListWithItems",true)
 addEventHandler("mtabg_populateGridListWithItems",localPlayer,populateGridListWithItems)
 
 function clearGridList(gridList)
+	guiGridListSetSelectedItem(inventoryGUI.gridlist[gridList],0,0)
 	guiGridListClear(inventoryGUI.gridlist[gridList])
 end
 addEvent("mtabg_clearGridList",true)

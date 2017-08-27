@@ -67,7 +67,7 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	triggerClientEvent(player,"mtabg_showEndscreen",player,gameCache["playerAmount"])
 	gameCache["playerAmount"] = gameCache["playerAmount"]-1
 	checkPlayerAmount()
-	
+	removeAttachedOnDeath(player)
 	--outputSideChat("Player "..getPlayerName(player).." was killed",root,255,255,255)
 end
 addEvent("killBattleGroundsPlayer",true)

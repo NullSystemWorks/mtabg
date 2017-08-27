@@ -39,8 +39,6 @@ function createZone()
 	setTimer(getPlayersInsideZone,5000,0)
 	triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius,radiusTimer) 
 end
--- Debug Command
-addCommandHandler("zone",createZone)
 
 
 function decreaseZoneSize()

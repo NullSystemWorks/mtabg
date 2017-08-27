@@ -7,14 +7,33 @@
 ]]--
 
 function refreshInventory()
+	local usedCapacity = 0
+	local maxCapacity = 0
+	local itemWeight = 0
 	triggerClientEvent(client,"mtabg_clearGridList",client,1)
 	for i, items in ipairs(playerInfo[client]) do
 		if items[3] ~= nil then
 			if items[3] > 0 then
-				triggerClientEvent(client,"mtabg_populateGridListWithItems",client,1,"inventory","inventoryamount",items[2],items[3])
+				if items[2] == "11.43x23mm Cartridge" or items[2] == "9x18mm Cartridge" or items[2] == "9x19mm Cartridge" or items[2] == ".303 British Cartridge" or items[2] == "7.62x39mm Cartridge" or items[2] == "5.56x45mm Cartridge" or items[2] == "7.62x54mm Cartridge" or items[2] == "1866 Slug" or items[2] == "12 Gauge Pellet" or items[2] == "Bolt" then
+					itemWeight = getItemWeight(items[2])
+					itemWeight = math.ceil(items[3]*itemWeight)
+				else
+					itemWeight = items[3]
+				end
+				triggerClientEvent(client,"mtabg_populateGridListWithItems",client,1,"inventory","inventoryamount",items[2],itemWeight)
+				usedCapacity = usedCapacity+itemWeight
 			end
 		end
 	end
+	for i, data in ipairs(playerDataInfo[client]) do
+		if data[2] == "UsedCapacity" then
+			data[3] = usedCapacity
+		end
+		if data[2] == "InventoryCapacity" then
+			maxCapacity = data[3]
+		end
+	end
+	triggerClientEvent(client,"mtabg_sendCapacityToPlayerClient",client,maxCapacity,usedCapacity)
 end
 addEvent("mtabg_refreshInventory",true)
 addEventHandler("mtabg_refreshInventory",root,refreshInventory)
@@ -27,17 +46,16 @@ function refreshLoot(loot,gearName)
 	triggerClientEvent(client,"mtabg_clearGridList",client,2)
 	for i, item in ipairs(lootpointData[loot]) do
 		triggerClientEvent(client,"mtabg_populateGridListWithItems",client,2,"loot","lootamount",item[1],item[2])
-		
 		for k, data in ipairs(lootpointData[loot]["objects"]) do
 			if item[1] == data[2] then
 				if item[2] < 1 then
 					if isElement(data[1]) then
 						destroyElement(data[1])
-						return loot
 					end
 				end
 			end
 		end
+		
 	end
 end
 addEvent("mtabg_refreshLoot",true)
@@ -146,6 +164,7 @@ function onItemFromInventoryToLoot(itemName,loot)
 			local x,y,z = getElementPosition(client)
 			local item = getItemFromTablePosition(itemName)
 			createItemPickup(item,x+math.random(-1.25,1.25),y+math.random(-1.25,1.25),z,itemName,itemDeduct)
+			refreshInventory()
 		end
 	end
 end
@@ -155,104 +174,124 @@ addEventHandler("mtabg_onItemFromInventoryToLoot",root,onItemFromInventoryToLoot
 
 function onItemFromLootToInventory(itemName,loot)
 	if itemName then
-		for i, item in ipairs(playerInfo[client]) do
-			if item[2] == itemName then
-				if item[2] == "11.43x23mm Cartridge" then
-					for k, loot in ipairs(lootpointData[loot]) do
-						if item[2] == loot[1] then
-							item[3] = item[3]+loot[2]
-							loot[2] = 0
+		if getPlayerCapacity(itemName) then
+			for i, item in ipairs(playerInfo[client]) do
+				if item[2] == itemName then
+					if item[2] == "11.43x23mm Cartridge" then
+						for k, loot in ipairs(lootpointData[loot]) do
+							if item[2] == loot[1] then
+								item[3] = item[3]+loot[2]
+								loot[2] = 0
+							end
 						end
-					end
-				elseif item[2] == "9x18mm Cartridge" then
-					for k, loot in ipairs(lootpointData[loot]) do
-						if item[2] == loot[1] then
-							item[3] = item[3]+loot[2]
-							loot[2] = 0
+					elseif item[2] == "9x18mm Cartridge" then
+						for k, loot in ipairs(lootpointData[loot]) do
+							if item[2] == loot[1] then
+								item[3] = item[3]+loot[2]
+								loot[2] = 0
+							end
 						end
-					end
-				elseif item[2] == "9x19mm Cartridge" then
-					for k, loot in ipairs(lootpointData[loot]) do
-						if item[2] == loot[1] then
-							item[3] = item[3]+loot[2]
-							loot[2] = 0
+					elseif item[2] == "9x19mm Cartridge" then
+						for k, loot in ipairs(lootpointData[loot]) do
+							if item[2] == loot[1] then
+								item[3] = item[3]+loot[2]
+								loot[2] = 0
+							end
 						end
-					end
-				elseif item[2] == ".303 British Cartridge" then
-					for k, loot in ipairs(lootpointData[loot]) do
-						if item[2] == loot[1] then
-							item[3] = item[3]+loot[2]
-							loot[2] = 0
+					elseif item[2] == ".303 British Cartridge" then
+						for k, loot in ipairs(lootpointData[loot]) do
+							if item[2] == loot[1] then
+								item[3] = item[3]+loot[2]
+								loot[2] = 0
+							end
 						end
-					end
-				elseif item[2] == "7.62x39mm Cartridge" then
-					for k, loot in ipairs(lootpointData[loot]) do
-						if item[2] == loot[1] then
-							item[3] = item[3]+loot[2]
-							loot[2] = 0
+					elseif item[2] == "7.62x39mm Cartridge" then
+						for k, loot in ipairs(lootpointData[loot]) do
+							if item[2] == loot[1] then
+								item[3] = item[3]+loot[2]
+								loot[2] = 0
+							end
 						end
-					end
-				elseif item[2] == "5.56x45mm Cartridge" then
-					for k, loot in ipairs(lootpointData[loot]) do
-						if item[2] == loot[1] then
-							item[3] = item[3]+loot[2]
-							loot[2] = 0
+					elseif item[2] == "5.56x45mm Cartridge" then
+						for k, loot in ipairs(lootpointData[loot]) do
+							if item[2] == loot[1] then
+								item[3] = item[3]+loot[2]
+								loot[2] = 0
+							end
 						end
-					end
-				elseif item[2] == "7.62x54mm Cartridge" then
-					for k, loot in ipairs(lootpointData[loot]) do
-						if item[2] == loot[1] then
-							item[3] = item[3]+loot[2]
-							loot[2] = 0
+					elseif item[2] == "7.62x54mm Cartridge" then
+						for k, loot in ipairs(lootpointData[loot]) do
+							if item[2] == loot[1] then
+								item[3] = item[3]+loot[2]
+								loot[2] = 0
+							end
 						end
-					end
-				elseif item[2] == "1866 Slug" then
-					for k, loot in ipairs(lootpointData[loot]) do
-						if item[2] == loot[1] then
-							item[3] = item[3]+loot[2]
-							loot[2] = 0
+					elseif item[2] == "1866 Slug" then
+						for k, loot in ipairs(lootpointData[loot]) do
+							if item[2] == loot[1] then
+								item[3] = item[3]+loot[2]
+								loot[2] = 0
+							end
 						end
-					end
-				elseif item[2] == "12 Gauge Pellet" then
-					for k, loot in ipairs(lootpointData[loot]) do
-						if item[2] == loot[1] then
-							item[3] = item[3]+loot[2]
-							loot[2] = 0
+					elseif item[2] == "12 Gauge Pellet" then
+						for k, loot in ipairs(lootpointData[loot]) do
+							if item[2] == loot[1] then
+								item[3] = item[3]+loot[2]
+								loot[2] = 0
+							end
 						end
+					else
+						item[3] = item[3]+1
 					end
-				else
-					item[3] = item[3]+1
 				end
 			end
-		end
 		
-		for i, item in ipairs(lootpointData[loot]) do
-			if item[1] == itemName then
-				if item[1] == "11.43x23mm Cartridge" then
-					return refreshLoot(loot,"")
-				elseif item[1] == "9x18mm Cartridge" then
-					return refreshLoot(loot,"")
-				elseif item[1] == "9x19mm Cartridge" then
-					return refreshLoot(loot,"")
-				elseif item[1] == ".303 British Cartridge" then
-					return refreshLoot(loot,"")
-				elseif item[1] == "7.62x39mm Cartridge" then
-					return refreshLoot(loot,"")
-				elseif item[1] == "5.56x45mm Cartridge" then
-					return refreshLoot(loot,"")
-				elseif item[1] == "7.62x54mm Cartridge" then
-					return refreshLoot(loot,"")
-				elseif item[1] == "1866 Slug" then
-					return refreshLoot(loot,"")
-				elseif item[1] == "12 Gauge Pellet" then
-					return refreshLoot(loot,"")
-				else
-					item[2] = item[2]-1
+			for i, item in ipairs(lootpointData[loot]) do
+				if item[1] == itemName then
+					if item[1] == "11.43x23mm Cartridge" then
+						refreshInventory()
+						refreshLoot(loot,"")
+						return
+					elseif item[1] == "9x18mm Cartridge" then
+						refreshInventory()
+						refreshLoot(loot,"")
+						return
+					elseif item[1] == "9x19mm Cartridge" then
+						refreshInventory()
+						refreshLoot(loot,"")
+						return
+					elseif item[1] == ".303 British Cartridge" then
+						refreshInventory()
+						refreshLoot(loot,"")
+						return
+					elseif item[1] == "7.62x39mm Cartridge" then
+						refreshInventory()
+						refreshLoot(loot,"")
+						return
+					elseif item[1] == "5.56x45mm Cartridge" then
+						refreshInventory()
+						refreshLoot(loot,"")
+						return
+					elseif item[1] == "7.62x54mm Cartridge" then
+						refreshInventory()
+						refreshLoot(loot,"")
+						return
+					elseif item[1] == "1866 Slug" then
+						refreshInventory()
+						refreshLoot(loot,"")
+						return
+					elseif item[1] == "12 Gauge Pellet" then
+						refreshInventory()
+						refreshLoot(loot,"")
+						return
+					else
+						item[2] = item[2]-1
+					end
 				end
 			end
+			refreshInventory()
+			refreshLoot(loot,"")
 		end
-		refreshInventory()
-		refreshLoot(loot,"")
 	end
 end
 addEvent("mtabg_onItemFromLootToInventory",true)
@@ -272,7 +311,7 @@ function onPlayerUseItem(itemName,itemInfo)
 				if itemName == "Bandage" then
 					if data[2] == "health" then
 						if data[3] < 100 then
-							data[3] = data[3]+10
+							data[3] = data[3]+5
 							if data[3] > 100 then
 								data[3] = 100
 							end
@@ -308,7 +347,20 @@ function onPlayerUseItem(itemName,itemInfo)
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
 						end
 					end
-				end	
+				end
+			end
+			if itemName == "Backpack (Level 1)" then
+				addBackpackToPlayerBack(client,170)
+				setPlayerCapacity(client,170)
+				itemUsed = true
+			elseif itemName == "Backpack (Level 2)" then
+				addBackpackToPlayerBack(client,220)
+				setPlayerCapacity(client,220)
+				itemUsed = true
+			elseif itemName == "Backpack (Level 3)" then
+				addBackpackToPlayerBack(client,270)
+				setPlayerCapacity(client,270)
+				itemUsed = true
 			end
 		end
 		if itemUsed then
@@ -324,6 +376,8 @@ function onPlayerUseItem(itemName,itemInfo)
 end
 addEvent("mtabg_onPlayerUseItem",true)
 addEventHandler("mtabg_onPlayerUseItem",root,onPlayerUseItem)
+
+
 
 local currentWeapon_1 = ""
 local currentWeapon_2 = ""
@@ -342,7 +396,8 @@ function equipWeapon(weapon,info,player)
 	end
 	for i, data in ipairs(playerInfo[player]) do
 		if ammoType == data[2] then
-			if data[3] > 0 then	
+			if data[3] > 0 then
+				takeWeapon(client,weaponID)
 				giveWeapon(client,weaponID,data[3],true)
 				for k, playData in ipairs(playerDataInfo[player]) do
 					if weaponType == "Primary" then
@@ -370,10 +425,12 @@ function equipWeapon(weapon,info,player)
 			end
 		end
 	end
+	refreshInventory()
 end
 
 function removeWeapon(weaponID,player)
 	takeWeapon(player,weaponID)
+	refreshInventory()
 end
 
 function depleteAmmoCountWhenFiring(weapon,x,y,z,hitElement,startX,startY,startZ)
@@ -421,6 +478,20 @@ function getItemWeight(theItem)
 	end
 end
 
+function setPlayerCapacity(player,amount)
+local usedCapacity = 0
+	for i, data in ipairs(playerDataInfo[player]) do
+		if data[2] == "InventoryCapacity" then
+			data[3] = amount
+		end
+		if data[2] == "UsedCapacity" then
+			usedCapacity = data[3]
+		end
+	end
+	triggerClientEvent(client,"mtabg_sendCapacityToPlayerClient",client,amount,usedCapacity)
+	refreshInventory()
+end
+
 function getPlayerCapacity(item)
 	local usedCapacity = 0
 	local maxCapacity = 0
@@ -429,19 +500,18 @@ function getPlayerCapacity(item)
 		if data[2] == "InventoryCapacity" then
 			maxCapacity = data[3]
 		end
-		if data[2] == "usedCapacity" then
+		if data[2] == "UsedCapacity" then
 			usedCapacity = data[3]
 		end
 	end
-	if usedCapacity+itemWeight >= maxCapacity then
+	if itemWeight and itemWeight < 1 then
+		itemWeight = 0
+	end
+	if usedCapacity+itemWeight > maxCapacity then
 		triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Not enough inventory capacity!")
+		return false
 	else
-		for i, data in ipairs(playerInfo[client]) do
-			if data[2] == item then
-				data[3] = data[3]+1
-				break
-			end
-		end
+		return true
 	end
 end
 addEvent("mtabg_getPlayerCapacity",true)

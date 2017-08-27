@@ -96,6 +96,7 @@ function displayStatus()
 			dxDrawText(playerAmount, screenW * 0.9437, screenH * 0.0483, screenW * 1.0325, screenH * 0.1050, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 		end
 	else
+	if guiGetVisible(homeScreen.staticimage[1]) then return end
 		if playerAmount > 0 then
 			if not countdownTimer then
 				countdownTimer = setTimer(function()
