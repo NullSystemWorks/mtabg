@@ -60,10 +60,10 @@ Version: 0.0.1 Pre-Alpha
 	<file src="gui/images/battlepointsicon.png" />
 	<file src="sounds/Unsung Briefing.mp3" />
 	<file src="gui/images/background_transparent.png" />
-	<file src="gui/images/Legendary_crate.png" />
-	<file src="gui/images/Epic_crate.png" />
-	<file src="gui/images/Uncommon_crate.png" />
-	<file src="gui/images/Common_crate.png" />
+	<file src="gui/images/legendary_crate.png" />
+	<file src="gui/images/epic_crate.png" />
+	<file src="gui/images/uncommon_crate.png" />
+	<file src="gui/images/common_crate.png" />
 
 	<script src="gui/inventory.lua" type="client" cache="false"/>
 	<script src="gui/inventory_s.lua" type="server" />
