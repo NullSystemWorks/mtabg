@@ -29,7 +29,9 @@ end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),sendPlayersOnServerToHomeScreen)
 
 function onJoinIsGameRunning()
-	triggerClientEvent(source,"mtabg_sendToHomeScreen",source)
+	setTimer(function(source)
+		triggerClientEvent(source,"mtabg_sendToHomeScreen",source)
+	end,1000,1,source)
 end
 addEventHandler("onPlayerJoin",root,onJoinIsGameRunning)
 

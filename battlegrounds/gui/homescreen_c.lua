@@ -125,24 +125,24 @@ homeScreen.staticimage[13] = guiCreateStaticImage(0, 0, 1, 1, "gui/images/common
 
 homeScreen.staticimage[14] = guiCreateStaticImage(0.18, 0.29, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[14], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.label["Legendary"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "LEGENDARY CRATES:", true, homeScreen.staticimage[14])
+homeScreen.label["legendary"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "LEGENDARY CRATES:", true, homeScreen.staticimage[14])
 guiLabelSetVerticalAlign(homeScreen.label["legendary"], "center")
 
 homeScreen.staticimage[15] = guiCreateStaticImage(0.18, 0.41, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[15], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.label["Epic"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "EPIC CRATES:", true, homeScreen.staticimage[15])
+homeScreen.label["epic"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "EPIC CRATES:", true, homeScreen.staticimage[15])
 guiLabelSetVerticalAlign(homeScreen.label["epic"], "center")
 
 
 homeScreen.staticimage[16] = guiCreateStaticImage(0.18, 0.53, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[16], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.label["Uncommon"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "UNCOMMON CRATES:", true, homeScreen.staticimage[16])
+homeScreen.label["uncommon"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "UNCOMMON CRATES:", true, homeScreen.staticimage[16])
 guiLabelSetVerticalAlign(homeScreen.label["uncommon"], "center")
 
 
 homeScreen.staticimage[17] = guiCreateStaticImage(0.18, 0.65, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[17], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.label["Common"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "COMMON CRATES:", true, homeScreen.staticimage[17])
+homeScreen.label["common"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "COMMON CRATES:", true, homeScreen.staticimage[17])
 guiLabelSetVerticalAlign(homeScreen.label["common"], "center")
  
 homeScreen.staticimage[18] = guiCreateStaticImage(0.21, 0.28, 0.29, 0.04, "gui/images/solo_slot.png", true)
