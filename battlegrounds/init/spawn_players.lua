@@ -12,7 +12,7 @@ gameCache['status_duo'] = false -- Currently not in use
 gameCache['status_squad'] = false -- Currently not in use
 gameCache["initialPlayerAmount"] = 0
 gameCache["playerAmount"] = 0
-gameCache["countdown"] = 10
+gameCache["countdown"] = 120
 gameCache["playingField"] = 0 -- = Dimension (Dimension 500 is reserved for home screen!)
 
 lobbyInteriors = {
@@ -90,9 +90,9 @@ local countDownTimer
 					startGame()
 				end
 			end
-		end,1000,10,gameCache["countdown"])
+		end,1000,120,gameCache["countdown"])
 	else
-		gameCache["countdown"] = 10
+		gameCache["countdown"] = 120
 		if isTimer(countdownTimer) then killTimer(countdownTimer) end
 	end
 end

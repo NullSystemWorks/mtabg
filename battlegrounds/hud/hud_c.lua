@@ -19,7 +19,7 @@ local r,g,b = 218,218,218
 local alpha = 150
 local playerAmount = 0
 local gameStatus = false
-local countDown = 10 -- 180
+local countDown = 120 -- 180
 
 local maxDistance = 100 --max distance represented by littleDude
 local littleDudeDistance = maxDistance --relative distance from littleDude to safe area
@@ -108,10 +108,10 @@ function displayStatus()
 							outputChatBox("Not enough players, resetting countdown!",255,0,0,false)
 							killTimer(countdownTimer)
 							countdownTimer = false
-							countDown = 10
+							countDown = 120
 						end
 					end
-				end,1000,10)
+				end,1000,120)
 			end
 		else
 			if isTimer(countdownTimer) then killTimer(countdownTimer) end
