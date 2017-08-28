@@ -11,6 +11,7 @@ Version: 0.0.1 Pre-Alpha
 
 	<!-- configs folder -->
 	<script src="configs/cfgBaseDefines.lua" type="shared" cache="false" />
+	<script src="configs/cfgServer.lua" type="server" />
 	
 	<!-- Spawn Island -->
 	<map src="spawnisland.map" />
