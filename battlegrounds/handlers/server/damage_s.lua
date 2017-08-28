@@ -68,7 +68,11 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	gameCache["playerAmount"] = gameCache["playerAmount"]-1
 	checkPlayerAmount()
 	removeAttachedOnDeath(player)
+	playerInfo[player] = {}
+	playerDataInfo[player] = {}
 	--outputSideChat("Player "..getPlayerName(player).." was killed",root,255,255,255)
+	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["playerAmount"],gameCache["status"],0)
+	spawnPlayer(player,1724.22998,-1647.8363,20.2283,0,0,18,500)
 end
 addEvent("killBattleGroundsPlayer",true)
 addEventHandler("killBattleGroundsPlayer",root,killBattleGroundsPlayer)
@@ -78,10 +82,13 @@ function checkPlayerAmount()
 	if gameCache["playerAmount"] <= 1 then 
 		for i, players in ipairs(getElementsByType("player")) do
 			if not isPedDead(players) then
-				outputDebugString("Winner found: "..getPlayerName(players))
 				setElementFrozen(players,true)
 				triggerClientEvent(players,"mtabg_showEndscreen",players,gameCache["playerAmount"])
 			end
 		end
+		gameCache["status"] = false
+		gameCache["countdown"] = 180
+		gameCache["initialPlayerAmount"] = 0
+		triggerClientEvent("mtabg_setPlayerAmountToClient",root,0,gameCache["status"],gameCache["countdown"])
 	end
 end

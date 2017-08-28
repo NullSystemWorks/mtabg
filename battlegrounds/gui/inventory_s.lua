@@ -51,6 +51,13 @@ function refreshLoot(loot,gearName)
 				if item[2] < 1 then
 					if isElement(data[1]) then
 						destroyElement(data[1])
+						--[[
+						-- This part of the code is supposed to destroy empty loot cols, destroys col after looting 3 items to due spawning mechanism, so do not touch!
+						data[1] = nil
+						if next(lootpointData[loot]["objects"]) then
+							destroyElement(loot)
+						end
+						]]
 					end
 				end
 			end
@@ -383,6 +390,7 @@ local currentWeapon_1 = ""
 local currentWeapon_2 = ""
 local currentWeapon_3 = ""
 local weaponType = ""
+local oldWeapon = ""
 function equipWeapon(weapon,info,player)
 	local weaponID = 0
 	local ammoType = ""
@@ -397,8 +405,13 @@ function equipWeapon(weapon,info,player)
 	for i, data in ipairs(playerInfo[player]) do
 		if ammoType == data[2] then
 			if data[3] > 0 then
-				takeWeapon(client,weaponID)
-				giveWeapon(client,weaponID,data[3],true)
+				takeAllWeapons(client)
+				if oldWeapon == weapon then
+					return
+				else
+					oldWeapon = weapon
+					giveWeapon(client,weaponID,data[3],true)
+				end
 				for k, playData in ipairs(playerDataInfo[player]) do
 					if weaponType == "Primary" then
 						currentWeapon_1 = weapon
@@ -425,12 +438,10 @@ function equipWeapon(weapon,info,player)
 			end
 		end
 	end
-	refreshInventory()
 end
 
 function removeWeapon(weaponID,player)
 	takeWeapon(player,weaponID)
-	refreshInventory()
 end
 
 function depleteAmmoCountWhenFiring(weapon,x,y,z,hitElement,startX,startY,startZ)

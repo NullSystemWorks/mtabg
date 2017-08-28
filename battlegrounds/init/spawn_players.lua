@@ -22,20 +22,22 @@ lobbyInteriors = {
 function sendPlayersOnServerToHomeScreen()
 	for i, players in ipairs(getElementsByType("player")) do
 		setTimer(function(players)
-			if getUserData(players, "items") then -- logged check
-				triggerClientEvent(players,"mtabg_sendToHomeScreen",players)
-			end
+			spawnPlayer(players,0,0,0)
+			fadeCamera(players,true)
+			triggerClientEvent(players,"mtabg_sendToHomeScreen",players)
 		end,1000,1,players)
 	end
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),sendPlayersOnServerToHomeScreen)
 
-function onJoinIsGameRunning()
+function onJoinSendToHomeScreen()
 	setTimer(function(source)
+		spawnPlayer(source,0,0,0)
+		fadeCamera(source,true)
 		triggerClientEvent(source,"mtabg_sendToHomeScreen",source)
 	end,1000,1,source)
 end
-addEventHandler("onPlayerJoin",root,onJoinIsGameRunning)
+addEventHandler("onPlayerJoin",root,onJoinSendToHomeScreen)
 
 function onPlayerLeavingGame()
 	if not gameCache["status"] then
@@ -55,13 +57,13 @@ function sendPlayerToLobby(player)
 	spawnID,spawnX,spawnY,spawnZ = lobbyInteriors[number][1],lobbyInteriors[number][2],lobbyInteriors[number][3],lobbyInteriors[number][4]
 	spawnPlayer(player,spawnX+math.random(-10,10),spawnY+math.random(-10,10),spawnZ+3,math.random(0,359),0,spawnID)
 	fadeCamera (player, false,2000,0,0,0)
-		setCameraTarget (player, player)
-		setTimer( function(player)
-			if isElement(player) then
-				setElementFrozen(player, false)
-				fadeCamera(player,true)
-			end
-		end,500,1,player)
+	setCameraTarget (player, player)
+	setTimer( function(player)
+		if isElement(player) then
+			setElementFrozen(player, false)
+			fadeCamera(player,true)
+		end
+	end,500,1,player)
 	setPlayerHudComponentVisible(player,"radar",false)
 	setPlayerHudComponentVisible(player,"clock",false)
 	setPlayerHudComponentVisible(player,"health",false)
@@ -71,7 +73,6 @@ function sendPlayerToLobby(player)
 	for i, data in ipairs(playerDataTable) do
 		table.insert(playerDataInfo[player],{i,data[1],data[2]})
 	end
-	table.insert(playerDataInfo[player],{-1,"inLobby",true})
 	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
 	if gameCache["initialPlayerAmount"] == 1 then
 		startCountDown(true)
@@ -90,13 +91,24 @@ local countDownTimer
 		countdownTimer = setTimer(function()
 			gameCache["countdown"] = gameCache["countdown"]-1
 			if gameCache["countdown"] == 0 then
-				if gameCache["initialPlayerAmount"] > 0 then
-					startGame()
+				if gameCache["initialPlayerAmount"] > 0 then -- Must be 1 (= at least 2 players)
+					if not gameCache["status"] then 
+						startGame()
+					else
+						for i, player in ipairs(getElementsByType("player")) do
+							if not getElementData(player,"participatingInGame") then
+								outputChatBox("A match is currently running, please wait until it's over!",player,255,0,0,false)
+								gameCache["countdown"] = 180
+								startCountDown(true)
+								return
+							end
+						end
+					end
 				end
 			end
-		end,1000,120,gameCache["countdown"])
+		end,1000,180,gameCache["countdown"])
 	else
-		gameCache["countdown"] = 120
+		gameCache["countdown"] = 180
 		if isTimer(countdownTimer) then killTimer(countdownTimer) end
 	end
 end
@@ -105,7 +117,13 @@ function startGame()
 	gameCache['status'] = false
 	gameCache["initialPlayerAmount"] = 0
 	gameCache["playingField"] = gameCache["playingField"]+1
-	createSpotsOnStart()
+	if not firstTimeLoot then
+		outputDebugString("Creating loot for the first time...")
+		createSpotsOnStart()
+	else
+		outputDebugString("Destroying loot, creating new...")
+		refreshLootSpots()
+	end
 	for i, player in ipairs(getElementsByType("player")) do
 		local dataID = -1
 		playerInfo[player] = {}

@@ -19,7 +19,7 @@ local r,g,b = 218,218,218
 local alpha = 150
 local playerAmount = 0
 local gameStatus = false
-local countDown = 120 -- 180
+local countDown = 180 -- 180
 
 local maxDistance = 100 --max distance represented by littleDude
 local littleDudeDistance = maxDistance --relative distance from littleDude to safe area
@@ -55,6 +55,7 @@ function createCustomBlip(dangerZone,safeZone,radius,initialZoneRadius,timer)
 			guiSetVisible(zoneIndicators.image[i],true)
 		end
 	end
+	guiSetVisible(zoneIndicators.label[1],true)
 end
 addEvent("mtabg_createCustomBlip",true)
 addEventHandler("mtabg_createCustomBlip",root,createCustomBlip)
@@ -102,13 +103,13 @@ function displayStatus()
 				countdownTimer = setTimer(function()
 					countDown = countDown-1
 					if countDown == 0 then
-						if playerAmount > 0 then
+						if playerAmount > 0 then -- Must be 1 (= at least 2 players)
 							killTimer(countdownTimer)
 						else
 							outputChatBox("Not enough players, resetting countdown!",255,0,0,false)
 							killTimer(countdownTimer)
 							countdownTimer = false
-							countDown = 120
+							countDown = 180
 						end
 					end
 				end,1000,120)
@@ -149,45 +150,84 @@ addEventHandler("mtabg_setPlayerAmountToClient",root,setPlayerAmountToClient)
 endScreen = {
     label = {},
     button = {},
-	image = {}
+	image = {},
+	font = {}
 }
 
-function showEndScreen(rank)
 local text = ""
+local rank = ""
+
+endScreen.font[1] = guiCreateFont("/fonts/etelka.ttf",11)
+endScreen.font[2] = guiCreateFont("/fonts/etelka.ttf",15)
+endScreen.font[3] = guiCreateFont("/fonts/etelka.ttf",20)
+endScreen.font[4] = guiCreateFont("/fonts/etelka.ttf",25)
+
+endScreen.image[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.17, "/gui/images/solo_slot.png", true)
+endScreen.image[2] = guiCreateStaticImage(0.73, 0.87, 0.20, 0.06,"/gui/images/solo_slot.png", true)
+guiSetProperty(endScreen.image[1], "ImageColours", "tl:EB000000 tr:EB000000 bl:EB000000 br:EB000000")
+endScreen.label[1] = guiCreateLabel(0.02, 0.06, 0.38, 0.08, getPlayerName(localPlayer), true, endScreen.image[1])
+endScreen.label[2] = guiCreateLabel(0.02, 0.14, 1, 0.09, "", true, endScreen.image[1])
+guiLabelSetVerticalAlign(endScreen.label[2], "center")
+endScreen.label[3] = guiCreateLabel(0.05, 0.39, 0.20, 0.04, "RANK:", true, endScreen.image[1])
+guiLabelSetHorizontalAlign(endScreen.label[3], "center", false)
+endScreen.label[4] = guiCreateLabel(0.05, 0.47, 0.20, 0.04, "KILLS:", true, endScreen.image[1])
+guiLabelSetHorizontalAlign(endScreen.label[4], "center", false)
+endScreen.label[5] = guiCreateLabel(0.25, 0.39, 0.20, 0.04, "# ", true, endScreen.image[1])
+endScreen.label[6] = guiCreateLabel(0.25, 0.47, 0.20, 0.04, "N/A", true, endScreen.image[1])
+endScreen.label[7] = guiCreateLabel(0.73, 0.87, 0.20, 0.06, "Back to Home Screen", true, endScreen.image[1])
+guiLabelSetHorizontalAlign(endScreen.label[7], "center", true)
+guiLabelSetVerticalAlign(endScreen.label[7], "center")
+guiLabelSetColor(endScreen.label[2],255,255,0)
+guiSetFont(endScreen.label[1],endScreen.font[4])
+guiSetFont(endScreen.label[2],endScreen.font[3])
+guiSetFont(endScreen.label[7],endScreen.font[1])
+for i=3,6 do
+	guiSetFont(endScreen.label[i],endScreen.font[2])
+end
+guiSetVisible(endScreen.image[1],false)
+guiSetVisible(endScreen.image[2],false)
+
+function showEndScreen(rank)
 	if rank ~= 1 then
 		text = "BETTER LUCK NEXT TIME!"
 	else
 		text = "A WINNER IS YOU!"
 	end
-	endScreen.image[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.17, "/gui/images/solo_slot.png", true)
-	endScreen.image[2] = guiCreateStaticImage(0.83, 0.87, 0.15, 0.06,"/gui/images/solo_slot.png", true)
-	guiSetProperty(endScreen.image[1], "ImageColours", "tl:EB000000 tr:EB000000 bl:EB000000 br:EB000000")
-
-	endScreen.label[1] = guiCreateLabel(0.02, 0.06, 0.38, 0.08, getPlayerName(localPlayer), true, endScreen.image[1])
-	endScreen.label[2] = guiCreateLabel(0.02, 0.14, 1, 0.09, text, true, endScreen.image[1])
-	guiLabelSetVerticalAlign(endScreen.label[2], "center")
-	endScreen.label[3] = guiCreateLabel(0.05, 0.39, 0.20, 0.04, "RANK:", true, endScreen.image[1])
-	guiLabelSetHorizontalAlign(endScreen.label[3], "center", false)
-	endScreen.label[4] = guiCreateLabel(0.05, 0.47, 0.20, 0.04, "KILLS:", true, endScreen.image[1])
-	guiLabelSetHorizontalAlign(endScreen.label[4], "center", false)
-	endScreen.label[5] = guiCreateLabel(0.25, 0.39, 0.20, 0.04, "#"..rank, true, endScreen.image[1])
-	endScreen.label[6] = guiCreateLabel(0.25, 0.47, 0.20, 0.04, "N/A", true, endScreen.image[1])
-	endScreen.label[7] = guiCreateLabel(0.83, 0.87, 0.15, 0.06, "Back to Lobby", true, endScreen.image[1])
-	guiLabelSetHorizontalAlign(endScreen.label[7], "center", false)
-	guiLabelSetVerticalAlign(endScreen.label[7], "center")
-
-	guiLabelSetColor(endScreen.label[2],255,255,0)
-
-	guiSetFont(endScreen.label[1],inventoryGUI.font[4])
-	guiSetFont(endScreen.label[2],inventoryGUI.font[3])
-	guiSetFont(endScreen.label[7],inventoryGUI.font[1])
-	for i=3,6 do
-		guiSetFont(endScreen.label[i],inventoryGUI.font[2])
-	end
+	guiSetText(endScreen.label[5],"#"..tostring(rank))
+	guiSetVisible(endScreen.image[1],true)
+	guiSetVisible(endScreen.image[2],true)
 	guiBringToFront(endScreen.label[7])
+	showCursor(true)
 end
 addEvent("mtabg_showEndscreen",true)
 addEventHandler("mtabg_showEndscreen",root,showEndScreen)
+
+function onMouseOverBackToHomeScreenLabelSelect()
+	guiSetProperty(endScreen.image[2], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
+end
+addEventHandler("onClientMouseEnter",endScreen.label[7],onMouseOverBackToHomeScreenLabelSelect,false)
+
+function onMouseOverBackToHomeScreenLabelDeselect()
+	guiSetProperty(endScreen.image[2], "ImageColours", "tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF")
+end
+addEventHandler("onClientMouseLeave",endScreen.label[7],onMouseOverBackToHomeScreenLabelDeselect,false)
+
+
+function sendPlayerBackToHomeScreenOnDeath()
+	guiSetVisible(endScreen.image[1],false)
+	guiSetVisible(endScreen.image[2],false)
+	sendToHomeScreen()
+	setElementData(localPlayer,"participatingInGame",false)
+	guiPlayerHealth = 100
+	for i=1,3 do
+		if zoneIndicators.image[i] then
+			guiSetVisible(zoneIndicators.image[i],false)
+		end
+	end
+	guiSetText(zoneIndicators.label[1],"")
+	guiSetVisible(zoneIndicators.label[1],false)
+end
+addEventHandler("onClientGUIClick",endScreen.label[7],sendPlayerBackToHomeScreenOnDeath,false)
 
 function setRadiusTimerToClient(timer)
 	if isTimer(timer) then
@@ -222,7 +262,7 @@ local math = math
 local function calculateLittleDudeDistance()
 	local px, py = localPlayer.position.x, localPlayer.position.y --player coordinates
 	local sx,sy
-	if safeAreaCol then
+	if isElement(safeAreaCol) then
 		sx, sy = safeAreaCol.position.x, safeAreaCol.position.y --safe area coords
 	end
 	distanceToSafeArea = (getDistanceBetweenPoints2D(px, py, sx, sy) - safeZoneRadius > 0) and

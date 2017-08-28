@@ -37,7 +37,11 @@ function createZone()
 	safeZone = createColCircle(x,y,initialZoneRadius)
 	zoneTimer = setTimer(decreaseZoneSize,radiusTimer,1)
 	setTimer(getPlayersInsideZone,5000,0)
-	triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius,radiusTimer) 
+	for i, players in ipairs(getElementsByType("player")) do
+		if getElementData(players,"participatingInGame") then
+			triggerClientEvent("mtabg_createCustomBlip",players,dangerZone,safeZone,zoneRadius,initialZoneRadius,radiusTimer)
+		end
+	end
 end
 
 
@@ -58,7 +62,11 @@ function decreaseZoneSize()
 		safeZone = createColCircle(oldX2,oldY2,initialZoneRadius)
 		if zoneTimer then killTimer(zoneTimer) end
 		zoneTimer = setTimer(decreaseZoneSize,radiusTimer,1)
-		triggerClientEvent("mtabg_createCustomBlip",root,dangerZone,safeZone,zoneRadius,initialZoneRadius,radiusTimer)	
+		for i, players in ipairs(getElementsByType("player")) do
+			if getElementData(players,"participatingInGame") then
+				triggerClientEvent("mtabg_createCustomBlip",players,dangerZone,safeZone,zoneRadius,initialZoneRadius,radiusTimer)
+			end
+		end
 	end
 	firstWarning = false
 	secondWarning = false
@@ -78,18 +86,20 @@ function getPlayersInsideZone()
 	if not firstZone then
 		if safeZone and dangerZone then
 			for i, players in ipairs(getElementsByType("player")) do
-				if isElementWithinColShape(players,safeZone) then
-					return
-				else
-					if isElementWithinColShape(players,dangerZone) then
+				if getElementData(players,"participatingInGame") then
+					if isElementWithinColShape(players,safeZone) then
 						return
 					else
-						for k, data in ipairs(playerDataInfo[players]) do
-							if data[2] == "health" then
-								if data[3] > 0 then
-									data[3] = data[3]-5
-									triggerClientEvent("mtabg_setHealthToClient",players,data[3])
-									checkPlayerStatus("health",players,false)
+						if isElementWithinColShape(players,dangerZone) then
+							return
+						else
+							for k, data in ipairs(playerDataInfo[players]) do
+								if data[2] == "health" then
+									if data[3] > 0 then
+										data[3] = data[3]-5
+										triggerClientEvent("mtabg_setHealthToClient",players,data[3])
+										checkPlayerStatus("health",players,false)
+									end
 								end
 							end
 						end

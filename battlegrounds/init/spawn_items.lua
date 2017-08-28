@@ -7,6 +7,7 @@
 ]]--
 
 local lootPointID = 0
+local firstTimeLoot = false
 lootpointData = {}
 
 function createItemPickup(item,x,y,z,itemName,itemAmount)
@@ -143,34 +144,54 @@ function createSpotsOnStart()
 		createLootPoint("Military",position[1],position[2],position[3],SpotsID)
 	end)
 	outputDebugString("[MTA:BG] All loot points spawned!")
+	firstTimeLoot = true
 end
 -- Dev command, remove on release
 addCommandHandler("spot",createSpotsOnStart)
 
 function refreshLootSpots()
 	outputDebugString("[MTA:BG] Item Refresh Started!")
-	for i, col in ipairs(getElementsByType("colshape")) do
-		if lootpointData[col]["objects"] then
-			for k, items in ipairs(lootpointData[col]["objects"]) do
-				if items[1] ~= nil then
+	async:foreach(getElementsByType("colshape"), function(col)
+	--for i, col in ipairs(getElementsByType("colshape")) do
+		for k, items in ipairs(lootpointData[col]["objects"]) do
+			if items[1] ~= nil then
+				if isElement(items[1]) then
 					destroyElement(items[1])
-				end
-				if items[2] ~= nil then
-					destroyElement(items[2])
-				end
-				if items[3] ~= nil then
-					destroyElement(items[3])
 				end
 			end
 		end
 		destroyElement(col)
-		lootPointID = 0
-	end
-	createSpotsOnStart()
+	end)
+	lootPointID = 0
+	lootpointData = {}
+	local SpotsID = 0
+	outputDebugString("[MTA:BG] Spawning Industry Loot Points(20%)")
+	async:foreach(lootPoints["Industry"], function(position)
+		SpotsID = SpotsID+1
+		createLootPoint("Industry",position[1],position[2],position[3],SpotsID)
+	end)
+	outputDebugString("[MTA:BG] Spawning Residential Loot Points(40%)")
+	async:foreach(lootPoints["Residential"], function(position)
+		SpotsID = SpotsID+1
+		createLootPoint("Residential",position[1],position[2],position[3],SpotsID)
+	end)
+	outputDebugString("[MTA:BG] Spawning Supermarket Loot Points(60%)")
+	async:foreach(lootPoints["Supermarket"], function(position)
+		SpotsID = SpotsID+1
+		createLootPoint("Supermarket",position[1],position[2],position[3],SpotsID)
+	end)
+	outputDebugString("[MTA:BG] Spawning Farm Loot Points(80%)")
+	async:foreach(lootPoints["Farm"], function(position)
+		SpotsID = SpotsID+1
+		createLootPoint("Farm",position[1],position[2],position[3],SpotsID)
+	end)
+	outputDebugString("[MTA:BG] Spawning Military Loot Points(100%)")
+	async:foreach(lootPoints["Military"], function(position)
+		SpotsID = SpotsID+1
+		createLootPoint("Military",position[1],position[2],position[3],SpotsID)
+	end)
+	outputDebugString("[MTA:BG] All loot points spawned!")
 end
-
---addEvent("mtabg_refreshLoot", true)
---addEventHandler("mtabg_refreshLoot", root, refreshLootSpots)
 
 -- Dev command, remove on release
 addCommandHandler("loot",refreshLootSpots)
