@@ -8,7 +8,7 @@
 
 mysql_link = false
 dataStore = { -- Default values
-	['gamesplayed'] = 3,
+	['gamesplayed'] = 0,
 	['wins'] = 0,
 	['losses'] = 0,
 	['winlossratio'] = 0,
@@ -78,11 +78,10 @@ local serial = getPlayerSerial(source)
 				triggerClientEvent(client, "MTABG_LoginError", client, "Unknown error. Please contact a server admin (EC: 1)!")
 			end
 		else
-			-- nothing found (maybe wrong password)
 			triggerClientEvent(client, "MTABG_LoginError", client, "Wrong password or account does not exist!")
 		end
 	else
-		-- The player isn't human (Maybe an ET?)
+		triggerClientEvent(client, "MTABG_LoginError", client, "Unknown error. Please contact a server admin (EC: No Serial)!")
 	end
 end
 addEvent("mtabg_login", true)
@@ -106,20 +105,11 @@ function registerAccount(email, password, avatar)
         local registered = checkAccount(serial)
         if registered == 1 then
 			login(password)
-				--[[triggerClientEvent(client, "mtabg_registerDone", client, serial)
-				setTimer(function(client)
-					spawnPlayer(client,0,0,0)
-					fadeCamera(client,true)
-					triggerClientEvent(client,"mtabg_sendToHomeScreen",client)
-				end,1000,1,client)
-				]]
 				return
-			--triggerClientEvent(client, "openLoginPanel", client, 1, serial, tempAvatar)
         else
              triggerClientEvent(client, "MTABG_LoginError", client, "Unknown error. Please contact a server admin (EC: 2)!")
         end
     elseif isAccount == 1 then
-        --triggerClientEvent(client, "openLoginPanel", client, 1, serial, tempAvatar)
 		triggerClientEvent(client, "MTABG_LoginError", client, "ID is taken. Please contact a server admin (EC: 3)!")
     else
        triggerClientEvent(client, "MTABG_LoginError", client, "Unknown error. Please contact a server admin (EC: 4)!")
@@ -152,6 +142,7 @@ function getUserData(user, data)
 	end
 end
 
+local tempUsersData = {}
 function sendUserDataToHomeScreen()
 	triggerClientEvent(client,"mtabg_getStatisticsTableFromDB",client,usersData[client])
 end
@@ -181,55 +172,11 @@ end
 --addEventHandler("MTABG_onLogin", getRootElement(), MTABG_onLogin)
 
 
-function __genOrderedIndex( t )
-    local orderedIndex = {}
-    for key in pairs(t) do
-        table.insert( orderedIndex, key )
-    end
-    table.sort( orderedIndex )
-    return orderedIndex
-end
-
-function orderedNext(t, state)
-    -- Equivalent of the next function, but returns the keys in the alphabetic
-    -- order. We use a temporary ordered key table that is stored in the
-    -- table being iterated.
-
-    local key = nil
-    --print("orderedNext: state = "..tostring(state) )
-    if state == nil then
-        -- the first time, generate the index
-        t.__orderedIndex = __genOrderedIndex( t )
-        key = t.__orderedIndex[1]
-    else
-        -- fetch the next value
-        for i = 1,table.getn(t.__orderedIndex) do
-            if t.__orderedIndex[i] == state then
-                key = t.__orderedIndex[i+1]
-            end
-        end
-    end
-
-    if key then
-        return key, t[key]
-    end
-
-    -- no more value to return, cleanup
-    t.__orderedIndex = nil
-    return
-end
-
-function orderedPairs(t)
-    -- Equivalent of the pairs() function on tables. Allows to iterate
-    -- in order
-    return orderedNext, t, nil
-end
-
 function save()
 	local account = getPlayerSerial(source)
 	if account then
 		local toSaveData = {}
-		for index, dataName in orderedPairs(dataStore) do
+		for index, dataName in pairs(dataStore) do
 			toSaveData[index] = getUserData(source, index)
 		end
 		dbExec(mysql_link, "UPDATE accounts SET data='"..toJSON(toSaveData).."' WHERE serial='"..account.."'")

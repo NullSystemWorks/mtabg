@@ -81,26 +81,28 @@ homeScreen.label["battlepointsspent"] = guiCreateLabel(0.02, 0.84, 0.22, 0.07, "
 guiLabelSetVerticalAlign(homeScreen.label["battlepointsspent"], "center")
 homeScreen.label[19] = guiCreateLabel(0.38, 0.00, 0.29, 0.07, "Statistics for "..tostring(getPlayerName(localPlayer)), true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label[19], "center")
-homeScreen.label["gamesplayed_value"] = guiCreateLabel(0.24, 0.70, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
+
+homeScreen.label["gamesplayed_value"] = guiCreateLabel(0.24, 0.22, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label["gamesplayed_value"], "center")
-homeScreen.label["wins_value"] = guiCreateLabel(0.24, 0.63, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
+homeScreen.label["wins_value"] = guiCreateLabel(0.24, 0.29, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label["wins_value"], "center")
-homeScreen.label["losses_value"] = guiCreateLabel(0.24, 0.56, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
+homeScreen.label["losses_value"] = guiCreateLabel(0.24, 0.36, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label["losses_value"], "center")
-homeScreen.label["winlossratio_value"] = guiCreateLabel(0.24, 0.50, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
+homeScreen.label["winlossratio_value"] = guiCreateLabel(0.24, 0.43, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label["winlossratio_value"], "center")
-homeScreen.label["kills_value"] = guiCreateLabel(0.24, 0.43, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
+homeScreen.label["kills_value"] = guiCreateLabel(0.24, 0.50, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label["kills_value"], "center")
-homeScreen.label["deaths_value"] = guiCreateLabel(0.24, 0.36, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
+homeScreen.label["deaths_value"] = guiCreateLabel(0.24, 0.56, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label["deaths_value"], "center")
-homeScreen.label["killdeathratio_value"] = guiCreateLabel(0.24, 0.29, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
+homeScreen.label["killdeathratio_value"] = guiCreateLabel(0.24, 0.63, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label["killdeathratio_value"], "center")
-homeScreen.label["headshots_value"] = guiCreateLabel(0.24, 0.22, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
+homeScreen.label["headshots_value"] = guiCreateLabel(0.24, 0.70, 0.18, 0.07, "0", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label["headshots_value"], "center")
 homeScreen.label["battlepoints_value"] = guiCreateLabel(0.24, 0.77, 0.22, 0.07, "0", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label["battlepoints_value"], "center")
 homeScreen.label["battlepointsspent_value"] = guiCreateLabel(0.24, 0.84, 0.22, 0.07, "0", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label["battlepointsspent_value"], "center")
+
 homeScreen.label[30] = guiCreateLabel(0.72, 0.93, 0.05, 0.07, "ID:", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label[30], "center")
 homeScreen.label[31] = guiCreateLabel(0.78, 0.93, 0.22, 0.07, "0000001", true, homeScreen.staticimage[5])
@@ -526,7 +528,7 @@ function getStatisticsTableFromDB(theTable)
 	temporarySkinTable[localPlayer] = {}
 	temporaryCrateTable[localPlayer] = {}
 	for i, data in pairs(theTable) do
-		if type(data) ~= "table" then
+		if type(data) ~= "table" then	
 			table.insert(statisticsTable[localPlayer],{i,data})
 		else
 			if i == "skins" then
@@ -550,6 +552,11 @@ function showStatistics()
 	end
 	guiSetVisible(homeScreen.staticimage[5],true)
 end
+
+function moveBackgroundBack()
+	guiMoveToBack(homeScreen.staticimage[1])
+end
+addEventHandler("onClientGUIClick",homeScreen.staticimage[1],moveBackgroundBack,false)
 
 
 function showRewards()

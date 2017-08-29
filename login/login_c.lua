@@ -81,6 +81,27 @@ function loginPanel(state)
 		soundtrack = false
 	end
 end
+
+function changeColorOfLoginButtonOnMouseEnter()
+	guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FF3A8CF7 tr:FF3A8CF7 bl:FF3A8CF7 br:FF3A8CF7")
+end
+addEventHandler("onClientMouseEnter",LoginScreen.label[4],changeColorOfLoginButtonOnMouseEnter,false)
+
+function changeColorOfLoginButtonOnMouseLeave()
+	guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
+end
+addEventHandler("onClientMouseLeave",LoginScreen.label[4],changeColorOfLoginButtonOnMouseLeave,false)
+
+function changeColorOfRegisterButtonOnMouseEnter()
+	guiSetProperty(LoginScreen.staticimage[4], "ImageColours", "tl:FF3A8CF7 tr:FF3A8CF7 bl:FF3A8CF7 br:FF3A8CF7")
+end
+addEventHandler("onClientMouseEnter",LoginScreen.label[5],changeColorOfRegisterButtonOnMouseEnter,false)
+
+function changeColorOfRegisterButtonOnMouseLeave()
+	guiSetProperty(LoginScreen.staticimage[4], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
+end
+addEventHandler("onClientMouseLeave",LoginScreen.label[5],changeColorOfRegisterButtonOnMouseLeave,false)
+
 --[[
 
 		LoginScreen.edit[1] = guiCreateEdit(0.44, 0.43, 0.11, 0.03, "password", true, Loginbg)
