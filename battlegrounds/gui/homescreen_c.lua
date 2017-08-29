@@ -189,7 +189,8 @@ addEventHandler("onClientResourceStart", getResourceRootElement(),
 
 local screenX,screenY = guiGetScreenSize()
 function sendToHomeScreen()
-	soundtrack = playSound("/sounds/Unsung Briefing.mp3",true)
+	local number = math.random(1,2)
+	soundtrack = playSound("/sounds/Unsung Briefing "..number..".mp3",true)
 	setSoundVolume(soundtrack,0.4)
 	setCameraMatrix(1720.41125,-1646.7942,21.0576,1721.21911,-1647.3781,20.9919,0,70)
 	setElementModel(localPlayer,0)
@@ -202,7 +203,7 @@ function sendToHomeScreen()
 	guiSetVisible(homeScreen.staticimage[1],true)
 	myScreenSource = dxCreateScreenSource ( screenX,screenY)
 	showCursor(true)
-	doItNow() -- Test
+	triggerServerEvent("mtabg_sendUserDataToHomeScreen",localPlayer)
 end
 addEvent("mtabg_sendToHomeScreen",true)
 addEventHandler("mtabg_sendToHomeScreen",root,sendToHomeScreen)
@@ -542,7 +543,6 @@ addEvent("mtabg_getStatisticsTableFromDB",true)
 addEventHandler("mtabg_getStatisticsTableFromDB",root,getStatisticsTableFromDB)
 
 function showStatistics()
-	-- triggerServerEvent to get player statistics from database, then send table back to client?
 	for i, data in ipairs(statisticsTable[localPlayer]) do
 		if type(data[2]) ~= "table" then
 			guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2]))
@@ -568,7 +568,9 @@ function showCharacters()
 	end
 	for i, data in ipairs(temporarySkinTable[localPlayer]) do
 		for k, skin in ipairs(data) do
-			setElementModel(localPlayer,skin[1])
+			if skin[1] then
+				setElementModel(localPlayer,skin[1])
+			end
 		end
 	end
 	setTimer(setElementRotation,50,1,localPlayer,0,0,80.0553)

@@ -28,7 +28,7 @@ function sendPlayersOnServerToHomeScreen()
 		end,1000,1,players)
 	end
 end
-addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),sendPlayersOnServerToHomeScreen)
+--addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),sendPlayersOnServerToHomeScreen)
 
 function onJoinSendToHomeScreen()
 	setTimer(function(source)
@@ -37,7 +37,7 @@ function onJoinSendToHomeScreen()
 		triggerClientEvent(source,"mtabg_sendToHomeScreen",source)
 	end,1000,1,source)
 end
-addEventHandler("onPlayerJoin",root,onJoinSendToHomeScreen)
+--addEventHandler("onPlayerJoin",root,onJoinSendToHomeScreen)
 
 function onPlayerLeavingGame()
 	if not gameCache["status"] then

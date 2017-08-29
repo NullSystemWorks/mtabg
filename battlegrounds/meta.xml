@@ -60,7 +60,8 @@ Version: 0.0.1 Pre-Alpha
 	<file src="gui/images/solo_slot.png" />
 	<file src="gui/images/button.png" />
 	<file src="gui/images/battlepointsicon.png" />
-	<file src="sounds/Unsung Briefing.mp3" />
+	<file src="sounds/Unsung Briefing 1.mp3" />
+	<file src="sounds/Unsung Briefing 2.mp3" />
 	<file src="gui/images/background_transparent.png" />
 	<file src="gui/images/legendary_crate.png" />
 	<file src="gui/images/epic_crate.png" />

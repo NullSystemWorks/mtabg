@@ -9,27 +9,80 @@
 
 
 local anticheat_avatar = false
+local soundtrack = false
 
 LoginScreen = {
+	checkbox = {},
     staticimage = {},
     label = {},
     edit = {}
 }
 
-function setLSVisibility(state)
-	if not Loginbg and state then
-		Loginbg = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, ":login/img/bg01.png", true)
-		copyright = guiCreateLabel(0.00, 0.97, 0.46, 0.03, "MTA:Battlegrounds ©2017 Null System Works. All Rights Reserved.", true, Loginbg)
-		guiSetAlpha(copyright, 0.35)
-		guiLabelSetHorizontalAlign(copyright, "left", true)
-	else
-		guiSetVisible(Loginbg, state)
-	end
-end
+LoginScreen.staticimage[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "img/background.png", true)
+LoginScreen.staticimage[2] = guiCreateStaticImage(0.11, 0.06, 0.77, 0.28, "img/battlegrounds_logo.png", true, LoginScreen.staticimage[1])
+LoginScreen.edit[1] = guiCreateEdit(0.35, 0.41, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- ID
+guiEditSetReadOnly(LoginScreen.edit[1], true)
+LoginScreen.label[1] = guiCreateLabel(0.27, 0.42, 0.08, 0.04, "ID", true, LoginScreen.staticimage[1])
+guiSetFont(LoginScreen.label[1], "default-bold-small")
+guiLabelSetHorizontalAlign(LoginScreen.label[1], "center", false)
+LoginScreen.edit[2] = guiCreateEdit(0.35, 0.50, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- PWD
+guiEditSetMasked(LoginScreen.edit[2],true)
+LoginScreen.label[2] = guiCreateLabel(0.27, 0.51, 0.08, 0.04, "PWD", true, LoginScreen.staticimage[1])
+guiSetFont(LoginScreen.label[2], "default-bold-small")
+guiLabelSetHorizontalAlign(LoginScreen.label[2], "center", false)
+LoginScreen.label[3] = guiCreateLabel(0.38, 0.56, 0.21, 0.05, "Remember Password (PWD)", true, LoginScreen.staticimage[1])
+guiSetFont(LoginScreen.label[3], "default-bold-small")
+guiLabelSetHorizontalAlign(LoginScreen.label[3], "right", false)
+LoginScreen.checkbox[1] = guiCreateCheckBox(0.36, 0.56, 0.02, 0.02, "", false, true, LoginScreen.staticimage[1])
+LoginScreen.staticimage[3] = guiCreateStaticImage(0.35, 0.61, 0.14, 0.07, "img/white.png", true, LoginScreen.staticimage[1])
+guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
+LoginScreen.label[4] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "LOGIN", true, LoginScreen.staticimage[3])
+guiLabelSetHorizontalAlign(LoginScreen.label[4], "center", false)
+guiLabelSetVerticalAlign(LoginScreen.label[4], "center")
+LoginScreen.staticimage[4] = guiCreateStaticImage(0.50, 0.61, 0.14, 0.07, "img/white.png", true, LoginScreen.staticimage[1])
+guiSetProperty(LoginScreen.staticimage[4], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
+LoginScreen.label[5] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "REGISTER", true, LoginScreen.staticimage[4])
+guiLabelSetHorizontalAlign(LoginScreen.label[5], "center", false)
+guiLabelSetVerticalAlign(LoginScreen.label[5], "center")    
+LoginScreen.label[6] = guiCreateLabel(0.27, 0.70, 0.46, 0.05, "", true, LoginScreen.staticimage[1])
+guiLabelSetHorizontalAlign(LoginScreen.label[6], "center", false)
+guiLabelSetVerticalAlign(LoginScreen.label[6], "center")    
+
+guiSetVisible(LoginScreen.staticimage[1],false)
 
 function loginPanel(state)
-	if not LoginScreen.staticimage[2] and Loginbg and state then
-		LoginScreen.staticimage[2] = guiCreateStaticImage(0.46, 0.16, 0.08, 0.14, ":login/img/defaultavatar.png", true, Loginbg)
+	if state then
+		guiSetVisible(LoginScreen.staticimage[1],true)
+		addEventHandler("onClientGUIClick", LoginScreen.label[4], function()
+			triggerServerEvent("mtabg_login", localPlayer, guiGetText(LoginScreen.edit[2]))
+		end,false)
+		addEventHandler("onClientGUIClick", LoginScreen.label[5], function()
+			local password = guiGetText(LoginScreen.edit[2])
+			triggerServerEvent("mtabg_register", localPlayer, "None", password, false)
+		end, false)
+		guiBringToFront(LoginScreen.staticimage[1])
+		copyright = guiCreateLabel(0.00, 0.97, 0.46, 0.03, "MTA:Battlegrounds ©2017 Null System Works. All Rights Reserved.", true, LoginScreen.staticimage[1])
+		guiSetAlpha(copyright, 0.35)
+		guiLabelSetHorizontalAlign(copyright, "left", true)
+		if not soundtrack then
+			soundtrack = playSound("sounds/Siege.mp3",true)
+			setSoundVolume(soundtrack,0.1)
+		end
+	else
+		guiSetVisible(LoginScreen.staticimage[1],false)
+		removeEventHandler("onClientGUIClick",LoginScreen.label[4], function()
+			triggerServerEvent("mtabg_login", localPlayer, guiGetText(LoginScreen.edit[2]))
+		end,false)
+		removeEventHandler("onClientGUIClick",LoginScreen.label[5], function()
+			local password = guiGetText(LoginScreen.edit[2])
+			triggerServerEvent("mtabg_register", localPlayer, password)
+		end,false)
+		stopSound(soundtrack)
+		soundtrack = false
+	end
+end
+--[[
+
 		LoginScreen.edit[1] = guiCreateEdit(0.44, 0.43, 0.11, 0.03, "password", true, Loginbg)
 		guiEditSetMasked(LoginScreen.edit[1], true)
 		LoginScreen.label[1] = guiCreateLabel(0.44, 0.41, 0.11, 0.02, "Password", true, Loginbg)
@@ -54,25 +107,14 @@ function loginPanel(state)
 		guiLabelSetHorizontalAlign(LoginScreen.label[3], "center", false)
 		guiLabelSetVerticalAlign(LoginScreen.label[3], "center")
 		
-		addEventHandler("onClientGUIClick", LoginScreen.label[3], function()
-			triggerServerEvent("mtabg_login", getLocalPlayer(), guiGetText(LoginScreen.edit[1]))
-		end,false)
+		
 
 		LoginScreen.label[5] = guiCreateLabel(0.44, 0.46, 0.11, 0.04, "Lost your pass? Click here", true, Loginbg)
 		guiSetFont(LoginScreen.label[5], "default-bold-small")
 		guiLabelSetColor(LoginScreen.label[5], 231, 232, 255)
 		guiLabelSetHorizontalAlign(LoginScreen.label[5], "left", true)
 		guiBringToFront(Loginbg)
-	elseif LoginScreen.staticimage[2] then
-		--setLSVisibility(state)
-		for index, guiOpt in pairs(LoginScreen) do
-			for _i, gui in pairs(guiOpt) do
-				guiSetVisible(gui, state)
-			end
-		end
 
-	end
-end
 
 
 RegisterScreen = {
@@ -113,16 +155,7 @@ function registerPanel(state)
 		guiLabelSetHorizontalAlign(RegisterScreen.label[3], "center", false)
 		guiLabelSetVerticalAlign(RegisterScreen.label[3], "center")
 
-		addEventHandler("onClientGUIClick", RegisterScreen.label[3], function()
-			local email = guiGetText(RegisterScreen.edit[3])
-			local password = guiGetText(RegisterScreen.edit[1])
-			local avatarAaang = false
-			if anticheat_avatar then
-				avatarAaang = base64Encode(anticheat_avatar)
-				outputChatBox("ooh eyah")
-			end
-			triggerServerEvent("mtabg_register", getLocalPlayer(), email, password, avatarAaang)
-		end, false)
+		
 		
 		
 		
@@ -181,7 +214,6 @@ function registerPanel(state)
 	end
 end
 
-
 function setAvatarImg(img)
 	local fileH = fileCreate("avatar.png")
 	if fileH then
@@ -197,47 +229,36 @@ function setAvatarImg(img)
 end
 addEvent("mtabg_logSetAvatarimg", true)
 addEventHandler("mtabg_logSetAvatarimg", getRootElement(), setAvatarImg)
+]]
 
 
-
-function onRegister(serial, avatar)
+function onRegister(serial)
 	loginPanel(false)
-	registerPanel(false)
-	setLSVisibility(false)
 end
 addEvent("mtabg_registerDone", true)
 addEventHandler("mtabg_registerDone", getRootElement(), onRegister)
 
 
 function showError(errorMsg)
-	
+	guiSetText(LoginScreen.label[6],tostring(errorMsg))
+	setTimer(function()
+		guiSetText(LoginScreen.label[6],"")
+	end,3000,1)
 end
 addEvent("MTABG_LoginError", true)
 addEventHandler("MTABG_LoginError", getRootElement(), showError)
 
 
-function loadLoginScreen(accountCheck, serial, avatar)
-	setLSVisibility(true)
+function loadLoginScreen(serial, avatar)
+	if guiGetVisible(LoginScreen.staticimage[1]) then return end
+	loginPanel(true)
+	guiSetVisible(LoginScreen.staticimage[1],true)
+	guiSetText(LoginScreen.edit[1], serial)
 	showCursor(true)
-	if accountCheck == 1 then
-		registerPanel(false)
-		loginPanel(true)
-		if avatar then setAvatarImg(avatar) end
-		guiSetText(LoginScreen.edit[2], serial)
-	elseif accountCheck == 0 then
-		loginPanel(false)
-		registerPanel(true)
-		if avatar then setAvatarImg(avatar) end
-		guiSetText(RegisterScreen.edit[2], serial)
-	else
-		 ---
-	end
 end
 addEvent("openLoginPanel", true)
 addEventHandler("openLoginPanel", getRootElement(), loadLoginScreen)
 
-
-
 addEventHandler("onClientResourceStart", getResourceRootElement(), function()
-	triggerServerEvent("mtabg_onJoin", getLocalPlayer())
+	triggerServerEvent("mtabg_onJoin", localPlayer)
 end)
