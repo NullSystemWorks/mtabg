@@ -2,7 +2,7 @@
 
 ### Curent Developers: L, ciber96, 1B0Y, neves768, expert975 ###
 
-### Synopsis ###
+### Synopsis ### 
 -
 
 ### What should I do? ###
