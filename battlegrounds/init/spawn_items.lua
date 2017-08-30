@@ -7,7 +7,7 @@
 ]]--
 
 local lootPointID = 0
-local firstTimeLoot = false
+firstTimeLoot = false
 lootpointData = {}
 
 function createItemPickup(item,x,y,z,itemName,itemAmount)
@@ -151,8 +151,9 @@ addCommandHandler("spot",createSpotsOnStart)
 
 function refreshLootSpots()
 	outputDebugString("[MTA:BG] Item Refresh Started!")
-	async:foreach(getElementsByType("colshape"), function(col)
-	--for i, col in ipairs(getElementsByType("colshape")) do
+	local colshapeTable = {}
+	colshapeTable = getElementsByType("colshape")
+	async:foreach(colshapeTable, function(col)
 		for k, items in ipairs(lootpointData[col]["objects"]) do
 			if items[1] ~= nil then
 				if isElement(items[1]) then
@@ -163,7 +164,6 @@ function refreshLootSpots()
 		destroyElement(col)
 	end)
 	lootPointID = 0
-	lootpointData = {}
 	local SpotsID = 0
 	outputDebugString("[MTA:BG] Spawning Industry Loot Points(20%)")
 	async:foreach(lootPoints["Industry"], function(position)

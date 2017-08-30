@@ -19,7 +19,7 @@ local r,g,b = 218,218,218
 local alpha = 150
 local playerAmount = 0
 local gameStatus = false
-local countDown = 180 -- 180
+local countDown = 120 -- 180
 
 local maxDistance = 100 --max distance represented by littleDude
 local littleDudeDistance = maxDistance --relative distance from littleDude to safe area
@@ -98,10 +98,11 @@ function displayStatus()
 		end
 	else
 	if guiGetVisible(homeScreen.staticimage[1]) then return end
+	if getElementData(localPlayer,"participatingInGame") then return end
 		if playerAmount > 0 then
-			if not countdownTimer then
+			if not isTimer(countdownTimer) then
 				countdownTimer = setTimer(function()
-					countDown = countDown-1
+					countDown = math.max(countDown-1,0)
 					if countDown == 0 then
 						if playerAmount > 0 then -- Must be 1 (= at least 2 players)
 							killTimer(countdownTimer)
@@ -109,15 +110,19 @@ function displayStatus()
 							outputChatBox("Not enough players, resetting countdown!",255,0,0,false)
 							killTimer(countdownTimer)
 							countdownTimer = false
-							countDown = 180
+							countDown = 120
 						end
 					end
 				end,1000,120)
 			end
 		else
-			if isTimer(countdownTimer) then killTimer(countdownTimer) end
+			if isTimer(countdownTimer) then 
+				killTimer(countdownTimer) 
+				countdownTimer = false 
+				countDown = 120 
+			end
 		end
-
+		
 		dxDrawText("COUNTDOWN:", screenW * 0.6350, screenH * 0.1683, screenW * 0.8413, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
 		dxDrawText("PLAYERS:", screenW * 0.6350, screenH * 0.2250, screenW * 0.8413, screenH * 0.2817, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
 		dxDrawText(countDown.." SEC.", screenW * 0.8538, screenH * 0.1683, screenW * 0.9825, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)

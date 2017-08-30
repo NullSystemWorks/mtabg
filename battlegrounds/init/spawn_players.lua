@@ -94,11 +94,12 @@ local countDownTimer
 				if gameCache["initialPlayerAmount"] > 0 then -- Must be 1 (= at least 2 players)
 					if not gameCache["status"] then 
 						startGame()
+						if isTimer(countdownTimer) then killTimer(countdownTimer) end
 					else
 						for i, player in ipairs(getElementsByType("player")) do
 							if not getElementData(player,"participatingInGame") then
 								outputChatBox("A match is currently running, please wait until it's over!",player,255,0,0,false)
-								gameCache["countdown"] = 180
+								gameCache["countdown"] = 120
 								startCountDown(true)
 								return
 							end
@@ -106,9 +107,9 @@ local countDownTimer
 					end
 				end
 			end
-		end,1000,180,gameCache["countdown"])
+		end,1000,120,gameCache["countdown"])
 	else
-		gameCache["countdown"] = 180
+		gameCache["countdown"] = 120
 		if isTimer(countdownTimer) then killTimer(countdownTimer) end
 	end
 end
@@ -158,8 +159,9 @@ function startGame()
 	end
 	createZone()
 	gameCache['status'] = true
-	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"])
+	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 	gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
+	gameCache["countdown"] = 120
 end
 addEvent("mtabg_startGame",true)
 addEventHandler("mtabg_startGame",root,startGame)

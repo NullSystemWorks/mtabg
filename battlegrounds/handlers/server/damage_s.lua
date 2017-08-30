@@ -87,7 +87,7 @@ function checkPlayerAmount()
 			end
 		end
 		gameCache["status"] = false
-		gameCache["countdown"] = 180
+		gameCache["countdown"] = 120
 		gameCache["initialPlayerAmount"] = 0
 		triggerClientEvent("mtabg_setPlayerAmountToClient",root,0,gameCache["status"],gameCache["countdown"])
 	end

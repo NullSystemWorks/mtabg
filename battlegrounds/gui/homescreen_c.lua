@@ -205,6 +205,7 @@ function sendToHomeScreen()
 	guiSetVisible(homeScreen.staticimage[1],true)
 	myScreenSource = dxCreateScreenSource ( screenX,screenY)
 	showCursor(true)
+	setElementData(localPlayer,"participatingInGame",false)
 	triggerServerEvent("mtabg_sendUserDataToHomeScreen",localPlayer)
 end
 addEvent("mtabg_sendToHomeScreen",true)

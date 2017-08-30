@@ -255,6 +255,7 @@ addEventHandler("mtabg_logSetAvatarimg", getRootElement(), setAvatarImg)
 
 function onRegister(serial)
 	loginPanel(false)
+	showCursor(false)
 end
 addEvent("mtabg_registerDone", true)
 addEventHandler("mtabg_registerDone", getRootElement(), onRegister)
