@@ -15,10 +15,12 @@ function killBattleGroundsPlayer(player,killer,headshot)
 			local x,y,z = getElementPosition(player)
 			local rotX,rotY,rotZ = getElementRotation(player)
 			local skin = getElementModel(player)
+			local dimension = getElementDimension(player)
 			ped = createPed(skin,6000,6000,0,rotZ)
 			pedCol = createColSphere(6000,6000,0,1.5)
 			deadPlayerTable[pedCol] = {}
 			killPed(ped)
+			setElementDimension(ped,dimension)
 			setTimer(destroyDeadPlayer,600000,1,ped,pedCol)
 			attachElements(pedCol,ped,0,0,0)
 			setElementData(pedCol,"parent",ped)
@@ -28,14 +30,14 @@ function killBattleGroundsPlayer(player,killer,headshot)
 		end	
 	end
 	if killer and killer ~= player then
-		for i, data in ipairs(playerInfo[killer]) do
-			if data[2] == "Kills" then
+		for i, data in ipairs(playerDataInfo[killer]) do
+			if data[2] == "kills" then
 				data[3] = data[3]+1
 			end
 		end
 	end
 	if pedCol then
-		for k,	data in ipairs(playerInfo[player]) do
+		for k,	data in ipairs(playerDataInfo[player]) do
 			table.insert(deadPlayerTable[pedCol],{data[2],data[3]})
 		end
 	end
@@ -64,20 +66,53 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	else
 		--
 	end
-	triggerClientEvent(player,"mtabg_showEndscreen",player,gameCache["playerAmount"])
 	gameCache["playerAmount"] = gameCache["playerAmount"]-1
-	checkPlayerAmount()
+	if isElement(killer) then
+		checkForWinner(killer)
+		outputSideChat("Player "..getPlayerName(player).." was killed by "..getPlayerName(killer).." - "..gameCache["playerAmount"].." left",root,255,255,255)
+	else
+		triggerClientEvent(player,"mtabg_showEndscreen",player,gameCache["playerAmount"])
+		outputSideChat("Player "..getPlayerName(player).." has died - "..gameCache["playerAmount"].." left",root,255,255,255)
+	end
+	awardPlayerWithCoins(player)
 	removeAttachedOnDeath(player)
 	playerInfo[player] = {}
 	playerDataInfo[player] = {}
-	--outputSideChat("Player "..getPlayerName(player).." was killed",root,255,255,255)
 	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["playerAmount"],gameCache["status"],0)
 	spawnPlayer(player,1724.22998,-1647.8363,20.2283,0,0,18,500)
 end
 addEvent("killBattleGroundsPlayer",true)
 addEventHandler("killBattleGroundsPlayer",root,killBattleGroundsPlayer)
 
+function awardPlayerWithCoins(player)
+	if player then
+		local coins = 0
+		for i, data in ipairs(playerDataInfo[player]) do
+			if data[2] == "kills" then
+				coins = (10*data[3])+10 -- even with 0 kills, player still receives 10 coins
+			end
+			if data[2] == "headshots" then
+				coins = (coins*data[3])+coins
+			end
+		end
+		local data = getUserData(player,"battlepoints")
+		setUserData(player,"battlepoints",data+coins)
+	end
+end
+
+function checkForWinner(killer)
+	if gameCache["playerAmount"] <= 1 then
+		setElementFrozen(killer,true)
+		triggerClientEvent(killer,"mtabg_showEndscreen",killer,gameCache["playerAmount"])
+		gameCache["status"] = false
+		gameCache["countdown"] = 120
+		gameCache["initialPlayerAmount"] = 0
+		triggerClientEvent("mtabg_setPlayerAmountToClient",root,0,gameCache["status"],gameCache["countdown"])
+	end
+end
+
 -- To check if there is a player remaining (= winner)
+--[[
 function checkPlayerAmount()
 	if gameCache["playerAmount"] <= 1 then 
 		for i, players in ipairs(getElementsByType("player")) do
@@ -92,3 +127,4 @@ function checkPlayerAmount()
 		triggerClientEvent("mtabg_setPlayerAmountToClient",root,0,gameCache["status"],gameCache["countdown"])
 	end
 end
+]]

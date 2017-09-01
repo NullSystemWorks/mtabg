@@ -71,6 +71,7 @@ function formatMilliseconds(milliseconds)
 end
 
 function displayStatus()
+	if guiGetVisible(homeScreen.staticimage[1]) then return end
 	if gameStatus then
 		if not inventoryIsShowing then
 			if alpha > 150 then
@@ -97,7 +98,6 @@ function displayStatus()
 			dxDrawText(playerAmount, screenW * 0.9437, screenH * 0.0483, screenW * 1.0325, screenH * 0.1050, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 		end
 	else
-	if guiGetVisible(homeScreen.staticimage[1]) then return end
 	if getElementData(localPlayer,"participatingInGame") then return end
 		if playerAmount > 0 then
 			if not isTimer(countdownTimer) then
@@ -195,8 +195,10 @@ guiSetVisible(endScreen.image[2],false)
 function showEndScreen(rank)
 	if rank ~= 1 then
 		text = "BETTER LUCK NEXT TIME!"
+		guiSetText(endScreen.label[2],text)
 	else
 		text = "A WINNER IS YOU!"
+		guiSetText(endScreen.label[2],text)
 	end
 	guiSetText(endScreen.label[5],"#"..tostring(rank))
 	guiSetVisible(endScreen.image[1],true)

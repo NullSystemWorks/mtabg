@@ -142,7 +142,6 @@ function getUserData(user, data)
 	end
 end
 
-local tempUsersData = {}
 function sendUserDataToHomeScreen()
 	triggerClientEvent(client,"mtabg_getStatisticsTableFromDB",client,usersData[client])
 end

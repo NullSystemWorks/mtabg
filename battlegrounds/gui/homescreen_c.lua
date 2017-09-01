@@ -45,6 +45,7 @@ homeScreen.staticimage[4] = guiCreateStaticImage(0.87, 0.11, 0.05, 0.05,"gui/ima
 homeScreen.label[6] = guiCreateLabel(0.95, 0.11, 0.12, 0.05, "0", true, homeScreen.staticimage[1])
 guiLabelSetVerticalAlign(homeScreen.label[6], "center")
 guiSetFont(homeScreen.label[6],homeScreen.font[1])	
+guiLabelSetColor(homeScreen.label[6],0,0,0)
 homeScreen.staticimage[3] = guiCreateStaticImage(0.00, 0.00, 0.30, 0.15, "gui/images/button.png", true, homeScreen.staticimage[1])	
 homeScreen.label[7] = guiCreateLabel(0.05, 0.19, 0.58, 0.30, "PLAY", true, homeScreen.staticimage[3])
 guiLabelSetColor(homeScreen.label[7],0,0,0)
@@ -207,6 +208,11 @@ function sendToHomeScreen()
 	showCursor(true)
 	setElementData(localPlayer,"participatingInGame",false)
 	triggerServerEvent("mtabg_sendUserDataToHomeScreen",localPlayer)
+	setPlayerHudComponentVisible("radar",false)
+	setPlayerHudComponentVisible("clock",false)
+	setPlayerHudComponentVisible("health",false)
+	setPlayerHudComponentVisible("area_name",false)
+	setPlayerHudComponentVisible("money",false)
 end
 addEvent("mtabg_sendToHomeScreen",true)
 addEventHandler("mtabg_sendToHomeScreen",root,sendToHomeScreen)
@@ -531,6 +537,9 @@ function getStatisticsTableFromDB(theTable)
 	for i, data in pairs(theTable) do
 		if type(data) ~= "table" then	
 			table.insert(statisticsTable[localPlayer],{i,data})
+			if i == "battlepoints" then
+				guiSetText(homeScreen.label[6],tostring(data))
+			end
 		else
 			if i == "skins" then
 				table.insert(temporarySkinTable[localPlayer],{data})

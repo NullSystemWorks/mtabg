@@ -8,7 +8,7 @@
 
 playerDataTable = {
 {"skin",0},
-{"Kills",0},
+{"kills",0},
 {"InventoryCapacity",70},
 {"UsedCapacity",0},
 {"health",100},

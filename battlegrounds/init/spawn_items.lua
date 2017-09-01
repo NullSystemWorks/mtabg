@@ -151,21 +151,20 @@ addCommandHandler("spot",createSpotsOnStart)
 
 function refreshLootSpots()
 	outputDebugString("[MTA:BG] Item Refresh Started!")
+	local objectTable = {}
+	objectTable = getElementsByType("objects")
+	async:foreach(objectTable, function(object)
+		destroyElement(object)
+	end)
 	local colshapeTable = {}
 	colshapeTable = getElementsByType("colshape")
-	async:foreach(colshapeTable, function(col)
-		for k, items in ipairs(lootpointData[col]["objects"]) do
-			if items[1] ~= nil then
-				if isElement(items[1]) then
-					destroyElement(items[1])
-				end
-			end
-		end
+	async:foreach(objectTable, function(col)
 		destroyElement(col)
 	end)
 	lootPointID = 0
 	local SpotsID = 0
 	outputDebugString("[MTA:BG] Spawning Industry Loot Points(20%)")
+	lootpointData = {}
 	async:foreach(lootPoints["Industry"], function(position)
 		SpotsID = SpotsID+1
 		createLootPoint("Industry",position[1],position[2],position[3],SpotsID)

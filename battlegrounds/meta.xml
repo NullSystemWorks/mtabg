@@ -43,6 +43,9 @@ Version: 0.0.1 Pre-Alpha
     <script src="tools/bone_attach/attach_func.lua" type="server" />
     <script src="tools/bone_attach/attach_func.lua" type="client" />
     <script src="tools/bone_attach/bone_pos_rot.lua" type="client" />
+	<script src="tools/sidenotifications/textlib.lua" type="client" />
+	<script src="tools/sidenotifications/jq_client.lua" type="client" />
+	<script src="tools/sidenotifications/jq_server.lua" type="server" />
 
 
 	<!-- Hud -->
@@ -78,6 +81,7 @@ Version: 0.0.1 Pre-Alpha
 	<file src="hud/radius2.png" />
 	<file src="hud/running.png" />
 	<file src="fonts/etelka.ttf" />
+	<file src="fonts/bitstream.ttf" />
 	
 	<!-- Models -->
 	
