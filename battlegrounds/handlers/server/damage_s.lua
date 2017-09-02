@@ -1,3 +1,11 @@
+--[[
+
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
+	
+]]--
+
 
 function destroyDeadPlayer(ped,pedCol)
 	destroyElement(ped)
@@ -74,40 +82,63 @@ function killBattleGroundsPlayer(player,killer,headshot)
 		triggerClientEvent(player,"mtabg_showEndscreen",player,gameCache["playerAmount"])
 		outputSideChat("Player "..getPlayerName(player).." has died - "..gameCache["playerAmount"].." left",root,255,255,255)
 	end
-	awardPlayerWithCoins(player)
 	removeAttachedOnDeath(player)
+	local losses = getUserData(player,"losses")
+	local deaths = getUserData(player,"deaths")
+	setUserData(player,"losses",losses+1)
+	setUserData(player,"deaths",deaths+1)
+	awardPlayerWithStatistics(player)
 	playerInfo[player] = {}
 	playerDataInfo[player] = {}
-	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["playerAmount"],gameCache["status"],0)
 	spawnPlayer(player,1724.22998,-1647.8363,20.2283,0,0,18,500)
 end
 addEvent("killBattleGroundsPlayer",true)
 addEventHandler("killBattleGroundsPlayer",root,killBattleGroundsPlayer)
 
-function awardPlayerWithCoins(player)
+function awardPlayerWithStatistics(player)
 	if player then
 		local coins = 0
+		local stat_kills = 0
+		local stat_headshots = 0
 		for i, data in ipairs(playerDataInfo[player]) do
 			if data[2] == "kills" then
 				coins = (10*data[3])+10 -- even with 0 kills, player still receives 10 coins
+				stat_kills = data[3]
 			end
 			if data[2] == "headshots" then
 				coins = (coins*data[3])+coins
+				stat_headshots = data[3]
 			end
 		end
-		local data = getUserData(player,"battlepoints")
-		setUserData(player,"battlepoints",data+coins)
+		local gamesplayed = getUserData(player,"gamesplayed")
+		local losses = getUserData(player,"losses")
+		local wins = getUserData(player,"wins")
+		local winlossratio = (wins/losses)*100
+		local deaths = getUserData(player,"deaths")
+		local kills = getUserData(player,"kills")
+		local killdeathratio = (kills/deaths)*100
+		local headshots = getUserData(player,"headshots")
+		local battlepoints = getUserData(player,"battlepoints")
+
+		setUserData(player,"gamesplayed",gamesplayed+1)
+		setUserData(player,"winlossratio",winlossratio)
+		setUserData(player,"kills",kills+stat_kills)
+		setUserData(player,"killdeathratio",killdeathratio)
+		setUserData(player,"headshots",headshots+stat_headshots)
+		setUserData(player,"battlepoints",battlepoints+coins)
+		
 	end
 end
 
 function checkForWinner(killer)
 	if gameCache["playerAmount"] <= 1 then
+		local wins = getUserData(killer,"wins")
+		setUserData(killer,"wins",wins+1)
 		setElementFrozen(killer,true)
 		triggerClientEvent(killer,"mtabg_showEndscreen",killer,gameCache["playerAmount"])
-		gameCache["status"] = false
-		gameCache["countdown"] = 120
-		gameCache["initialPlayerAmount"] = 0
-		triggerClientEvent("mtabg_setPlayerAmountToClient",root,0,gameCache["status"],gameCache["countdown"])
+		resetGameCache()
+		awardPlayerWithStatistics(killer)
+		refreshLootSpots()
 	end
 end
 

@@ -1,12 +1,13 @@
 --[[
-	
+
 				MTA:BG
 			MTA Battlegrounds
-	Developed By: L, CiBeR, neves768, 1BOY
-
+	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
+	
 ]]--
 
-local lootPointID = 0
+lootPointID = 0
+SpotsID = 0
 firstTimeLoot = false
 lootpointData = {}
 
@@ -42,7 +43,7 @@ function createItemPickup(item,x,y,z,itemName,itemAmount)
 	end
 end
 
-local async = Async()
+async = Async()
 async:setPriority("normal")
 
 function createLootPoint(lootSpot,x,y,z,ID)
@@ -117,7 +118,6 @@ addEventHandler("mtabg_createLootPointObject",root,createLootPointObject)
 
 
 function createSpotsOnStart()
-	local SpotsID = 0
 	outputDebugString("[MTA:BG] Spawning Industry Loot Points(20%)")
 	async:foreach(lootPoints["Industry"], function(position)
 		SpotsID = SpotsID+1
@@ -162,34 +162,8 @@ function refreshLootSpots()
 		destroyElement(col)
 	end)
 	lootPointID = 0
-	local SpotsID = 0
-	outputDebugString("[MTA:BG] Spawning Industry Loot Points(20%)")
+	SpotsID = 0
 	lootpointData = {}
-	async:foreach(lootPoints["Industry"], function(position)
-		SpotsID = SpotsID+1
-		createLootPoint("Industry",position[1],position[2],position[3],SpotsID)
-	end)
-	outputDebugString("[MTA:BG] Spawning Residential Loot Points(40%)")
-	async:foreach(lootPoints["Residential"], function(position)
-		SpotsID = SpotsID+1
-		createLootPoint("Residential",position[1],position[2],position[3],SpotsID)
-	end)
-	outputDebugString("[MTA:BG] Spawning Supermarket Loot Points(60%)")
-	async:foreach(lootPoints["Supermarket"], function(position)
-		SpotsID = SpotsID+1
-		createLootPoint("Supermarket",position[1],position[2],position[3],SpotsID)
-	end)
-	outputDebugString("[MTA:BG] Spawning Farm Loot Points(80%)")
-	async:foreach(lootPoints["Farm"], function(position)
-		SpotsID = SpotsID+1
-		createLootPoint("Farm",position[1],position[2],position[3],SpotsID)
-	end)
-	outputDebugString("[MTA:BG] Spawning Military Loot Points(100%)")
-	async:foreach(lootPoints["Military"], function(position)
-		SpotsID = SpotsID+1
-		createLootPoint("Military",position[1],position[2],position[3],SpotsID)
-	end)
-	outputDebugString("[MTA:BG] All loot points spawned!")
 end
 
 -- Dev command, remove on release

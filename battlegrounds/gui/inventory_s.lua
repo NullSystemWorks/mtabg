@@ -1,9 +1,9 @@
 --[[
-	
+
 				MTA:BG
 			MTA Battlegrounds
-	Developed By: L, CiBeR, neves768, 1BOY
-
+	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
+	
 ]]--
 
 function refreshInventory()
@@ -182,6 +182,7 @@ addEventHandler("mtabg_onItemFromInventoryToLoot",root,onItemFromInventoryToLoot
 function onItemFromLootToInventory(itemName,loot)
 	if itemName then
 		if getPlayerCapacity(itemName) then
+			local newAmmoAmount = false
 			for i, item in ipairs(playerInfo[client]) do
 				if item[2] == itemName then
 					if item[2] == "11.43x23mm Cartridge" then
@@ -189,6 +190,7 @@ function onItemFromLootToInventory(itemName,loot)
 							if item[2] == loot[1] then
 								item[3] = item[3]+loot[2]
 								loot[2] = 0
+								newAmmoAmount = item[3]
 							end
 						end
 					elseif item[2] == "9x18mm Cartridge" then
@@ -196,6 +198,7 @@ function onItemFromLootToInventory(itemName,loot)
 							if item[2] == loot[1] then
 								item[3] = item[3]+loot[2]
 								loot[2] = 0
+								newAmmoAmount = item[3]
 							end
 						end
 					elseif item[2] == "9x19mm Cartridge" then
@@ -203,6 +206,7 @@ function onItemFromLootToInventory(itemName,loot)
 							if item[2] == loot[1] then
 								item[3] = item[3]+loot[2]
 								loot[2] = 0
+								newAmmoAmount = item[3]
 							end
 						end
 					elseif item[2] == ".303 British Cartridge" then
@@ -210,6 +214,7 @@ function onItemFromLootToInventory(itemName,loot)
 							if item[2] == loot[1] then
 								item[3] = item[3]+loot[2]
 								loot[2] = 0
+								newAmmoAmount = item[3]
 							end
 						end
 					elseif item[2] == "7.62x39mm Cartridge" then
@@ -217,6 +222,7 @@ function onItemFromLootToInventory(itemName,loot)
 							if item[2] == loot[1] then
 								item[3] = item[3]+loot[2]
 								loot[2] = 0
+								newAmmoAmount = item[3]
 							end
 						end
 					elseif item[2] == "5.56x45mm Cartridge" then
@@ -224,6 +230,7 @@ function onItemFromLootToInventory(itemName,loot)
 							if item[2] == loot[1] then
 								item[3] = item[3]+loot[2]
 								loot[2] = 0
+								newAmmoAmount = item[3]
 							end
 						end
 					elseif item[2] == "7.62x54mm Cartridge" then
@@ -231,6 +238,7 @@ function onItemFromLootToInventory(itemName,loot)
 							if item[2] == loot[1] then
 								item[3] = item[3]+loot[2]
 								loot[2] = 0
+								newAmmoAmount = item[3]
 							end
 						end
 					elseif item[2] == "1866 Slug" then
@@ -238,6 +246,7 @@ function onItemFromLootToInventory(itemName,loot)
 							if item[2] == loot[1] then
 								item[3] = item[3]+loot[2]
 								loot[2] = 0
+								newAmmoAmount = item[3]
 							end
 						end
 					elseif item[2] == "12 Gauge Pellet" then
@@ -245,12 +254,24 @@ function onItemFromLootToInventory(itemName,loot)
 							if item[2] == loot[1] then
 								item[3] = item[3]+loot[2]
 								loot[2] = 0
+								newAmmoAmount = item[3]
 							end
 						end
 					else
 						item[3] = item[3]+1
 					end
 				end
+			end
+			
+			local weaponID = 0
+			for i, weap in ipairs(weaponDataTable) do
+				if itemName == weap[6] then
+					weaponID = weap[2]
+					break
+				end
+			end
+			if newAmmoAmount then
+				setWeaponAmmo(client,weaponID,newAmmoAmount)
 			end
 		
 			for i, item in ipairs(lootpointData[loot]) do
@@ -405,18 +426,18 @@ function equipWeapon(weapon,info,player)
 	for i, data in ipairs(playerInfo[player]) do
 		if ammoType == data[2] then
 			if data[3] > 0 then
-				takeAllWeapons(client)
 				if oldWeapon == weapon then
-					return
+					takeWeapon(client,weaponID)
+					oldWeapon = ""
 				else
-					oldWeapon = weapon
 					giveWeapon(client,weaponID,data[3],true)
+					oldWeapon = weapon
 				end
 				for k, playData in ipairs(playerDataInfo[player]) do
 					if weaponType == "Primary" then
 						currentWeapon_1 = weapon
 						if playData[1] == "currentweapon_1" then
-							playData[2] = weapon
+							playData[2] = weapon	
 						end
 					elseif weaponType == "Secondary" then
 						currentWeapon_2 = weapon

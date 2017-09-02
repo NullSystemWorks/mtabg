@@ -83,6 +83,7 @@ end
 
 
 function getPlayersInsideZone()
+	if not gameCache["status"] then return end
 	if not firstZone then
 		if safeZone and dangerZone then
 			for i, players in ipairs(getElementsByType("player")) do

@@ -1,13 +1,13 @@
 --[[
-	
+
 				MTA:BG
 			MTA Battlegrounds
-	Developed By: L, CiBeR, neves768, 1BOY
-
+	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
+	
 ]]--
 
 -- Init game status
-gameCache['status'] = false
+gameCache["status"] = false
 gameCache['status_duo'] = false -- Currently not in use
 gameCache['status_squad'] = false -- Currently not in use
 gameCache["initialPlayerAmount"] = 0
@@ -43,7 +43,7 @@ function onPlayerLeavingGame()
 	if not gameCache["status"] then
 		gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]-1
 		triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
-		if gameCache["initialPlayerAmount"] == 0 then
+		if gameCache["initialPlayerAmount"] == 0 then --1
 			startCountDown(false)
 		end
 	end
@@ -52,9 +52,7 @@ addEventHandler("onPlayerQuit",root,onPlayerLeavingGame)
 
 function sendPlayerToLobby(player)
 	if client then player = client end
-	local number = math.random(table.size(lobbyInteriors))
-	
-	spawnID,spawnX,spawnY,spawnZ = lobbyInteriors[number][1],lobbyInteriors[number][2],lobbyInteriors[number][3],lobbyInteriors[number][4]
+	spawnID,spawnX,spawnY,spawnZ = 0,3971,3276,16
 	spawnPlayer(player,spawnX+math.random(-10,10),spawnY+math.random(-10,10),spawnZ+3,math.random(0,359),0,spawnID)
 	fadeCamera (player, false,2000,0,0,0)
 	setCameraTarget (player, player)
@@ -74,7 +72,7 @@ function sendPlayerToLobby(player)
 		table.insert(playerDataInfo[player],{i,data[1],data[2]})
 	end
 	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
-	if gameCache["initialPlayerAmount"] == 1 then
+	if gameCache["initialPlayerAmount"] == 1 then --2
 		startCountDown(true)
 	end
 	setTimer(function()
@@ -88,12 +86,55 @@ function startCountDown(state)
 local countDownTimer
 	if state then
 		if isTimer(countdownTimer) then killTimer(countdownTimer) end
+		gameCache["playingField"] = 0
 		countdownTimer = setTimer(function()
+			if firstTimeLoot then
+				outputDebugString("Destroying loot, creating new...")
+				refreshLootSpots()
+				firstTimeLoot = false
+			end
 			gameCache["countdown"] = gameCache["countdown"]-1
+			if gameCache["countdown"] == 100 then
+				outputDebugString("[MTA:BG] Spawning Industry Loot Points(20%)")
+				async:foreach(lootPoints["Industry"], function(position)
+				SpotsID = SpotsID+1
+				createLootPoint("Industry",position[1],position[2],position[3],SpotsID)
+				end)
+			end
+			if gameCache["countdown"] == 80 then
+				outputDebugString("[MTA:BG] Spawning Residential Loot Points(40%)")
+				async:foreach(lootPoints["Residential"], function(position)
+					SpotsID = SpotsID+1
+					createLootPoint("Residential",position[1],position[2],position[3],SpotsID)
+				end)
+			end
+			if gameCache["countdown"] == 60 then
+				outputDebugString("[MTA:BG] Spawning Supermarket Loot Points(60%)")
+				async:foreach(lootPoints["Supermarket"], function(position)
+					SpotsID = SpotsID+1
+					createLootPoint("Supermarket",position[1],position[2],position[3],SpotsID)
+				end)
+			end
+			if gameCache["countdown"] == 40 then
+				outputDebugString("[MTA:BG] Spawning Farm Loot Points(80%)")
+				async:foreach(lootPoints["Farm"], function(position)
+					SpotsID = SpotsID+1
+					createLootPoint("Farm",position[1],position[2],position[3],SpotsID)
+				end)
+			end
+			if gameCache["countdown"] == 20 then
+				outputDebugString("[MTA:BG] Spawning Military Loot Points(100%)")
+				async:foreach(lootPoints["Military"], function(position)
+					SpotsID = SpotsID+1
+					createLootPoint("Military",position[1],position[2],position[3],SpotsID)
+				end)
+				outputDebugString("[MTA:BG] All loot points spawned!")
+			end
 			if gameCache["countdown"] == 0 then
 				if gameCache["initialPlayerAmount"] > 0 then -- Must be 1 (= at least 2 players)
 					if not gameCache["status"] then 
 						startGame()
+						firstTimeLoot = true
 						if isTimer(countdownTimer) then killTimer(countdownTimer) end
 					else
 						for i, player in ipairs(getElementsByType("player")) do
@@ -110,21 +151,16 @@ local countDownTimer
 		end,1000,120,gameCache["countdown"])
 	else
 		gameCache["countdown"] = 120
+		gameCache["playingField"] = 0
+		gameCache["status"] = false
+		refreshLootSpots()
 		if isTimer(countdownTimer) then killTimer(countdownTimer) end
 	end
 end
 
 function startGame()
-	gameCache['status'] = false
+	gameCache["status"] = false
 	gameCache["initialPlayerAmount"] = 0
-	gameCache["playingField"] = gameCache["playingField"]+1
-	if not firstTimeLoot then
-		outputDebugString("Creating loot for the first time...")
-		createSpotsOnStart()
-	else
-		outputDebugString("Destroying loot, creating new...")
-		refreshLootSpots()
-	end
 	for i, player in ipairs(getElementsByType("player")) do
 		local dataID = -1
 		playerInfo[player] = {}
@@ -158,7 +194,7 @@ function startGame()
 		gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
 	end
 	createZone()
-	gameCache['status'] = true
+	gameCache["status"] = true
 	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 	gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
 	gameCache["countdown"] = 120
@@ -214,3 +250,15 @@ function checkPlayerStatus(key,player,other)
 end
 addEvent("mtabg_checkPlayerStatus",true)
 addEventHandler("mtabg_checkPlayerStatus",root,checkPlayerStatus)
+
+function resetGameCache()
+	gameCache["status"] = false
+	gameCache['status_duo'] = false -- Currently not in use
+	gameCache['status_squad'] = false -- Currently not in use
+	gameCache["initialPlayerAmount"] = 0
+	gameCache["playerAmount"] = 0
+	gameCache["countdown"] = 120
+	gameCache["playingField"] = 0 -- = Dimension (Dimension 500 is reserved for home screen!)
+end
+addEvent("mtabg_resetGameCache",true)
+addEventHandler("mtabg_resetGameCache",root,resetGameCache)

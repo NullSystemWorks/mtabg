@@ -2,9 +2,10 @@
 
 				MTA:BG
 			MTA Battlegrounds
-	Developed By: L, CiBeR, neves768, 1BOY
-
+	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
+	
 ]]--
+
 
 local dangerBlip = false
 local safeBlip = false
@@ -36,8 +37,8 @@ function createCustomBlip(dangerZone,safeZone,radius,initialZoneRadius,timer)
 	end
 	x,y,z = getElementPosition(dangerZone)
 	x2,y2,z2 = getElementPosition(safeZone)
-	dangerBlip = exports.customblips:createCustomBlip(x,y,radius/4.2,radius/4.2,"hud/radius.png",radius)
-	safeBlip = exports.customblips:createCustomBlip(x2,y2,initialZoneRadius/4.2,initialZoneRadius/4.2,"hud/radius2.png",initialZoneRadius)
+	dangerBlip = exports.customblips:createCustomBlip(x,y,radius,radius,"hud/radius.png",screenMapPos1)
+	safeBlip = exports.customblips:createCustomBlip(x2,y2,initialZoneRadius,initialZoneRadius,"hud/radius2.png",screenMapPos2)
 	exports.customblips:setCustomBlipRadarScale(dangerBlip,1)
 	exports.customblips:setCustomBlipStreamRadius(dangerBlip,0)
 	exports.customblips:setCustomBlipRadarScale(safeBlip,1)
@@ -98,35 +99,36 @@ function displayStatus()
 			dxDrawText(playerAmount, screenW * 0.9437, screenH * 0.0483, screenW * 1.0325, screenH * 0.1050, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 		end
 	else
-	if getElementData(localPlayer,"participatingInGame") then return end
-		if playerAmount > 0 then
-			if not isTimer(countdownTimer) then
-				countdownTimer = setTimer(function()
-					countDown = math.max(countDown-1,0)
-					if countDown == 0 then
-						if playerAmount > 0 then -- Must be 1 (= at least 2 players)
-							killTimer(countdownTimer)
-						else
-							outputChatBox("Not enough players, resetting countdown!",255,0,0,false)
-							killTimer(countdownTimer)
-							countdownTimer = false
-							countDown = 120
+		if not getElementData(localPlayer,"participatingInGame") then
+			if playerAmount > 0 then
+				if not isTimer(countdownTimer) then
+					countdownTimer = setTimer(function()
+						countDown = math.max(countDown-1,0)
+						if countDown == 0 then
+							if playerAmount > 0 then -- Must be 1 (= at least 2 players)
+								killTimer(countdownTimer)
+							else
+								outputChatBox("Not enough players, resetting countdown!",255,0,0,false)
+								killTimer(countdownTimer)
+								countdownTimer = false
+								countDown = 120
+							end
 						end
-					end
-				end,1000,120)
+					end,1000,120)
+				end
+			else
+				if isTimer(countdownTimer) then 
+					killTimer(countdownTimer) 
+					countdownTimer = false 
+					countDown = 120 
+				end
 			end
-		else
-			if isTimer(countdownTimer) then 
-				killTimer(countdownTimer) 
-				countdownTimer = false 
-				countDown = 120 
-			end
+			
+			dxDrawText("COUNTDOWN:", screenW * 0.6350, screenH * 0.1683, screenW * 0.8413, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
+			dxDrawText("PLAYERS:", screenW * 0.6350, screenH * 0.2250, screenW * 0.8413, screenH * 0.2817, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
+			dxDrawText(countDown.." SEC.", screenW * 0.8538, screenH * 0.1683, screenW * 0.9825, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+			dxDrawText(playerAmount, screenW * 0.8538, screenH * 0.2250, screenW * 0.9825, screenH * 0.2817, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 		end
-		
-		dxDrawText("COUNTDOWN:", screenW * 0.6350, screenH * 0.1683, screenW * 0.8413, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
-		dxDrawText("PLAYERS:", screenW * 0.6350, screenH * 0.2250, screenW * 0.8413, screenH * 0.2817, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
-		dxDrawText(countDown.." SEC.", screenW * 0.8538, screenH * 0.1683, screenW * 0.9825, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-		dxDrawText(playerAmount, screenW * 0.8538, screenH * 0.2250, screenW * 0.9825, screenH * 0.2817, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 	end
 end
 addEventHandler("onClientRender", root,displayStatus)
@@ -205,6 +207,15 @@ function showEndScreen(rank)
 	guiSetVisible(endScreen.image[2],true)
 	guiBringToFront(endScreen.label[7])
 	showCursor(true)
+	playerAmount = 0
+	gameStatus = false
+	countDown = 120
+	inventoryIsShowing = false
+	for i=1,3 do
+		if zoneIndicators.image[i] then
+			guiSetVisible(zoneIndicators.image[i],false)
+		end
+	end
 end
 addEvent("mtabg_showEndscreen",true)
 addEventHandler("mtabg_showEndscreen",root,showEndScreen)
@@ -226,11 +237,6 @@ function sendPlayerBackToHomeScreenOnDeath()
 	sendToHomeScreen()
 	setElementData(localPlayer,"participatingInGame",false)
 	guiPlayerHealth = 100
-	for i=1,3 do
-		if zoneIndicators.image[i] then
-			guiSetVisible(zoneIndicators.image[i],false)
-		end
-	end
 	guiSetText(zoneIndicators.label[1],"")
 	guiSetVisible(zoneIndicators.label[1],false)
 end

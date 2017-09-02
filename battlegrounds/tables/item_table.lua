@@ -1,10 +1,11 @@
 --[[
-	
+
 				MTA:BG
 			MTA Battlegrounds
-	Developed By: L, CiBeR, neves768, 1BOY
-
+	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
+	
 ]]--
+
 
 lootItems = {
 

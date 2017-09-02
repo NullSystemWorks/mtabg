@@ -19,6 +19,7 @@ addEventHandler("mtabg_logdownloadAvatarimg", getRootElement(), downloadAvatar)
 
 function onJoin()
 	--setTimer(function(source)
+	showChat(client,false)
 	local accountCheck, avatar = checkAccount(getPlayerSerial(client), "avatar")
 	if accountCheck == 1 then
 		if avatar ~= "none" then
@@ -34,3 +35,10 @@ end
 addEvent("mtabg_onJoin", true)
 addEventHandler("mtabg_onJoin", getRootElement(), onJoin)
 --addEventHandler("onPlayerJoin", getRootElement(), onJoin)
+
+function preventChatSay(cmd)
+	if cmd == "say" or cmd == "teamsay" or cmd == "showchat" then
+		cancelEvent()
+	end
+end
+addEventHandler("onPlayerCommand",root,preventChatSay)

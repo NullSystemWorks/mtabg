@@ -57,7 +57,6 @@ Version: 0.0.1 Pre-Alpha
 	<!-- Handlers -->
 	<script src="handlers/client/damage_c.lua" type="client" cache="false"/>
 	<script src="handlers/server/damage_s.lua" type="server" />
-	<script src="handlers/server/match.lua" type="server" />
 	<script src="handlers/server/backpack_s.lua" type="server" />
 
 	<file src="gui/images/solo_slot.png" />

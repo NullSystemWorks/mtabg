@@ -28,7 +28,7 @@ guiLabelSetHorizontalAlign(homeScreen.label[2], "center", false)
 guiLabelSetVerticalAlign(homeScreen.label[2], "center")
 guiSetFont(homeScreen.label[2],homeScreen.font[1])
 guiLabelSetColor(homeScreen.label[2],197,197,197)
-homeScreen.label[3] = guiCreateLabel(0.65, 0.29, 0.16, 0.45, "REWARDS", true, homeScreen.staticimage[2])
+homeScreen.label[3] = guiCreateLabel(0.65, 0.29, 0.16, 0.45, "SOON", true, homeScreen.staticimage[2])
 guiLabelSetHorizontalAlign(homeScreen.label[3], "center", false)
 guiLabelSetVerticalAlign(homeScreen.label[3], "center")
 guiSetFont(homeScreen.label[3],homeScreen.font[1])
@@ -202,9 +202,7 @@ function sendToHomeScreen()
 	setElementDimension(localPlayer,500)
 	setElementInterior(localPlayer,18)
 	setElementFrozen(localPlayer,true)
-	setWorldSoundEnabled(5,8,false)
 	guiSetVisible(homeScreen.staticimage[1],true)
-	myScreenSource = dxCreateScreenSource ( screenX,screenY)
 	showCursor(true)
 	setElementData(localPlayer,"participatingInGame",false)
 	triggerServerEvent("mtabg_sendUserDataToHomeScreen",localPlayer)
@@ -216,7 +214,6 @@ function sendToHomeScreen()
 end
 addEvent("mtabg_sendToHomeScreen",true)
 addEventHandler("mtabg_sendToHomeScreen",root,sendToHomeScreen)
-addCommandHandler("camera",sendToHomeScreen)
 
 local selectedOption = "HOME"
 function changeColorOfOptionOnMouseOver(guiLabel,state)
@@ -335,7 +332,6 @@ function sendPlayerToLobbyOnPlayPress(button)
 		guiSetVisible(homeScreen.staticimage[1],false)
 		showCursor(false)
 		stopSound(soundtrack)
-		myScreenSource = false
 		setCameraTarget(localPlayer)
 		setElementFrozen(localPlayer,false)
 	end
@@ -557,7 +553,13 @@ addEventHandler("mtabg_getStatisticsTableFromDB",root,getStatisticsTableFromDB)
 function showStatistics()
 	for i, data in ipairs(statisticsTable[localPlayer]) do
 		if type(data[2]) ~= "table" then
-			guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2]))
+			if data[1] == "winlossratio" then
+				guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2]).."%")
+			elseif data[1] == "killdeathratio" then
+				guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2]).."%")
+			else
+				guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2]))
+			end
 		end
 	end
 	guiSetVisible(homeScreen.staticimage[5],true)
