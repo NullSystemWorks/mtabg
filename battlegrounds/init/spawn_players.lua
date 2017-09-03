@@ -41,7 +41,7 @@ end
 
 function onPlayerLeavingGame()
 	if not gameCache["status"] then
-		gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]-1
+		gameCache["initialPlayerAmount"] = math.max(gameCache["initialPlayerAmount"]-1,0)
 		triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 		if gameCache["initialPlayerAmount"] == 0 then --1
 			startCountDown(false)
@@ -72,11 +72,18 @@ function sendPlayerToLobby(player)
 		table.insert(playerDataInfo[player],{i,data[1],data[2]})
 	end
 	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
-	if gameCache["initialPlayerAmount"] == 1 then --2
-		startCountDown(true)
-	end
 	setTimer(function()
-		triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
+		if not gameCache["status"] then
+			triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
+		else
+			gameCache["status"] = false
+			gameCache["initialPlayerAmount"] = 0
+			gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
+			triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],false,gameCache["countdown"]) -- We force gameCache as false
+		end
+		if gameCache["initialPlayerAmount"] == 1 then --2
+			startCountDown(true)
+		end
 	end,2000,1,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 end
 addEvent("mtabg_sendPlayerToLobby",true)

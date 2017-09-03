@@ -74,12 +74,17 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	else
 		--
 	end
+	homeScreenDimension = homeScreenDimension+1
 	gameCache["playerAmount"] = gameCache["playerAmount"]-1
 	if isElement(killer) then
 		checkForWinner(killer)
 		outputSideChat("Player "..getPlayerName(player).." was killed by "..getPlayerName(killer).." - "..gameCache["playerAmount"].." left",root,255,255,255)
 	else
-		triggerClientEvent(player,"mtabg_showEndscreen",player,gameCache["playerAmount"])
+		if gameCache["playerAmount"] <= 1 then
+			resetGameCache()
+			refreshLootSpots()
+		end
+		triggerClientEvent(player,"mtabg_showEndscreen",player,gameCache["playerAmount"],homeScreenDimension)
 		outputSideChat("Player "..getPlayerName(player).." has died - "..gameCache["playerAmount"].." left",root,255,255,255)
 	end
 	removeAttachedOnDeath(player)
@@ -90,7 +95,8 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	awardPlayerWithStatistics(player)
 	playerInfo[player] = {}
 	playerDataInfo[player] = {}
-	spawnPlayer(player,1724.22998,-1647.8363,20.2283,0,0,18,500)
+	spawnPlayer(player,1724.22998,-1647.8363,20.2283,0,0,18,600)
+	
 end
 addEvent("killBattleGroundsPlayer",true)
 addEventHandler("killBattleGroundsPlayer",root,killBattleGroundsPlayer)
@@ -135,7 +141,7 @@ function checkForWinner(killer)
 		local wins = getUserData(killer,"wins")
 		setUserData(killer,"wins",wins+1)
 		setElementFrozen(killer,true)
-		triggerClientEvent(killer,"mtabg_showEndscreen",killer,gameCache["playerAmount"])
+		triggerClientEvent(killer,"mtabg_showEndscreen",killer,gameCache["playerAmount"],homeScreenDimension)
 		resetGameCache()
 		awardPlayerWithStatistics(killer)
 		refreshLootSpots()

@@ -271,12 +271,17 @@ addEvent("MTABG_LoginError", true)
 addEventHandler("MTABG_LoginError", getRootElement(), showError)
 
 
-function loadLoginScreen(serial, avatar)
+function loadLoginScreen(serial, avatar, hasAccount)
 	if guiGetVisible(LoginScreen.staticimage[1]) then return end
 	loginPanel(true)
 	guiSetVisible(LoginScreen.staticimage[1],true)
 	guiSetText(LoginScreen.edit[1], serial)
 	showCursor(true)
+	if hasAccount then
+		guiSetVisible(LoginScreen.staticimage[3],false)
+	else
+		guiSetVisible(LoginScreen.staticimage[4],false)
+	end
 end
 addEvent("openLoginPanel", true)
 addEventHandler("openLoginPanel", getRootElement(), loadLoginScreen)

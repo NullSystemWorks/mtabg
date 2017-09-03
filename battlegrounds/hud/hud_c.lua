@@ -194,7 +194,8 @@ end
 guiSetVisible(endScreen.image[1],false)
 guiSetVisible(endScreen.image[2],false)
 
-function showEndScreen(rank)
+local homeScreenDimension = 500
+function showEndScreen(rank,dimension)
 	if rank ~= 1 then
 		text = "BETTER LUCK NEXT TIME!"
 		guiSetText(endScreen.label[2],text)
@@ -216,6 +217,7 @@ function showEndScreen(rank)
 			guiSetVisible(zoneIndicators.image[i],false)
 		end
 	end
+	homeScreenDimension = dimension
 end
 addEvent("mtabg_showEndscreen",true)
 addEventHandler("mtabg_showEndscreen",root,showEndScreen)
@@ -230,11 +232,10 @@ function onMouseOverBackToHomeScreenLabelDeselect()
 end
 addEventHandler("onClientMouseLeave",endScreen.label[7],onMouseOverBackToHomeScreenLabelDeselect,false)
 
-
 function sendPlayerBackToHomeScreenOnDeath()
 	guiSetVisible(endScreen.image[1],false)
 	guiSetVisible(endScreen.image[2],false)
-	sendToHomeScreen()
+	sendToHomeScreen(homeScreenDimension)
 	setElementData(localPlayer,"participatingInGame",false)
 	guiPlayerHealth = 100
 	guiSetText(zoneIndicators.label[1],"")

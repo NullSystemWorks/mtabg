@@ -22,13 +22,13 @@ function onJoin()
 	showChat(client,false)
 	local accountCheck, avatar = checkAccount(getPlayerSerial(client), "avatar")
 	if accountCheck == 1 then
-		if avatar ~= "none" then
-			triggerClientEvent(client, "openLoginPanel", client, getPlayerSerial(client))
+		if avatar ~= "None" then
+			triggerClientEvent(client, "openLoginPanel", client, getPlayerSerial(client),true)
 		else
-			triggerClientEvent(client, "openLoginPanel", client, getPlayerSerial(client))
+			triggerClientEvent(client, "openLoginPanel", client, getPlayerSerial(client),true)
 		end
 	elseif accountCheck == 0 then
-		triggerClientEvent(client, "openLoginPanel", client, getPlayerSerial(client))
+		triggerClientEvent(client, "openLoginPanel", client, getPlayerSerial(client),false)
 	end
 	--end,1000,1,source)
 end

@@ -156,14 +156,15 @@ end
 addEvent("getEUserData", true)
 addEventHandler("getEUserData", getRootElement(), getEUserData)
 
-
+homeScreenDimension = 500
 function LoginMagic(player, data)
 	-- do something
 	usersData[player] = fromJSON(data)
 	setTimer(function(player)
+		homeScreenDimension = homeScreenDimension+1
 		spawnPlayer(player,0,0,0)
 		fadeCamera(player,true)
-		triggerClientEvent(player,"mtabg_sendToHomeScreen",player)
+		triggerClientEvent(player,"mtabg_sendToHomeScreen",player,homeScreenDimension)
 	end,1000,1,player)
 	return true
 end
