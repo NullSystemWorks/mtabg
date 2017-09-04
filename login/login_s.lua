@@ -37,7 +37,7 @@ addEventHandler("mtabg_onJoin", getRootElement(), onJoin)
 --addEventHandler("onPlayerJoin", getRootElement(), onJoin)
 
 function preventChatSay(cmd)
-	if cmd == "say" or cmd == "teamsay" or cmd == "showchat" then
+	if cmd == "say" or cmd == "teamsay" or cmd == "showchat" or cmd == "me" then
 		cancelEvent()
 	end
 end
