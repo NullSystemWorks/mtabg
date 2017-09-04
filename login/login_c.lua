@@ -30,10 +30,9 @@ guiEditSetMasked(LoginScreen.edit[2],true)
 LoginScreen.label[2] = guiCreateLabel(0.27, 0.51, 0.08, 0.04, "PWD", true, LoginScreen.staticimage[1])
 guiSetFont(LoginScreen.label[2], "default-bold-small")
 guiLabelSetHorizontalAlign(LoginScreen.label[2], "center", false)
-LoginScreen.label[3] = guiCreateLabel(0.38, 0.56, 0.21, 0.05, "Remember Password (PWD)", true, LoginScreen.staticimage[1])
+LoginScreen.checkbox[1] = guiCreateCheckBox(0.35, 0.56, 0.21, 0.02, "Remember Password (PWD)", false, true, LoginScreen.staticimage[1])
 guiSetFont(LoginScreen.label[3], "default-bold-small")
 guiLabelSetHorizontalAlign(LoginScreen.label[3], "right", false)
-LoginScreen.checkbox[1] = guiCreateCheckBox(0.36, 0.56, 0.02, 0.02, "", false, true, LoginScreen.staticimage[1])
 LoginScreen.staticimage[3] = guiCreateStaticImage(0.35, 0.61, 0.14, 0.07, "img/white.png", true, LoginScreen.staticimage[1])
 guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
 LoginScreen.label[4] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "LOGIN", true, LoginScreen.staticimage[3])
@@ -68,7 +67,57 @@ function loginPanel(state)
 			soundtrack = playSound("sounds/Siege.mp3",true)
 			setSoundVolume(soundtrack,0.1)
 		end
+		oldFile = xmlLoadFile("loginCredentials.xml")
+		confFile = xmlLoadFile("@loginCredentials.xml")
+		local checkbox = false
+		local pass = ""
+		if not confFile and oldFile then
+			confFile = xmlCreateFile("@loginCredentials.xml","user")
+			pass = xmlNodeGetAttribute(oldFile,"password")
+			checkbox = xmlNodeGetAttribute(oldFile,"checkbox")
+			xmlNodeSetAttribute(confFile, "password", pass)
+			xmlNodeSetAttribute(confFile, "checkbox", checkbox)
+			xmlSaveFile(confFile)
+		end
+		if oldFile then
+			xmlUnloadFile(oldFile)
+		end
+		confFile = xmlLoadFile("@loginCredentials.xml")
+		if (confFile) then
+			pass = xmlNodeGetAttribute(confFile,"password")
+			checkbox = xmlNodeGetAttribute(confFile,"checkbox")
+			guiSetText(LoginScreen.edit[2],pass)
+			if checkbox == "true" then
+				checkbox = true
+			else
+				checkbox = false
+			end
+			guiCheckBoxSetSelected(LoginScreen.checkbox[1],checkbox)
+		else
+			confFile = xmlCreateFile("@loginCredentials.xml","user")
+			xmlNodeSetAttribute(confFile,"password","")
+			xmlNodeSetAttribute(confFile,"checkbox","true")
+			pass = ""
+			checkbox = true
+			guiSetText(LoginScreen.edit[2],pass)
+			guiCheckBoxSetSelected(LoginScreen.checkbox[1],checkbox)
+		end
+		xmlSaveFile(confFile)
+		xmlUnloadFile(confFile)
 	else
+		if guiCheckBoxGetSelected(LoginScreen.checkbox[1]) then
+			confFile = xmlLoadFile("@loginCredentials.xml")
+			xmlNodeSetAttribute(confFile, "password", guiGetText(LoginScreen.edit[2]))
+			xmlNodeSetAttribute(confFile, "checkbox", tostring(guiCheckBoxGetSelected(LoginScreen.checkbox[1])))
+			xmlSaveFile(confFile)
+			xmlUnloadFile(confFile)
+		else
+			confFile = xmlLoadFile("@loginCredentials.xml")
+			xmlNodeSetAttribute(confFile, "password", "")
+			xmlNodeSetAttribute(confFile, "checkbox", tostring(guiCheckBoxGetSelected(LoginScreen.checkbox[1])))
+			xmlSaveFile(confFile)
+			xmlUnloadFile(confFile)
+		end
 		guiSetVisible(LoginScreen.staticimage[1],false)
 		removeEventHandler("onClientGUIClick",LoginScreen.label[4], function()
 			triggerServerEvent("mtabg_login", localPlayer, guiGetText(LoginScreen.edit[2]))
@@ -252,7 +301,6 @@ addEvent("mtabg_logSetAvatarimg", true)
 addEventHandler("mtabg_logSetAvatarimg", getRootElement(), setAvatarImg)
 ]]
 
-
 function onRegister(serial)
 	loginPanel(false)
 	showCursor(false)
@@ -270,16 +318,19 @@ end
 addEvent("MTABG_LoginError", true)
 addEventHandler("MTABG_LoginError", getRootElement(), showError)
 
-
-function loadLoginScreen(serial, avatar, hasAccount)
+local hasAccount = false
+function loadLoginScreen(serial, account)
 	if guiGetVisible(LoginScreen.staticimage[1]) then return end
 	loginPanel(true)
 	guiSetVisible(LoginScreen.staticimage[1],true)
 	guiSetText(LoginScreen.edit[1], serial)
 	showCursor(true)
-	if hasAccount then
+	hasAccount = account
+	if not account then
 		guiSetVisible(LoginScreen.staticimage[3],false)
+		guiSetVisible(LoginScreen.staticimage[4],true)
 	else
+		guiSetVisible(LoginScreen.staticimage[3],true)
 		guiSetVisible(LoginScreen.staticimage[4],false)
 	end
 end

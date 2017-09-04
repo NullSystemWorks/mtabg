@@ -20,13 +20,9 @@ addEventHandler("mtabg_logdownloadAvatarimg", getRootElement(), downloadAvatar)
 function onJoin()
 	--setTimer(function(source)
 	showChat(client,false)
-	local accountCheck, avatar = checkAccount(getPlayerSerial(client), "avatar")
+	local accountCheck = checkAccount(getPlayerSerial(client))
 	if accountCheck == 1 then
-		if avatar ~= "None" then
-			triggerClientEvent(client, "openLoginPanel", client, getPlayerSerial(client),true)
-		else
-			triggerClientEvent(client, "openLoginPanel", client, getPlayerSerial(client),true)
-		end
+		triggerClientEvent(client, "openLoginPanel", client, getPlayerSerial(client),true)
 	elseif accountCheck == 0 then
 		triggerClientEvent(client, "openLoginPanel", client, getPlayerSerial(client),false)
 	end
