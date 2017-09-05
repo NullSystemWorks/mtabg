@@ -37,8 +37,19 @@ function createCustomBlip(dangerZone,safeZone,radius,initialZoneRadius,timer)
 	end
 	x,y,z = getElementPosition(dangerZone)
 	x2,y2,z2 = getElementPosition(safeZone)
-	dangerBlip = exports.customblips:createCustomBlip(x,y,radius,radius,"hud/radius.png",screenMapPos1)
-	safeBlip = exports.customblips:createCustomBlip(x2,y2,initialZoneRadius,initialZoneRadius,"hud/radius2.png",screenMapPos2)
+	local radiusDivide = 1
+	local screenX, screenY = guiGetScreenSize()
+	if screenX == 800 then
+		radiusDivide = 4.2
+	elseif screenX == 1024 then
+		radiusDivide = 3.28
+	elseif screenX == 1366 then
+		radiusDivide = 3.2
+	elseif screenX == 1920 then
+		radiusDivide = 2.34
+	end
+	dangerBlip = exports.customblips:createCustomBlip(x,y,radius/radiusDivide,radius/radiusDivide,"hud/radius.png",radius)
+	safeBlip = exports.customblips:createCustomBlip(x2,y2,initialZoneRadius/radiusDivide,initialZoneRadius/radiusDivide,"hud/radius2.png",initialZoneRadius)
 	exports.customblips:setCustomBlipRadarScale(dangerBlip,1)
 	exports.customblips:setCustomBlipStreamRadius(dangerBlip,0)
 	exports.customblips:setCustomBlipRadarScale(safeBlip,1)

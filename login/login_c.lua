@@ -31,8 +31,6 @@ LoginScreen.label[2] = guiCreateLabel(0.27, 0.51, 0.08, 0.04, "PWD", true, Login
 guiSetFont(LoginScreen.label[2], "default-bold-small")
 guiLabelSetHorizontalAlign(LoginScreen.label[2], "center", false)
 LoginScreen.checkbox[1] = guiCreateCheckBox(0.35, 0.56, 0.21, 0.02, "Remember Password (PWD)", false, true, LoginScreen.staticimage[1])
-guiSetFont(LoginScreen.label[3], "default-bold-small")
-guiLabelSetHorizontalAlign(LoginScreen.label[3], "right", false)
 LoginScreen.staticimage[3] = guiCreateStaticImage(0.35, 0.61, 0.14, 0.07, "img/white.png", true, LoginScreen.staticimage[1])
 guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
 LoginScreen.label[4] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "LOGIN", true, LoginScreen.staticimage[3])
