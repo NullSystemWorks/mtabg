@@ -12,7 +12,7 @@ Version: 0.0.1 Pre-Alpha
 	<!-- configs folder -->
 	<script src="configs/cfgBaseDefines.lua" type="shared" cache="false" />
 	<script src="configs/cfgServer.lua" type="server" />
-  
+
   <!-- Map -->
   <map src="spawnisland.map" />
 
@@ -30,8 +30,11 @@ Version: 0.0.1 Pre-Alpha
 	<script src="tools/async/slither.lua" type="shared" cache="false" />
 	<script src="tools/async/async.lua" type="shared" cache="false" />
 
-	<!-- Init -->
+	<!-- Autentication -->
 	<script src="accounting/account_system.lua" type="server" />
+	<script src="accounting/password_auth.lua" type="server" />
+
+	<!-- Init -->
 	<script src="init/spawn_items.lua" type="server" />
 	<script src="init/spawn_players.lua" type="server" />
 
@@ -52,7 +55,7 @@ Version: 0.0.1 Pre-Alpha
 	<script src="hud/hud_s.lua" type="server" />
 	<script src="hud/hud_c.lua" type="client" cache="false"/>
 	<script src="hud/matchud.lua" type="client" cache="false"/>
-	
+
 
 	<!-- Handlers -->
 	<script src="handlers/client/damage_c.lua" type="client" cache="false"/>
@@ -81,12 +84,12 @@ Version: 0.0.1 Pre-Alpha
 	<file src="hud/running.png" />
 	<file src="fonts/etelka.ttf" />
 	<file src="fonts/bitstream.ttf" />
-	
+
 	<!-- Models -->
-	
+
 	<file src="models/items/txd/cola_can.txd" />
     <file src="models/items/dff/cola_can.dff" />
-	
+
 	<file src="models/items/txd/9x18cartridge.txd" />
     <file src="models/items/dff/9x18cartridge.dff" />
     <file src="models/items/txd/9x19cartridge.txd" />
@@ -107,14 +110,14 @@ Version: 0.0.1 Pre-Alpha
     <file src="models/items/dff/1143x23cartridge.dff" />
 	<file src="models/items/txd/1866slug.txd" />
     <file src="models/items/dff/1866slug.dff" />
-	
+
 	<file src="models/items/txd/bandage.txd" />
     <file src="models/items/dff/bandage.dff" />
 	<file src="models/items/txd/painkillers.txd" />
     <file src="models/items/dff/painkillers.dff" />
 	<file src="models/items/txd/first_aid_kit.txd" />
     <file src="models/items/dff/first_aid_kit.dff" />
-	
+
 	<file src="models/items/txd/jerrycan.txd" />
 	<file src="models/items/dff/jerrycan.dff" />
 
@@ -126,8 +129,8 @@ Version: 0.0.1 Pre-Alpha
     <file src="models/items/dff/backpack_alice.dff" />
 
 	<script src="models/loadskins.lua" type="client" cache="false" />
-	
-	
+
+
 
 	<!-- Exports -->
 	<script src="exports_s.lua" type="server" />
