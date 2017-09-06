@@ -1,9 +1,9 @@
 --[[
-	
+
 					MTA:BG
 				MTA Battlegrounds
 	Developed By: L, CiBeR, neves768, 1BOY, expert975
-			 © 2017 Null System Works 
+			 © 2017 Null System Works
 ]]--
 
 mysql_link = false
@@ -67,11 +67,16 @@ end
 function login(password)
 local serial = getPlayerSerial(source)
 	if serial then
-		local query = "SELECT id, data FROM accounts WHERE serial='"..serial.."' AND password='"..md5(md5(password)).."';"
+		local query = "SELECT password FROM accounts WHERE serial='" ..serial.."';"
+		local authQuery = dbQuery(mysql_link, query)
+		local authPoll = dbPoll(authQuery, -1)
+		local passMatch = checkPasswordHash(authPoll[1]["password"], password)
+
+		local query = "SELECT id, data FROM accounts WHERE serial='"..serial.."';"
 		local rQuery = dbQuery(mysql_link, query)
 		local rPoll = dbPoll(rQuery, -1)
-		if #rPoll > 0 then
-			-- exists
+
+		if passMatch and (#rPoll > 0) then
 			if exports["battlegrounds"]:LoginMagic(source, rPoll[1]["data"]) then
 				triggerClientEvent(client, "mtabg_registerDone", client)
 			else
@@ -100,7 +105,7 @@ function registerAccount(email, password, avatar)
 		tempAvatar = base64Decode(avatar)
 	end
     if isAccount == 0 then
-        local query = "INSERT INTO accounts(ID, serial, email, password, IP, data, avatar) VALUES (null, '"..serial.."', '"..email.."', '"..md5(md5(password)).."', '"..ip.."', '"..data.."', '"..avatar.."');"
+        local query = "INSERT INTO accounts(ID, serial, email, password, IP, data, avatar) VALUES (null, '"..serial.."', '"..email.."', '"..hashNewPassword(password).."', '"..ip.."', '"..data.."', '"..avatar.."');"
         dbExec(mysql_link, query)
         local registered = checkAccount(serial)
         if registered == 1 then
