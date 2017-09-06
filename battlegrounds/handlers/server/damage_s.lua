@@ -6,6 +6,58 @@
 	
 ]]--
 
+local finalDamage = 0
+function onBattleGroundsPlayerDamage(attacker,weapon,bodypart,loss)
+	if not gameCache["status"] then return end
+	local damage,weaponDistance = 0,0
+	local headshot = false
+	if isElement(attacker) then
+		if getElementType(attacker) == "player" then
+			if weapon then
+				damage,weaponDistance = getWeaponDamage(weapon,attacker)
+				local x1,y1,z1 = getElementPosition(client)
+				local x2,y2,z2 = getElementPosition(attacker)
+				local calculcatedDistance = getDistanceBetweenPoints3D(x1,y1,z1,x2,y2,z2)
+				--finalDistance = math.min(calculatedDistance-weaponDistance,100)
+				--finalDamage = math.min(math.abs(damage*(finalDistance/100)),damage-(damage*(finalDistance/100)))
+				finalDamage = damage
+				if bodypart == 9 then
+					headshot = true
+					finalDamage = finalDamage*2
+				end
+			end
+		end
+	else
+		if weapon == 54 then
+			finalDamage = loss
+		end
+	end
+	if finalDamage > 100 then
+		finalDamage = 100
+	end
+	triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,"damage",finalDamage)
+	onBattleGroundsSetPlayerHealth("health","damage",finalDamage,attacker)
+end
+addEvent("mtabg_onBattleGroundsPlayerDamage",true)
+addEventHandler("mtabg_onBattleGroundsPlayerDamage",root,onBattleGroundsPlayerDamage)
+
+function getWeaponDamage(weapon,attacker)
+local weapon_1 = ""
+local weapon_2 = ""
+	for i, data in ipairs(playerDataInfo[attacker]) do
+		if data[2] == "currentweapon_1" then
+			weapon_1 = data[3]
+		end
+		if data[2] == "currentweapon_2" then
+			weapon_2 = data[3]
+		end
+	end
+	for i,weap in ipairs(weaponDamageTable) do
+		if weap[1] == weapon_1 or weap[1] == weapon_2 then
+			return weap[2]
+		end
+	end
+end
 
 function destroyDeadPlayer(ped,pedCol)
 	destroyElement(ped)

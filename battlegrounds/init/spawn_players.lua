@@ -42,7 +42,7 @@ end
 function onPlayerLeavingGame()
 	if not gameCache["status"] then
 		gameCache["initialPlayerAmount"] = math.max(gameCache["initialPlayerAmount"]-1,0)
-		triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
+		triggerClientEvent("mtabg_onClientBattleGroundsSetStatus",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 		if gameCache["initialPlayerAmount"] == 0 then --1
 			startCountDown(false)
 		end
@@ -52,6 +52,7 @@ addEventHandler("onPlayerQuit",root,onPlayerLeavingGame)
 
 function sendPlayerToLobby(player)
 	if client then player = client end
+	showChat(player,true)
 	spawnID,spawnX,spawnY,spawnZ = 0,3971,3276,16
 	spawnPlayer(player,spawnX+math.random(-10,10),spawnY+math.random(-10,10),spawnZ+3,math.random(0,359),0,spawnID)
 	fadeCamera (player, false,2000,0,0,0)
@@ -72,14 +73,15 @@ function sendPlayerToLobby(player)
 		table.insert(playerDataInfo[player],{i,data[1],data[2]})
 	end
 	gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
+	setElementData(player,"inLobby",true)
 	setTimer(function()
 		if not gameCache["status"] then
-			triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
+			triggerClientEvent("mtabg_onClientBattleGroundsSetStatus",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 		else
 			gameCache["status"] = false
 			gameCache["initialPlayerAmount"] = 0
 			gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
-			triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],false,gameCache["countdown"]) -- We force gameCache as false
+			triggerClientEvent("mtabg_onClientBattleGroundsSetStatus",root,gameCache["initialPlayerAmount"],false,gameCache["countdown"]) -- We force gameCache as false
 		end
 		if gameCache["initialPlayerAmount"] == 1 then --2
 			startCountDown(true)
@@ -88,6 +90,7 @@ function sendPlayerToLobby(player)
 end
 addEvent("mtabg_sendPlayerToLobby",true)
 addEventHandler("mtabg_sendPlayerToLobby",root,sendPlayerToLobby)
+
 
 function startCountDown(state)
 local countDownTimer
@@ -116,6 +119,11 @@ local countDownTimer
 				end)
 			end
 			if gameCache["countdown"] == 60 then
+				for i, players in ipairs(getElementsByType("player")) do
+					if getElementData(players,"inLobby") then
+						outputChatBox("Game will start in 60 seconds!",players,255,0,0,false)
+					end
+				end
 				outputDebugString("[MTA:BG] Spawning Supermarket Loot Points(60%)")
 				async:foreach(lootPoints["Supermarket"], function(position)
 					SpotsID = SpotsID+1
@@ -136,9 +144,14 @@ local countDownTimer
 					createLootPoint("Military",position[1],position[2],position[3],SpotsID)
 				end)
 				outputDebugString("[MTA:BG] All loot points spawned!")
+				for i, players in ipairs(getElementsByType("player")) do
+				if getElementData(players,"inLobby") then
+					outputChatBox("Game will start in 20 seconds!",players,255,0,0,false)
+				end
+			end
 			end
 			if gameCache["countdown"] == 0 then
-				if gameCache["initialPlayerAmount"] > 0 then -- Must be 1 (= at least 2 players)
+				if gameCache["initialPlayerAmount"] > 0 then -- Must be > 1 (= at least 2 players)
 					if not gameCache["status"] then 
 						startGame()
 						firstTimeLoot = true
@@ -169,6 +182,7 @@ function startGame()
 	gameCache["status"] = false
 	gameCache["initialPlayerAmount"] = 0
 	for i, player in ipairs(getElementsByType("player")) do
+		showChat(player,false)
 		local dataID = -1
 		playerInfo[player] = {}
 		playerDataInfo[player] = {}
@@ -202,12 +216,18 @@ function startGame()
 	end
 	createZone()
 	gameCache["status"] = true
-	triggerClientEvent("mtabg_setPlayerAmountToClient",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
+	triggerClientEvent("mtabg_onClientBattleGroundsSetStatus",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 	gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
 	gameCache["countdown"] = 120
 end
 addEvent("mtabg_startGame",true)
 addEventHandler("mtabg_startGame",root,startGame)
+
+function startGameCommand()
+	startCountDown(false)
+	startGame()
+end
+addCommandHandler("game",startGameCommand)
 
 function returnPlayerInfoToClient(key)
 	if not gameCache["status"] then return end
@@ -222,8 +242,9 @@ end
 addEvent("mtabg_returnPlayerInfoToClient",true)
 addEventHandler("mtabg_returnPlayerInfoToClient",root,returnPlayerInfoToClient)
 
-function sendClientPlayerInfoToServer(key,action,value,other)
+function onBattleGroundsSetPlayerHealth(key,action,value,other)
 	if not gameCache["status"] then return end
+	if not client then client = source end
 	for i, data in ipairs(playerDataInfo[client]) do
 		if data[2] == key then
 			if action == "damage" then
@@ -239,8 +260,8 @@ function sendClientPlayerInfoToServer(key,action,value,other)
 	end
 	checkPlayerStatus(key,false,other)
 end
-addEvent("mtabg_sendClientPlayerInfoToServer",true)
-addEventHandler("mtabg_sendClientPlayerInfoToServer",root,sendClientPlayerInfoToServer)
+addEvent("mtabg_onBattleGroundsSetPlayerHealth",true)
+addEventHandler("mtabg_onBattleGroundsSetPlayerHealth",root,onBattleGroundsSetPlayerHealth)
 
 function checkPlayerStatus(key,player,other)
 	if not gameCache["status"] then return end

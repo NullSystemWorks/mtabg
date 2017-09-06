@@ -21,16 +21,18 @@ local alpha = 150
 local playerAmount = 0
 local gameStatus = false
 local countDown = 120 -- 180
+local countDownHasStarted = false
 
 local maxDistance = 100 --max distance represented by littleDude
 local littleDudeDistance = maxDistance --relative distance from littleDude to safe area
 local distanceToSafeArea --distance from player to safe area
 local screenx, screeny = guiGetScreenSize() --screen size
 local safeAreaCol
+local guiPlayerHealth = 100
 
 
 
-function createCustomBlip(dangerZone,safeZone,radius,initialZoneRadius,timer)
+function createZoneRadius(dangerZone,safeZone,radius,initialZoneRadius,timer)
 	if dangerBlip then
 		exports.customblips:destroyCustomBlip(dangerBlip)
 		exports.customblips:destroyCustomBlip(safeBlip)
@@ -69,8 +71,8 @@ function createCustomBlip(dangerZone,safeZone,radius,initialZoneRadius,timer)
 	end
 	guiSetVisible(zoneIndicators.label[1],true)
 end
-addEvent("mtabg_createCustomBlip",true)
-addEventHandler("mtabg_createCustomBlip",root,createCustomBlip)
+addEvent("mtabg_createZoneRadius",true)
+addEventHandler("mtabg_createZoneRadius",root,createZoneRadius)
 
 function formatMilliseconds(milliseconds)
 	if milliseconds then
@@ -82,10 +84,10 @@ function formatMilliseconds(milliseconds)
 	end
 end
 
-function displayStatus()
+function displayHealthGUI()
 	if guiGetVisible(homeScreen.staticimage[1]) then return end
 	if gameStatus then
-		if not inventoryIsShowing then
+		if not isInventoryShowing() then
 			if alpha > 150 then
 				alpha = math.max(170,alpha-1)
 			end
@@ -97,73 +99,53 @@ function displayStatus()
 				guiPlayerHealth = 0
 			end
 			dxDrawRectangle(screenW * 0.2612, screenH * 0.9017, screenW * (0.5075/(100/guiPlayerHealth)), screenH * 0.0433, tocolor(r,g,b, alpha), true)
-
-			dxDrawText("ALIVE:", (screenW * 0.8488) - 1, (screenH * 0.0483) - 1, (screenW * 0.9375) - 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-			dxDrawText("ALIVE:", (screenW * 0.8488) + 1, (screenH * 0.0483) - 1, (screenW * 0.9375) + 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-			dxDrawText("ALIVE:", (screenW * 0.8488) - 1, (screenH * 0.0483) + 1, (screenW * 0.9375) - 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-			dxDrawText("ALIVE:", (screenW * 0.8488) + 1, (screenH * 0.0483) + 1, (screenW * 0.9375) + 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-			dxDrawText("ALIVE:", screenW * 0.8488, screenH * 0.0483, screenW * 0.9375, screenH * 0.1050, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-			dxDrawText(playerAmount, (screenW * 0.9437) - 1, (screenH * 0.0483) - 1, (screenW * 1.0325) - 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-			dxDrawText(playerAmount, (screenW * 0.9437) + 1, (screenH * 0.0483) - 1, (screenW * 1.0325) + 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-			dxDrawText(playerAmount, (screenW * 0.9437) - 1, (screenH * 0.0483) + 1, (screenW * 1.0325) - 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-			dxDrawText(playerAmount, (screenW * 0.9437) + 1, (screenH * 0.0483) + 1, (screenW * 1.0325) + 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-			dxDrawText(playerAmount, screenW * 0.9437, screenH * 0.0483, screenW * 1.0325, screenH * 0.1050, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-		end
-	else
-		if not getElementData(localPlayer,"participatingInGame") then
 			if playerAmount > 0 then
-				if not isTimer(countdownTimer) then
-					countdownTimer = setTimer(function()
-						countDown = math.max(countDown-1,0)
-						if countDown == 0 then
-							if playerAmount > 0 then -- Must be 1 (= at least 2 players)
-								killTimer(countdownTimer)
-							else
-								outputChatBox("Not enough players, resetting countdown!",255,0,0,false)
-								killTimer(countdownTimer)
-								countdownTimer = false
-								countDown = 120
-							end
-						end
-					end,1000,120)
-				end
-			else
-				if isTimer(countdownTimer) then 
-					killTimer(countdownTimer) 
-					countdownTimer = false 
-					countDown = 120 
-				end
+				dxDrawText("ALIVE:", (screenW * 0.8488) - 1, (screenH * 0.0483) - 1, (screenW * 0.9375) - 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText("ALIVE:", (screenW * 0.8488) + 1, (screenH * 0.0483) - 1, (screenW * 0.9375) + 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText("ALIVE:", (screenW * 0.8488) - 1, (screenH * 0.0483) + 1, (screenW * 0.9375) - 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText("ALIVE:", (screenW * 0.8488) + 1, (screenH * 0.0483) + 1, (screenW * 0.9375) + 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText("ALIVE:", screenW * 0.8488, screenH * 0.0483, screenW * 0.9375, screenH * 0.1050, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText(playerAmount, (screenW * 0.9437) - 1, (screenH * 0.0483) - 1, (screenW * 1.0325) - 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText(playerAmount, (screenW * 0.9437) + 1, (screenH * 0.0483) - 1, (screenW * 1.0325) + 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText(playerAmount, (screenW * 0.9437) - 1, (screenH * 0.0483) + 1, (screenW * 1.0325) - 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText(playerAmount, (screenW * 0.9437) + 1, (screenH * 0.0483) + 1, (screenW * 1.0325) + 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText(playerAmount, screenW * 0.9437, screenH * 0.0483, screenW * 1.0325, screenH * 0.1050, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 			end
-			
-			dxDrawText("COUNTDOWN:", screenW * 0.6350, screenH * 0.1683, screenW * 0.8413, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
-			dxDrawText("PLAYERS:", screenW * 0.6350, screenH * 0.2250, screenW * 0.8413, screenH * 0.2817, tocolor(255, 255, 255, 255), 2.00, "default", "right", "top", false, false, false, false, false)
-			dxDrawText(countDown.." SEC.", screenW * 0.8538, screenH * 0.1683, screenW * 0.9825, screenH * 0.2250, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-			dxDrawText(playerAmount, screenW * 0.8538, screenH * 0.2250, screenW * 0.9825, screenH * 0.2817, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 		end
 	end
 end
-addEventHandler("onClientRender", root,displayStatus)
+addEventHandler("onClientRender",root,displayHealthGUI)
 
-function setHealthToClient(value)
+function onClientBattleGroundsGetPlayerHealthGUI(player)
 	if gameStatus then
-		guiPlayerHealth = tonumber(value)
-		r,g,b = 255,170,170
-		alpha = 255
-		setTimer(function()
-			r,g,b = 218,218,218
-		end,2000,1)
+		return guiPlayerHealth
 	end
 end
-addEvent("mtabg_setHealthToClient",true)
-addEventHandler("mtabg_setHealthToClient",root,setHealthToClient)
+addEvent("mtabg_onClientBattleGroundsGetPlayerHealthGUI",true)
+addEventHandler("mtabg_onClientBattleGroundsGetPlayerHealthGUI",root,onClientBattleGroundsGetPlayerHealthGUI)
 
-function setPlayerAmountToClient(value,status,countdown)
+function onClientBattleGroundsSetPlayerHealthGUI(action,value)
+	if action == "damage" then
+		guiPlayerHealth = guiPlayerHealth-value
+	else
+		guiPlayerHealth = value
+	end
+	r,g,b = 255,170,170
+	alpha = 255
+	setTimer(function()
+		r,g,b = 218,218,218
+	end,2000,1)
+end
+addEvent("mtabg_onClientBattleGroundsSetPlayerHealthGUI",true)
+addEventHandler("mtabg_onClientBattleGroundsSetPlayerHealthGUI",root,onClientBattleGroundsSetPlayerHealthGUI)
+
+function onClientBattleGroundsSetStatus(value,status,countdown)
 	playerAmount = tonumber(value)
 	gameStatus = status
 	countDown = countdown
 end
-addEvent("mtabg_setPlayerAmountToClient",true)
-addEventHandler("mtabg_setPlayerAmountToClient",root,setPlayerAmountToClient)
+addEvent("mtabg_onClientBattleGroundsSetStatus",true)
+addEventHandler("mtabg_onClientBattleGroundsSetStatus",root,onClientBattleGroundsSetStatus)
 
 endScreen = {
     label = {},

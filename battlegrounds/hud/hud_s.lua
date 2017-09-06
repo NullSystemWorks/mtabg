@@ -39,7 +39,7 @@ function createZone()
 	setTimer(getPlayersInsideZone,5000,0)
 	for i, players in ipairs(getElementsByType("player")) do
 		if getElementData(players,"participatingInGame") then
-			triggerClientEvent("mtabg_createCustomBlip",players,dangerZone,safeZone,zoneRadius,initialZoneRadius,radiusTimer)
+			triggerClientEvent("mtabg_createZoneRadius",players,dangerZone,safeZone,zoneRadius,initialZoneRadius,radiusTimer)
 		end
 	end
 end
@@ -64,7 +64,7 @@ function decreaseZoneSize()
 		zoneTimer = setTimer(decreaseZoneSize,radiusTimer,1)
 		for i, players in ipairs(getElementsByType("player")) do
 			if getElementData(players,"participatingInGame") then
-				triggerClientEvent("mtabg_createCustomBlip",players,dangerZone,safeZone,zoneRadius,initialZoneRadius,radiusTimer)
+				triggerClientEvent("mtabg_createZoneRadius",players,dangerZone,safeZone,zoneRadius,initialZoneRadius,radiusTimer)
 			end
 		end
 	end

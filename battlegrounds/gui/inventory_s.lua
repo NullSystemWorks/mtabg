@@ -344,7 +344,7 @@ function onPlayerUseItem(itemName,itemInfo)
 								data[3] = 100
 							end
 							itemUsed = true
-							triggerClientEvent(client,"mtabg_setHealthToClient",client,data[3])
+							triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
 						else
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
@@ -355,7 +355,7 @@ function onPlayerUseItem(itemName,itemInfo)
 						if data[3] < 100 then
 							data[3] = 100
 							itemUsed = true
-							triggerClientEvent(client,"mtabg_setHealthToClient",client,data[3])
+							triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
 						else
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
@@ -369,7 +369,7 @@ function onPlayerUseItem(itemName,itemInfo)
 								data[3] = 100
 							end
 							itemUsed = true
-							triggerClientEvent(client,"mtabg_setHealthToClient",client,data[3])
+							triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",false,client,data[3])
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
 						else
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
@@ -413,6 +413,7 @@ local currentWeapon_3 = ""
 local weaponType = ""
 local oldWeapon = ""
 function equipWeapon(weapon,info,player)
+	if not client then client = player end
 	local weaponID = 0
 	local ammoType = ""
 	for i, weap in ipairs(weaponDataTable) do
@@ -452,17 +453,13 @@ function equipWeapon(weapon,info,player)
 					end
 					break
 				end
-				triggerClientEvent(client,"mtabg_changeEquippedWeaponGUI",client,info,weapon,currentWeapon_1,currentWeapon_2,currentWeapon_3)
+				triggerClientEvent(client,"mtabg_changeEquippedWeaponGUI",client,info,weapon,playerDataInfo[player])
 			else
 				triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Not enough ammo!")
 				break
 			end
 		end
 	end
-end
-
-function removeWeapon(weaponID,player)
-	takeWeapon(player,weaponID)
 end
 
 function depleteAmmoCountWhenFiring(weapon,x,y,z,hitElement,startX,startY,startZ)
@@ -501,6 +498,10 @@ function depleteAmmoCountWhenFiring(weapon,x,y,z,hitElement,startX,startY,startZ
 	end
 end
 addEventHandler("onPlayerWeaponFire",root,depleteAmmoCountWhenFiring)
+
+function removeWeapon(weaponID,player)
+	takeWeapon(player,weaponID)
+end
 
 function getItemWeight(theItem)
 	for i, weight in ipairs(lootItems["FullList"]) do
