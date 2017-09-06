@@ -25,7 +25,7 @@ local function generateSalt()
 end
 
 local hash = hash
--- Hashe a password + salt multiple times
+-- Hash a password + salt multiple times
 local function multipleHash(password, salt)
 	local saltyPass = salt .. password
 	local hashedString = hash("sha256", saltyPass) --hash for the fisrt time
@@ -40,26 +40,11 @@ end
 -- Compare a password and a password hash
 function checkPasswordHash(passwordHash, password)
 	local salt = split(passwordHash, "$")[1] --extract salt
-	outputDebugString("Salt: " ..salt)
 	return multipleHash(password, salt) == passwordHash --pass match?
 end
 
 -- Prepare a new passowrd to be stored
-function hashNewPassword(_, _, password)
+function hashNewPassword(password)
 	local newSalt = generateSalt() --new passowrd, new salt. ALWAYS!
-	local newPasswordHash = multipleHash(password, newSalt)
-	outputDebugString("Hash: " ..newPasswordHash)
-	return newPasswordHash
+	return multipleHash(password, newSalt)
 end
-
-
-local tmpHash
-function createPass(_, _, password)
-	tmpHash = hashNewPassword(_, _, password)
-end
-addCommandHandler("r", createPass)
-
-function checkPass(_, _, password)
-	outputDebugString("Correct: " ..tostring(checkPasswordHash(tmpHash, password)))
-end
-addCommandHandler("t", checkPass)
