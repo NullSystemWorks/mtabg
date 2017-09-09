@@ -54,7 +54,7 @@ local weapon_2 = ""
 	end
 	for i,weap in ipairs(weaponDamageTable) do
 		if weap[1] == weapon_1 or weap[1] == weapon_2 then
-			return weap[2]
+			return weap[2],weap[3]
 		end
 	end
 end

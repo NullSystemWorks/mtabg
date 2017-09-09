@@ -434,32 +434,32 @@ function equipWeapon(weapon,info,player)
 					giveWeapon(client,weaponID,data[3],true)
 					oldWeapon = weapon
 				end
-				for k, playData in ipairs(playerDataInfo[player]) do
-					if weaponType == "Primary" then
-						currentWeapon_1 = weapon
-						if playData[1] == "currentweapon_1" then
-							playData[2] = weapon	
-						end
-					elseif weaponType == "Secondary" then
-						currentWeapon_2 = weapon
-						if playData[1] == "currentweapon_2" then
-							playData[2] = weapon
-						end
-					elseif weaponType == "Special" then
-						if playData[1] == "currentweapon_2" then
-							playData[2] = weapon
-						end
-						currentWeapon_3 = weapon
-					end
-					break
-				end
-				triggerClientEvent(client,"mtabg_changeEquippedWeaponGUI",client,info,weapon,playerDataInfo[player])
 			else
 				triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Not enough ammo!")
-				break
+				return
 			end
 		end
 	end
+	for k, playData in ipairs(playerDataInfo[player]) do
+		if weaponType == "Primary" then
+			if playData[2] == "currentweapon_1" then
+				playData[3] = weapon
+				currentWeapon_1 = weapon
+			end
+		elseif weaponType == "Secondary" then
+			if playData[2] == "currentweapon_2" then
+				playData[3] = weapon
+				currentWeapon_2 = weapon
+			end
+		elseif weaponType == "Special" then
+			if playData[2] == "currentweapon_2" then
+				playData[3] = weapon
+				currentWeapon_3 = weapon
+			end
+			
+		end
+	end
+	triggerClientEvent(client,"mtabg_changeEquippedWeaponGUI",client,info,weapon,playerDataInfo[player])
 end
 
 function depleteAmmoCountWhenFiring(weapon,x,y,z,hitElement,startX,startY,startZ)
