@@ -24,7 +24,7 @@ local dangerZone
 local safeZone
 local zoneRadius = 4000
 local zoneRadiusOffsetX,zoneRadiusOffsetY = 0,0
-local radiusTimer = 480000 --120000 for testing
+local radiusTimer = 300000 --120000 for testing
 local firstZone = false
 local zoneTimer
 local firstWarning,secondWarning,thirdWarning = false,false,false
@@ -81,6 +81,12 @@ function sendRadiusTimerToClient()
 end
 --setTimer(sendRadiusTimerToClient,1000,0)
 
+function resetZoneAfterMatch()
+	destroyElement(dangerZone)
+	destroyElement(safeZone)
+	triggerClientEvent("mtabg_createZoneRadius",root,false,false,false,false,false)
+	killTimer(zoneTimer)
+end
 
 function getPlayersInsideZone()
 	if not gameCache["status"] then return end
@@ -98,7 +104,7 @@ function getPlayersInsideZone()
 								if data[2] == "health" then
 									if data[3] > 0 then
 										data[3] = data[3]-5
-										triggerClientEvent("mtabg_setHealthToClient",players,data[3])
+										triggerClientEvent("mtabg_onClientBattleGroundsSetPlayerHealthGUI",players,data[3])
 										checkPlayerStatus("health",players,false)
 									end
 								end

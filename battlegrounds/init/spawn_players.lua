@@ -14,6 +14,7 @@ gameCache["initialPlayerAmount"] = 0
 gameCache["playerAmount"] = 0
 gameCache["countdown"] = 120
 gameCache["playingField"] = 0 -- = Dimension (Dimension 500 is reserved for home screen!)
+local countdownHasStarted = false
 
 lobbyInteriors = {
 {0,3971,3276,16},
@@ -43,8 +44,9 @@ function onPlayerLeavingGame()
 	if not gameCache["status"] then
 		gameCache["initialPlayerAmount"] = math.max(gameCache["initialPlayerAmount"]-1,0)
 		triggerClientEvent("mtabg_onClientBattleGroundsSetStatus",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
-		if gameCache["initialPlayerAmount"] == 0 then --1
+		if gameCache["initialPlayerAmount"] <= 1 then --1
 			startCountDown(false)
+			countdownHasStarted = false
 		end
 	end
 end
@@ -83,8 +85,11 @@ function sendPlayerToLobby(player)
 			gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
 			triggerClientEvent("mtabg_onClientBattleGroundsSetStatus",root,gameCache["initialPlayerAmount"],false,gameCache["countdown"]) -- We force gameCache as false
 		end
-		if gameCache["initialPlayerAmount"] == 1 then --2
+		if gameCache["initialPlayerAmount"] >= 1 then --2 ---> Problem: if a second or third player joins within 2 seconds, script does not execute
 			startCountDown(true)
+			if not countdownHasStarted then
+				countdownHasStarted = true
+			end
 		end
 	end,2000,1,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 end
@@ -151,7 +156,7 @@ local countDownTimer
 			end
 			end
 			if gameCache["countdown"] == 0 then
-				if gameCache["initialPlayerAmount"] > 0 then -- Must be > 1 (= at least 2 players)
+				if gameCache["initialPlayerAmount"] > 1 then -- Must be > 1 (= at least 2 players)
 					if not gameCache["status"] then 
 						startGame()
 						firstTimeLoot = true
@@ -164,6 +169,14 @@ local countDownTimer
 								startCountDown(true)
 								return
 							end
+						end
+					end
+				else
+					for i, player in ipairs(getElementsByType("player")) do
+						if not getElementData(player,"participatingInGame") then
+							outputChatBox("Not enough players to start match!",player,255,0,0,true)
+							gameCache["countdown"] = 120
+							startCountDown(true)
 						end
 					end
 				end

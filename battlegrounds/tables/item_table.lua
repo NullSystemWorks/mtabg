@@ -250,7 +250,7 @@ lootItems = {
 {"Energy Drink",2647,2,0,1},
 {"Bandage",1578,2,0,1},
 {"Full Gas Canister",1650,2,0,2},
-{"First Aid Kit",2891,2.2,1},
+{"First Aid Kit",2891,2.2,1,1},
 {"Painkiller",2709,3,0,1},
 {"Backpack (Level 1)",3026,1,0,0},
 {"Backpack (Level 2)",1239,1,0,0},

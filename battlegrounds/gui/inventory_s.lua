@@ -369,8 +369,25 @@ function onPlayerUseItem(itemName,itemInfo)
 								data[3] = 100
 							end
 							itemUsed = true
-							triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",false,client,data[3])
+							triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
+						else
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
+						end
+					end
+				elseif itemName == "Energy Drink" then
+					if data[2] == "health" then
+						if data[3] < 100 then
+							itemUsed = true
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
+							if isTimer(energyDrinkTimer) then killTimer(energyDrinkTimer) end
+								energyDrinkTimer = setTimer(function()
+								data[3] = data[3]+1
+								if data[3] >= 100 then
+									data[3] = 100
+								end
+								triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
+							end,1000,50,client,data[3])
 						else
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
 						end
@@ -404,8 +421,6 @@ function onPlayerUseItem(itemName,itemInfo)
 end
 addEvent("mtabg_onPlayerUseItem",true)
 addEventHandler("mtabg_onPlayerUseItem",root,onPlayerUseItem)
-
-
 
 local currentWeapon_1 = ""
 local currentWeapon_2 = ""

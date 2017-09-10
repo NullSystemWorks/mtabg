@@ -37,6 +37,11 @@ function createZoneRadius(dangerZone,safeZone,radius,initialZoneRadius,timer)
 		exports.customblips:destroyCustomBlip(dangerBlip)
 		exports.customblips:destroyCustomBlip(safeBlip)
 	end
+	if not dangerZone and not safeZone and not radius then
+		dangerBlip = false
+		safeBlip = false
+		return
+	end
 	x,y,z = getElementPosition(dangerZone)
 	x2,y2,z2 = getElementPosition(safeZone)
 	local radiusDivide = 1

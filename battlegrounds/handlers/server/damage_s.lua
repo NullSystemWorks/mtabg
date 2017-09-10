@@ -127,14 +127,19 @@ function killBattleGroundsPlayer(player,killer,headshot)
 		--
 	end
 	homeScreenDimension = homeScreenDimension+1
+	setElementData(player,"participatingInGame",false)
 	gameCache["playerAmount"] = gameCache["playerAmount"]-1
 	if isElement(killer) then
 		checkForWinner(killer)
 		outputSideChat("Player "..getPlayerName(player).." was killed by "..getPlayerName(killer).." - "..gameCache["playerAmount"].." left",root,255,255,255)
+		triggerClientEvent(player,"mtabg_showEndscreen",player,gameCache["playerAmount"],homeScreenDimension)
 	else
 		if gameCache["playerAmount"] <= 1 then
-			resetGameCache()
-			refreshLootSpots()
+			for i, players in ipairs(getElementsByType("player")) do
+				if getElementData(players,"participatingInGame") then
+					checkForWinner(players)
+				end
+			end
 		end
 		triggerClientEvent(player,"mtabg_showEndscreen",player,gameCache["playerAmount"],homeScreenDimension)
 		outputSideChat("Player "..getPlayerName(player).." has died - "..gameCache["playerAmount"].." left",root,255,255,255)
@@ -148,6 +153,7 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	playerInfo[player] = {}
 	playerDataInfo[player] = {}
 	spawnPlayer(player,1724.22998,-1647.8363,20.2283,0,0,18,600)
+	takeAllWeapons(player)
 	
 end
 addEvent("killBattleGroundsPlayer",true)
@@ -171,7 +177,7 @@ function awardPlayerWithStatistics(player)
 		local gamesplayed = getUserData(player,"gamesplayed")
 		local losses = getUserData(player,"losses")
 		local wins = getUserData(player,"wins")
-		local winlossratio = (wins/losses)*100
+		local winlossratio = (wins/gamesplayed)*100
 		local deaths = getUserData(player,"deaths")
 		local kills = getUserData(player,"kills")
 		local killdeathratio = (kills/deaths)*100
@@ -193,10 +199,15 @@ function checkForWinner(killer)
 		local wins = getUserData(killer,"wins")
 		setUserData(killer,"wins",wins+1)
 		setElementFrozen(killer,true)
+		homeScreenDimension = homeScreenDimension+1
 		triggerClientEvent(killer,"mtabg_showEndscreen",killer,gameCache["playerAmount"],homeScreenDimension)
 		resetGameCache()
 		awardPlayerWithStatistics(killer)
 		refreshLootSpots()
+		removeAttachedOnDeath(killer)
+		setElementData(killer,"participatingInGame",false)
+		takeAllWeapons(killer)
+		resetZoneAfterMatch()
 	end
 end
 
