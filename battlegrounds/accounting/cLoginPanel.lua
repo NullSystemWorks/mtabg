@@ -18,8 +18,8 @@ LoginScreen = {
     edit = {}
 }
 
-LoginScreen.staticimage[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "img/background.png", true)
-LoginScreen.staticimage[2] = guiCreateStaticImage(0.11, 0.06, 0.77, 0.28, "img/battlegrounds_logo.png", true, LoginScreen.staticimage[1])
+LoginScreen.staticimage[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "accounting/img/background.png", true)
+LoginScreen.staticimage[2] = guiCreateStaticImage(0.11, 0.06, 0.77, 0.28, "accounting/img/battlegrounds_logo.png", true, LoginScreen.staticimage[1])
 LoginScreen.edit[1] = guiCreateEdit(0.35, 0.41, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- ID
 guiEditSetReadOnly(LoginScreen.edit[1], true)
 LoginScreen.label[1] = guiCreateLabel(0.27, 0.42, 0.08, 0.04, "ID", true, LoginScreen.staticimage[1])
@@ -35,17 +35,90 @@ LoginScreen.label[2] = guiCreateLabel(0.27, 0.51, 0.08, 0.04, "PWD", true, Login
 guiSetFont(LoginScreen.label[2], "default-bold-small")
 guiLabelSetHorizontalAlign(LoginScreen.label[2], "center", false)
 LoginScreen.checkbox[1] = guiCreateCheckBox(0.35, 0.56, 0.21, 0.02, "Remember Password (PWD)", false, true, LoginScreen.staticimage[1])
-LoginScreen.staticimage[3] = guiCreateStaticImage(0.35, 0.61, 0.14, 0.07, "img/white.png", true, LoginScreen.staticimage[1])
+LoginScreen.staticimage[3] = guiCreateStaticImage(0.35, 0.66, 0.29, 0.07, "accounting/img/white.png", true, LoginScreen.staticimage[1])
 guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
 LoginScreen.label[4] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "LOGIN", true, LoginScreen.staticimage[3])
 guiLabelSetHorizontalAlign(LoginScreen.label[4], "center", false)
 guiLabelSetVerticalAlign(LoginScreen.label[4], "center")
-LoginScreen.staticimage[4] = guiCreateStaticImage(0.50, 0.61, 0.14, 0.07, "img/white.png", true, LoginScreen.staticimage[1])
+LoginScreen.staticimage[4] = guiCreateStaticImage(0.35, 0.66, 0.29, 0.07, "accounting/img/white.png", true, LoginScreen.staticimage[1])
 guiSetProperty(LoginScreen.staticimage[4], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
 LoginScreen.label[5] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "REGISTER", true, LoginScreen.staticimage[4])
 guiLabelSetHorizontalAlign(LoginScreen.label[5], "center", false)
 guiLabelSetVerticalAlign(LoginScreen.label[5], "center")
-LoginScreen.label[6] = guiCreateLabel(0.27, 0.70, 0.46, 0.05, "", true, LoginScreen.staticimage[1])
+LoginScreen.label[6] = guiCreateLabel(0.25, 0.588, 0.46, 0.05, "", true, LoginScreen.staticimage[1])
+
+local function clickRegisterButton()
+	local password = guiGetText(LoginScreen.edit[2])
+	local alphaKey = guiGetText(LoginScreen.edit[3])
+	triggerServerEvent("mtabg_register", localPlayer, password, "None", false, alphaKey)
+end
+
+local function clickLoginButton()
+	triggerServerEvent("mtabg_login", localPlayer, guiGetText(LoginScreen.edit[2]))
+end
+
+local function closeLoginPanel()
+	loginPanel(false)
+	-- showCursor(false) --WTF: should this really be here?
+	loadingBar.hide()
+	guiSetVisible(homeScreen.staticimage[1],true)
+	fadeCamera(true)
+end
+
+local function showLoadingBar()
+	for k, v in ipairs(loadingBar.bar) do
+		loadingBar.bar[k]:setRendering(true) --start rendering all textures
+	end
+	loadingBar.changeIcon(1) --start with faded V icon
+end
+addEventHandler("onClientResourceStart", root, showLoadingBar)
+
+local function resetLoadingBar()
+	loadingBar.setWaiting(false)
+	loadingBar.bar[4]:setA(0) -- hide red bar
+	loadingBar.bar[5]:setA(0) -- hide green bar
+	loadingBar.changeIcon(1)
+end
+
+local function loadingBarSetProgress(progress)
+	loadingBar.setProgress(progress)
+	resetLoadingBar()
+end
+addEvent("onLoginLoadingBarSetProgress", true)
+addEventHandler("onLoginLoadingBarSetProgress", localPlayer, loadingBarSetProgress)
+
+--TODO: expand to handle hashingResults, not only success
+local function hashingEnd()
+	showError("Welcome!") --TODO: error? right...
+	loadingBar.setDone(true)
+	Timer( closeLoginPanel, 2000, 1) --close login panel after a while
+	--TODO: get this into a proper function
+	removeEventHandler("onClientGUIClick",LoginScreen.label[4], clickLoginButton)
+	removeEventHandler("onClientGUIClick",LoginScreen.label[5], clickRegisterButton)
+end
+addEvent("mtabg_registerDone", true)
+addEventHandler("mtabg_registerDone", localPlayer, hashingEnd)
+
+local function hashingStart()
+	resetLoadingBar()
+	loadingBar.setWaiting(true)
+end
+addEvent("onHashingStart", true)
+addEventHandler("onHashingStart", localPlayer, hashingStart)
+
+local errorFont
+local screenSize = guiGetScreenSize()
+if screenSize >= 1920 then
+	errorFont = guiCreateFont("fonts/tahomab.ttf",13)
+elseif screenSize >= 1336 then
+	errorFont = guiCreateFont("fonts/tahomab.ttf",8)
+elseif screenSize >= 800 then
+	errorFont = guiCreateFont("fonts/tahomab.ttf",6)
+else
+	errorFont = guiCreateFont("fonts/tahomab.ttf",5)
+end
+guiSetFont ( LoginScreen.label[6], errorFont )
+
 guiLabelSetHorizontalAlign(LoginScreen.label[6], "center", false)
 guiLabelSetVerticalAlign(LoginScreen.label[6], "center")
 
@@ -54,20 +127,14 @@ guiSetVisible(LoginScreen.staticimage[1],false)
 function loginPanel(state)
 	if state then
 		guiSetVisible(LoginScreen.staticimage[1],true)
-		addEventHandler("onClientGUIClick", LoginScreen.label[4], function()
-			triggerServerEvent("mtabg_login", localPlayer, guiGetText(LoginScreen.edit[2]))
-		end,false)
-		addEventHandler("onClientGUIClick", LoginScreen.label[5], function()
-			local password = guiGetText(LoginScreen.edit[2])
-			local alphaKey = guiGetText(LoginScreen.edit[3])
-			triggerServerEvent("mtabg_register", localPlayer, "None", password, false, alphaKey)
-		end, false)
+		addEventHandler("onClientGUIClick", LoginScreen.label[4], clickLoginButton, false)
+		addEventHandler("onClientGUIClick", LoginScreen.label[5], clickRegisterButton, false)
 		guiBringToFront(LoginScreen.staticimage[1])
 		copyright = guiCreateLabel(0.00, 0.97, 0.46, 0.03, "MTA:Battlegrounds ©2017 Null System Works. All Rights Reserved.", true, LoginScreen.staticimage[1])
 		guiSetAlpha(copyright, 0.35)
 		guiLabelSetHorizontalAlign(copyright, "left", true)
 		if not soundtrack then
-			soundtrack = playSound("sounds/Siege.mp3",true)
+			soundtrack = playSound("sounds/siege.mp3",true)
 			setSoundVolume(soundtrack,0.1)
 		end
 		oldFile = xmlLoadFile("loginCredentials.xml")
@@ -122,13 +189,8 @@ function loginPanel(state)
 			xmlUnloadFile(confFile)
 		end
 		guiSetVisible(LoginScreen.staticimage[1],false)
-		removeEventHandler("onClientGUIClick",LoginScreen.label[4], function()
-			triggerServerEvent("mtabg_login", localPlayer, guiGetText(LoginScreen.edit[2]))
-		end,false)
-		removeEventHandler("onClientGUIClick",LoginScreen.label[5], function()
-			local password = guiGetText(LoginScreen.edit[2])
-			triggerServerEvent("mtabg_register", localPlayer, password)
-		end,false)
+		removeEventHandler("onClientGUIClick",LoginScreen.label[4], clickLoginButton)
+		removeEventHandler("onClientGUIClick",LoginScreen.label[5], clickRegisterButton)
 		stopSound(soundtrack)
 		soundtrack = false
 	end
@@ -170,7 +232,7 @@ addEventHandler("onClientMouseLeave",LoginScreen.label[5],changeColorOfRegisterB
 		guiLabelSetColor(LoginScreen.label[2], 254, 254, 254)
 		guiLabelSetHorizontalAlign(LoginScreen.label[2], "center", false)
 		guiLabelSetVerticalAlign(LoginScreen.label[2], "center")
-		LoginScreen.staticimage[3] = guiCreateStaticImage(0.47, 0.50, 0.06, 0.04, ":login/img/white.png", true, Loginbg)
+		LoginScreen.staticimage[3] = guiCreateStaticImage(0.47, 0.50, 0.06, 0.04, ":accounting/img/white.png", true, Loginbg)
 		guiSetAlpha(LoginScreen.staticimage[3], 0.95)
 		guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FFCF8F00 tr:FFCF8F00 bl:FFCF8F00 br:FFCF8F00")
 
@@ -198,7 +260,7 @@ RegisterScreen = {
 
 function registerPanel(state)
 	if not RegisterScreen.staticimage[2] and Loginbg and state then
-		RegisterScreen.staticimage[2] = guiCreateStaticImage(0.46, 0.16, 0.08, 0.14, ":login/img/defaultavatar.png", true, Loginbg)
+		RegisterScreen.staticimage[2] = guiCreateStaticImage(0.46, 0.16, 0.08, 0.14, ":accounting/img/defaultavatar.png", true, Loginbg)
 
 		RegisterScreen.edit[1] = guiCreateEdit(0.44, 0.49, 0.11, 0.03, "password", true, Loginbg)
 		guiEditSetMasked(RegisterScreen.edit[1], true)
@@ -214,7 +276,7 @@ function registerPanel(state)
 		guiLabelSetColor(RegisterScreen.label[2], 254, 254, 254)
 		guiLabelSetHorizontalAlign(RegisterScreen.label[2], "center", false)
 		guiLabelSetVerticalAlign(RegisterScreen.label[2], "center")
-		RegisterScreen.staticimage[3] = guiCreateStaticImage(0.47, 0.56, 0.06, 0.04, ":login/img/white.png", true, Loginbg)
+		RegisterScreen.staticimage[3] = guiCreateStaticImage(0.47, 0.56, 0.06, 0.04, ":accounting/img/white.png", true, Loginbg)
 		guiSetAlpha(RegisterScreen.staticimage[3], 0.95)
 		guiSetProperty(RegisterScreen.staticimage[3], "ImageColours", "tl:FFCF8F00 tr:FFCF8F00 bl:FFCF8F00 br:FFCF8F00")
 
@@ -239,7 +301,7 @@ function registerPanel(state)
 		guiLabelSetColor(RegisterScreen.label[5], 254, 254, 254)
 		guiLabelSetHorizontalAlign(RegisterScreen.label[5], "center", false)
 		guiLabelSetVerticalAlign(RegisterScreen.label[5], "center")
-		RegisterScreen.staticimage[4] = guiCreateStaticImage(0.55, 0.16, 0.13, 0.14, ":login/img/white.png", true, Loginbg)
+		RegisterScreen.staticimage[4] = guiCreateStaticImage(0.55, 0.16, 0.13, 0.14, ":accounting/img/white.png", true, Loginbg)
 		guiSetAlpha(RegisterScreen.staticimage[4], 0.68)
 		guiSetProperty(RegisterScreen.staticimage[4], "ImageColours", "tl:FF1B1B1B tr:FF1B1B1B bl:FF1B1B1B br:FF1B1B1B")
 
@@ -258,7 +320,7 @@ function registerPanel(state)
 		end)
 
 
-        RegisterScreen.staticimage[5] = guiCreateStaticImage(0.44, 0.16, 0.02, 0.03, ":login/img/white.png", true, Loginbg)
+        RegisterScreen.staticimage[5] = guiCreateStaticImage(0.44, 0.16, 0.02, 0.03, ":accounting/img/white.png", true, Loginbg)
         guiSetProperty(RegisterScreen.staticimage[5], "ImageColours", "tl:FF1B1B1B tr:FF1B1B1B bl:FF1B1B1B br:FF1B1B1B")
 
         RegisterScreen.label[8] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "R", true, RegisterScreen.staticimage[5])
@@ -304,19 +366,13 @@ addEvent("mtabg_logSetAvatarimg", true)
 addEventHandler("mtabg_logSetAvatarimg", getRootElement(), setAvatarImg)
 ]]
 
-function onRegister(serial)
-	loginPanel(false)
-	showCursor(false)
-end
-addEvent("mtabg_registerDone", true)
-addEventHandler("mtabg_registerDone", getRootElement(), onRegister)
-
 
 function showError(errorMsg)
 	guiSetText(LoginScreen.label[6],tostring(errorMsg))
 	setTimer(function()
 		guiSetText(LoginScreen.label[6],"")
 	end,3000,1)
+	loadingBar.setDone(false)
 end
 addEvent("MTABG_LoginError", true)
 addEventHandler("MTABG_LoginError", getRootElement(), showError)

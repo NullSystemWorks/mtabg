@@ -1,5 +1,5 @@
 --[[
-	
+
 				MTA:BG
 			MTA Battlegrounds
 	Developed By: Null System Works
@@ -45,14 +45,14 @@ guiLabelSetColor(homeScreen.label[5],0,0,0)
 homeScreen.staticimage[4] = guiCreateStaticImage(0.87, 0.11, 0.05, 0.05,"gui/images/battlepointsicon.png",true,homeScreen.staticimage[1])
 homeScreen.label[6] = guiCreateLabel(0.95, 0.11, 0.12, 0.05, "0", true, homeScreen.staticimage[1])
 guiLabelSetVerticalAlign(homeScreen.label[6], "center")
-guiSetFont(homeScreen.label[6],homeScreen.font[1])	
+guiSetFont(homeScreen.label[6],homeScreen.font[1])
 guiLabelSetColor(homeScreen.label[6],0,0,0)
-homeScreen.staticimage[3] = guiCreateStaticImage(0.00, 0.00, 0.30, 0.15, "gui/images/button.png", true, homeScreen.staticimage[1])	
+homeScreen.staticimage[3] = guiCreateStaticImage(0.00, 0.00, 0.30, 0.15, "gui/images/button.png", true, homeScreen.staticimage[1])
 homeScreen.label[7] = guiCreateLabel(0.05, 0.19, 0.58, 0.30, "PLAY", true, homeScreen.staticimage[3])
 guiLabelSetColor(homeScreen.label[7],0,0,0)
 guiLabelSetHorizontalAlign(homeScreen.label[7], "left", false)
 guiLabelSetVerticalAlign(homeScreen.label[7], "center")
-guiSetFont(homeScreen.label[7],homeScreen.font[2])	
+guiSetFont(homeScreen.label[7],homeScreen.font[2])
 homeScreen.label[8] = guiCreateLabel(0.06, 0.20, 0.58, 0.30, "PLAY", true, homeScreen.staticimage[3])
 guiLabelSetColor(homeScreen.label[8],255,255,255)
 guiLabelSetHorizontalAlign(homeScreen.label[8], "left", false)
@@ -108,7 +108,7 @@ guiLabelSetVerticalAlign(homeScreen.label["battlepointsspent_value"], "center")
 homeScreen.label[30] = guiCreateLabel(0.72, 0.93, 0.05, 0.07, "ID:", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label[30], "center")
 homeScreen.label[31] = guiCreateLabel(0.78, 0.93, 0.22, 0.07, "N/A", true, homeScreen.staticimage[5])
-guiLabelSetVerticalAlign(homeScreen.label[31], "center")   
+guiLabelSetVerticalAlign(homeScreen.label[31], "center")
 
 
 homeScreen.staticimage[6] = guiCreateStaticImage(0.09, 0.29, 0.08, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
@@ -148,7 +148,7 @@ homeScreen.staticimage[17] = guiCreateStaticImage(0.18, 0.65, 0.31, 0.11, "gui/i
 guiSetProperty(homeScreen.staticimage[17], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
 homeScreen.label["common"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, "COMMON CRATES:", true, homeScreen.staticimage[17])
 guiLabelSetVerticalAlign(homeScreen.label["common"], "center")
- 
+
 homeScreen.staticimage[18] = guiCreateStaticImage(0.21, 0.28, 0.29, 0.04, "gui/images/solo_slot.png", true)
 guiSetProperty(homeScreen.staticimage[18], "ImageColours", "tl:E3020202 tr:E3020202 bl:E3020202 br:E3020202")
 homeScreen.label[36] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "NOT AVAILABLE YET", true, homeScreen.staticimage[18]) -- CUSTOMIZABLE SKIN
@@ -171,9 +171,9 @@ homeScreen.staticimage[21] = guiCreateStaticImage(0.78, 0.32, 0.03, 0.59, "gui/i
 guiSetProperty(homeScreen.staticimage[21], "ImageColours", "tl:DD484848 tr:DD484848 bl:DD484848 br:DD484848")
 homeScreen.label[39] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "->", true, homeScreen.staticimage[21])
 guiLabelSetHorizontalAlign(homeScreen.label[39], "center", false)
-guiLabelSetVerticalAlign(homeScreen.label[39], "center")   
- 
-	
+guiLabelSetVerticalAlign(homeScreen.label[39], "center")
+
+
 guiSetVisible(homeScreen.staticimage[1],false)
 guiSetVisible(homeScreen.staticimage[5],false)
 for i=6,21 do
@@ -203,7 +203,7 @@ function sendToHomeScreen(dimension)
 	setElementDimension(localPlayer,dimension)
 	setElementInterior(localPlayer,18)
 	setElementFrozen(localPlayer,true)
-	guiSetVisible(homeScreen.staticimage[1],true)
+	-- guiSetVisible(homeScreen.staticimage[1],true) --handled somewhere else
 	showCursor(true)
 	setElementData(localPlayer,"participatingInGame",false)
 	triggerServerEvent("mtabg_sendUserDataToHomeScreen",localPlayer)
@@ -368,13 +368,13 @@ end
 local sm = {}
 sm.moov = 0
 sm.object1,sm.object2 = nil,nil
- 
+
 local function removeCamHandler()
 	if(sm.moov == 1)then
 		sm.moov = 0
 	end
 end
- 
+
 local function camRender()
 	if (sm.moov == 1) then
 		local x1,y1,z1 = getElementPosition(sm.object1)
@@ -383,7 +383,7 @@ local function camRender()
 	end
 end
 addEventHandler("onClientPreRender",root,camRender)
- 
+
 function smoothMoveCamera(x1,y1,z1,x1t,y1t,z1t,x2,y2,z2,x2t,y2t,z2t,time)
 	if(sm.moov == 1)then return false end
 	sm.object1 = createObject(1337,x1,y1,z1)
@@ -422,7 +422,7 @@ function openUpSelectedOption(theOption)
 				guiSetVisible(homeScreen.staticimage[i],false)
 			end
 		end
-		if not smoothMoveForward then		
+		if not smoothMoveForward then
 			local a,b,c,d,e,f = getCameraMatrix(localPlayer)
 			smoothMoveCamera(a,b,c,d,e,f,1720.41125,-1646.7942,21.0576,1721.21911,-1647.3781,20.9919,1000)
 			smoothMoveForward = true
@@ -540,7 +540,7 @@ function getStatisticsTableFromDB(theTable)
 	temporarySkinTable[localPlayer] = {}
 	temporaryCrateTable[localPlayer] = {}
 	for i, data in pairs(theTable) do
-		if type(data) ~= "table" then	
+		if type(data) ~= "table" then
 			table.insert(statisticsTable[localPlayer],{i,data})
 			if i == "battlepoints" then
 				guiSetText(homeScreen.label[6],tostring(data))
@@ -584,7 +584,7 @@ function showRewards()
 	for i=6,17 do
 		guiSetVisible(homeScreen.staticimage[i],true)
 	end
-	
+
 	for i, data in ipairs(temporaryCrateTable[localPlayer]) do
 		guiSetText(homeScreen.label[data[1]],guiGetText(homeScreen.label[data[1]]).." "..tostring(data[2]))
 	end

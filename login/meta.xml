@@ -1,8 +1,0 @@
-<meta>
-	<script src="login_s.lua" type="server" />
-	<script src="login_c.lua" type="client" />
-	<file src="img/battlegrounds_logo.png" />
-	<file src="img/background.png" />
-	<file src="img/white.png" />
-	<file src="sounds/Siege.mp3" />
-</meta>
