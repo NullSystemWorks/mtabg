@@ -181,6 +181,12 @@ end
 addEvent("mtabg_onClientBattleGroundsSetStatus",true)
 addEventHandler("mtabg_onClientBattleGroundsSetStatus",root,onClientBattleGroundsSetStatus)
 
+function onClientBattleGroundsSetAliveCount(amount)
+	playerAmount = tonumber(amount)
+end
+addEvent("mtabg_onClientBattleGroundsSetAliveCount",true)
+addEventHandler("mtabg_onClientBattleGroundsSetAliveCount",root,onClientBattleGroundsSetAliveCount)
+
 endScreen = {
     label = {},
     button = {},

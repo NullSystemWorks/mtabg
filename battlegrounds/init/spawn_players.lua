@@ -48,6 +48,15 @@ function onPlayerLeavingGame()
 			startCountDown(false)
 			countdownHasStarted = false
 		end
+	else
+		gameCache["playerAmount"] = math.max(gameCache["playerAmount"]-1,0)
+		for i, players in ipairs(getElementsByType("player")) do
+			if getElementData(players,"participatingInGame") then
+				triggerClientEvent("mtabg_onClientBattleGroundsSetAliveCount",players,gameCache["playerAmount"])
+			end
+		end
+		local losses = getUserData(source,"losses")
+		setUserData(source,"losses",losses+1)
 	end
 end
 addEventHandler("onPlayerQuit",root,onPlayerLeavingGame)
@@ -85,9 +94,9 @@ function sendPlayerToLobby(player)
 			gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
 			triggerClientEvent("mtabg_onClientBattleGroundsSetStatus",root,gameCache["initialPlayerAmount"],false,gameCache["countdown"]) -- We force gameCache as false
 		end
-		if gameCache["initialPlayerAmount"] >= 1 then --2
-			startCountDown(true)
+		if gameCache["initialPlayerAmount"] >= 2 then --2
 			if not countdownHasStarted then
+				startCountDown(true)
 				countdownHasStarted = true
 			end
 		end
