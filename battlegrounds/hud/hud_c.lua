@@ -30,6 +30,11 @@ local screenx, screeny = guiGetScreenSize() --screen size
 local safeAreaCol
 local guiPlayerHealth = 100
 
+fuelLabel = guiCreateLabel(0.02, 0.48, 0.19, 0.04, "FUEL:", true)
+guiSetVisible(fuelLabel,false)
+local fuelAmount = 0
+local isPlayerInsideVehicle = false
+
 
 
 function createZoneRadius(dangerZone,safeZone,radius,initialZoneRadius,timer)
@@ -116,10 +121,34 @@ function displayHealthGUI()
 				dxDrawText(playerAmount, (screenW * 0.9437) + 1, (screenH * 0.0483) + 1, (screenW * 1.0325) + 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 				dxDrawText(playerAmount, screenW * 0.9437, screenH * 0.0483, screenW * 1.0325, screenH * 0.1050, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 			end
+			if isPlayerInsideVehicle then
+				if not inventoryIsShowing then
+					if not guiGetVisible(fuelLabel) then
+						guiSetVisible(fuelLabel,true)
+						guiSetText(fuelLabel,"FUEL: "..tostring(fuelAmount).." L")
+					end
+					guiSetText(fuelLabel,"FUEL: "..tostring(fuelAmount).." L")
+					dxDrawLine((screenW * 0.0220) - 1, (screenH * 0.5078) - 1, (screenW * 0.0220) - 1, screenH * 0.5326, tocolor(0, 0, 0, 255), 1, true)
+					dxDrawLine(screenW * 0.2101, (screenH * 0.5078) - 1, (screenW * 0.0220) - 1, (screenH * 0.5078) - 1, tocolor(0, 0, 0, 255), 1, true)
+					dxDrawLine((screenW * 0.0220) - 1, screenH * 0.5326, screenW * 0.2101, screenH * 0.5326, tocolor(0, 0, 0, 255), 1, true)
+					dxDrawLine(screenW * 0.2101, screenH * 0.5326, screenW * 0.2101, (screenH * 0.5078) - 1, tocolor(0, 0, 0, 255), 1, true)
+					dxDrawRectangle(screenW * 0.0220, screenH * 0.5078, screenW * (0.1881/(100/fuelAmount)), screenH * 0.0247, tocolor(255, 255, 255, 255), true)
+				end
+			end
 		end
 	end
 end
 addEventHandler("onClientRender",root,displayHealthGUI)
+
+
+
+function onPlayerIsInsideVehicle(fuel)
+	if not fuel then isPlayerInsideVehicle = false fuelAmount = 0 guiSetVisible(fuelLabel,false) return end
+	isPlayerInsideVehicle = true
+	fuelAmount = fuel
+end
+addEvent("mtabg_onPlayerIsInsideVehicle",true)
+addEventHandler("mtabg_onPlayerIsInsideVehicle",root,onPlayerIsInsideVehicle)
 
 function onClientBattleGroundsGetPlayerHealthGUI(player)
 	if gameStatus then

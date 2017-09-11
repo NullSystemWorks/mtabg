@@ -85,7 +85,7 @@ function sendPlayerToLobby(player)
 			gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
 			triggerClientEvent("mtabg_onClientBattleGroundsSetStatus",root,gameCache["initialPlayerAmount"],false,gameCache["countdown"]) -- We force gameCache as false
 		end
-		if gameCache["initialPlayerAmount"] >= 1 then --2 ---> Problem: if a second or third player joins within 2 seconds, script does not execute
+		if gameCache["initialPlayerAmount"] >= 1 then --2
 			startCountDown(true)
 			if not countdownHasStarted then
 				countdownHasStarted = true
@@ -156,7 +156,7 @@ local countDownTimer
 			end
 			end
 			if gameCache["countdown"] == 0 then
-				if gameCache["initialPlayerAmount"] > 1 then -- Must be > 1 (= at least 2 players)
+				if gameCache["initialPlayerAmount"] >= 1 then -- Must be > 1 (= at least 2 players)
 					if not gameCache["status"] then 
 						startGame()
 						firstTimeLoot = true
@@ -228,6 +228,7 @@ function startGame()
 		gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
 	end
 	createZone()
+	spawnVehiclesOnMatchStart()
 	gameCache["status"] = true
 	triggerClientEvent("mtabg_onClientBattleGroundsSetStatus",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 	gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
