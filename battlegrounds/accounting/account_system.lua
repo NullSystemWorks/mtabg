@@ -28,18 +28,18 @@ dataStore = { -- Default values
 }
 
 function mtabg_mysql_init()
-    if gameplayVariables['database'] == 0 then
-        outputDebugString("[MTABG] Connecting to DB...")
-        mysql_link = dbConnect( "mysql", "dbname="..gameplayVariables['db_name']..";host="..gameplayVariables['db_host']..";port="..gameplayVariables['db_port'], gameplayVariables['db_user'], gameplayVariables['db_pass'], "share=1" )
-        if mysql_link then
+		if gameplayVariables['database'] == 0 then
+				outputDebugString("[MTABG] Connecting to DB...")
+				mysql_link = dbConnect( "mysql", "dbname="..gameplayVariables['db_name']..";host="..gameplayVariables['db_host']..";port="..gameplayVariables['db_port'], gameplayVariables['db_user'], gameplayVariables['db_pass'], "share=1" )
+				if mysql_link then
 			dbExec(mysql_link,"CREATE TABLE IF NOT EXISTS `accounts` (`ID` int(11) NOT NULL AUTO_INCREMENT, `email` text NOT NULL, `password` text NOT NULL, `serial` text NOT NULL, `IP` text NOT NULL, `data` text NOT NULL, `avatar` longtext NOT NULL, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;")
-            outputDebugString("[MTABG] Connected to DB: "..gameplayVariables['db_name'])
-        else
-            outputDebugString("[MTABG] Error connecting to MySQL Database. Stoping Resource...")
-            cancelEvent()
-            return
-        end
-    end
+						outputDebugString("[MTABG] Connected to DB: "..gameplayVariables['db_name'])
+				else
+						outputDebugString("[MTABG] Error connecting to MySQL Database. Stoping Resource...")
+						cancelEvent()
+						return
+				end
+		end
 
 end
 addEventHandler("onResourceStart", resourceRoot, mtabg_mysql_init)
@@ -93,32 +93,34 @@ addEvent("mtabg_login", true)
 addEventHandler("mtabg_login", getRootElement(), login)
 
 -- Returns 0 if account was created | 1 if account already existing | 2 if there was an error
-function registerAccount(email, password, avatar)
-    if not source or not email then return end
+function registerAccount(email, password, avatar,	alphaKey)
+	if not source or not email then return end
 	if not avatar then avatar = "none" end
-    local ip = getPlayerIP(source)
-    local serial = getPlayerSerial(source)
-    local isAccount = checkAccount(serial)
-    local data = toJSON(dataStore)
+	local isValidAlphaKey = validateAlphaKey(source, alphaKey)
+	if not isValidAlphaKey then return end --prevent login
+	local ip = getPlayerIP(source)
+	local serial = getPlayerSerial(source)
+	local isAccount = checkAccount(serial)
+	local data = toJSON(dataStore)
 	local tempAvatar = false
 	if avatar ~= "none" then
 		tempAvatar = base64Decode(avatar)
 	end
-    if isAccount == 0 then
-        local query = "INSERT INTO accounts(ID, serial, email, password, IP, data, avatar) VALUES (null, '"..serial.."', '"..email.."', '"..hashNewPassword(password).."', '"..ip.."', '"..data.."', '"..avatar.."');"
-        dbExec(mysql_link, query)
-        local registered = checkAccount(serial)
-        if registered == 1 then
+	if isAccount == 0 then
+		local query = "INSERT INTO accounts(ID, serial, email, password, IP, data, avatar) VALUES (null, '"..serial.."', '"..email.."', '"..hashNewPassword(password).."', '"..ip.."', '"..data.."', '"..avatar.."');"
+		dbExec(mysql_link, query)
+		local registered = checkAccount(serial)
+		if registered == 1 then
 			login(password)
-				return
-        else
-             triggerClientEvent(client, "MTABG_LoginError", client, "Unknown error. Please contact a server admin (EC: 2)!")
-        end
-    elseif isAccount == 1 then
+			return
+		else
+	 		triggerClientEvent(client, "MTABG_LoginError", client, "Unknown error. Please contact a server admin (EC: 2)!")
+		end
+	elseif isAccount == 1 then
 		triggerClientEvent(client, "MTABG_LoginError", client, "ID is taken. Please contact a server admin (EC: 3)!")
-    else
-       triggerClientEvent(client, "MTABG_LoginError", client, "Unknown error. Please contact a server admin (EC: 4)!")
-    end
+	else
+		triggerClientEvent(client, "MTABG_LoginError", client, "Unknown error. Please contact a server admin (EC: 4)!")
+	end
 end
 addEvent("mtabg_register", true)
 addEventHandler("mtabg_register", getRootElement(), registerAccount)

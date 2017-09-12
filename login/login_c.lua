@@ -3,7 +3,7 @@
 				MTA:BG
 			MTA Battlegrounds
 	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
-	
+
 ]]--
 
 
@@ -27,6 +27,10 @@ guiSetFont(LoginScreen.label[1], "default-bold-small")
 guiLabelSetHorizontalAlign(LoginScreen.label[1], "center", false)
 LoginScreen.edit[2] = guiCreateEdit(0.35, 0.50, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- PWD
 guiEditSetMasked(LoginScreen.edit[2],true)
+LoginScreen.edit[3] = guiCreateEdit(0.35, 0.32, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- Alpha key
+LoginScreen.label[7] = guiCreateLabel(0.27, 0.33, 0.08, 0.04, "KEY", true, LoginScreen.staticimage[1])
+guiSetFont(LoginScreen.label[7], "default-bold-small")
+guiLabelSetHorizontalAlign(LoginScreen.label[7], "center", false)
 LoginScreen.label[2] = guiCreateLabel(0.27, 0.51, 0.08, 0.04, "PWD", true, LoginScreen.staticimage[1])
 guiSetFont(LoginScreen.label[2], "default-bold-small")
 guiLabelSetHorizontalAlign(LoginScreen.label[2], "center", false)
@@ -40,10 +44,10 @@ LoginScreen.staticimage[4] = guiCreateStaticImage(0.50, 0.61, 0.14, 0.07, "img/w
 guiSetProperty(LoginScreen.staticimage[4], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
 LoginScreen.label[5] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "REGISTER", true, LoginScreen.staticimage[4])
 guiLabelSetHorizontalAlign(LoginScreen.label[5], "center", false)
-guiLabelSetVerticalAlign(LoginScreen.label[5], "center")    
+guiLabelSetVerticalAlign(LoginScreen.label[5], "center")
 LoginScreen.label[6] = guiCreateLabel(0.27, 0.70, 0.46, 0.05, "", true, LoginScreen.staticimage[1])
 guiLabelSetHorizontalAlign(LoginScreen.label[6], "center", false)
-guiLabelSetVerticalAlign(LoginScreen.label[6], "center")    
+guiLabelSetVerticalAlign(LoginScreen.label[6], "center")
 
 guiSetVisible(LoginScreen.staticimage[1],false)
 
@@ -55,7 +59,8 @@ function loginPanel(state)
 		end,false)
 		addEventHandler("onClientGUIClick", LoginScreen.label[5], function()
 			local password = guiGetText(LoginScreen.edit[2])
-			triggerServerEvent("mtabg_register", localPlayer, "None", password, false)
+			local alphaKey = guiGetText(LoginScreen.edit[3])
+			triggerServerEvent("mtabg_register", localPlayer, "None", password, false, alphaKey)
 		end, false)
 		guiBringToFront(LoginScreen.staticimage[1])
 		copyright = guiCreateLabel(0.00, 0.97, 0.46, 0.03, "MTA:Battlegrounds ©2017 Null System Works. All Rights Reserved.", true, LoginScreen.staticimage[1])
@@ -174,8 +179,8 @@ addEventHandler("onClientMouseLeave",LoginScreen.label[5],changeColorOfRegisterB
 		guiLabelSetColor(LoginScreen.label[3], 0, 0, 0)
 		guiLabelSetHorizontalAlign(LoginScreen.label[3], "center", false)
 		guiLabelSetVerticalAlign(LoginScreen.label[3], "center")
-		
-		
+
+
 
 		LoginScreen.label[5] = guiCreateLabel(0.44, 0.46, 0.11, 0.04, "Lost your pass? Click here", true, Loginbg)
 		guiSetFont(LoginScreen.label[5], "default-bold-small")
@@ -194,7 +199,7 @@ RegisterScreen = {
 function registerPanel(state)
 	if not RegisterScreen.staticimage[2] and Loginbg and state then
 		RegisterScreen.staticimage[2] = guiCreateStaticImage(0.46, 0.16, 0.08, 0.14, ":login/img/defaultavatar.png", true, Loginbg)
-		
+
 		RegisterScreen.edit[1] = guiCreateEdit(0.44, 0.49, 0.11, 0.03, "password", true, Loginbg)
 		guiEditSetMasked(RegisterScreen.edit[1], true)
 		RegisterScreen.label[1] = guiCreateLabel(0.44, 0.47, 0.11, 0.02, "Password", true, Loginbg)
@@ -213,21 +218,21 @@ function registerPanel(state)
 		guiSetAlpha(RegisterScreen.staticimage[3], 0.95)
 		guiSetProperty(RegisterScreen.staticimage[3], "ImageColours", "tl:FFCF8F00 tr:FFCF8F00 bl:FFCF8F00 br:FFCF8F00")
 
-		
-		
-		
-		
+
+
+
+
 		RegisterScreen.label[3] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "REGISTER", true, RegisterScreen.staticimage[3])
 		guiSetFont(RegisterScreen.label[3], "default-bold-small")
 		guiLabelSetColor(RegisterScreen.label[3], 0, 0, 0)
 		guiLabelSetHorizontalAlign(RegisterScreen.label[3], "center", false)
 		guiLabelSetVerticalAlign(RegisterScreen.label[3], "center")
 
-		
-		
-		
-		
-		
+
+
+
+
+
 		RegisterScreen.label[5] = guiCreateLabel(0.44, 0.41, 0.11, 0.02, "E-mail", true, Loginbg)
 		RegisterScreen.edit[3] = guiCreateEdit(0.44, 0.43, 0.11, 0.03, "", true, Loginbg)
 		guiSetFont(RegisterScreen.label[5], "default-bold-small")
@@ -244,14 +249,14 @@ function registerPanel(state)
 		RegisterScreen.label[7] = guiCreateLabel(0.04, 0.06, 0.90, 0.16, "Link to photo", true, RegisterScreen.staticimage[4])
 		guiLabelSetHorizontalAlign(RegisterScreen.label[7], "center", false)
 		guiLabelSetVerticalAlign(RegisterScreen.label[7], "center")
-		
+
 		addEventHandler("onClientGUIChanged", RegisterScreen.edit[4], function()
 			local stringEd = guiGetText(RegisterScreen.edit[4])
 			if string.sub(stringEd, string.len(stringEd)-3, string.len(stringEd)) == ".png" and string.find(string.sub(stringEd, 0, 23), "imgur.com")  then
 				triggerServerEvent("mtabg_logdownloadAvatarimg", getLocalPlayer(), stringEd)
 			end
 		end)
-		
+
 
         RegisterScreen.staticimage[5] = guiCreateStaticImage(0.44, 0.16, 0.02, 0.03, ":login/img/white.png", true, Loginbg)
         guiSetProperty(RegisterScreen.staticimage[5], "ImageColours", "tl:FF1B1B1B tr:FF1B1B1B bl:FF1B1B1B br:FF1B1B1B")
@@ -260,8 +265,8 @@ function registerPanel(state)
         guiSetFont(RegisterScreen.label[8], "default-bold-small")
         guiLabelSetColor(RegisterScreen.label[8], 1, 186, 9)
         guiLabelSetHorizontalAlign(RegisterScreen.label[8], "center", false)
-        guiLabelSetVerticalAlign(RegisterScreen.label[8], "center") 
-		
+        guiLabelSetVerticalAlign(RegisterScreen.label[8], "center")
+
 		addEventHandler("onClientGUIClick", RegisterScreen.label[8], function()
 			local stringEd = guiGetText(RegisterScreen.edit[4])
 			if string.sub(stringEd, string.len(stringEd)-3, string.len(stringEd)) == ".png" and string.find(string.sub(stringEd, 0, 23), "imgur.com")  then
@@ -276,9 +281,9 @@ function registerPanel(state)
 				guiSetVisible(gui, state)
 			end
 		end
-		
+
 		-- Due to bugs on the loop, we're using primal way.
-		
+
 	end
 end
 
@@ -325,9 +330,13 @@ function loadLoginScreen(serial, account)
 	showCursor(true)
 	hasAccount = account
 	if not account then
+		guiSetVisible(LoginScreen.edit[3], true)
+		guiSetVisible(LoginScreen.label[7], true)
 		guiSetVisible(LoginScreen.staticimage[3],false)
 		guiSetVisible(LoginScreen.staticimage[4],true)
 	else
+		guiSetVisible(LoginScreen.edit[3], false)
+		guiSetVisible(LoginScreen.label[7], false)
 		guiSetVisible(LoginScreen.staticimage[3],true)
 		guiSetVisible(LoginScreen.staticimage[4],false)
 	end
