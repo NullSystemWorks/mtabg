@@ -41,6 +41,7 @@ guiLabelSetColor(homeScreen.label[4],197,197,197)
 homeScreen.label[5] = guiCreateLabel(0.64, 0.11, 0.24, 0.05, tostring(getPlayerName(localPlayer)), true, homeScreen.staticimage[1])
 guiLabelSetVerticalAlign(homeScreen.label[5], "center")
 guiSetFont(homeScreen.label[5],homeScreen.font[1])
+guiLabelSetColor(homeScreen.label[5],0,0,0)
 homeScreen.staticimage[4] = guiCreateStaticImage(0.87, 0.11, 0.05, 0.05,"gui/images/battlepointsicon.png",true,homeScreen.staticimage[1])
 homeScreen.label[6] = guiCreateLabel(0.95, 0.11, 0.12, 0.05, "0", true, homeScreen.staticimage[1])
 guiLabelSetVerticalAlign(homeScreen.label[6], "center")
@@ -106,7 +107,7 @@ guiLabelSetVerticalAlign(homeScreen.label["battlepointsspent_value"], "center")
 
 homeScreen.label[30] = guiCreateLabel(0.72, 0.93, 0.05, 0.07, "ID:", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label[30], "center")
-homeScreen.label[31] = guiCreateLabel(0.78, 0.93, 0.22, 0.07, "0000001", true, homeScreen.staticimage[5])
+homeScreen.label[31] = guiCreateLabel(0.78, 0.93, 0.22, 0.07, "N/A", true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label[31], "center")   
 
 
@@ -325,6 +326,10 @@ function changeColorOfDeselectedOptionPlay()
 	guiSetProperty(homeScreen.staticimage[3], "ImageColours", "tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF")
 end
 addEventHandler("onClientMouseLeave",homeScreen.label[8],changeColorOfDeselectedOptionPlay,false)
+
+addEventHandler("onClientGUIClick",homeScreen.staticimage[2],function()
+	guiMoveToBack(homeScreen.staticimage[2])
+end)
 
 function sendPlayerToLobbyOnPlayPress(button)
 	if button == "left" then

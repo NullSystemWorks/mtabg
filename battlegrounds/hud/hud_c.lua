@@ -135,6 +135,14 @@ function displayHealthGUI()
 					dxDrawRectangle(screenW * 0.0220, screenH * 0.5078, screenW * (0.1881/(100/fuelAmount)), screenH * 0.0247, tocolor(255, 255, 255, 255), true)
 				end
 			end
+		else
+			local armorValue = getPedArmor(localPlayer)
+			if armorValue <= 0 then
+				guiSetVisible(inventoryGUI.staticimage[10],false)
+				guiSetVisible(inventoryGUI.progressbar[2],false)
+			else
+				guiProgressBarSetProgress(inventoryGUI.progressbar[2],armorValue)
+			end
 		end
 	end
 end

@@ -66,6 +66,29 @@ Version: 0.0.1 Pre-Alpha
 	<file src="gui/images/solo_slot.png" />
 	<file src="gui/images/button.png" />
 	<file src="gui/images/battlepointsicon.png" />
+	
+	<file src="gui/images/m1911.png"/>
+	<file src="gui/images/revolver.png"/>
+	<file src="gui/images/bizon.png"/>
+	<file src="gui/images/m9sd.png"/>
+	<file src="gui/images/pdw.png"/>
+	<file src="gui/images/mp5a5.png"/>
+	<file src="gui/images/ak47.png"/>
+	<file src="gui/images/sa58v.png"/>
+	<file src="gui/images/fnfal.png"/>
+	<file src="gui/images/M24.png"/>
+	<file src="gui/images/bat.png"/>
+	<file src="gui/images/g36c.png"/>
+	<file src="gui/images/m4.png"/>
+	<file src="gui/images/svd.png"/>
+	<file src="gui/images/enfield.png"/>
+	<file src="gui/images/winchester.png"/>
+	<file src="gui/images/sawn.png"/>
+	<file src="gui/images/spaz.png"/>
+	<file src="gui/images/vestlevel1.png" />
+	<file src="gui/images/vestlevel2.png" />
+	<file src="gui/images/vestlevel3.png" />
+
 	<file src="sounds/Unsung Briefing 1.mp3" />
 	<file src="sounds/Unsung Briefing 2.mp3" />
 	<file src="gui/images/background_transparent.png" />
@@ -85,6 +108,7 @@ Version: 0.0.1 Pre-Alpha
 	<file src="hud/running.png" />
 	<file src="fonts/etelka.ttf" />
 	<file src="fonts/bitstream.ttf" />
+	<file src="fonts/bebas.otf" />
 
 	<!-- Models -->
 

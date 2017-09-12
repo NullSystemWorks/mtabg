@@ -94,7 +94,7 @@ function sendPlayerToLobby(player)
 			gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
 			triggerClientEvent("mtabg_onClientBattleGroundsSetStatus",root,gameCache["initialPlayerAmount"],false,gameCache["countdown"]) -- We force gameCache as false
 		end
-		if gameCache["initialPlayerAmount"] >= 2 then --2
+		if gameCache["initialPlayerAmount"] >= 1 then --2
 			if not countdownHasStarted then
 				startCountDown(true)
 				countdownHasStarted = true
@@ -249,6 +249,10 @@ addEventHandler("mtabg_startGame",root,startGame)
 function startGameCommand()
 	startCountDown(false)
 	startGame()
+	async:foreach(lootPoints["Industry"], function(position)
+	SpotsID = SpotsID+1
+	createLootPoint("Industry",position[1],position[2],position[3],SpotsID)
+	end)
 end
 addCommandHandler("game",startGameCommand)
 

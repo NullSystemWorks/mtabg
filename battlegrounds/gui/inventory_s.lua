@@ -345,9 +345,9 @@ function onPlayerUseItem(itemName,itemInfo)
 							end
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName,255,255,255)
 						else
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!",255,0,0)
 						end
 					end
 				elseif itemName == "First Aid Kit" then
@@ -356,9 +356,9 @@ function onPlayerUseItem(itemName,itemInfo)
 							data[3] = 100
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName,255,255,255)
 						else
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!",255,0,0)
 						end
 					end
 				elseif itemName == "Painkiller" then
@@ -370,16 +370,16 @@ function onPlayerUseItem(itemName,itemInfo)
 							end
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName,255,255,255)
 						else
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!",255,0,0)
 						end
 					end
 				elseif itemName == "Energy Drink" then
 					if data[2] == "health" then
 						if data[3] < 100 then
 							itemUsed = true
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName)
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName,255,255,255)
 							if isTimer(energyDrinkTimer) then killTimer(energyDrinkTimer) end
 								energyDrinkTimer = setTimer(function()
 								data[3] = data[3]+1
@@ -389,7 +389,7 @@ function onPlayerUseItem(itemName,itemInfo)
 								triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
 							end,1000,50,client,data[3])
 						else
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!")
+							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!",255,0,0)
 						end
 					end
 				end
@@ -407,6 +407,20 @@ function onPlayerUseItem(itemName,itemInfo)
 				setPlayerCapacity(client,270)
 				itemUsed = true
 			end
+			local armorName = ""
+			if itemName == "Police Vest (Level 1)" then
+				armorName = "vestlevel1"
+				addArmorToPlayer(client,33,armorName)
+				itemUsed = true
+			elseif itemName == "Police Vest (Level 2)" then
+				armorName = "vestlevel2"
+				addArmorToPlayer(client,66,armorName)
+				itemUsed = true
+			elseif itemName == "Military Vest (Level 3)" then
+				armorName = "vestlevel3"
+				addArmorToPlayer(client,100,armorName)
+				itemUsed = true
+			end
 		end
 		if itemUsed then
 			for i, data in ipairs(playerInfo[client]) do
@@ -422,13 +436,23 @@ end
 addEvent("mtabg_onPlayerUseItem",true)
 addEventHandler("mtabg_onPlayerUseItem",root,onPlayerUseItem)
 
+function addArmorToPlayer(player,amount,armorName)
+	setPedArmor(player,amount)
+	triggerClientEvent(player,"mtabg_onPlayerAddArmorImage",player,armorName)
+end
+
 local currentWeapon_1 = ""
 local currentWeapon_2 = ""
 local currentWeapon_3 = ""
 local weaponType = ""
+local imagePath = ""
+local guiLabelName = ""
+local relativeSizeX = 0
+local relativeSizeY = 0
+local relativePosX = 0
+local relativePosY = 0
 local oldWeapon = ""
 function equipWeapon(weapon,info,player)
-	if not client then client = player end
 	local weaponID = 0
 	local ammoType = ""
 	for i, weap in ipairs(weaponDataTable) do
@@ -436,21 +460,24 @@ function equipWeapon(weapon,info,player)
 			weaponID = weap[2]
 			ammoType = weap[6]
 			weaponType = weap[7]
+			imagePath = weap[8]
+			guiLabelName = weap[9]
+			relativeSizeX = weap[10]
+			relativeSizeY = weap[11]
+			relativePosX = weap[12]
+			relativePosY = weap[13]
 			break
 		end
 	end
 	for i, data in ipairs(playerInfo[player]) do
 		if ammoType == data[2] then
 			if data[3] > 0 then
-				if oldWeapon == weapon then
-					takeWeapon(client,weaponID)
-					oldWeapon = ""
-				else
-					giveWeapon(client,weaponID,data[3],true)
-					oldWeapon = weapon
-				end
+				takeWeapon(player,weaponID)
+				giveWeapon(player,weaponID,data[3],true)
+				triggerClientEvent(player,"mtabg_changeEquippedWeaponGUI",player,info,weapon,imagePath,guiLabelName,relativeSizeX,relativeSizeY,relativePosX,relativePosY)
+				break
 			else
-				triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Not enough ammo!")
+				triggerClientEvent(player,"mtabg_sendErrorToInventory",player,"Not enough ammo!",255,0,0)
 				return
 			end
 		end
@@ -474,7 +501,6 @@ function equipWeapon(weapon,info,player)
 			
 		end
 	end
-	triggerClientEvent(client,"mtabg_changeEquippedWeaponGUI",client,info,weapon,playerDataInfo[player])
 end
 
 function depleteAmmoCountWhenFiring(weapon,x,y,z,hitElement,startX,startY,startZ)
@@ -507,7 +533,7 @@ function depleteAmmoCountWhenFiring(weapon,x,y,z,hitElement,startX,startY,startZ
 			data[3] = data[3]-1
 			if data[3] <= 0 then
 				data[3] = 0
-				removeWeapon(weaponID,source)
+				takeWeapon(source,weaponID)
 			end
 		end
 	end
@@ -555,7 +581,7 @@ function getPlayerCapacity(item)
 	if itemWeight and itemWeight < 1 then
 		itemWeight = 0
 	end
-	if usedCapacity+itemWeight > maxCapacity then
+	if itemWeight and usedCapacity+itemWeight > maxCapacity then
 		triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Not enough inventory capacity!")
 		return false
 	else

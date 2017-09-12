@@ -20,6 +20,13 @@ function onBattleGroundsPlayerDamage(attacker,weapon,bodypart,loss)
 				local calculcatedDistance = getDistanceBetweenPoints3D(x1,y1,z1,x2,y2,z2)
 				--finalDistance = math.min(calculatedDistance-weaponDistance,100)
 				--finalDamage = math.min(math.abs(damage*(finalDistance/100)),damage-(damage*(finalDistance/100)))
+				local hasArmor = getPedArmor(client)
+				if hasArmor > 0 then
+					if damage >= hasArmor then
+						setPedArmor(client,0)
+					end
+					damage = damage-hasArmor
+				end
 				finalDamage = damage
 				if bodypart == 9 then
 					headshot = true
@@ -64,6 +71,7 @@ function destroyDeadPlayer(ped,pedCol)
 	destroyElement(pedCol)
 end
 
+local finalRank = 0
 function killBattleGroundsPlayer(player,killer,headshot)
 	if not player then player = source end
 	local x,y,z = getElementPosition(player)
@@ -127,12 +135,13 @@ function killBattleGroundsPlayer(player,killer,headshot)
 		--
 	end
 	homeScreenDimension = homeScreenDimension+1
-	setElementData(player,"participatingInGame",false)
+	finalRank = gameCache["playerAmount"]
 	gameCache["playerAmount"] = gameCache["playerAmount"]-1
+	setElementData(player,"participatingInGame",false)
 	if isElement(killer) then
 		checkForWinner(killer)
 		outputSideChat("Player "..getPlayerName(player).." was killed by "..getPlayerName(killer).." - "..gameCache["playerAmount"].." left",root,255,255,255)
-		triggerClientEvent(player,"mtabg_showEndscreen",player,gameCache["playerAmount"],homeScreenDimension)
+		triggerClientEvent(player,"mtabg_showEndscreen",player,finalRank,homeScreenDimension)
 	else
 		if gameCache["playerAmount"] <= 1 then
 			for i, players in ipairs(getElementsByType("player")) do
@@ -141,7 +150,7 @@ function killBattleGroundsPlayer(player,killer,headshot)
 				end
 			end
 		end
-		triggerClientEvent(player,"mtabg_showEndscreen",player,gameCache["playerAmount"],homeScreenDimension)
+		triggerClientEvent(player,"mtabg_showEndscreen",player,finalRank,homeScreenDimension)
 		outputSideChat("Player "..getPlayerName(player).." has died - "..gameCache["playerAmount"].." left",root,255,255,255)
 	end
 	removeAttachedOnDeath(player)
@@ -174,6 +183,19 @@ function awardPlayerWithStatistics(player)
 				stat_headshots = data[3]
 			end
 		end
+		--[[ 
+		If a player is rank #1 -> 101-1 = 100
+		If coins value was, for example, 20 -> 20*100 -> 2000 Battlepoints earned
+		
+		If a player is rank #50 -> 101-50 = 51
+		If coins value was, for example, 20 -> 20*51 = 1020 Battlepoints earned
+		
+		If a player is rank #100 -> 101-100 = 1
+		If coins value was, for example, 10 -> 10*1 = 10 Battlepoints earned
+		
+		-> Division by 5 due to sheer amount of battlepoints earned
+		]]
+		coins = math.floor((coins*(101-finalRank))/5)
 		local gamesplayed = getUserData(player,"gamesplayed")
 		local losses = getUserData(player,"losses")
 		local wins = getUserData(player,"wins")

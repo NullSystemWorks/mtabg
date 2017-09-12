@@ -49,6 +49,9 @@ lootItems = {
 {"Bolt",2358,2,0,0},
 {"Full Gas Canister",1650,2,0,0},
 {"First Aid Kit",2891,2.2,0,0},
+{"Police Vest (Level 1)",373,1,0,1},
+{"Police Vest (Level 2)",373,1,0,0.05},
+{"Military Vest (Level 3)",373,1,0,0},
 },
 
 ["Industry"] = {
@@ -90,6 +93,9 @@ lootItems = {
 {"Backpack (Level 1)",3026,1,0,23.15},
 {"Backpack (Level 2)",1239,1,0,9.28},
 {"Backpack (Level 3)",1644,1,0,2.84},
+{"Police Vest (Level 1)",373,1,0,0},
+{"Police Vest (Level 2)",373,1,0,0},
+{"Military Vest (Level 3)",373,1,0,0},
 },
 
 ["Farm"] = {
@@ -132,6 +138,9 @@ lootItems = {
 {"Backpack (Level 1)",3026,1,0,23.15},
 {"Backpack (Level 2)",1239,1,0,9.28},
 {"Backpack (Level 3)",1644,1,0,2.84},
+{"Police Vest (Level 1)",373,1,0,0},
+{"Police Vest (Level 2)",373,1,0,0},
+{"Military Vest (Level 3)",373,1,0,0},
 },
 
 ["Supermarket"] = {
@@ -173,6 +182,9 @@ lootItems = {
 {"Backpack (Level 1)",3026,1,0,23.15},
 {"Backpack (Level 2)",1239,1,0,9.28},
 {"Backpack (Level 3)",1644,1,0,2.84},
+{"Police Vest (Level 1)",373,1,0,3},
+{"Police Vest (Level 2)",373,1,0,0.19},
+{"Military Vest (Level 3)",373,1,0,0.001},
 },
 
 ["Military"] = {
@@ -214,6 +226,9 @@ lootItems = {
 {"Backpack (Level 1)",3026,1,0,23.15},
 {"Backpack (Level 2)",1239,1,0,9.28},
 {"Backpack (Level 3)",1644,1,0,2.84},
+{"Police Vest (Level 1)",373,1,0,2},
+{"Police Vest (Level 2)",373,1,0,5},
+{"Military Vest (Level 3)",373,1,0,10},
 },
 
 ["FullList"] = {
@@ -229,7 +244,6 @@ lootItems = {
 {"Sa58V CCO",355,1,90,10},
 {"FN FAL",355,1,90,10},
 {"M24",358,1,90,10},
-{"DMR",358,1,90,10},
 {"G36C",356,1,90,10},
 {"M16A2",356,1,90,10},
 {"M4A1",356,1,90,10},
@@ -255,5 +269,8 @@ lootItems = {
 {"Backpack (Level 1)",3026,1,0,0},
 {"Backpack (Level 2)",1239,1,0,0},
 {"Backpack (Level 3)",1644,1,0,0},
+{"Police Vest (Level 1)",373,1,0,1},
+{"Police Vest (Level 2)",373,1,0,1},
+{"Military Vest (Level 3)",373,1,0,1},
 },
 }

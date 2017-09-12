@@ -59,4 +59,7 @@ playerInventoryTable = {
 {"Backpack (Level 1)",0},
 {"Backpack (Level 2)",0},
 {"Backpack (Level 3)",0},
+{"Police Vest (Level 1)",0},
+{"Police Vest (Level 2)",0},
+{"Military Vest (Level 3)",0},
 }

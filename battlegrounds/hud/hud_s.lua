@@ -104,7 +104,7 @@ function getPlayersInsideZone()
 								if data[2] == "health" then
 									if data[3] > 0 then
 										data[3] = data[3]-5
-										triggerClientEvent("mtabg_onClientBattleGroundsSetPlayerHealthGUI",players,data[3])
+										triggerClientEvent("mtabg_onClientBattleGroundsSetPlayerHealthGUI",players,"none",data[3])
 										checkPlayerStatus("health",players,false)
 									end
 								end

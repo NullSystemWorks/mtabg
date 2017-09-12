@@ -11,29 +11,29 @@ local screenW, screenH = guiGetScreenSize()
 local isInventoryShowing = false
 
 
-GUIEditor.label[12] = guiCreateLabel(0.08, 0.15, 0.17, 0.04, "YOUR INVENTORY", true)
-guiSetFont(GUIEditor.label[12], "default-bold-small")
-guiLabelSetHorizontalAlign(GUIEditor.label[12], "center", false)
-GUIEditor.label[29] = guiCreateLabel(0.61, 0.19, 0.04, 0.04, "1", true)
-guiSetFont(GUIEditor.label[29], "default-bold-small")
-guiLabelSetHorizontalAlign(GUIEditor.label[29], "center", false)
-guiLabelSetVerticalAlign(GUIEditor.label[29], "center")
-GUIEditor.label[30] = guiCreateLabel(0.61, 0.39, 0.04, 0.04, "2", true)
-guiSetFont(GUIEditor.label[30], "default-bold-small")
-guiLabelSetHorizontalAlign(GUIEditor.label[30], "center", false)
-guiLabelSetVerticalAlign(GUIEditor.label[30], "center")
-GUIEditor.label[31] = guiCreateLabel(0.61, 0.59, 0.04, 0.04, "3", true)
-guiSetFont(GUIEditor.label[31], "default-bold-small")
-guiLabelSetHorizontalAlign(GUIEditor.label[31], "center", false)
-guiLabelSetVerticalAlign(GUIEditor.label[31], "center")
-GUIEditor.label[32] = guiCreateLabel(0.32, 0.15, 0.17, 0.04, "LOOT", true)
-guiSetFont(GUIEditor.label[32], "default-bold-small")
-guiLabelSetHorizontalAlign(GUIEditor.label[32], "center", false)
-GUIEditor.label[33] = guiCreateLabel(0.34, 0.02, 0.29, 0.08, "[PLAYERNAME]", true)
-guiLabelSetHorizontalAlign(GUIEditor.label[33], "center", false)
-guiLabelSetVerticalAlign(GUIEditor.label[33], "center")
-GUIEditor.label[34] = guiCreateLabel(0.06, 0.17, 0.20, 0.70, "", true)
-GUIEditor.label[35] = guiCreateLabel(0.31, 0.17, 0.20, 0.70, "", true)
+inventoryGUI.label[12] = guiCreateLabel(0.08, 0.15, 0.17, 0.04, "YOUR INVENTORY", true)
+guiSetFont(inventoryGUI.label[12], "default-bold-small")
+guiLabelSetHorizontalAlign(inventoryGUI.label[12], "center", false)
+inventoryGUI.label[29] = guiCreateLabel(0.61, 0.19, 0.04, 0.04, "1", true)
+guiSetFont(inventoryGUI.label[29], "default-bold-small")
+guiLabelSetHorizontalAlign(inventoryGUI.label[29], "center", false)
+guiLabelSetVerticalAlign(inventoryGUI.label[29], "center")
+inventoryGUI.label[30] = guiCreateLabel(0.61, 0.39, 0.04, 0.04, "2", true)
+guiSetFont(inventoryGUI.label[30], "default-bold-small")
+guiLabelSetHorizontalAlign(inventoryGUI.label[30], "center", false)
+guiLabelSetVerticalAlign(inventoryGUI.label[30], "center")
+inventoryGUI.label[31] = guiCreateLabel(0.61, 0.59, 0.04, 0.04, "3", true)
+guiSetFont(inventoryGUI.label[31], "default-bold-small")
+guiLabelSetHorizontalAlign(inventoryGUI.label[31], "center", false)
+guiLabelSetVerticalAlign(inventoryGUI.label[31], "center")
+inventoryGUI.label[32] = guiCreateLabel(0.32, 0.15, 0.17, 0.04, "LOOT", true)
+guiSetFont(inventoryGUI.label[32], "default-bold-small")
+guiLabelSetHorizontalAlign(inventoryGUI.label[32], "center", false)
+inventoryGUI.label[33] = guiCreateLabel(0.34, 0.02, 0.29, 0.08, "[PLAYERNAME]", true)
+guiLabelSetHorizontalAlign(inventoryGUI.label[33], "center", false)
+guiLabelSetVerticalAlign(inventoryGUI.label[33], "center")
+inventoryGUI.label[34] = guiCreateLabel(0.06, 0.17, 0.20, 0.70, "", true)
+inventoryGUI.label[35] = guiCreateLabel(0.31, 0.17, 0.20, 0.70, "", true)
 
 
 
@@ -76,70 +76,108 @@ inventoryGUI = {
     label = {},
     button = {},
     window = {},
+	staticimage = {},
     gridlist = {},
 	progressbar = {},
 	font = {}
 }
 
-inventoryGUI.font[1] = guiCreateFont("/fonts/etelka.ttf",11)
-inventoryGUI.font[2] = guiCreateFont("/fonts/etelka.ttf",15)
-inventoryGUI.font[3] = guiCreateFont("/fonts/etelka.ttf",20)
-inventoryGUI.font[4] = guiCreateFont("/fonts/etelka.ttf",25)
+inventoryGUI.font[1] = guiCreateFont("/fonts/bebas.otf",13)
+inventoryGUI.font[2] = guiCreateFont("/fonts/bebas.otf",15)
+inventoryGUI.font[3] = guiCreateFont("/fonts/bebas.otf",20)
+inventoryGUI.font[4] = guiCreateFont("/fonts/bebas.otf",25)
 
 
-inventoryGUI.window[1] = guiCreateWindow(0.00, 0.00, 1.00, 1.00, "#alpha - "..getPlayerName(localPlayer), true)
-guiWindowSetMovable(inventoryGUI.window[1], false)
-guiWindowSetSizable(inventoryGUI.window[1], false)
+-- Inventory Init
+inventoryGUI.window[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "gui/images/solo_slot.png", true)
+guiSetAlpha(inventoryGUI.window[1], 0.98)
+guiSetProperty(inventoryGUI.window[1], "ImageColours", "tl:FE111111 tr:FE111111 bl:FE111111 br:FE111111")
 
-inventoryGUI.gridlist[1] = guiCreateGridList(0.01, 0.13, 0.24, 0.61, true, inventoryGUI.window[1])
+--Inventory Divider
+inventoryGUI.staticimage[2] = guiCreateStaticImage(0.58, 0.35, 0.40, 0.003, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
+inventoryGUI.staticimage[3] = guiCreateStaticImage(0.58, 0.53, 0.40, 0.003, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
+inventoryGUI.staticimage[4] = guiCreateStaticImage(0.58, 0.71, 0.40, 0.003, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
+
+-- Weapons pictures
+inventoryGUI.staticimage["shotsniper"] = guiCreateStaticImage(0.58, 0.21, 0.40, 0.13, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
+inventoryGUI.staticimage["rifles"] = guiCreateStaticImage(0.58, 0.40, 0.40, 0.13, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
+inventoryGUI.staticimage["handsub"] = guiCreateStaticImage(0.58, 0.59, 0.40, 0.13, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
+guiSetVisible(inventoryGUI.staticimage["shotsniper"],false)
+guiSetVisible(inventoryGUI.staticimage["rifles"],false)
+guiSetVisible(inventoryGUI.staticimage["handsub"],false)
+inventoryGUI.label["shotsniper"] = guiCreateLabel(0.58, 0.17, 0.40, 0.04, "", true, inventoryGUI.window[1])
+inventoryGUI.label["rifles"] = guiCreateLabel(0.58, 0.36, 0.40, 0.04, "", true, inventoryGUI.window[1])
+inventoryGUI.label["handsub"] = guiCreateLabel(0.58, 0.54, 0.40, 0.04, "", true, inventoryGUI.window[1])
+guiSetFont(inventoryGUI.label["shotsniper"],inventoryGUI.font[1])
+guiSetFont(inventoryGUI.label["rifles"],inventoryGUI.font[1])
+guiSetFont(inventoryGUI.label["handsub"],inventoryGUI.font[1])
+
+
+-- Actual inventory
+inventoryGUI.gridlist[1] = guiCreateGridList(0.305, 0.17, 0.20, 0.54, true, inventoryGUI.window[1])
 inventoryGUI.gridlist["inventory"] = guiGridListAddColumn(inventoryGUI.gridlist[1],"Inventory",0.6)
 inventoryGUI.gridlist["inventoryamount"] = guiGridListAddColumn(inventoryGUI.gridlist[1],"Amount",0.4)
+guiGridListSetSortingEnabled(inventoryGUI.gridlist[1],false)
 
-inventoryGUI.gridlist[2] = guiCreateGridList(0.34, 0.13, 0.24, 0.61, true, inventoryGUI.window[1])
+inventoryGUI.gridlist[2] = guiCreateGridList(0.005, 0.17, 0.20, 0.54, true, inventoryGUI.window[1])
 inventoryGUI.gridlist["loot"] = guiGridListAddColumn(inventoryGUI.gridlist[2],"Loot",0.6)
 inventoryGUI.gridlist["lootamount"] = guiGridListAddColumn(inventoryGUI.gridlist[2],"Amount",0.4)
+guiGridListSetSortingEnabled(inventoryGUI.gridlist[2],false)
 
-inventoryGUI.button[1] = guiCreateButton(0.25, 0.23, 0.03, 0.40, "->", true, inventoryGUI.window[1])
-inventoryGUI.button[2] = guiCreateButton(0.31, 0.23, 0.03, 0.40, "<-", true, inventoryGUI.window[1])
-inventoryGUI.label[1] = guiCreateLabel(0.01, 0.09, 0.24, 0.04, "YOUR INVENTORY", true, inventoryGUI.window[1])
-guiLabelSetHorizontalAlign(inventoryGUI.label[1], "center", false)
-inventoryGUI.label[2] = guiCreateLabel(0.34, 0.09, 0.24, 0.04, "LOOT", true, inventoryGUI.window[1])
-guiLabelSetHorizontalAlign(inventoryGUI.label[2], "center", false)
-
-inventoryGUI.progressbar[1] = guiCreateProgressBar(0.01, 0.74, 0.24, 0.04, true, inventoryGUI.window[1])
-inventoryGUI.label[3] = guiCreateLabel(0.01, 0.74, 0.24, 0.04, "CAPACITY: 0/70", true, inventoryGUI.window[1])
-guiLabelSetColor(inventoryGUI.label[3], 0, 0, 0)
-guiLabelSetHorizontalAlign(inventoryGUI.label[3], "center", false)
-
-inventoryGUI.label[4] = guiCreateLabel(0.66, 0.13, 0.04, 0.05, "1", true, inventoryGUI.window[1])
-guiLabelSetHorizontalAlign(inventoryGUI.label[4], "center", false)
-guiLabelSetVerticalAlign(inventoryGUI.label[4], "center")
-inventoryGUI.label[5] = guiCreateLabel(0.66, 0.37, 0.04, 0.05, "2", true, inventoryGUI.window[1])
-guiLabelSetHorizontalAlign(inventoryGUI.label[5], "center", false)
-guiLabelSetVerticalAlign(inventoryGUI.label[5], "center")
-inventoryGUI.label[6] = guiCreateLabel(0.66, 0.61, 0.04, 0.05, "3", true, inventoryGUI.window[1])
+-- Inventory buttons
+inventoryGUI.button[1] = guiCreateStaticImage(0.21, 0.17, 0.04, 0.54, "gui/images/solo_slot.png", true, inventoryGUI.window[1]) -- ->
+guiSetProperty(inventoryGUI.button[1], "ImageColours", "tl:FE111111 tr:FE111111 bl:FE111111 br:FE111111")
+inventoryGUI.label[6] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "->", true, inventoryGUI.button[1])
 guiLabelSetHorizontalAlign(inventoryGUI.label[6], "center", false)
 guiLabelSetVerticalAlign(inventoryGUI.label[6], "center")
-inventoryGUI.label[7] = guiCreateLabel(0.69, 0.13, 0.27, 0.05, "PRIMARY WEAPON:", true, inventoryGUI.window[1])
+inventoryGUI.button[2] = guiCreateStaticImage(0.26, 0.17, 0.04, 0.54, "gui/images/solo_slot.png", true, inventoryGUI.window[1]) -- <-
+guiSetProperty(inventoryGUI.button[2], "ImageColours", "tl:FE111111 tr:FE111111 bl:FE111111 br:FE111111")
+ inventoryGUI.label[5] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "<-", true, inventoryGUI.button[2])
+guiLabelSetColor(inventoryGUI.label[5], 254, 254, 254)
+guiLabelSetHorizontalAlign(inventoryGUI.label[5], "center", false)
+guiLabelSetVerticalAlign(inventoryGUI.label[5], "center")
+
+inventoryGUI.label[7] = guiCreateLabel(0.01, 0.13, 0.20, 0.04, "VICINITY", true, inventoryGUI.window[1])
 guiLabelSetVerticalAlign(inventoryGUI.label[7], "center")
-inventoryGUI.label["Equip Primary Weapon"] = guiCreateLabel(0.69, 0.18, 0.27, 0.05, "", true, inventoryGUI.window[1])
-guiLabelSetVerticalAlign(inventoryGUI.label["Equip Primary Weapon"], "center")
-inventoryGUI.label["Equip Secondary Weapon"] = guiCreateLabel(0.69, 0.41, 0.27, 0.05, "", true, inventoryGUI.window[1])
-guiLabelSetVerticalAlign(inventoryGUI.label["Equip Secondary Weapon"], "center")
-inventoryGUI.label["Equip Special Weapon"] = guiCreateLabel(0.69, 0.65, 0.27, 0.05, "", true, inventoryGUI.window[1])
-guiLabelSetVerticalAlign(inventoryGUI.label["Equip Special Weapon"], "center")
-inventoryGUI.label[8] = guiCreateLabel(0.69, 0.61, 0.27, 0.05, "SPECIAL WEAPON:", true, inventoryGUI.window[1])
+inventoryGUI.label[8] = guiCreateLabel(0.305, 0.13, 0.20, 0.04, "YOUR LOOT", true, inventoryGUI.window[1])
 guiLabelSetVerticalAlign(inventoryGUI.label[8], "center")
-inventoryGUI.label[9] = guiCreateLabel(0.69, 0.37, 0.27, 0.05, "SECONDARY WEAPON:", true, inventoryGUI.window[1])
-guiLabelSetVerticalAlign(inventoryGUI.label[9], "center") 
+inventoryGUI.label[9] = guiCreateLabel(0.01, 0.72, 0.29, 0.06, "", true, inventoryGUI.window[1])
+guiLabelSetColor(inventoryGUI.label[9], 217, 0, 0)
+guiLabelSetVerticalAlign(inventoryGUI.label[9], "center")
+inventoryGUI.progressbar[1] = guiCreateProgressBar(0.305, 0.72, 0.20, 0.04, true, inventoryGUI.window[1])
+inventoryGUI.label[10] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "CAPACITY: 0/0", true, inventoryGUI.progressbar[1])
+guiLabelSetColor(inventoryGUI.label[10], 0, 0, 0)
+guiLabelSetHorizontalAlign(inventoryGUI.label[10], "center", false)
+guiLabelSetVerticalAlign(inventoryGUI.label[10], "center")
 
-inventoryGUI.label[10] = guiCreateLabel(0.01, 0.84, 0.24, 0.04, "", true, inventoryGUI.window[1])
+inventoryGUI.label[11] = guiCreateLabel(0.58, 0.72, 0.40, 0.04, "STATUS", true, inventoryGUI.window[1])
 
-for i=1,10 do
-	guiSetFont(inventoryGUI.label[i],inventoryGUI.font[1])
+inventoryGUI.staticimage[10] = guiCreateStaticImage(0.58, 0.76, 0.10, 0.14, "gui/images/solo_slot.png", true, inventoryGUI.window[1]) -- Armor
+inventoryGUI.progressbar[2] = guiCreateProgressBar(0.58, 0.91, 0.10, 0.02, true, inventoryGUI.window[1])
+guiSetVisible(inventoryGUI.staticimage[10],false)
+guiSetVisible(inventoryGUI.progressbar[2],false)
+
+inventoryGUI.staticimage[11] = guiCreateStaticImage(0.69, 0.76, 0.10, 0.14, "gui/images/solo_slot.png", true, inventoryGUI.window[1]) -- Energy Drink Regeneration
+inventoryGUI.progressbar[3] = guiCreateProgressBar(0.69, 0.91, 0.10, 0.02, true, inventoryGUI.window[1])
+guiSetVisible(inventoryGUI.staticimage[11],false)
+guiSetVisible(inventoryGUI.progressbar[3],false)
+
+inventoryGUI.label[4] = guiCreateLabel(0.38, 0.01, 0.23, 0.03, "#Alpha - "..tostring(getPlayerName(localPlayer)), true, inventoryGUI.window[1])
+guiLabelSetHorizontalAlign(inventoryGUI.label[4], "center", false)
+guiLabelSetVerticalAlign(inventoryGUI.label[4], "center")
+
+for i=1,11 do
+	if inventoryGUI.label[i] then
+		if i == 4 then
+			guiSetFont(inventoryGUI.label[4],inventoryGUI.font[3])
+		else
+			guiSetFont(inventoryGUI.label[i],inventoryGUI.font[1])
+		end
+	end
 end
 
 guiSetVisible(inventoryGUI.window[1],false)
+
 
 function isPlayerInLoot()
 	if getElementData(localPlayer,"loot") then
@@ -206,47 +244,70 @@ end
 addEvent("refreshLootManually",true)
 addEventHandler("refreshLootManually",localPlayer,refreshLootManually)
 
-function sendErrorToInventory(info)
-	guiSetText(inventoryGUI.label[10],info)
-	setTimer(guiSetText,3000,1,inventoryGUI.label[10],"")
+local errorTimer 
+function sendErrorToInventory(info,r,g,b)
+	if info then
+		if isTimer(errorTimer) then killTimer(errorTimer) end
+		guiSetText(inventoryGUI.label[9],info)
+		guiLabelSetColor(inventoryGUI.label[9],r,g,b)
+		errorTimer = setTimer(guiSetText,3000,1,inventoryGUI.label[9],"")
+	end
 end
 addEvent("mtabg_sendErrorToInventory",true)
 addEventHandler("mtabg_sendErrorToInventory",localPlayer,sendErrorToInventory)
 
-local playerDataInfoClient = {}
-
-
-
-function changeEquippedWeaponGUI(weaponType,weaponName,dataTable)
-	-- 8 = Primary, 9 = Secondary, 10 = Special
-	guiSetText(inventoryGUI.label[weaponType],weaponName)
-	playerDataInfoClient[localPlayer] = {}
-	for i, data in ipairs(dataTable) do
-		if data[2] == "currentweapon_1" then
-			if data[3] then
-				table.insert(playerDataInfoClient[localPlayer],{data[2],data[3]})
-			end
-		elseif data[2] == "currentweapon_2" then
-			if data[3] then
-				table.insert(playerDataInfoClient[localPlayer],{data[2],data[3]})
-			end
-		end
+function changeEquippedWeaponGUI(weaponType,weaponName,imagePath,guiLabelName,relX,relY,posX,posY)
+	guiSetText(inventoryGUI.label[guiLabelName],weaponName)
+	if isElement(inventoryGUI.staticimage[guiLabelName]) then
+		destroyElement(inventoryGUI.staticimage[guiLabelName])
 	end
+	inventoryGUI.staticimage[guiLabelName] = guiCreateStaticImage(posX,posY,relX,relY,"gui/images/"..imagePath,true,inventoryGUI.window[1])
+	guiSetVisible(inventoryGUI.staticimage[guiLabelName],true)
 end
 addEvent("mtabg_changeEquippedWeaponGUI",true)
 addEventHandler("mtabg_changeEquippedWeaponGUI",localPlayer,changeEquippedWeaponGUI)
+
+function onPlayerAddArmorImage(armor)
+	if isElement(inventoryGUI.staticimage[10]) then
+		destroyElement(inventoryGUI.staticimage[10])
+	end
+	inventoryGUI.staticimage[10] = guiCreateStaticImage(0.58, 0.76, 0.10, 0.14, "gui/images/"..armor..".png", true, inventoryGUI.window[1])
+	guiSetVisible(inventoryGUI.staticimage[10],true)
+	guiSetVisible(inventoryGUI.progressbar[2],true)
+end
+addEvent("mtabg_onPlayerAddArmorImage",true)
+addEventHandler("mtabg_onPlayerAddArmorImage",root,onPlayerAddArmorImage)
 
 local playerCapacity = {}
 function sendCapacityToPlayerClient(maxCapacity,used)
 	playerCapacity[localPlayer] = {}
 	table.insert(playerCapacity[localPlayer],{maxCapacity,used})
-	guiSetText(inventoryGUI.label[3],"CAPACITY: "..tostring(used).."/"..tostring(maxCapacity))
+	guiSetText(inventoryGUI.label[10],"CAPACITY: "..tostring(used).."/"..tostring(maxCapacity))
 	local progress = (used/maxCapacity)*100
 	guiProgressBarSetProgress(inventoryGUI.progressbar[1],progress)
 end
 addEvent("mtabg_sendCapacityToPlayerClient",true)
 addEventHandler("mtabg_sendCapacityToPlayerClient",root,sendCapacityToPlayerClient)
-	
+
+function changeColorOfButtonLeftOnMouseOver()
+	guiSetProperty(inventoryGUI.button[1], "ImageColours", "tl:FE8C8C8C tr:FE8C8C8C bl:FE8C8C8C br:FE8C8C8C")
+end
+addEventHandler("onClientMouseEnter",inventoryGUI.label[6],changeColorOfButtonLeftOnMouseOver,false)
+
+function changeColorOfButtonRightOnMouseOver()
+	guiSetProperty(inventoryGUI.button[2], "ImageColours", "tl:FE8C8C8C tr:FE8C8C8C bl:FE8C8C8C br:FE8C8C8C")
+end
+addEventHandler("onClientMouseEnter",inventoryGUI.label[5],changeColorOfButtonRightOnMouseOver,false)
+
+function revertColorOfButtonLeftOnMouseOver()
+	guiSetProperty(inventoryGUI.button[1], "ImageColours", "tl:FE111111 tr:FE111111 bl:FE111111 br:FE111111")
+end
+addEventHandler("onClientMouseLeave",inventoryGUI.label[6],revertColorOfButtonLeftOnMouseOver,false)
+
+function revertColorOfButtonRightOnMouseOver()
+	guiSetProperty(inventoryGUI.button[2], "ImageColours", "tl:FE111111 tr:FE111111 bl:FE111111 br:FE111111")
+end
+addEventHandler("onClientMouseLeave",inventoryGUI.label[5],revertColorOfButtonRightOnMouseOver,false)
 
 function populateGridListWithItems(gridList,columnName,columnAmount,itemName,itemAmount)
 	if itemAmount > 0 then
@@ -276,7 +337,7 @@ function moveItemFromInventoryToLoot()
 	local itemName = guiGridListGetItemText(inventoryGUI.gridlist[1],guiGridListGetSelectedItem(inventoryGUI.gridlist[1]),1)
 	triggerServerEvent("mtabg_onItemFromInventoryToLoot",localPlayer,itemName,col)
 end
-addEventHandler("onClientGUIClick", inventoryGUI.button[1], moveItemFromInventoryToLoot,false)
+addEventHandler("onClientGUIClick", inventoryGUI.label[5], moveItemFromInventoryToLoot,false)
 
 function moveItemFromLootToInventory()
 	if isPlayerInLoot() then
@@ -285,7 +346,7 @@ function moveItemFromLootToInventory()
 	local itemName = guiGridListGetItemText(inventoryGUI.gridlist[2],guiGridListGetSelectedItem(inventoryGUI.gridlist[2]),1)
 	triggerServerEvent("mtabg_onItemFromLootToInventory",localPlayer,itemName,col)
 end
-addEventHandler("onClientGUIClick",inventoryGUI.button[2],moveItemFromLootToInventory,false)
+addEventHandler("onClientGUIClick",inventoryGUI.label[6],moveItemFromLootToInventory,false)
 
 rightClick = {}
 

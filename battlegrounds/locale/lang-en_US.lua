@@ -64,4 +64,7 @@ sItemLang["en_US"] = {
 {"Backpack (Level 1)","Use"},
 {"Backpack (Level 2)","Use"},
 {"Backpack (Level 3)","Use"},
+{"Police Vest (Level 1)","Use"},
+{"Police Vest (Level 2)","Use"},
+{"Military Vest (Level 3)","Use"},
 }
