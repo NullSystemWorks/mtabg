@@ -156,8 +156,8 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	takeAllWeapons(player)
 	
 end
-addEvent("killBattleGroundsPlayer",true)
-addEventHandler("killBattleGroundsPlayer",root,killBattleGroundsPlayer)
+addEvent("mtabg_killBattleGroundsPlayer",true)
+addEventHandler("mtabg_killBattleGroundsPlayer",root,killBattleGroundsPlayer)
 
 function awardPlayerWithStatistics(player)
 	if player then
