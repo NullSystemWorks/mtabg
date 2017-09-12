@@ -24,6 +24,8 @@ function onBattleGroundsPlayerDamage(attacker,weapon,bodypart,loss)
 				if hasArmor > 0 then
 					if damage >= hasArmor then
 						setPedArmor(client,0)
+					else
+						setPedArmor(client,getPedArmor(client)-damage)
 					end
 					damage = damage-hasArmor
 				end
