@@ -37,6 +37,13 @@ Version: 0.0.1 Pre-Alpha
 	<script src="locale/lang-es.lua" type="shared" cache="false" />
 	<script src="locale/lang-pt_BR.lua" type="shared" cache="false" />
 
+	<!-- lootPointEditor -->
+	<script src="lootPointEditor/lootPoints.lua" type="server" /> <!-- Must be the first -->
+	<script src="lootPointEditor/sWriteTableToDisk.lua" type="server" /> <!-- Must be the second -->
+	<script src="lootPointEditor/cStatusRender.lua" type="client" cache="false" />
+	<script src="lootPointEditor/sLootEditor.lua" type="server" />
+	<file src="lootPointEditor/arrow.png"/>
+
 	<!-- Tables -->
 	<script src="tables/general_table.lua" type="shared" cache="false" />
 	<script src="tables/item_table.lua" type="shared" cache="false" />
