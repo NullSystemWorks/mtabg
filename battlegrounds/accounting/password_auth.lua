@@ -33,7 +33,7 @@ local function multipleHash(password, salt)
 	for i=1, 25000 do
 		hashedString = hash("sha256", hashedString .. saltyPass )
 	end
-	outputDebugString("Hashing pasword took: " ..getTickCount() - t.. "ms")
+	outputDebugString("Hashing password took: " ..getTickCount() - t.. "ms")
 	return salt.. "$" ..hashedString
 end
 

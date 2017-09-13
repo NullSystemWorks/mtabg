@@ -41,7 +41,9 @@ end
 
 function checkFuelOfVehicle(veh)
 	if veh then
-		if vehicleDataTable[veh]["fuel"] <= 0 then setVehicleEngineState(veh,false) end
+		if vehicleDataTable[veh]["fuel"] then
+			if vehicleDataTable[veh]["fuel"] <= 0 then setVehicleEngineState(veh,false) end
+		end
 	end
 end
 
