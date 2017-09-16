@@ -42,7 +42,7 @@ function loadModels()
 		engineReplaceModel(modelDFF[i], i)
 	end
 end
-
+addEventHandler("onClientResourceStart", resourceRoot, loadModels)
 --[[
 weaponSkinTable = {
 {"m1911",2,"M1911"},
