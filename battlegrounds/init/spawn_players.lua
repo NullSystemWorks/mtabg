@@ -124,6 +124,13 @@ local countDownTimer
 				SpotsID = SpotsID+1
 				createLootPoint("Industry",position[1],position[2],position[3],SpotsID)
 				end)
+				for i, players in ipairs(getElementsByType("player")) do
+					if getElementData(players,"inLobby") then
+						outputChatBox("---",players,0,255,0,false)
+						outputChatBox("Press 'Tab' to open your inventory!",players,0,255,0,false)
+						outputChatBox("---",players,0,255,0,false)
+					end
+				end
 			end
 			if gameCache["countdown"] == 80 then
 				outputDebugString("[MTA:BG] Spawning Residential Loot Points(40%)")
@@ -131,11 +138,21 @@ local countDownTimer
 					SpotsID = SpotsID+1
 					createLootPoint("Residential",position[1],position[2],position[3],SpotsID)
 				end)
+				for i, players in ipairs(getElementsByType("player")) do
+					if getElementData(players,"inLobby") then
+						outputChatBox("---",players,0,255,0,false)
+						outputChatBox("The F11 map shows the radius of the current save and danger zone!",players,0,255,0,false)
+						outputChatBox("---",players,0,255,0,false)
+					end
+				end
 			end
 			if gameCache["countdown"] == 60 then
 				for i, players in ipairs(getElementsByType("player")) do
 					if getElementData(players,"inLobby") then
 						outputChatBox("Game will start in 60 seconds!",players,255,0,0,false)
+						outputChatBox("---",players,0,255,0,false)
+						outputChatBox("The red zone indicates a save location - you will receive damage if you are outside of it!",players,0,255,0,false)
+						outputChatBox("---",players,0,255,0,false)
 					end
 				end
 				outputDebugString("[MTA:BG] Spawning Supermarket Loot Points(60%)")
@@ -150,6 +167,13 @@ local countDownTimer
 					SpotsID = SpotsID+1
 					createLootPoint("Farm",position[1],position[2],position[3],SpotsID)
 				end)
+				for i, players in ipairs(getElementsByType("player")) do
+					if getElementData(players,"inLobby") then
+						outputChatBox("---",players,0,255,0,false)
+						outputChatBox("The blue circle shows where the red zone will be next!",players,0,255,0,false)
+						outputChatBox("---",players,0,255,0,false)
+					end
+				end
 			end
 			if gameCache["countdown"] == 20 then
 				outputDebugString("[MTA:BG] Spawning Military Loot Points(100%)")
@@ -159,22 +183,23 @@ local countDownTimer
 				end)
 				outputDebugString("[MTA:BG] All loot points spawned!")
 				for i, players in ipairs(getElementsByType("player")) do
-				if getElementData(players,"inLobby") then
-					outputChatBox("Game will start in 20 seconds!",players,255,0,0,false)
+					if getElementData(players,"inLobby") then
+						outputChatBox("Game will start in 20 seconds!",players,255,0,0,false)
+					end
 				end
 			end
-			end
 			if gameCache["countdown"] == 0 then
-				if gameCache["initialPlayerAmount"] >= 1 then -- Must be > 1 (= at least 2 players)
+				if gameCache["initialPlayerAmount"] > 1 then -- Must be > 1 (= at least 2 players)
 					if not gameCache["status"] then 
 						startGame()
 						firstTimeLoot = true
 						if isTimer(countdownTimer) then killTimer(countdownTimer) end
 					else
 						for i, player in ipairs(getElementsByType("player")) do
-							if not getElementData(player,"participatingInGame") then
+							if getElementData(player,"inLobby") then
 								outputChatBox("A match is currently running, please wait until it's over!",player,255,0,0,false)
 								gameCache["countdown"] = 120
+								countdownHasStarted = false
 								startCountDown(true)
 								return
 							end
@@ -182,9 +207,11 @@ local countDownTimer
 					end
 				else
 					for i, player in ipairs(getElementsByType("player")) do
-						if not getElementData(player,"participatingInGame") then
+						if getElementData(player,"inLobby") then
 							outputChatBox("Not enough players to start match!",player,255,0,0,true)
 							gameCache["countdown"] = 120
+							countdownHasStarted = false
+							refreshLootSpots()
 							startCountDown(true)
 						end
 					end
@@ -196,6 +223,7 @@ local countDownTimer
 		gameCache["playingField"] = 0
 		gameCache["status"] = false
 		refreshLootSpots()
+		countdownHasStarted = false
 		if isTimer(countdownTimer) then killTimer(countdownTimer) end
 	end
 end
@@ -204,44 +232,48 @@ function startGame()
 	gameCache["status"] = false
 	gameCache["initialPlayerAmount"] = 0
 	for i, player in ipairs(getElementsByType("player")) do
-		showChat(player,false)
-		local dataID = -1
-		playerInfo[player] = {}
-		playerDataInfo[player] = {}
-		setPlayerHudComponentVisible(player,"radar",false)
-		setPlayerHudComponentVisible(player,"clock",false)
-		setPlayerHudComponentVisible(player,"health",false)
-		setPlayerHudComponentVisible(player,"area_name",false)
-		setPlayerHudComponentVisible(player,"money",false)
-		x,y,z = math.random(-2500,2500),math.random(-2500,2500),1000
-		spawnPlayer(player,x,y,z, math.random(0,360), 0, 0, gameCache["playingField"])
-		giveWeapon(player,46,1)
-		fadeCamera (player, false,2000,0,0,0)
-		setCameraTarget (player, player)
-		setTimer( function(player)
-			if isElement(player) then
-				setElementFrozen(player, false)
-				fadeCamera(player,true)
+		if getElementData(player, "inLobby") then
+			showChat(player,false)
+			local dataID = -1
+			playerInfo[player] = {}
+			playerDataInfo[player] = {}
+			--setPlayerHudComponentVisible(player,"radar",false)
+			setPlayerHudComponentVisible(player,"clock",false)
+			setPlayerHudComponentVisible(player,"health",false)
+			setPlayerHudComponentVisible(player,"area_name",false)
+			setPlayerHudComponentVisible(player,"money",false)
+			x,y,z = math.random(-2500,2500),math.random(-2500,2500),1000
+			spawnPlayer(player,x,y,z, math.random(0,360), 0, 0, gameCache["playingField"])
+			giveWeapon(player,46,1)
+			fadeCamera (player, false,2000,0,0,0)
+			setCameraTarget (player, player)
+			setTimer( function(player)
+				if isElement(player) then
+					setElementFrozen(player, false)
+					fadeCamera(player,true)
+				end
+			end,500,1,player)
+			playerCol = createColSphere(x,y,z,1.5)
+			table.insert(playerInfo[player],{dataID+1,playerCol})
+			for i, data in ipairs(playerDataTable) do
+				table.insert(playerDataInfo[player],{i,data[1],data[2]})
 			end
-		end,500,1,player)
-		playerCol = createColSphere(x,y,z,1.5)
-		table.insert(playerInfo[player],{dataID+1,playerCol})
-		for i, data in ipairs(playerDataTable) do
-			table.insert(playerDataInfo[player],{i,data[1],data[2]})
+			for i, data in ipairs(playerInventoryTable) do
+				table.insert(playerInfo[player],{i,data[1],data[2]})
+			end
+			attachElements(playerCol,player,0,0,0)
+			setElementData(player,"participatingInGame",true)
+			gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
+			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetStatus",player,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
+			setElementData(player,"inLobby",false)
 		end
-		for i, data in ipairs(playerInventoryTable) do
-			table.insert(playerInfo[player],{i,data[1],data[2]})
-		end
-		attachElements(playerCol,player,0,0,0)
-		setElementData(player,"participatingInGame",true)
-		gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
 	end
 	createZone()
 	spawnVehiclesOnMatchStart()
 	gameCache["status"] = true
-	triggerClientEvent("mtabg_onClientBattleGroundsSetStatus",root,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 	gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
 	gameCache["countdown"] = 120
+	countdownHasStarted = false
 end
 addEvent("mtabg_startGame",true)
 addEventHandler("mtabg_startGame",root,startGame)
@@ -254,7 +286,6 @@ function startGameCommand()
 	createLootPoint("Industry",position[1],position[2],position[3],SpotsID)
 	end)
 end
-addCommandHandler("game",startGameCommand)
 
 function returnPlayerInfoToClient(key)
 	if not gameCache["status"] then return end

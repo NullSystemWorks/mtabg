@@ -142,18 +142,21 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	setElementData(player,"participatingInGame",false)
 	if isElement(killer) then
 		checkForWinner(killer)
-		outputSideChat("Player "..getPlayerName(player).." was killed by "..getPlayerName(killer).." - "..gameCache["playerAmount"].." left",root,255,255,255)
+		for i, players in ipairs(getElementsByType("player")) do
+			if getElementData(players,"participatingInGame") then	
+				outputSideChat("Player "..getPlayerName(player).." was killed by "..getPlayerName(killer).." - "..gameCache["playerAmount"].." left",players,255,255,255)
+			end
+		end
 		triggerClientEvent(player,"mtabg_showEndscreen",player,finalRank,homeScreenDimension)
 	else
-		if gameCache["playerAmount"] <= 1 then
+		if gameCache["playerAmount"] > 1 then
 			for i, players in ipairs(getElementsByType("player")) do
 				if getElementData(players,"participatingInGame") then
-					checkForWinner(players)
+					outputSideChat("Player "..getPlayerName(player).." has died - "..gameCache["playerAmount"].." left",players,255,255,255)
 				end
 			end
 		end
 		triggerClientEvent(player,"mtabg_showEndscreen",player,finalRank,homeScreenDimension)
-		outputSideChat("Player "..getPlayerName(player).." has died - "..gameCache["playerAmount"].." left",root,255,255,255)
 	end
 	removeAttachedOnDeath(player)
 	local losses = getUserData(player,"losses")
@@ -165,7 +168,6 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	playerDataInfo[player] = {}
 	spawnPlayer(player,1724.22998,-1647.8363,20.2283,0,0,18,600)
 	takeAllWeapons(player)
-	
 end
 addEvent("mtabg_killBattleGroundsPlayer",true)
 addEventHandler("mtabg_killBattleGroundsPlayer",root,killBattleGroundsPlayer)
@@ -201,7 +203,10 @@ function awardPlayerWithStatistics(player)
 		local gamesplayed = getUserData(player,"gamesplayed")
 		local losses = getUserData(player,"losses")
 		local wins = getUserData(player,"wins")
-		local winlossratio = (wins/gamesplayed)*100
+		local winlossratio = 0
+		if wins > 0 then
+			winlossratio = (wins/gamesplayed)*100
+		end
 		local deaths = getUserData(player,"deaths")
 		local kills = getUserData(player,"kills")
 		local killdeathratio = (kills/deaths)*100

@@ -146,8 +146,6 @@ function createSpotsOnStart()
 	outputDebugString("[MTA:BG] All loot points spawned!")
 	firstTimeLoot = true
 end
--- Dev command, remove on release
-addCommandHandler("spot",createSpotsOnStart)
 
 function refreshLootSpots()
 	outputDebugString("[MTA:BG] Item Refresh Started!")
@@ -165,6 +163,3 @@ function refreshLootSpots()
 	SpotsID = 0
 	lootpointData = {}
 end
-
--- Dev command, remove on release
-addCommandHandler("loot",refreshLootSpots)
