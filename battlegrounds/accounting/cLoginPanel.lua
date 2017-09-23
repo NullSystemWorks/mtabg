@@ -401,5 +401,6 @@ addEvent("openLoginPanel", true)
 addEventHandler("openLoginPanel", getRootElement(), loadLoginScreen)
 
 addEventHandler("onClientResourceStart", getResourceRootElement(), function()
+	Camera.fade(false, .1) --fade camera on resource restart
 	triggerServerEvent("mtabg_onJoin", localPlayer)
 end)
