@@ -246,7 +246,7 @@ local function createNewAlphaKeys()
 	end
 	outputDebugString("Generated new alpha keys")
 end
-addCommandHandler("mtabgComputeAlphaKeys", createNewAlphaKeys, true)
+--addCommandHandler("mtabgComputeAlphaKeys", createNewAlphaKeys, true)
 
 local function validateAlphaKey(player, key)
 	local playerSerial = getPlayerSerial(player)

@@ -63,6 +63,7 @@ Version: 0.0.1 Pre-Alpha
 	<file src="accounting/img/background.png" />
 	<file src="accounting/img/white.png" />
 	<file src="sounds/siege.mp3" />
+	
 
 	<!-- Hud -->
 	<script src="hud/hud_s.lua" type="server" />
@@ -71,6 +72,7 @@ Version: 0.0.1 Pre-Alpha
 
 
 	<!-- Handlers -->
+	<script src="handlers/server/permissions.lua" type="server" />
 	<script src="handlers/client/damage_c.lua" type="client" cache="false"/>
 	<script src="handlers/server/damage_s.lua" type="server" />
 	<script src="handlers/server/backpack_s.lua" type="server" />
