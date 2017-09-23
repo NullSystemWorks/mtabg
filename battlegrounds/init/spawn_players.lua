@@ -232,7 +232,6 @@ end
 
 function startGame()
 	gameCache["status"] = false
-	gameCache["initialPlayerAmount"] = 0
 	for i, player in ipairs(getElementsByType("player")) do
 		if getElementData(player, "inLobby") then
 			showChat(player,false)
@@ -265,8 +264,8 @@ function startGame()
 			end
 			attachElements(playerCol,player,0,0,0)
 			setElementData(player,"participatingInGame",true)
-			gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
-			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetStatus",player,gameCache["initialPlayerAmount"],true,gameCache["countdown"])
+			gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
+			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetStatus",player,gameCache["playerAmount"],true,gameCache["countdown"])
 			setElementData(player,"inLobby",false)
 			giveWeapon(player,46,1,true)
 		end
@@ -274,7 +273,6 @@ function startGame()
 	createZone()
 	spawnVehiclesOnMatchStart()
 	gameCache["status"] = true
-	gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
 	gameCache["countdown"] = 300
 	countdownHasStarted = false
 end

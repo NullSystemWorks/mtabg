@@ -168,6 +168,11 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	playerDataInfo[player] = {}
 	spawnPlayer(player,1724.22998,-1647.8363,20.2283,0,0,18,600)
 	takeAllWeapons(player)
+	for i, players in ipairs(getElementsByType("player")) do
+		if getElementData(players,"participatingInGame") then
+			triggerClientEvent(players,"mtabg_onClientBattleGroundsSetStatus",players,gameCache["playerAmount"],true,gameCache["countdown"])
+		end
+	end
 end
 addEvent("mtabg_killBattleGroundsPlayer",true)
 addEventHandler("mtabg_killBattleGroundsPlayer",root,killBattleGroundsPlayer)
@@ -200,18 +205,18 @@ function awardPlayerWithStatistics(player)
 		-> Division by 5 due to sheer amount of battlepoints earned
 		]]
 		coins = math.floor((coins*(101-finalRank))/5)
-		local gamesplayed = getUserData(player,"gamesplayed")
-		local losses = getUserData(player,"losses")
-		local wins = getUserData(player,"wins")
+		local gamesplayed = getUserData(player,"gamesplayed") or 0
+		local losses = getUserData(player,"losses") or 0
+		local wins = getUserData(player,"wins") or 0
 		local winlossratio = 0
 		if wins > 0 then
 			winlossratio = (wins/gamesplayed)*100
 		end
-		local deaths = getUserData(player,"deaths")
-		local kills = getUserData(player,"kills")
+		local deaths = getUserData(player,"deaths") or 0
+		local kills = getUserData(player,"kills") or 0
 		local killdeathratio = (kills/deaths)*100
-		local headshots = getUserData(player,"headshots")
-		local battlepoints = getUserData(player,"battlepoints")
+		local headshots = getUserData(player,"headshots") or 0
+		local battlepoints = getUserData(player,"battlepoints") or 0
 
 		setUserData(player,"gamesplayed",gamesplayed+1)
 		setUserData(player,"winlossratio",winlossratio)
