@@ -12,7 +12,7 @@ gameCache['status_duo'] = false -- Currently not in use
 gameCache['status_squad'] = false -- Currently not in use
 gameCache["initialPlayerAmount"] = 0
 gameCache["playerAmount"] = 0
-gameCache["countdown"] = 120
+gameCache["countdown"] = 300
 gameCache["playingField"] = 0 -- = Dimension (Dimension 500 is reserved for home screen!)
 local countdownHasStarted = false
 
@@ -198,7 +198,7 @@ local countDownTimer
 						for i, player in ipairs(getElementsByType("player")) do
 							if getElementData(player,"inLobby") then
 								outputChatBox("A match is currently running, please wait until it's over!",player,255,0,0,false)
-								gameCache["countdown"] = 120
+								gameCache["countdown"] = 300 -- 120
 								countdownHasStarted = false
 								startCountDown(true)
 								return
@@ -209,7 +209,7 @@ local countDownTimer
 					for i, player in ipairs(getElementsByType("player")) do
 						if getElementData(player,"inLobby") then
 							outputChatBox("Not enough players to start match!",player,255,0,0,true)
-							gameCache["countdown"] = 120
+							gameCache["countdown"] = 300
 							countdownHasStarted = false
 							refreshLootSpots()
 							startCountDown(true)
@@ -217,9 +217,9 @@ local countDownTimer
 					end
 				end
 			end
-		end,1000,120,gameCache["countdown"])
+		end,1000,300,gameCache["countdown"])
 	else
-		gameCache["countdown"] = 120
+		gameCache["countdown"] = 300
 		gameCache["playingField"] = 0
 		gameCache["status"] = false
 		refreshLootSpots()
@@ -272,7 +272,7 @@ function startGame()
 	spawnVehiclesOnMatchStart()
 	gameCache["status"] = true
 	gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
-	gameCache["countdown"] = 120
+	gameCache["countdown"] = 300
 	countdownHasStarted = false
 end
 addEvent("mtabg_startGame",true)
@@ -343,7 +343,7 @@ function resetGameCache()
 	gameCache['status_squad'] = false -- Currently not in use
 	gameCache["initialPlayerAmount"] = 0
 	gameCache["playerAmount"] = 0
-	gameCache["countdown"] = 120
+	gameCache["countdown"] = 300
 	gameCache["playingField"] = 0 -- = Dimension (Dimension 500 is reserved for home screen!)
 end
 addEvent("mtabg_resetGameCache",true)
