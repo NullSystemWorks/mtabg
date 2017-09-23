@@ -268,6 +268,7 @@ function startGame()
 			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetStatus",player,gameCache["playerAmount"],true,gameCache["countdown"])
 			setElementData(player,"inLobby",false)
 			giveWeapon(player,46,1,true)
+			setPedWeaponSlot(player,11)
 		end
 	end
 	createZone()
