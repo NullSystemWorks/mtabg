@@ -3,7 +3,7 @@
 				MTA:BG
 			MTA Battlegrounds
 	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
-	
+
 ]]--
 
 vehicleSpawnPositionTable = {
@@ -41,8 +41,10 @@ end
 
 function checkFuelOfVehicle(veh)
 	if veh then
-		if vehicleDataTable[veh]["fuel"] then
-			if vehicleDataTable[veh]["fuel"] <= 0 then setVehicleEngineState(veh,false) end
+		if vehicleDataTable[veh] then --this is here to stop console spam, no guarantee it will work
+			if vehicleDataTable[veh]["fuel"] then
+				if vehicleDataTable[veh]["fuel"] <= 0 then setVehicleEngineState(veh,false) end
+			end
 		end
 	end
 end
@@ -104,4 +106,3 @@ function removeVehicleOnExplosion()
 	setTimer(destroyElement,5000,1,source)
 end
 addEventHandler("onVehicleExplode",root,removeVehicleOnExplosion)
-		
