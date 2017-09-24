@@ -19,6 +19,7 @@ local screenW, screenH = guiGetScreenSize()
 local r,g,b = 218,218,218
 local alpha = 150
 local playerAmount = 0
+local playersInLobby = 0
 local gameStatus = false
 local countDown = 120 -- 180
 local countDownHasStarted = false
@@ -94,8 +95,53 @@ function formatMilliseconds(milliseconds)
 	end
 end
 
+
+local lobbyLabel = {}
+local helpText = {
+"Matches can only start if there are at least two players inside the lobby.",
+"Lobby = The island you are currently walking on.",
+"The red zone indicates a save location - you will receive damage if you are outside of it!",
+"The F11 map shows the radius of the current save and danger zone!",
+"Press 'Tab' to open your inventory once the match has started!",
+"The blue circle shows where the red zone will be next!",
+}
+
+local text = ""
+local countdown = ""
+lobbyLabel[1] = guiCreateLabel(0.02, 0.31, 0.32, 0.05, "", true)
+lobbyLabel[2] = guiCreateLabel(0.02, 0.36, 0.32, 0.05, "", true)
+lobbyLabel[3] = guiCreateLabel(0.26, 0.70, 0.48, 0.13, "", true)
+lobbyLabel[4] = guiCreateLabel(0.02, 0.46, 0.32, 0.29, "", true)   
+lobbyLabel["font_big"] = guiCreateFont("/fonts/tahomab.ttf",20) 
+lobbyLabel["font_small"] = guiCreateFont("/fonts/tahomab.ttf",12) 
+guiLabelSetHorizontalAlign(lobbyLabel[3], "center", true)
+guiLabelSetVerticalAlign(lobbyLabel[3], "center")
+guiLabelSetHorizontalAlign(lobbyLabel[4], "left", true)
+guiSetVisible(lobbyLabel[1],false)
+guiSetVisible(lobbyLabel[2],false)
+guiSetVisible(lobbyLabel[3],false)
+guiSetVisible(lobbyLabel[4],false)
+guiSetFont(lobbyLabel[1],lobbyLabel["font_big"])
+guiSetFont(lobbyLabel[2],lobbyLabel["font_big"])
+guiSetFont(lobbyLabel[3],lobbyLabel["font_big"])
+guiSetFont(lobbyLabel[4],lobbyLabel["font_small"])
+
+
 function displayHealthGUI()
 	if guiGetVisible(homeScreen.staticimage[1]) then return end
+	if getElementData(localPlayer,"inLobby") then
+		guiSetVisible(lobbyLabel[1],true)
+		guiSetVisible(lobbyLabel[2],true)
+		guiSetVisible(lobbyLabel[3],true)
+		guiSetVisible(lobbyLabel[4],true)
+		guiSetText(lobbyLabel[1],"COUNTDOWN: "..tostring(countdown))
+		guiSetText(lobbyLabel[2],"PLAYERS: "..tostring(playersInLobby))
+	else
+		guiSetVisible(lobbyLabel[1],false)
+		guiSetVisible(lobbyLabel[2],false)
+		guiSetVisible(lobbyLabel[3],false)
+		guiSetVisible(lobbyLabel[4],false)
+	end
 	if gameStatus then
 		if not isInventoryShowing() then
 			if alpha > 150 then
@@ -148,6 +194,12 @@ function displayHealthGUI()
 end
 addEventHandler("onClientRender",root,displayHealthGUI)
 
+function setRandomHelpText()
+	if getElementData(localPlayer,"inLobby") then
+		guiSetText(lobbyLabel[4],helpText[math.random(1,#helpText)])
+	end
+end
+setTimer(setRandomHelpText,10000,0)
 
 
 function onPlayerIsInsideVehicle(fuel)
@@ -181,13 +233,31 @@ end
 addEvent("mtabg_onClientBattleGroundsSetPlayerHealthGUI",true)
 addEventHandler("mtabg_onClientBattleGroundsSetPlayerHealthGUI",root,onClientBattleGroundsSetPlayerHealthGUI)
 
-function onClientBattleGroundsSetStatus(value,status,countdown)
-	playerAmount = tonumber(value)
+function onClientBattleGroundsSetGameStatus(status,inLobby)
 	gameStatus = status
-	countDown = countdown
+	playersInLobby = inLobby
 end
 addEvent("mtabg_onClientBattleGroundsSetStatus",true)
-addEventHandler("mtabg_onClientBattleGroundsSetStatus",root,onClientBattleGroundsSetStatus)
+addEventHandler("mtabg_onClientBattleGroundsSetStatus",root,onClientBattleGroundsSetGameStatus)
+
+function onClientBattleGroundsSetCountdown(number)
+	countdown = number
+end
+addEvent("mtabg_onClientBattleGroundsSetCountdown",true)
+addEventHandler("mtabg_onClientBattleGroundsSetCountdown",root,onClientBattleGroundsSetCountdown)
+
+function onClientBattleGroundsAnnounceMatchStart(number)
+	if number == "More players needed" then
+		guiSetText(lobbyLabel[3],"MATCH CANNOT START, NEEDS MORE PLAYERS (AT LEAST 2)!")
+	elseif number == "Match running" then
+		guiSetText(lobbyLabel[3],"MATCH CANNOT START, THERE IS ONE RUNNING ALREADY!")
+	else
+		guiSetText(lobbyLabel[3],"MATCH WILL START IN "..tostring(number).." SECONDS!")
+		setTimer(guiSetText,3000,1,lobbyLabel[3],"")
+	end
+end
+addEvent("mtabg_onClientBattleGroundsAnnounceMatchStart",true)
+addEventHandler("mtabg_onClientBattleGroundsAnnounceMatchStart",root,onClientBattleGroundsAnnounceMatchStart)
 
 function onClientBattleGroundsSetAliveCount(amount)
 	playerAmount = tonumber(amount)

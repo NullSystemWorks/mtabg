@@ -155,6 +155,12 @@ function killBattleGroundsPlayer(player,killer,headshot)
 					outputSideChat("Player "..getPlayerName(player).." has died - "..gameCache["playerAmount"].." left",players,255,255,255)
 				end
 			end
+		else
+			for i, players in ipairs(getElementsByType("player")) do
+				if getElementData(players,"participatingInGame") then
+					checkForWinner(players)
+				end
+			end
 		end
 		triggerClientEvent(player,"mtabg_showEndscreen",player,finalRank,homeScreenDimension)
 	end
@@ -170,7 +176,7 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	takeAllWeapons(player)
 	for i, players in ipairs(getElementsByType("player")) do
 		if getElementData(players,"participatingInGame") then
-			triggerClientEvent(players,"mtabg_onClientBattleGroundsSetStatus",players,gameCache["playerAmount"],true,gameCache["countdown"])
+			triggerClientEvent(players,"mtabg_onClientBattleGroundsSetAliveCount",players,gameCache["playerAmount"])
 		end
 	end
 end

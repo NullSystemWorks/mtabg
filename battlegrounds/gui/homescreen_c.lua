@@ -182,7 +182,7 @@ end
 
 addEventHandler("onClientResourceStart", getResourceRootElement(),
 	function()
-		battlegroundsVersion = "MTA:Battlegrounds 0.0.1a"
+		battlegroundsVersion = "MTA:Battlegrounds 0.0.2a"
 		versionLabel = guiCreateLabel(1,1,0.3,0.3, battlegroundsVersion, true)
 		guiSetSize ( versionLabel, guiLabelGetTextExtent ( versionLabel ), guiLabelGetFontHeight ( versionLabel ), false )
 		x,y = guiGetSize(versionLabel,true)
@@ -203,9 +203,10 @@ function sendToHomeScreen(dimension)
 	setElementDimension(localPlayer,dimension)
 	setElementInterior(localPlayer,18)
 	setElementFrozen(localPlayer,true)
-	-- guiSetVisible(homeScreen.staticimage[1],true) --handled somewhere else
+	guiSetVisible(homeScreen.staticimage[1],true)
 	showCursor(true)
 	setElementData(localPlayer,"participatingInGame",false)
+	setElementData(localPlayer,"inLobby",false)
 	triggerServerEvent("mtabg_sendUserDataToHomeScreen",localPlayer)
 	setPlayerHudComponentVisible("radar",false)
 	setPlayerHudComponentVisible("clock",false)
