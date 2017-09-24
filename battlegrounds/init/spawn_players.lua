@@ -3,7 +3,7 @@
 				MTA:BG
 			MTA Battlegrounds
 	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
-	
+
 ]]--
 
 -- Init game status
@@ -62,7 +62,7 @@ function onPlayerLeavingGame()
 end
 addEventHandler("onPlayerQuit",root,onPlayerLeavingGame)
 
-function sendPlayerToLobby(player)
+function sendPlayerToLobby(player, forcedStart)
 	if client then player = client end
 	showChat(player,true)
 	spawnID,spawnX,spawnY,spawnZ = 0,3971,3276,16
@@ -93,8 +93,8 @@ function sendPlayerToLobby(player)
 					triggerClientEvent(players,"mtabg_onClientBattleGroundsSetStatus",players,false,gameCache["initialPlayerAmount"])
 				end
 			end
-			if gameCache["initialPlayerAmount"] > 1 then
-				startCountDown()
+			if gameCache["initialPlayerAmount"] > 1 or forcedStart then
+				startCountDown(forcedStart)
 				for i, players in ipairs(getElementsByType("player")) do
 					if getElementData(players,"inLobby") then
 						triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,300)
@@ -105,7 +105,7 @@ function sendPlayerToLobby(player)
 					if getElementData(players,"inLobby") then
 						triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"More players needed")
 					end
-				end	
+				end
 			end
 		else
 			for i, players in ipairs(getElementsByType("player")) do
@@ -117,15 +117,16 @@ function sendPlayerToLobby(player)
 		end
 	end,2000,1,gameCache["initialPlayerAmount"],gameCache["status"],gameCache["countdown"])
 end
+addCommandHandler("forceMatchStart", sendPlayerToLobby, true, true)
 addEvent("mtabg_sendPlayerToLobby",true)
 addEventHandler("mtabg_sendPlayerToLobby",root,sendPlayerToLobby)
 
 local spawnItemsTimer
-function startCountDown()
+function startCountDown(forcedStart)
 	if gameCache["status"] then return end
 	if isTimer(spawnItemsTimer) then killTimer(spawnItemsTimer) end
 	gameCache["playingField"] = 0
-	if gameCache["initialPlayerAmount"] < 1 then
+	if gameCache["initialPlayerAmount"] < 1 and not forcedStart then
 		for i, players in ipairs(getElementsByType("player")) do
 			if getElementData(players,"inLobby") then
 				triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"More players needed")
@@ -204,7 +205,7 @@ end
 function stopCountDown()
 	if isTimer(spawnItemsTimer) then killTimer(spawnItemsTimer) refreshLootSpots() end
 end
-				
+
 function startGame()
 	gameCache["status"] = false
 	for i, player in ipairs(getElementsByType("player")) do
@@ -256,7 +257,7 @@ addEvent("mtabg_startGame",true)
 addEventHandler("mtabg_startGame",root,startGame)
 
 function startGameCommand()
-	startCountDown(false)
+	startCountDown()
 	startGame()
 	async:foreach(lootPoints["Industry"], function(position)
 	SpotsID = SpotsID+1
