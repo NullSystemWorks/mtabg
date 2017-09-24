@@ -3,7 +3,7 @@
 				MTA:BG
 			MTA Battlegrounds
 	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
-	
+
 ]]--
 
 
@@ -111,9 +111,9 @@ local countdown = ""
 lobbyLabel[1] = guiCreateLabel(0.02, 0.31, 0.32, 0.05, "", true)
 lobbyLabel[2] = guiCreateLabel(0.02, 0.36, 0.32, 0.05, "", true)
 lobbyLabel[3] = guiCreateLabel(0.26, 0.70, 0.48, 0.13, "", true)
-lobbyLabel[4] = guiCreateLabel(0.02, 0.46, 0.32, 0.29, "", true)   
-lobbyLabel["font_big"] = guiCreateFont("/fonts/tahomab.ttf",20) 
-lobbyLabel["font_small"] = guiCreateFont("/fonts/tahomab.ttf",12) 
+lobbyLabel[4] = guiCreateLabel(0.02, 0.46, 0.32, 0.29, "", true)
+lobbyLabel["font_big"] = guiCreateFont("/fonts/tahomab.ttf",20)
+lobbyLabel["font_small"] = guiCreateFont("/fonts/tahomab.ttf",12)
 guiLabelSetHorizontalAlign(lobbyLabel[3], "center", true)
 guiLabelSetVerticalAlign(lobbyLabel[3], "center")
 guiLabelSetHorizontalAlign(lobbyLabel[4], "left", true)
@@ -344,6 +344,7 @@ end
 addEventHandler("onClientMouseLeave",endScreen.label[7],onMouseOverBackToHomeScreenLabelDeselect,false)
 
 function sendPlayerBackToHomeScreenOnDeath()
+	guiSetVisible(homeScreen.staticimage[1],true)
 	guiSetVisible(endScreen.image[1],false)
 	guiSetVisible(endScreen.image[2],false)
 	sendToHomeScreen(homeScreenDimension)
