@@ -63,7 +63,7 @@ Version: 0.0.1 Pre-Alpha
 	<file src="accounting/img/background.png" />
 	<file src="accounting/img/white.png" />
 	<file src="sounds/siege.mp3" />
-	
+
 
 	<!-- Hud -->
 	<script src="hud/hud_s.lua" type="server" />
@@ -172,14 +172,19 @@ Version: 0.0.1 Pre-Alpha
 
 	<script src="models/loadskins.lua" type="client" cache="false" />
 
-
-
 	<!-- Exports -->
 	<script src="exports_s.lua" type="server" />
 	<export function="saveLog" type="server" />
 	<export function="isGameRunning" type="server" />
 
-	 <oop>true</oop>
+	<oop>true</oop>
+
 	<include resource="customblips" />
 	<include resource="parachutes" />
+
+	<!-- ACL requests -->
+	<alcrequest>
+		<right name="function.stopResource" access="true" />
+	</alcrequest>
+
 </meta>
