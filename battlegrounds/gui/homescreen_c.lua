@@ -182,7 +182,7 @@ end
 
 addEventHandler("onClientResourceStart", getResourceRootElement(),
 	function()
-		battlegroundsVersion = "MTA:Battlegrounds 0.0.2a"
+		battlegroundsVersion = "MTA:Battlegrounds 0.0.3a"
 		versionLabel = guiCreateLabel(1,1,0.3,0.3, battlegroundsVersion, true)
 		guiSetSize ( versionLabel, guiLabelGetTextExtent ( versionLabel ), guiLabelGetFontHeight ( versionLabel ), false )
 		x,y = guiGetSize(versionLabel,true)
