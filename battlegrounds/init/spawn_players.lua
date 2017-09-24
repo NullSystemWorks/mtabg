@@ -68,7 +68,7 @@ function onPlayerLeavingGame()
 end
 addEventHandler("onPlayerQuit",root,onPlayerLeavingGame)
 
-function sendPlayerToLobby(player, forcedStart)
+function sendPlayerToLobby(player, forcedStart, quickTick)
 	if client then player = client end
 	showChat(player,true)
 	spawnID,spawnX,spawnY,spawnZ = 0,3971,3276,16
@@ -100,7 +100,7 @@ function sendPlayerToLobby(player, forcedStart)
 				end
 			end
 			if gameCache["initialPlayerAmount"] > 1 or forcedStart then
-				startCountDown(forcedStart)
+				startCountDown(forcedStart, quickTick)
 				for i, players in ipairs(getElementsByType("player")) do
 					if getElementData(players,"inLobby") then
 						triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,300)
@@ -128,7 +128,7 @@ addEvent("mtabg_sendPlayerToLobby",true)
 addEventHandler("mtabg_sendPlayerToLobby",root,sendPlayerToLobby)
 
 local spawnItemsTimer
-function startCountDown(forcedStart)
+function startCountDown(forcedStart, quickTick)
 	if gameCache["status"] then return end
 	if isTimer(spawnItemsTimer) then killTimer(spawnItemsTimer) end
 	gameCache["playingField"] = 0
@@ -205,7 +205,7 @@ function startCountDown(forcedStart)
 				killTimer(spawnItemsTimer)
 			end
 		end
-	end,1000,300,gameCache["countdown"],gameCache["initialPlayerAmount"],firstTimeLoot,gameCache["status"])
+	end,quickTick and 50 or 1000,300,gameCache["countdown"],gameCache["initialPlayerAmount"],firstTimeLoot,gameCache["status"])
 end
 
 function stopCountDown()
