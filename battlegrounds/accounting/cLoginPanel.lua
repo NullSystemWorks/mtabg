@@ -71,7 +71,7 @@ local function showLoadingBar()
 	end
 	loadingBar.changeIcon(1) --start with faded V icon
 end
-addEventHandler("onClientResourceStart", root, showLoadingBar)
+addEventHandler("onClientResourceStart", resourceRoot, showLoadingBar)
 
 local function resetLoadingBar()
 	loadingBar.setWaiting(false)
