@@ -50,6 +50,12 @@ function onPlayerLeavingGame()
 		end
 		if gameCache["initialPlayerAmount"] <= 1 then --1
 			stopCountDown()
+			for i, players in ipairs(getElementsByType("player")) do
+				if getElementData(players,"inLobby") then
+					triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"More players needed")
+					triggerClientEvent(players,"mtabg_onClientBattleGroundsSetCountdown",players,"N/A")
+				end
+			end
 		end
 	else
 		gameCache["playerAmount"] = math.max(gameCache["playerAmount"]-1,0)

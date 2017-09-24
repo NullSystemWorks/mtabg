@@ -181,4 +181,5 @@ Version: 0.0.1 Pre-Alpha
 
 	 <oop>true</oop>
 	<include resource="customblips" />
+	<include resource="parachutes" />
 </meta>

@@ -16,3 +16,11 @@ local function restrictCommands(cmd)
 	end
 end
 addEventHandler("onPlayerCommand",root,restrictCommands)
+
+local function stopExternalParachuteResource()
+	local parachuteResource = getResourceFromName("parachute")
+	if parachuteResource and getResourceState(parachuteResource) == "running" then
+		stopResource(parachuteResource)
+	end
+end
+addEventHandler("onResourceStart",resourceRoot,stopExternalParachuteResource)
