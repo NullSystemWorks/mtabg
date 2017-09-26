@@ -77,7 +77,6 @@ local finalRank = 0
 function killBattleGroundsPlayer(player,killer,headshot)
 	if not player then player = source end
 	local x,y,z = getElementPosition(player)
-	local deadPlayerTable = {}
 	pedCol = false
 	killPed(player)
 	if not isElementInWater(player) then
@@ -88,7 +87,7 @@ function killBattleGroundsPlayer(player,killer,headshot)
 			local dimension = getElementDimension(player)
 			ped = createPed(skin,6000,6000,0,rotZ)
 			pedCol = createColSphere(6000,6000,0,1.5)
-			deadPlayerTable[pedCol] = {}
+			lootpointData[pedCol] = {}
 			killPed(ped)
 			setElementDimension(ped,dimension)
 			setTimer(destroyDeadPlayer,600000,1,ped,pedCol)
@@ -108,7 +107,7 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	end
 	if pedCol then
 		for k,	data in ipairs(playerDataInfo[player]) do
-			table.insert(deadPlayerTable[pedCol],{data[2],data[3]})
+			table.insert(lootpointData[pedCol],{data[2],data[3]})
 		end
 	end
 	setTimer(setElementPosition,500,1,player,6000,6000,0)
@@ -139,8 +138,8 @@ function killBattleGroundsPlayer(player,killer,headshot)
 	homeScreenDimension = homeScreenDimension+1
 	finalRank = gameCache["playerAmount"]
 	gameCache["playerAmount"] = gameCache["playerAmount"]-1
-	setElementData(player,"participatingInGame",false)
 	if isElement(killer) then
+		setElementData(player,"participatingInGame",false)
 		checkForWinner(killer)
 		for i, players in ipairs(getElementsByType("player")) do
 			if getElementData(players,"participatingInGame") then	
@@ -149,16 +148,17 @@ function killBattleGroundsPlayer(player,killer,headshot)
 		end
 		triggerClientEvent(player,"mtabg_showEndscreen",player,finalRank,homeScreenDimension)
 	else
-		if gameCache["playerAmount"] > 1 then
+		if gameCache["playerAmount"] <= 1 then
+			setElementData(player,"participatingInGame",false)
 			for i, players in ipairs(getElementsByType("player")) do
 				if getElementData(players,"participatingInGame") then
-					outputSideChat("Player "..getPlayerName(player).." has died - "..gameCache["playerAmount"].." left",players,255,255,255)
+					checkForWinner(players)
 				end
 			end
 		else
 			for i, players in ipairs(getElementsByType("player")) do
 				if getElementData(players,"participatingInGame") then
-					checkForWinner(players)
+					outputSideChat("Player "..getPlayerName(player).." has died - "..gameCache["playerAmount"].." left",players,255,255,255)
 				end
 			end
 		end

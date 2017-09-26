@@ -132,13 +132,22 @@ function startCountDown(forcedStart, quickTick)
 	if gameCache["status"] then return end
 	if isTimer(spawnItemsTimer) then killTimer(spawnItemsTimer) end
 	gameCache["playingField"] = 0
-	if gameCache["initialPlayerAmount"] < 1 and not forcedStart then
+	if gameCache["initialPlayerAmount"] < 2 and not forcedStart then
 		for i, players in ipairs(getElementsByType("player")) do
 			if getElementData(players,"inLobby") then
 				triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"More players needed")
 			end
 		end
 		return
+	end
+	if forcedStart then
+		gameCache["initialPlayerAmount"] = 0
+		for i, players in ipairs(getElementsByType("player")) do
+			if getElementData(players,"inLobby") then
+				gameCache["initialPlayerAmount"] = gameCache["initialPlayerAmount"]+1
+				triggerClientEvent(players,"mtabg_onClientBattleGroundsSetStatus",players,false,gameCache["initialPlayerAmount"])
+			end
+		end
 	end
 	spawnItemsTimer = setTimer(function()
 		if firstTimeLoot then
@@ -199,7 +208,7 @@ function startCountDown(forcedStart, quickTick)
 				end
 			end
 		elseif gameCache["countdown"] == 0 then
-			if gameCache["initialPlayerAmount"] > 1 then
+			if gameCache["initialPlayerAmount"] > 1 or forcedStart then
 				startGame()
 				firstTimeLoot = true
 				killTimer(spawnItemsTimer)
@@ -247,7 +256,7 @@ function startGame()
 			attachElements(playerCol,player,0,0,0)
 			setElementData(player,"participatingInGame",true)
 			gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
-			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetStatus",player,gameCache["playerAmount"],true,gameCache["countdown"])
+			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetAliveCount",player,gameCache["playerAmount"])
 			setElementData(player,"inLobby",false)
 			giveWeapon(player,46,1,true)
 			setPedWeaponSlot(player,11)
@@ -329,6 +338,7 @@ function resetGameCache()
 	gameCache["playerAmount"] = 0
 	gameCache["countdown"] = 300
 	gameCache["playingField"] = 0 -- = Dimension (Dimension 500 is reserved for home screen!)
+	outputDebugString("MTA:BG Game Cache has been reset")
 end
 addEvent("mtabg_resetGameCache",true)
 addEventHandler("mtabg_resetGameCache",root,resetGameCache)

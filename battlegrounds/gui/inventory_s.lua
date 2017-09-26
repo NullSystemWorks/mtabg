@@ -273,47 +273,49 @@ function onItemFromLootToInventory(itemName,loot)
 			if newAmmoAmount then
 				setWeaponAmmo(client,weaponID,newAmmoAmount)
 			end
-		
-			for i, item in ipairs(lootpointData[loot]) do
-				if item[1] == itemName then
-					if item[1] == "11.43x23mm Cartridge" then
-						refreshInventory()
-						refreshLoot(loot,"")
-						return
-					elseif item[1] == "9x18mm Cartridge" then
-						refreshInventory()
-						refreshLoot(loot,"")
-						return
-					elseif item[1] == "9x19mm Cartridge" then
-						refreshInventory()
-						refreshLoot(loot,"")
-						return
-					elseif item[1] == ".303 British Cartridge" then
-						refreshInventory()
-						refreshLoot(loot,"")
-						return
-					elseif item[1] == "7.62x39mm Cartridge" then
-						refreshInventory()
-						refreshLoot(loot,"")
-						return
-					elseif item[1] == "5.56x45mm Cartridge" then
-						refreshInventory()
-						refreshLoot(loot,"")
-						return
-					elseif item[1] == "7.62x54mm Cartridge" then
-						refreshInventory()
-						refreshLoot(loot,"")
-						return
-					elseif item[1] == "1866 Slug" then
-						refreshInventory()
-						refreshLoot(loot,"")
-						return
-					elseif item[1] == "12 Gauge Pellet" then
-						refreshInventory()
-						refreshLoot(loot,"")
-						return
-					else
-						item[2] = item[2]-1
+			
+			if lootpointData[loot] then
+				for i, item in ipairs(lootpointData[loot]) do
+					if item[1] == itemName then
+						if item[1] == "11.43x23mm Cartridge" then
+							refreshInventory()
+							refreshLoot(loot,"")
+							return
+						elseif item[1] == "9x18mm Cartridge" then
+							refreshInventory()
+							refreshLoot(loot,"")
+							return
+						elseif item[1] == "9x19mm Cartridge" then
+							refreshInventory()
+							refreshLoot(loot,"")
+							return
+						elseif item[1] == ".303 British Cartridge" then
+							refreshInventory()
+							refreshLoot(loot,"")
+							return
+						elseif item[1] == "7.62x39mm Cartridge" then
+							refreshInventory()
+							refreshLoot(loot,"")
+							return
+						elseif item[1] == "5.56x45mm Cartridge" then
+							refreshInventory()
+							refreshLoot(loot,"")
+							return
+						elseif item[1] == "7.62x54mm Cartridge" then
+							refreshInventory()
+							refreshLoot(loot,"")
+							return
+						elseif item[1] == "1866 Slug" then
+							refreshInventory()
+							refreshLoot(loot,"")
+							return
+						elseif item[1] == "12 Gauge Pellet" then
+							refreshInventory()
+							refreshLoot(loot,"")
+							return
+						else
+							item[2] = item[2]-1
+						end
 					end
 				end
 			end

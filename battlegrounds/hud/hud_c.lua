@@ -260,7 +260,7 @@ addEvent("mtabg_onClientBattleGroundsAnnounceMatchStart",true)
 addEventHandler("mtabg_onClientBattleGroundsAnnounceMatchStart",root,onClientBattleGroundsAnnounceMatchStart)
 
 function onClientBattleGroundsSetAliveCount(amount)
-	playerAmount = tonumber(amount)
+	playerAmount = amount
 end
 addEvent("mtabg_onClientBattleGroundsSetAliveCount",true)
 addEventHandler("mtabg_onClientBattleGroundsSetAliveCount",root,onClientBattleGroundsSetAliveCount)

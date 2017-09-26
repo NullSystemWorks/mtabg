@@ -11,4 +11,4 @@ function onBattleGroundsPlayerDamage(attacker,weapon,bodypart,loss)
 	cancelEvent()
 	triggerServerEvent("mtabg_onBattleGroundsPlayerDamage",localPlayer,attacker,weapon,bodypart,loss)
 end
-addEventHandler("onClientPlayerDamage",localPlayer,onBattleGroundsPlayerDamage)
+addEventHandler("onClientPlayerDamage",root,onBattleGroundsPlayerDamage)
