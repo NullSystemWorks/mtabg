@@ -185,6 +185,7 @@ Version: 0.0.1 Pre-Alpha
 	<!-- ACL requests -->
 	<aclrequest>
 		<right name="function.stopResource" access="true" />
+		<right name="function.restartResource" access="true" />
 	</aclrequest>
 
 </meta>
