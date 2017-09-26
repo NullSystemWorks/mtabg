@@ -183,8 +183,8 @@ Version: 0.0.1 Pre-Alpha
 	<include resource="parachutes" />
 
 	<!-- ACL requests -->
-	<alcrequest>
+	<aclrequest>
 		<right name="function.stopResource" access="true" />
-	</alcrequest>
+	</aclrequest>
 
 </meta>
