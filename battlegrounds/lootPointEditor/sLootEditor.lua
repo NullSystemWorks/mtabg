@@ -15,11 +15,11 @@ local markerMakerSleeppingTime = 100 --in milliseconds >= 50
 local markerMakerWorkCount = 220 --work before suspending
 
 local lootColor = { --class colors
-	residential = {r = 176, g = 65, b = 214}, --#b041d6
-	military = {r = 235, g = 48, b = 48}, --#eb3030
-	supermarket = {r = 74, g = 67, b = 222}, --#4a43de
-	farm = {r = 54, g = 172, b = 47}, --#36ac2f
-	industry = {r = 102, g = 102, b = 102}, --#666666
+	Residential = {r = 176, g = 65, b = 214}, --#b041d6
+	Military = {r = 235, g = 48, b = 48}, --#eb3030
+	Supermarket = {r = 74, g = 67, b = 222}, --#4a43de
+	Farm = {r = 54, g = 172, b = 47}, --#36ac2f
+	Industry = {r = 102, g = 102, b = 102}, --#666666
 }
 
 --Return the class color in RGB
@@ -225,11 +225,11 @@ local function printHelpMenu(player)
     outputChatBox(" ", player)
 		outputChatBox("backspace: Delete", player, 255, 255, 255)
     outputChatBox("0: Info ", player, 255, 255, 255)
-    outputChatBox("1: Residential", player, getClassColor("residential"))
-    outputChatBox("2: Military", player, getClassColor("military"))
-    outputChatBox("3: Supermarket", player, getClassColor("supermarket"))
-    outputChatBox("4: Farm", player, getClassColor("farm"))
-    outputChatBox("5: Industrial", player, getClassColor("industry"))
+    outputChatBox("1: Residential", player, getClassColor("Residential"))
+    outputChatBox("2: Military", player, getClassColor("Military"))
+    outputChatBox("3: Supermarket", player, getClassColor("Supermarket"))
+    outputChatBox("4: Farm", player, getClassColor("Farm"))
+    outputChatBox("5: Industrial", player, getClassColor("Industry"))
 end
 
 --Checks if player has permission to join the editor
@@ -242,11 +242,11 @@ local function unbindControlKeys (player)
 	if canPlayerUseEditor(player) then --read-only mode?
 		unbindKey(player, "backspace", "down", editLootPoint, "delete") --unbind delete button
 		unbindKey(player, "num_0", "down", editLootPoint, "info") --unbind info button
-		unbindKey(player, "num_1", "down", editLootPoint, "residential") --unbind residential button
-		unbindKey(player, "num_2", "down", editLootPoint, "military") --unbind military button
-		unbindKey(player, "num_3", "down", editLootPoint, "supermarket") --unbind supermarket button
-		unbindKey(player, "num_4", "down", editLootPoint, "farm") --unbind farm button
-		unbindKey(player, "num_5", "down", editLootPoint, "industry") --unbind industry button
+		unbindKey(player, "num_1", "down", editLootPoint, "Residential") --unbind Residential button
+		unbindKey(player, "num_2", "down", editLootPoint, "Military") --unbind Military button
+		unbindKey(player, "num_3", "down", editLootPoint, "Supermarket") --unbind Supermarket button
+		unbindKey(player, "num_4", "down", editLootPoint, "Farm") --unbind Farm button
+		unbindKey(player, "num_5", "down", editLootPoint, "Industry") --unbind Industry button
 	end
 end
 
@@ -254,11 +254,11 @@ end
 local function bindControlKeys (player)
 	bindKey(player, "backspace", "down", editLootPoint, "delete") --bind delete button
 	bindKey(player, "num_0", "down", editLootPoint, "info") --bind info button
-	bindKey(player, "num_1", "down", editLootPoint, "residential") --bind residential button
-	bindKey(player, "num_2", "down", editLootPoint, "military") --bind military button
-	bindKey(player, "num_3", "down", editLootPoint, "supermarket") --bind supermarket button
-	bindKey(player, "num_4", "down", editLootPoint, "farm") --bind farm button
-	bindKey(player, "num_5", "down", editLootPoint, "industry") --bind industry button
+	bindKey(player, "num_1", "down", editLootPoint, "Residential") --bind Residential button
+	bindKey(player, "num_2", "down", editLootPoint, "Military") --bind Military button
+	bindKey(player, "num_3", "down", editLootPoint, "Supermarket") --bind Supermarket button
+	bindKey(player, "num_4", "down", editLootPoint, "Farm") --bind Farm button
+	bindKey(player, "num_5", "down", editLootPoint, "Industry") --bind Industry button
 end
 
 --Allow player to leave editor mode
@@ -457,8 +457,6 @@ function lootEditor:setPlayerInEditor(player, state)
 		error("Bad argument #1 to 'lootEditor:setPlayerInEditor' (player expected, got " ..type(player).. ")", 2)
 	end
 end
--- local togg = true
--- addCommandHandler("into", function() lootEditor:setPlayerInEditor(getPlayerFromName("CapableCarrot7"),togg) togg = not togg end)
 
 --[[
 Methods:
