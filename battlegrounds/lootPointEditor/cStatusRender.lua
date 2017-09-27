@@ -45,15 +45,15 @@ local localPlayer = localPlayer
 function renderOpenHelpWindow()
 	markerClass = localPlayer:getData("markerClass")
 	if markerClass then
-		if markerClass == "residential" then
+		if markerClass == "Residential" then
 			arrowOffsety = 5 + tydist
-		elseif markerClass == "military" then
+		elseif markerClass == "Military" then
 			arrowOffsety = 5 + tydist*2
-		elseif markerClass == "supermarket" then
+		elseif markerClass == "Supermarket" then
 			arrowOffsety = 5 + tydist*3
-		elseif markerClass == "farm" then
+		elseif markerClass == "Farm" then
 			arrowOffsety = 5 + tydist*4
-		elseif markerClass == "industry" then
+		elseif markerClass == "Industry" then
 			arrowOffsety = 5 + tydist*5
 		else
 			arrowOffsety = 5

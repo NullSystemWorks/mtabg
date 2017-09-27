@@ -167,26 +167,17 @@ function startCountDown(forcedStart, quickTick)
 				if getElementData(players,"inLobby") then
 					triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,240)
 				end
-			end
+			end	
 		end
 		if gameCache["countdown"] == 100 then
 			outputDebugString("[MTA:BG] Spawning Industry Loot Points(20%)")
-			async:foreach(lootPoints["Industry"], function(position)
-				SpotsID = SpotsID+1
-				createLootPoint("Industry",position[1],position[2],position[3],SpotsID)
-			end)
+			createColOnPosition("Industry")
 		elseif gameCache["countdown"] == 80 then
 			outputDebugString("[MTA:BG] Spawning Residential Loot Points(40%)")
-			async:foreach(lootPoints["Residential"], function(position)
-				SpotsID = SpotsID+1
-				createLootPoint("Residential",position[1],position[2],position[3],SpotsID)
-			end)
+			createColOnPosition("Residential")
 		elseif gameCache["countdown"] == 60 then
 			outputDebugString("[MTA:BG] Spawning Supermarket Loot Points(60%)")
-			async:foreach(lootPoints["Supermarket"], function(position)
-				SpotsID = SpotsID+1
-				createLootPoint("Supermarket",position[1],position[2],position[3],SpotsID)
-			end)
+			createColOnPosition("Supermarket")
 			for i, players in ipairs(getElementsByType("player")) do
 				if getElementData(players,"inLobby") then
 					triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,60)
@@ -194,16 +185,10 @@ function startCountDown(forcedStart, quickTick)
 			end
 		elseif gameCache["countdown"] == 40 then
 			outputDebugString("[MTA:BG] Spawning Farm Loot Points(80%)")
-			async:foreach(lootPoints["Farm"], function(position)
-				SpotsID = SpotsID+1
-				createLootPoint("Farm",position[1],position[2],position[3],SpotsID)
-			end)
+			createColOnPosition("Farm")
 		elseif gameCache["countdown"] == 20 then
 			outputDebugString("[MTA:BG] Spawning Military Loot Points(100%)")
-			async:foreach(lootPoints["Military"], function(position)
-				SpotsID = SpotsID+1
-				createLootPoint("Military",position[1],position[2],position[3],SpotsID)
-			end)
+			createColOnPosition("Military")
 			for i, players in ipairs(getElementsByType("player")) do
 				if getElementData(players,"inLobby") then
 					triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,20)
@@ -258,6 +243,7 @@ function startGame()
 			attachElements(playerCol,player,0,0,0)
 			setElementData(player,"participatingInGame",true)
 			gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
+			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetStatus",player,true,0)
 			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetAliveCount",player,gameCache["playerAmount"])
 			setElementData(player,"inLobby",false)
 			giveWeapon(player,46,1,true)

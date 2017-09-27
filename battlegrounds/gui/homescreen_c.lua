@@ -212,6 +212,7 @@ function sendToHomeScreen(dimension)
 	setPlayerHudComponentVisible("health",false)
 	setPlayerHudComponentVisible("area_name",false)
 	setPlayerHudComponentVisible("money",false)
+	guiSetVisible(inventoryGUI.window[1],false)
 end
 addEvent("mtabg_sendToHomeScreen",true)
 addEventHandler("mtabg_sendToHomeScreen",root,sendToHomeScreen)

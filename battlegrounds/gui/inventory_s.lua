@@ -383,13 +383,13 @@ function onPlayerUseItem(itemName,itemInfo)
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName,255,255,255)
 							if isTimer(energyDrinkTimer) then killTimer(energyDrinkTimer) end
-								energyDrinkTimer = setTimer(function()
+								energyDrinkTimer = setTimer(function(client)
 								data[3] = data[3]+1
 								if data[3] >= 100 then
 									data[3] = 100
 								end
 								triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
-							end,1000,50,client,data[3])
+							end,3000,10,client,data[3])
 						else
 							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!",255,0,0)
 						end
