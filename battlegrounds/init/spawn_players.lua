@@ -42,7 +42,9 @@ end
 
 function onPlayerLeavingGame()
 	if not gameCache["status"] then
-		gameCache["initialPlayerAmount"] = math.max(gameCache["initialPlayerAmount"]-1,0)
+		if getElementData(source,"inLobby") then
+			gameCache["initialPlayerAmount"] = math.max(gameCache["initialPlayerAmount"]-1,0)
+		end
 		for i, players in ipairs(getElementsByType("player")) do
 			if getElementData(players,"inLobby") then
 				triggerClientEvent(players,"mtabg_onClientBattleGroundsSetStatus",players,false,gameCache["initialPlayerAmount"])
