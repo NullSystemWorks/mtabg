@@ -11,8 +11,8 @@ local isEditorRunning = false
 local coroutine = coroutine
 local markerMaker --creation/destruction thread
 local markerMakerTimer --creation/destruction thread timer
-local markerMakerSleeppingTime = 100 --in milliseconds >= 50
-local markerMakerWorkCount = 220 --work before suspending
+local markerMakerSleeppingTime = 500 --in milliseconds >= 50
+local markerMakerWorkCount = 50 --work before suspending
 
 local lootColor = { --class colors
 	Residential = {r = 176, g = 65, b = 214}, --#b041d6
