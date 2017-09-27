@@ -58,7 +58,7 @@ function renderOpenHelpWindow()
 		else
 			arrowOffsety = 5
 		end
-		dxDrawImage(tx - 40, ty + arrowOffsety, 32, 32, "arrow.png")
+		dxDrawImage(tx - 40, ty + arrowOffsety, 32, 32, "lootPointEditor/arrow.png")
 	end
 	y = ty
 	dxDrawRectangle ( sx - 160, y - 25, 117, 185, tocolor ( 0, 0, 0, 200 ) ) -- Create black background rectangle.
