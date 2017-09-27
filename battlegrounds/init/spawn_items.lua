@@ -58,10 +58,10 @@ function createColOnPosition(lootSpot)
 						["itemloot"] = true,
 						["parent"] = lootSpot,
 						["Space"] = 20,
-						["lootID"] = lootPointID,
+						["lootID"] = colID,
 						["objects"] = {}
 					}
-					for i, item in ipairs(lootItems[lootSpot]) do
+					async:foreach(lootItems[lootSpot],function(item)
 						local itemChance = math.percentChance(item[5],5)
 						if itemChance > 0 then
 							if item[1] == "11.43x23mm Cartridge" then
@@ -85,12 +85,13 @@ function createColOnPosition(lootSpot)
 							end
 						end
 						table.insert(lootpointData[lootCol],{item[1],itemChance})
-					end
+					end)
+					
 					setElementData(lootCol,"itemloot",true)
 					setElementData(lootCol,"parent",lootSpot)
 					local objectCounter = 0
 					local objectTable = {}
-					for i, item in ipairs(lootItems[lootSpot]) do
+					async:foreach(lootItems[lootSpot],function(item)
 						for k, spot in ipairs(lootpointData[lootCol]) do
 							if item[1] == spot[1] then
 								if spot[2] > 0 then
@@ -109,7 +110,7 @@ function createColOnPosition(lootSpot)
 								end
 							end
 						end
-					end
+					end)
 				end
 			end
 		end
