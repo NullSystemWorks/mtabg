@@ -183,6 +183,8 @@ Version: 0.0.1 Pre-Alpha
 	<script src="exports_s.lua" type="server" />
 	<export function="saveLog" type="server" />
 	<export function="isGameRunning" type="server" />
+	<export function="setAFKTime" type="server" />
+	<export function="setRadiationRate" type="server" />	
 
 	<oop>true</oop>
 
