@@ -325,12 +325,3 @@ addEventHandler("mtabg_register", getRootElement(), registerPlayer)
 
 
 --ACL: command.mtabgComputeAlphaKeys
-
---[[
-
---TODO: should have a table that keeps track of access history, with the intent of
-preventing login abuse
---TODO: only allow one timer per IP and SERIAL
---TODO: control how often users can try to wrong password
-
-]]

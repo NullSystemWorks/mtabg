@@ -6,71 +6,6 @@
 
 ]]--
 
---[[
-local screenW, screenH = guiGetScreenSize()
-local isInventoryShowing = false
-
-
-inventoryGUI.label[12] = guiCreateLabel(0.08, 0.15, 0.17, 0.04, "YOUR INVENTORY", true)
-guiSetFont(inventoryGUI.label[12], "default-bold-small")
-guiLabelSetHorizontalAlign(inventoryGUI.label[12], "center", false)
-inventoryGUI.label[29] = guiCreateLabel(0.61, 0.19, 0.04, 0.04, "1", true)
-guiSetFont(inventoryGUI.label[29], "default-bold-small")
-guiLabelSetHorizontalAlign(inventoryGUI.label[29], "center", false)
-guiLabelSetVerticalAlign(inventoryGUI.label[29], "center")
-inventoryGUI.label[30] = guiCreateLabel(0.61, 0.39, 0.04, 0.04, "2", true)
-guiSetFont(inventoryGUI.label[30], "default-bold-small")
-guiLabelSetHorizontalAlign(inventoryGUI.label[30], "center", false)
-guiLabelSetVerticalAlign(inventoryGUI.label[30], "center")
-inventoryGUI.label[31] = guiCreateLabel(0.61, 0.59, 0.04, 0.04, "3", true)
-guiSetFont(inventoryGUI.label[31], "default-bold-small")
-guiLabelSetHorizontalAlign(inventoryGUI.label[31], "center", false)
-guiLabelSetVerticalAlign(inventoryGUI.label[31], "center")
-inventoryGUI.label[32] = guiCreateLabel(0.32, 0.15, 0.17, 0.04, "LOOT", true)
-guiSetFont(inventoryGUI.label[32], "default-bold-small")
-guiLabelSetHorizontalAlign(inventoryGUI.label[32], "center", false)
-inventoryGUI.label[33] = guiCreateLabel(0.34, 0.02, 0.29, 0.08, "[PLAYERNAME]", true)
-guiLabelSetHorizontalAlign(inventoryGUI.label[33], "center", false)
-guiLabelSetVerticalAlign(inventoryGUI.label[33], "center")
-inventoryGUI.label[34] = guiCreateLabel(0.06, 0.17, 0.20, 0.70, "", true)
-inventoryGUI.label[35] = guiCreateLabel(0.31, 0.17, 0.20, 0.70, "", true)
-
-
-
-function drawInventory()
-dxDrawImage(screenW * 0.0000, screenH * 0.0000, screenW * 1.0000, screenH * 1.0000, "/gui/images/background.png", 0, 0, 0, tocolor(0, 0, 0, 222), false)
-dxDrawImage(screenW * 0.0788, screenH * 0.1883, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.0788, screenH * 0.2533, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.0788, screenH * 0.3183, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.0788, screenH * 0.3833, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.0788, screenH * 0.4483, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.0788, screenH * 0.5150, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.0788, screenH * 0.5817, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.0788, screenH * 0.6483, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.0788, screenH * 0.7150, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.0788, screenH * 0.7817, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.2637, screenH * 0.1850, screenW * 0.0112, screenH * 0.6550, "/gui/images/scrollbar.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.2963, screenH * 0.1850, screenW * 0.0112, screenH * 0.6550, "/gui/images/scrollbar.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.3200, screenH * 0.1883, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.3200, screenH * 0.2533, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.3200, screenH * 0.3183, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.3200, screenH * 0.3833, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.3200, screenH * 0.4483, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.3200, screenH * 0.5150, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.3200, screenH * 0.5817, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.3200, screenH * 0.6483, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.3200, screenH * 0.7150, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.3200, screenH * 0.7817, screenW * 0.1725, screenH * 0.0583, "/gui/images/inventory_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.6075, screenH * 0.1883, screenW * 0.3625, screenH * 0.0067, "/gui/images/solo_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.6075, screenH * 0.3833, screenW * 0.3625, screenH * 0.0067, "/gui/images/solo_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.6075, screenH * 0.5833, screenW * 0.3625, screenH * 0.0067, "/gui/images/solo_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-dxDrawImage(screenW * 0.6075, screenH * 0.7833, screenW * 0.3625, screenH * 0.0067, "/gui/images/solo_slot.png", 0, 0, 0, tocolor(255, 255, 255, 255), true)
-end
-]]
-
-
-
-
 inventoryGUI = {
     capacity = {},
     label = {},
@@ -86,7 +21,6 @@ inventoryGUI.font[1] = guiCreateFont("/fonts/bebas.otf",13)
 inventoryGUI.font[2] = guiCreateFont("/fonts/bebas.otf",15)
 inventoryGUI.font[3] = guiCreateFont("/fonts/bebas.otf",20)
 inventoryGUI.font[4] = guiCreateFont("/fonts/bebas.otf",25)
-
 
 -- Inventory Init
 inventoryGUI.window[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "gui/images/solo_slot.png", true)
@@ -245,28 +179,49 @@ addEvent("refreshLootManually",true)
 addEventHandler("refreshLootManually",localPlayer,refreshLootManually)
 
 local msgTimer
-local function showInventoryMessage(info,r,g,b)
+local inventoryMessage
+local inventoryMessageArgs
+local function updateInventoryMessage()
+	if isTimer(msgTimer) then
+		local info
+		local r,g,b = 255, 0, 0
+		if inventoryMessage == "use" then
+			info = str("inventoryMessageUseItem", inventoryMessageArgs[1])
+			g, b = 255, 255
+		elseif inventoryMessage == "noAmmo" then
+			info = str("inventoryMessageNoAmmo")
+		elseif inventoryMessage == "fullHealth" then
+			info = str("inventoryMessageFullHealth")
+		elseif inventoryMessage == "fullInventory" then
+			info = str("inventoryMessageFullInventory")
+		end
+		guiSetText(inventoryGUI.label[9],info)
+		guiLabelSetColor(inventoryGUI.label[9],r,g,b)
+	end
+end
+
+local function hideInventoryMessage()
+	inventoryGUI.label[9]:setVisible(false)
 	if isTimer(msgTimer) then
 		killTimer(msgTimer)
 	end
-	guiSetText(inventoryGUI.label[9],info)
-	guiLabelSetColor(inventoryGUI.label[9],r,g,b)
-	msgTimer = setTimer(guiSetText,3000,1,inventoryGUI.label[9],"")
+	msgTimer = nil
 end
 
-local function chooseInventoryMessage(message, ...)
-	if message == "use" then
-		showInventoryMessage(str("inventoryMessageUseItem", arg[1]), 255, 255, 255)
-	elseif message == "noAmmo" then
-		showInventoryMessage(str("inventoryMessageNoAmmo"), 255, 0, 0)
-	elseif message == "fullHealth" then
-		showInventoryMessage(str("inventoryMessageFullHealth"), 255, 0, 0)
-	elseif message == "fullInventory" then
-		showInventoryMessage(str("inventoryMessageFullInventory"), 255, 0, 0)
+local function showInventoryMessage(message, ...)
+	inventoryMessage = message
+	inventoryMessageArgs = arg
+	inventoryGUI.label[9]:setVisible(true)
+	if isTimer(msgTimer) then
+		killTimer(msgTimer)
 	end
+	msgTimer = setTimer(hideInventoryMessage,3000,1)
+	-- msgTimer = setTimer(guiSetText,3000,1,inventoryGUI.label[9],"")
+
+	local info, r,g,b = updateInventoryMessage(message, unpack(arg))
 end
 addEvent("onShowInventoryMessage",true)
-addEventHandler("onShowInventoryMessage", localPlayer, chooseInventoryMessage)
+addEventHandler("onShowInventoryMessage", localPlayer, showInventoryMessage)
 
 function changeEquippedWeaponGUI(weaponType,weaponName,imagePath,guiLabelName,relX,relY,posX,posY)
 	guiSetText(inventoryGUI.label[guiLabelName],weaponName)
@@ -292,9 +247,10 @@ addEventHandler("mtabg_onPlayerAddArmorImage",root,onPlayerAddArmorImage)
 
 local playerCapacity = {}
 function sendCapacityToPlayerClient(maxCapacity,used)
-	playerCapacity[localPlayer] = {}
-	table.insert(playerCapacity[localPlayer],{maxCapacity,used})
-	guiSetText(inventoryGUI.label[10],"CAPACITY: "..tostring(used).."/"..tostring(maxCapacity))
+	playerCapacity = {}
+	playerCapacity.used = used
+	playerCapacity.maxCapacity = maxCapacity
+	guiSetText(inventoryGUI.label[10], str("inventoryCapacity", tostring(used), tostring(maxCapacity)))
 	local progress = (used/maxCapacity)*100
 	guiProgressBarSetProgress(inventoryGUI.progressbar[1],progress)
 end
@@ -371,7 +327,7 @@ guiSetVisible(rightClick["window"], false)
 
 function onPlayerRightMouseButton()
 	local itemName = guiGridListGetItemText(inventoryGUI.gridlist[1], guiGridListGetSelectedItem(inventoryGUI.gridlist[1]),1)
-	local itemName,itemInfo = getInventoryInfosForRightClickMenu(itemName)
+	local itemInfo = getInventoryInfosForRightClickMenu(itemName)
 	if isCursorShowing() and guiGetVisible(inventoryGUI.window[1]) and itemInfo then
 		showRightClickMenu(itemName,itemInfo)
 	end
@@ -388,15 +344,38 @@ function hideRightClickInventoryMenu()
 	guiSetVisible(rightClick["window"], false)
 end
 
-function showRightClickMenu(itemName, itemInfo)
-	if itemInfo and itemInfo ~= "" then
-		local screenx, screeny, worldx, worldy, worldz = getCursorPosition()
-		guiSetVisible(rightClick["window"], true)
-		guiSetText(rightClick["label"], itemInfo.." "..itemName)
+local rightClickMenuItemName
+local rightClickMenuItemInfo
+local function updateRightClickMenuText()
+	if guiGetVisible(rightClick["window"]) then
+		local itemActionMessage
+		if rightClickMenuItemInfo == "equipPrimary" then --not pretty, should probably rethink all this
+			itemActionMessage = str("inventoryEquipPrimaryWeapon", rightClickMenuItemName)
+		elseif rightClickMenuItemInfo == "equipSecondary" then
+			itemActionMessage = str("inventoryEquipSecondaryWeapon", rightClickMenuItemName)
+		elseif rightClickMenuItemInfo == "equipSpecial" then
+			itemActionMessage = str("inventoryEquipSpecialWeapon", rightClickMenuItemName)
+		elseif rightClickMenuItemInfo == "useItem" then
+			itemActionMessage = str("inventoryUseItem", rightClickMenuItemName)
+		else
+			itemActionMessage = "Please read \"Writing translatable code\" on CONTRIBUTING.md"
+		end
+		guiSetText(rightClick["label"], itemActionMessage)
 		local width = guiLabelGetTextExtent(rightClick["label"])
-		guiSetPosition(rightClick["window"], screenx, screeny, true)
 		local x, y = guiGetSize(rightClick["window"], false)
 		guiSetSize(rightClick["window"], width+10, y, false)
+	end
+end
+
+function showRightClickMenu(itemName, itemInfo)
+	if itemInfo and itemInfo ~= "" then
+		rightClickMenuItemName = itemName
+		rightClickMenuItemInfo = itemInfo
+		local screenx, screeny, worldx, worldy, worldz = getCursorPosition()
+		local itemActionMessage
+		guiSetVisible(rightClick["window"], true)
+		updateRightClickMenuText()
+		guiSetPosition(rightClick["window"], screenx, screeny, true)
 		guiBringToFront(rightClick["window"])
 		setElementData(rightClick["window"], "iteminfo", {itemName, itemInfo})
 		if isTimer(hideTimer) then

@@ -218,14 +218,14 @@ end
 addEvent("mtabg_sendToHomeScreen",true)
 addEventHandler("mtabg_sendToHomeScreen",root,sendToHomeScreen)
 
-local selectedOption = "HOME"
+local selectedOption = homeScreen.label[1]
 function changeColorOfOptionOnMouseOver(guiLabel,state)
 	if state then
-		if selectedOption ~= guiGetText(guiLabel) then
+		if selectedOption ~= guiLabel then
 			guiLabelSetColor(guiLabel,255,255,255)
 		end
 	else
-		if selectedOption ~= guiGetText(guiLabel) then
+		if selectedOption ~= guiLabel then
 			guiLabelSetColor(guiLabel,197,197,197)
 		end
 	end
@@ -248,7 +248,7 @@ function changeColorOfArrowCharacterScreen(guiLabel,state)
 end
 
 function getCurrentSelectedOption(guiLabel)
-	if selectedOption == guiGetText(guiLabel) then
+	if selectedOption == guiLabel then
 		guiLabelSetColor(guiLabel,255,255,255)
 	end
 end
@@ -355,7 +355,7 @@ function sendPlayerToOptionOnPress(button)
 		for i=1,4 do
 			if homeScreen.label[i] == source then
 				guiLabelSetColor(source,255,255,255)
-				selectedOption = guiGetText(source)
+				selectedOption = source
 				openUpSelectedOption(selectedOption)
 			else
 				guiLabelSetColor(homeScreen.label[i],197,197,197)
@@ -409,7 +409,7 @@ local epicText = guiGetText(homeScreen.label["epic"])
 local uncommonText = guiGetText(homeScreen.label["uncommon"])
 local commonText = guiGetText(homeScreen.label["common"])
 function openUpSelectedOption(theOption)
-	if theOption == "HOME" then
+	if theOption == homeScreen.label[1] then
 		-- HOME OPTION CODE
 		if guiGetVisible(homeScreen.staticimage[5]) then
 			guiSetVisible(homeScreen.staticimage[5],false)
@@ -429,7 +429,7 @@ function openUpSelectedOption(theOption)
 			smoothMoveCamera(a,b,c,d,e,f,1720.41125,-1646.7942,21.0576,1721.21911,-1647.3781,20.9919,1000)
 			smoothMoveForward = true
 		end
-	elseif theOption == "REWARDS" then
+	elseif theOption == "REWARDS" then --PLEASE CLEAN YOUR DEAD CODE
 		return
 		--[[
 		-- Rewards will be disabled until we have a playable alpha and did some serious playtesting of other features!
@@ -457,7 +457,7 @@ function openUpSelectedOption(theOption)
 			showRewards()
 		end
 		]]
-	elseif theOption == "CHARACTER" then
+	elseif theOption == homeScreen.label[2] then
 		if guiGetVisible(homeScreen.staticimage[5]) then
 			guiSetVisible(homeScreen.staticimage[5],false)
 		end
@@ -473,7 +473,7 @@ function openUpSelectedOption(theOption)
 			smoothMoveCamera(a,b,c,d,e,f,1720.41125,-1646.7942,21.0576,1721.21911+1,-1647.3781+0.1,20.9919,1000)
 			smoothMoveForward = true
 		end
-	elseif theOption == "STATISTICS" then
+	elseif theOption == homeScreen.label[4] then
 		if guiGetVisible(homeScreen.staticimage[6]) then
 			for i=6,17 do
 				guiSetVisible(homeScreen.staticimage[i],false)
@@ -569,7 +569,7 @@ function showStatistics()
 			elseif data[1] == "killdeathratio" then
 				guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2]).."%")
 			else
-				guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2]))
+				-- guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2])) --FIXME: gotta fix your stuff, bro
 			end
 		end
 	end
@@ -610,7 +610,7 @@ end
 local arrowLeftRight = 1
 function changeCharacterOnArrowClick(guiLabel,state)
 	if state then
-		if source == homeScreen.label[39] then -- ->
+		if source == homeScreen.label[39] then
 			for i, data in ipairs(temporarySkinTable[localPlayer]) do
 				for k, skin in ipairs(data) do
 					arrowLeftRight = arrowLeftRight+1
@@ -621,7 +621,7 @@ function changeCharacterOnArrowClick(guiLabel,state)
 					setElementRotation(localPlayer,0,0,80.0553)
 				end
 			end
-		else -- <-
+		else
 			for i, data in ipairs(temporarySkinTable[localPlayer]) do
 				for k, skin in ipairs(data) do
 					arrowLeftRight = arrowLeftRight-1

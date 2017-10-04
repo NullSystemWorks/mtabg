@@ -330,13 +330,13 @@ addEventHandler("mtabg_onItemFromLootToInventory",root,onItemFromLootToInventory
 function onPlayerUseItem(itemName,itemInfo)
 	if itemInfo then
 		local itemUsed = false
-		if itemInfo == "Equip Primary Weapon" then
+		if itemInfo == "equipPrimary" then
 			equipWeapon(itemName,itemInfo,client)
-		elseif itemInfo == "Equip Secondary Weapon" then
+		elseif itemInfo == "equipSecondary" then
 			equipWeapon(itemName,itemInfo,client)
-		elseif itemInfo == "Equip Special Weapon" then
+		elseif itemInfo == "equipSpecial" then
 			equipWeapon(itemName,itemInfo,client)
-		elseif itemInfo == "Use" then
+		elseif itemInfo == "useItem" then
 			for i, data in ipairs(playerDataInfo[client]) do
 				if itemName == "Bandage" then
 					if data[2] == "health" then
