@@ -31,7 +31,7 @@ local number = 0
 	if arg1 == "Take" then
 		number = number+1
 		guiSetVisible(rowImage[number],true)
-		guiSetText(rowText[number],"Take "..arg2)
+		guiSetText(rowText[number], str("sideMenuTake", arg2))
 		if number == 1 then
 			guiLabelSetColor (rowText[number],255,255,255)
 			setElementData(rowText[number],"markedMenuItem",true)
@@ -45,7 +45,7 @@ local number = 0
 	if arg1 == "Dead" then
 		number = number+1
 		guiSetVisible(rowImage[number],true)
-		guiSetText(rowText[number],"Gear ("..arg2..")")
+		guiSetText(rowText[number], str("sideMenuCorpseGear"))
 		if number == 1 then
 			guiLabelSetColor (rowText[number],255,255,255)
 			setElementData(rowText[number],"markedMenuItem",true)
@@ -54,16 +54,16 @@ local number = 0
 		number = number+1
 		setElementData(rowText[number],"usedItem","deadreason")
 		guiSetVisible(rowImage[number],true)
-		guiSetText(rowText[number],"Check Body")
+		guiSetText(rowText[number], str("sideMenuCheckBody"))
 
 		setElementData(rowText[3],"usedItem","hidebody")
   		guiSetVisible(rowImage[3],true)
-  		guiSetText(rowText[3],"Hide Body")
+  		guiSetText(rowText[3], str("sideMenuHideBody"))
 	end
 	if arg1 == "Gear" then
 		number = number+1
 		guiSetVisible(rowImage[number],true)
-		guiSetText(rowText[number],"Gear")
+		guiSetText(rowText[number], str("sideMenuGear"))
 		if number == 1 then
 			guiLabelSetColor (rowText[number],255,255,255)
 			setElementData(rowText[number],"markedMenuItem",true)
@@ -93,8 +93,8 @@ end
 
 function onPlayerTargetPickup (theElement)
 	if theElement == localPlayer then
-		if getElementData(source,"parent") == localPlayer then 
-			return 
+		if getElementData(source,"parent") == localPlayer then
+			return
 		end
 		local player = getPlayerInCol(getElementsWithinColShape(source, "player"))
 		if getPedOccupiedVehicle(localPlayer) then
@@ -132,7 +132,7 @@ function onPlayerTargetPickup (theElement)
 			return
 		end
 	showClientMenuItem("stop")
-	end	
+	end
 end
 addEventHandler("onClientColShapeHit",getRootElement(),onPlayerTargetPickup)
 
@@ -179,10 +179,10 @@ end
 bindKey ( "mouse3", "down", onPlayerPressMiddleMouse )
 bindKey ( "-", "down", onPlayerPressMiddleMouse )
 
-function getMenuMarkedItem() 
+function getMenuMarkedItem()
 	for i,guiItem in ipairs(rowText) do
 		if getElementData(guiItem,"markedMenuItem") then
-			return getElementData(guiItem,"usedItem") 
+			return getElementData(guiItem,"usedItem")
 		end
 	end
 end

@@ -62,7 +62,7 @@ function refreshLoot(loot,gearName)
 				end
 			end
 		end
-		
+
 	end
 end
 addEvent("mtabg_refreshLoot",true)
@@ -163,7 +163,7 @@ function onItemFromInventoryToLoot(itemName,loot)
 			for i, item in ipairs(lootpointData[loot]) do
 				if item[1] == itemName then
 					item[2] = item[2]+itemDeduct
-				end		
+				end
 			end
 			refreshInventory()
 			refreshLoot(loot,"")
@@ -262,7 +262,7 @@ function onItemFromLootToInventory(itemName,loot)
 					end
 				end
 			end
-			
+
 			local weaponID = 0
 			for i, weap in ipairs(weaponDataTable) do
 				if itemName == weap[6] then
@@ -273,7 +273,7 @@ function onItemFromLootToInventory(itemName,loot)
 			if newAmmoAmount then
 				setWeaponAmmo(client,weaponID,newAmmoAmount)
 			end
-			
+
 			if lootpointData[loot] then
 				for i, item in ipairs(lootpointData[loot]) do
 					if item[1] == itemName then
@@ -500,7 +500,7 @@ function equipWeapon(weapon,info,player)
 				playData[3] = weapon
 				currentWeapon_3 = weapon
 			end
-			
+
 		end
 	end
 end

@@ -22,27 +22,27 @@ LoginScreen.staticimage[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "accou
 LoginScreen.staticimage[2] = guiCreateStaticImage(0.11, 0.06, 0.77, 0.28, "accounting/img/battlegrounds_logo.png", true, LoginScreen.staticimage[1])
 LoginScreen.edit[1] = guiCreateEdit(0.35, 0.41, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- ID
 guiEditSetReadOnly(LoginScreen.edit[1], true)
-LoginScreen.label[1] = guiCreateLabel(0.27, 0.42, 0.08, 0.04, "ID", true, LoginScreen.staticimage[1])
+LoginScreen.label[1] = guiCreateLabel(0.27, 0.42, 0.08, 0.04, str("loginPanelID"), true, LoginScreen.staticimage[1])
 guiSetFont(LoginScreen.label[1], "default-bold-small")
 guiLabelSetHorizontalAlign(LoginScreen.label[1], "center", false)
 LoginScreen.edit[2] = guiCreateEdit(0.35, 0.50, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- PWD
 guiEditSetMasked(LoginScreen.edit[2],true)
 LoginScreen.edit[3] = guiCreateEdit(0.35, 0.32, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- Alpha key
-LoginScreen.label[7] = guiCreateLabel(0.27, 0.33, 0.08, 0.04, "KEY", true, LoginScreen.staticimage[1])
+LoginScreen.label[7] = guiCreateLabel(0.27, 0.33, 0.08, 0.04, str("loginPanelKey"), true, LoginScreen.staticimage[1])
 guiSetFont(LoginScreen.label[7], "default-bold-small")
 guiLabelSetHorizontalAlign(LoginScreen.label[7], "center", false)
-LoginScreen.label[2] = guiCreateLabel(0.27, 0.51, 0.08, 0.04, "PWD", true, LoginScreen.staticimage[1])
+LoginScreen.label[2] = guiCreateLabel(0.27, 0.51, 0.08, 0.04, str("loginPanelPassword"), true, LoginScreen.staticimage[1])
 guiSetFont(LoginScreen.label[2], "default-bold-small")
 guiLabelSetHorizontalAlign(LoginScreen.label[2], "center", false)
-LoginScreen.checkbox[1] = guiCreateCheckBox(0.35, 0.56, 0.21, 0.02, "Remember Password (PWD)", false, true, LoginScreen.staticimage[1])
+LoginScreen.checkbox[1] = guiCreateCheckBox(0.35, 0.56, 0.21, 0.02, str("loginPanelRememberPassword"), false, true, LoginScreen.staticimage[1])
 LoginScreen.staticimage[3] = guiCreateStaticImage(0.35, 0.66, 0.29, 0.07, "accounting/img/white.png", true, LoginScreen.staticimage[1])
 guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
-LoginScreen.label[4] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "LOGIN", true, LoginScreen.staticimage[3])
+LoginScreen.label[4] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, str("loginPanelLoginButton"), true, LoginScreen.staticimage[3])
 guiLabelSetHorizontalAlign(LoginScreen.label[4], "center", false)
 guiLabelSetVerticalAlign(LoginScreen.label[4], "center")
 LoginScreen.staticimage[4] = guiCreateStaticImage(0.35, 0.66, 0.29, 0.07, "accounting/img/white.png", true, LoginScreen.staticimage[1])
 guiSetProperty(LoginScreen.staticimage[4], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
-LoginScreen.label[5] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "REGISTER", true, LoginScreen.staticimage[4])
+LoginScreen.label[5] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, str("loginPanelRegisterButton"), true, LoginScreen.staticimage[4])
 guiLabelSetHorizontalAlign(LoginScreen.label[5], "center", false)
 guiLabelSetVerticalAlign(LoginScreen.label[5], "center")
 LoginScreen.label[6] = guiCreateLabel(0.25, 0.588, 0.46, 0.05, "", true, LoginScreen.staticimage[1])
@@ -96,7 +96,7 @@ addEventHandler("onLoginLoadingBarSetProgress", localPlayer, loadingBarSetProgre
 
 --TODO: expand to handle hashingResults, not only success
 local function hashingEnd()
-	showError("Welcome!") --TODO: error? right...
+	showError(str("loginPanelWelcomeMessage")) --TODO: error? right...
 	loadingBar.setDone(true)
 	Timer( closeLoginPanel, 2000, 1) --close login panel after a while
 	--TODO: get this into a proper function

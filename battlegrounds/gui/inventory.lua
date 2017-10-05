@@ -49,13 +49,13 @@ guiSetFont(inventoryGUI.label["handsub"],inventoryGUI.font[1])
 
 -- Actual inventory
 inventoryGUI.gridlist[1] = guiCreateGridList(0.305, 0.17, 0.20, 0.54, true, inventoryGUI.window[1])
-inventoryGUI.gridlist["inventory"] = guiGridListAddColumn(inventoryGUI.gridlist[1],"Inventory",0.6)
-inventoryGUI.gridlist["inventoryamount"] = guiGridListAddColumn(inventoryGUI.gridlist[1],"Amount",0.4)
+inventoryGUI.gridlist["inventory"] = guiGridListAddColumn(inventoryGUI.gridlist[1], str("inventoryYourLoot"), 0.6)
+inventoryGUI.gridlist["inventoryamount"] = guiGridListAddColumn(inventoryGUI.gridlist[1], str("inventoryItemAmount"), 0.4)
 guiGridListSetSortingEnabled(inventoryGUI.gridlist[1],false)
 
 inventoryGUI.gridlist[2] = guiCreateGridList(0.005, 0.17, 0.20, 0.54, true, inventoryGUI.window[1])
-inventoryGUI.gridlist["loot"] = guiGridListAddColumn(inventoryGUI.gridlist[2],"Loot",0.6)
-inventoryGUI.gridlist["lootamount"] = guiGridListAddColumn(inventoryGUI.gridlist[2],"Amount",0.4)
+inventoryGUI.gridlist["loot"] = guiGridListAddColumn(inventoryGUI.gridlist[2], str("inventoryVicinityLoot"), 0.6)
+inventoryGUI.gridlist["lootamount"] = guiGridListAddColumn(inventoryGUI.gridlist[2], str("inventoryItemAmount"), 0.4)
 guiGridListSetSortingEnabled(inventoryGUI.gridlist[2],false)
 
 -- Inventory buttons
@@ -71,20 +71,20 @@ guiLabelSetColor(inventoryGUI.label[5], 254, 254, 254)
 guiLabelSetHorizontalAlign(inventoryGUI.label[5], "center", false)
 guiLabelSetVerticalAlign(inventoryGUI.label[5], "center")
 
-inventoryGUI.label[7] = guiCreateLabel(0.01, 0.13, 0.20, 0.04, "VICINITY", true, inventoryGUI.window[1])
+inventoryGUI.label[7] = guiCreateLabel(0.01, 0.13, 0.20, 0.04, str("inventoryVicinityLoot"), true, inventoryGUI.window[1])
 guiLabelSetVerticalAlign(inventoryGUI.label[7], "center")
-inventoryGUI.label[8] = guiCreateLabel(0.305, 0.13, 0.20, 0.04, "YOUR LOOT", true, inventoryGUI.window[1])
+inventoryGUI.label[8] = guiCreateLabel(0.305, 0.13, 0.20, 0.04, str("inventoryYourLoot"), true, inventoryGUI.window[1])
 guiLabelSetVerticalAlign(inventoryGUI.label[8], "center")
 inventoryGUI.label[9] = guiCreateLabel(0.01, 0.72, 0.29, 0.06, "", true, inventoryGUI.window[1])
 guiLabelSetColor(inventoryGUI.label[9], 217, 0, 0)
 guiLabelSetVerticalAlign(inventoryGUI.label[9], "center")
 inventoryGUI.progressbar[1] = guiCreateProgressBar(0.305, 0.72, 0.20, 0.04, true, inventoryGUI.window[1])
-inventoryGUI.label[10] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "CAPACITY: 0/0", true, inventoryGUI.progressbar[1])
+inventoryGUI.label[10] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, str("inventoryCapacity", 0, 0), true, inventoryGUI.progressbar[1])
 guiLabelSetColor(inventoryGUI.label[10], 0, 0, 0)
 guiLabelSetHorizontalAlign(inventoryGUI.label[10], "center", false)
 guiLabelSetVerticalAlign(inventoryGUI.label[10], "center")
 
-inventoryGUI.label[11] = guiCreateLabel(0.58, 0.72, 0.40, 0.04, "STATUS", true, inventoryGUI.window[1])
+inventoryGUI.label[11] = guiCreateLabel(0.58, 0.72, 0.40, 0.04, str("inventoryStatus"), true, inventoryGUI.window[1])
 
 inventoryGUI.staticimage[10] = guiCreateStaticImage(0.58, 0.76, 0.10, 0.14, "gui/images/solo_slot.png", true, inventoryGUI.window[1]) -- Armor
 inventoryGUI.progressbar[2] = guiCreateProgressBar(0.58, 0.91, 0.10, 0.02, true, inventoryGUI.window[1])
@@ -96,7 +96,7 @@ inventoryGUI.progressbar[3] = guiCreateProgressBar(0.69, 0.91, 0.10, 0.02, true,
 guiSetVisible(inventoryGUI.staticimage[11],false)
 guiSetVisible(inventoryGUI.progressbar[3],false)
 
-inventoryGUI.label[4] = guiCreateLabel(0.38, 0.01, 0.23, 0.03, "#Alpha - "..tostring(getPlayerName(localPlayer)), true, inventoryGUI.window[1])
+inventoryGUI.label[4] = guiCreateLabel(0.38, 0.01, 0.23, 0.03, str("inventoryPlayerName", localPlayer.name), true, inventoryGUI.window[1])
 guiLabelSetHorizontalAlign(inventoryGUI.label[4], "center", false)
 guiLabelSetVerticalAlign(inventoryGUI.label[4], "center")
 

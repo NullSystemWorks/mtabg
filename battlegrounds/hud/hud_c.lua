@@ -31,7 +31,7 @@ local screenx, screeny = guiGetScreenSize() --screen size
 local safeAreaCol
 local guiPlayerHealth = 100
 
-fuelLabel = guiCreateLabel(0.02, 0.48, 0.19, 0.04, "FUEL:", true)
+fuelLabel = guiCreateLabel(0.02, 0.48, 0.19, 0.04, str("vehicleFuel", 0), true)
 guiSetVisible(fuelLabel,false)
 local fuelAmount = 0
 local isPlayerInsideVehicle = false
@@ -98,12 +98,12 @@ end
 
 local lobbyLabel = {}
 local helpText = {
-"Matches can only start if there are at least two players inside the lobby.",
-"Lobby = The island you are currently walking on.",
-"The red zone indicates a save location - you will receive damage if you are outside of it!",
-"The F11 map shows the radius of the current save and danger zone!",
-"Press 'Tab' to open your inventory once the match has started!",
-"The blue circle shows where the red zone will be next!",
+	str("lobbyHelpText1"),
+	str("lobbyHelpText2"),
+	str("lobbyHelpText3"),
+	str("lobbyHelpText4"),
+	str("lobbyHelpText5"),
+	str("lobbyHelpText6")
 }
 
 local text = ""
@@ -134,8 +134,8 @@ function displayHealthGUI()
 		guiSetVisible(lobbyLabel[2],true)
 		guiSetVisible(lobbyLabel[3],true)
 		guiSetVisible(lobbyLabel[4],true)
-		guiSetText(lobbyLabel[1],"COUNTDOWN: "..tostring(countdown))
-		guiSetText(lobbyLabel[2],"PLAYERS: "..tostring(playersInLobby))
+		guiSetText(lobbyLabel[1], str("lobbyCountdownTimer", tostring(countdown)))
+		guiSetText(lobbyLabel[2], str("lobbyPlayerCount", tostring(playersInLobby)))
 	else
 		guiSetVisible(lobbyLabel[1],false)
 		guiSetVisible(lobbyLabel[2],false)
@@ -156,11 +156,11 @@ function displayHealthGUI()
 			end
 			dxDrawRectangle(screenW * 0.2612, screenH * 0.9017, screenW * (0.5075/(100/guiPlayerHealth)), screenH * 0.0433, tocolor(r,g,b, alpha), true)
 			if playerAmount > 0 then
-				dxDrawText("ALIVE:", (screenW * 0.8488) - 1, (screenH * 0.0483) - 1, (screenW * 0.9375) - 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-				dxDrawText("ALIVE:", (screenW * 0.8488) + 1, (screenH * 0.0483) - 1, (screenW * 0.9375) + 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-				dxDrawText("ALIVE:", (screenW * 0.8488) - 1, (screenH * 0.0483) + 1, (screenW * 0.9375) - 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-				dxDrawText("ALIVE:", (screenW * 0.8488) + 1, (screenH * 0.0483) + 1, (screenW * 0.9375) + 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
-				dxDrawText("ALIVE:", screenW * 0.8488, screenH * 0.0483, screenW * 0.9375, screenH * 0.1050, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText(str("matchAliveCount"), (screenW * 0.8488) - 1, (screenH * 0.0483) - 1, (screenW * 0.9375) - 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText(str("matchAliveCount"), (screenW * 0.8488) + 1, (screenH * 0.0483) - 1, (screenW * 0.9375) + 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText(str("matchAliveCount"), (screenW * 0.8488) - 1, (screenH * 0.0483) + 1, (screenW * 0.9375) - 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText(str("matchAliveCount"), (screenW * 0.8488) + 1, (screenH * 0.0483) + 1, (screenW * 0.9375) + 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
+				dxDrawText(str("matchAliveCount"), screenW * 0.8488, screenH * 0.0483, screenW * 0.9375, screenH * 0.1050, tocolor(255, 255, 255, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 				dxDrawText(playerAmount, (screenW * 0.9437) - 1, (screenH * 0.0483) - 1, (screenW * 1.0325) - 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 				dxDrawText(playerAmount, (screenW * 0.9437) + 1, (screenH * 0.0483) - 1, (screenW * 1.0325) + 1, (screenH * 0.1050) - 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
 				dxDrawText(playerAmount, (screenW * 0.9437) - 1, (screenH * 0.0483) + 1, (screenW * 1.0325) - 1, (screenH * 0.1050) + 1, tocolor(0, 0, 0, 255), 2.00, "default", "left", "top", false, false, false, false, false)
@@ -171,9 +171,9 @@ function displayHealthGUI()
 				if not inventoryIsShowing then
 					if not guiGetVisible(fuelLabel) then
 						guiSetVisible(fuelLabel,true)
-						guiSetText(fuelLabel,"FUEL: "..tostring(fuelAmount).." L")
+						guiSetText(fuelLabel,str("vehicleFuel", tostring(fuelAmount)))
 					end
-					guiSetText(fuelLabel,"FUEL: "..tostring(fuelAmount).." L")
+					guiSetText(fuelLabel, str("vehicleFuel", tostring(fuelAmount)))
 					dxDrawLine((screenW * 0.0220) - 1, (screenH * 0.5078) - 1, (screenW * 0.0220) - 1, screenH * 0.5326, tocolor(0, 0, 0, 255), 1, true)
 					dxDrawLine(screenW * 0.2101, (screenH * 0.5078) - 1, (screenW * 0.0220) - 1, (screenH * 0.5078) - 1, tocolor(0, 0, 0, 255), 1, true)
 					dxDrawLine((screenW * 0.0220) - 1, screenH * 0.5326, screenW * 0.2101, screenH * 0.5326, tocolor(0, 0, 0, 255), 1, true)
@@ -248,11 +248,11 @@ addEventHandler("mtabg_onClientBattleGroundsSetCountdown",root,onClientBattleGro
 
 function onClientBattleGroundsAnnounceMatchStart(number)
 	if number == "More players needed" then
-		guiSetText(lobbyLabel[3],"MATCH CANNOT START, NEEDS MORE PLAYERS (AT LEAST 2)!")
+		guiSetText(lobbyLabel[3], str("lobbyInsuficientPlayersError"))
 	elseif number == "Match running" then
-		guiSetText(lobbyLabel[3],"MATCH CANNOT START, THERE IS ONE RUNNING ALREADY!")
+		guiSetText(lobbyLabel[3], str("lobbyMatchAlreadyRunningError"))
 	else
-		guiSetText(lobbyLabel[3],"MATCH WILL START IN "..tostring(number).." SECONDS!")
+		guiSetText(lobbyLabel[3], str("lobbyStartMatchCountdown", tostring(number)))
 		setTimer(guiSetText,3000,1,lobbyLabel[3],"")
 	end
 end
@@ -286,13 +286,13 @@ guiSetProperty(endScreen.image[1], "ImageColours", "tl:EB000000 tr:EB000000 bl:E
 endScreen.label[1] = guiCreateLabel(0.02, 0.06, 0.38, 0.08, getPlayerName(localPlayer), true, endScreen.image[1])
 endScreen.label[2] = guiCreateLabel(0.02, 0.14, 1, 0.09, "", true, endScreen.image[1])
 guiLabelSetVerticalAlign(endScreen.label[2], "center")
-endScreen.label[3] = guiCreateLabel(0.05, 0.39, 0.20, 0.04, "RANK:", true, endScreen.image[1])
+endScreen.label[3] = guiCreateLabel(0.05, 0.39, 0.20, 0.04, str("endScreenRank"), true, endScreen.image[1])
 guiLabelSetHorizontalAlign(endScreen.label[3], "center", false)
-endScreen.label[4] = guiCreateLabel(0.05, 0.47, 0.20, 0.04, "KILLS:", true, endScreen.image[1])
+endScreen.label[4] = guiCreateLabel(0.05, 0.47, 0.20, 0.04, str("endScreenKills"), true, endScreen.image[1])
 guiLabelSetHorizontalAlign(endScreen.label[4], "center", false)
 endScreen.label[5] = guiCreateLabel(0.25, 0.39, 0.20, 0.04, "# ", true, endScreen.image[1])
 endScreen.label[6] = guiCreateLabel(0.25, 0.47, 0.20, 0.04, "N/A", true, endScreen.image[1])
-endScreen.label[7] = guiCreateLabel(0.73, 0.87, 0.20, 0.06, "Back to Home Screen", true, endScreen.image[1])
+endScreen.label[7] = guiCreateLabel(0.73, 0.87, 0.20, 0.06, str("endScreenBackToHomeButton"), true, endScreen.image[1])
 guiLabelSetHorizontalAlign(endScreen.label[7], "center", true)
 guiLabelSetVerticalAlign(endScreen.label[7], "center")
 guiLabelSetColor(endScreen.label[2],255,255,0)
@@ -308,10 +308,10 @@ guiSetVisible(endScreen.image[2],false)
 local homeScreenDimension = 500
 function showEndScreen(rank,dimension)
 	if rank ~= 1 then
-		text = "BETTER LUCK NEXT TIME!"
+		text = str("endScreenYouLost")
 		guiSetText(endScreen.label[2],text)
 	else
-		text = "A WINNER IS YOU!"
+		text = str("endScreenYouWon")
 		guiSetText(endScreen.label[2],text)
 	end
 	guiSetText(endScreen.label[5],"#"..tostring(rank))
