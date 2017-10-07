@@ -1,0 +1,1827 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:css3t="http://www.w3.org/TR/css3-text/" office:version="1.2" office:mimetype="application/vnd.oasis.opendocument.spreadsheet">
+    <office:meta>
+        <meta:creation-date>2017-09-29T17:18:18.264057974</meta:creation-date>
+        <dc:date>2017-10-14T14:29:24.038833224</dc:date>
+        <meta:editing-duration>PT7H59M30S</meta:editing-duration>
+        <meta:editing-cycles>108</meta:editing-cycles>
+        <meta:generator>LibreOffice/5.2.7.2$Linux_X86_64 LibreOffice_project/20m0$Build-2</meta:generator>
+        
+        
+        
+        
+        
+        
+        <meta:document-statistic meta:table-count="1" meta:cell-count="422" meta:object-count="0" />
+    </office:meta>
+    <office:settings>
+        <config:config-item-set config:name="ooo:view-settings">
+            <config:config-item config:name="VisibleAreaTop" config:type="int">0</config:config-item>
+            <config:config-item config:name="VisibleAreaLeft" config:type="int">0</config:config-item>
+            <config:config-item config:name="VisibleAreaWidth" config:type="int">44645</config:config-item>
+            <config:config-item config:name="VisibleAreaHeight" config:type="int">37514</config:config-item>
+            <config:config-item-map-indexed config:name="Views">
+                <config:config-item-map-entry>
+                    <config:config-item config:name="ViewId" config:type="string">view1</config:config-item>
+                    <config:config-item-map-named config:name="Tables">
+                        <config:config-item-map-entry config:name="Sheet1">
+                            <config:config-item config:name="CursorPositionX" config:type="int">5</config:config-item>
+                            <config:config-item config:name="CursorPositionY" config:type="int">25</config:config-item>
+                            <config:config-item config:name="HorizontalSplitMode" config:type="short">0</config:config-item>
+                            <config:config-item config:name="VerticalSplitMode" config:type="short">0</config:config-item>
+                            <config:config-item config:name="HorizontalSplitPosition" config:type="int">0</config:config-item>
+                            <config:config-item config:name="VerticalSplitPosition" config:type="int">0</config:config-item>
+                            <config:config-item config:name="ActiveSplitRange" config:type="short">2</config:config-item>
+                            <config:config-item config:name="PositionLeft" config:type="int">3</config:config-item>
+                            <config:config-item config:name="PositionRight" config:type="int">0</config:config-item>
+                            <config:config-item config:name="PositionTop" config:type="int">0</config:config-item>
+                            <config:config-item config:name="PositionBottom" config:type="int">52</config:config-item>
+                            <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
+                            <config:config-item config:name="ZoomValue" config:type="int">150</config:config-item>
+                            <config:config-item config:name="PageViewZoomValue" config:type="int">60</config:config-item>
+                            <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
+                        </config:config-item-map-entry>
+                    </config:config-item-map-named>
+                    <config:config-item config:name="ActiveTable" config:type="string">Sheet1</config:config-item>
+                    <config:config-item config:name="HorizontalScrollbarWidth" config:type="int">1857</config:config-item>
+                    <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
+                    <config:config-item config:name="ZoomValue" config:type="int">150</config:config-item>
+                    <config:config-item config:name="PageViewZoomValue" config:type="int">60</config:config-item>
+                    <config:config-item config:name="ShowPageBreakPreview" config:type="boolean">false</config:config-item>
+                    <config:config-item config:name="ShowZeroValues" config:type="boolean">true</config:config-item>
+                    <config:config-item config:name="ShowNotes" config:type="boolean">true</config:config-item>
+                    <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
+                    <config:config-item config:name="GridColor" config:type="long">12632256</config:config-item>
+                    <config:config-item config:name="ShowPageBreaks" config:type="boolean">true</config:config-item>
+                    <config:config-item config:name="HasColumnRowHeaders" config:type="boolean">true</config:config-item>
+                    <config:config-item config:name="HasSheetTabs" config:type="boolean">true</config:config-item>
+                    <config:config-item config:name="IsOutlineSymbolsSet" config:type="boolean">true</config:config-item>
+                    <config:config-item config:name="IsValueHighlightingEnabled" config:type="boolean">false</config:config-item>
+                    <config:config-item config:name="IsSnapToRaster" config:type="boolean">false</config:config-item>
+                    <config:config-item config:name="RasterIsVisible" config:type="boolean">false</config:config-item>
+                    <config:config-item config:name="RasterResolutionX" config:type="int">1270</config:config-item>
+                    <config:config-item config:name="RasterResolutionY" config:type="int">1270</config:config-item>
+                    <config:config-item config:name="RasterSubdivisionX" config:type="int">1</config:config-item>
+                    <config:config-item config:name="RasterSubdivisionY" config:type="int">1</config:config-item>
+                    <config:config-item config:name="IsRasterAxisSynchronized" config:type="boolean">true</config:config-item>
+                </config:config-item-map-entry>
+            </config:config-item-map-indexed>
+        </config:config-item-set>
+        <config:config-item-set config:name="ooo:configuration-settings">
+            <config:config-item config:name="SyntaxStringRef" config:type="short">7</config:config-item>
+            <config:config-item config:name="IsDocumentShared" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="LoadReadonly" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="AllowPrintJobCancel" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="UpdateFromTemplate" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="IsKernAsianPunctuation" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="EmbedFonts" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="IsSnapToRaster" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="RasterResolutionX" config:type="int">1270</config:config-item>
+            <config:config-item config:name="RasterResolutionY" config:type="int">1270</config:config-item>
+            <config:config-item config:name="HasSheetTabs" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="IsRasterAxisSynchronized" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="ShowPageBreaks" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="ShowNotes" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="IsOutlineSymbolsSet" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="ShowZeroValues" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="SaveVersionOnClose" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="GridColor" config:type="long">12632256</config:config-item>
+            <config:config-item config:name="RasterIsVisible" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="PrinterName" config:type="string">Deskjet-1510-series</config:config-item>
+            <config:config-item config:name="LinkUpdateMode" config:type="short">3</config:config-item>
+            <config:config-item config:name="RasterSubdivisionX" config:type="int">1</config:config-item>
+            <config:config-item config:name="HasColumnRowHeaders" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="RasterSubdivisionY" config:type="int">1</config:config-item>
+            <config:config-item config:name="AutoCalculate" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="PrinterSetup" config:type="base64Binary">qQH+/0Rlc2tqZXQtMTUxMC1zZXJpZXMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ1VQUzpEZXNramV0LTE1MTAtc2VyaWVzAAAAAAAAAAAWAAMAywAAAAAAAAAIAFZUAAAkbQAASm9iRGF0YSAxCnByaW50ZXI9RGVza2pldC0xNTEwLXNlcmllcwpvcmllbnRhdGlvbj1Qb3J0cmFpdApjb3BpZXM9MQpjb2xsYXRlPWZhbHNlCm1hcmdpbmRhanVzdG1lbnQ9MCwwLDAsMApjb2xvcmRlcHRoPTI0CnBzbGV2ZWw9MApwZGZkZXZpY2U9MQpjb2xvcmRldmljZT0wClBQRENvbnRleERhdGEKUGFnZVNpemU6TGV0dGVyAElucHV0U2xvdDpBdXRvAAASAENPTVBBVF9EVVBMRVhfTU9ERQ4ARFVQTEVYX1VOS05PV04=</config:config-item>
+            <config:config-item config:name="ApplyUserData" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="CharacterCompressionType" config:type="short">0</config:config-item>
+        </config:config-item-set>
+    </office:settings>
+    <office:scripts>
+        <office:script script:language="ooo:Basic">
+            <ooo:libraries xmlns:ooo="http://openoffice.org/2004/office" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <ooo:library-embedded ooo:name="Standard" />
+            </ooo:libraries>
+        </office:script>
+    </office:scripts>
+    <office:font-face-decls>
+        <style:font-face style:name="Liberation Sans1" svg:font-family="&apos;Liberation Sans&apos;" />
+        <style:font-face style:name="Liberation Sans" svg:font-family="&apos;Liberation Sans&apos;" style:font-family-generic="swiss" style:font-pitch="variable" />
+        <style:font-face style:name="DejaVu Sans" svg:font-family="&apos;DejaVu Sans&apos;" style:font-family-generic="system" style:font-pitch="variable" />
+        <style:font-face style:name="FreeSans" svg:font-family="FreeSans" style:font-family-generic="system" style:font-pitch="variable" />
+    </office:font-face-decls>
+    <office:styles>
+        <style:default-style style:family="table-cell">
+            <style:paragraph-properties style:tab-stop-distance="36pt" />
+            <style:text-properties style:font-name="Liberation Sans" fo:language="en" fo:country="US" style:font-name-asian="DejaVu Sans" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="DejaVu Sans" style:language-complex="hi" style:country-complex="IN" />
+        </style:default-style>
+        <number:number-style style:name="N0">
+            <number:number number:min-integer-digits="1" />
+        </number:number-style>
+        <number:currency-style style:name="N104P0" style:volatile="true">
+            <number:currency-symbol number:language="en" number:country="US">$</number:currency-symbol>
+            <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true" />
+        </number:currency-style>
+        <number:currency-style style:name="N104">
+            <style:text-properties fo:color="#ff0000" />
+            <number:text>-</number:text>
+            <number:currency-symbol number:language="en" number:country="US">$</number:currency-symbol>
+            <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true" />
+            <style:map style:condition="value()&gt;=0" style:apply-style-name="N104P0" />
+        </number:currency-style>
+        <number:currency-style style:name="N10121" number:language="en" number:country="US">
+            <number:currency-symbol number:language="en" number:country="US">$</number:currency-symbol>
+            <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true" />
+        </number:currency-style>
+        <style:style style:name="Default" style:family="table-cell">
+            <style:text-properties style:font-name-complex="FreeSans" style:font-family-complex="FreeSans" style:font-family-generic-complex="system" style:font-pitch-complex="variable" />
+        </style:style>
+        <style:style style:name="Result" style:family="table-cell" style:parent-style-name="Default">
+            <style:text-properties fo:font-style="italic" style:text-underline-style="solid" style:text-underline-width="auto" style:text-underline-color="font-color" fo:font-weight="bold" />
+        </style:style>
+        <style:style style:name="Result2" style:family="table-cell" style:parent-style-name="Result" style:data-style-name="N104" />
+        <style:style style:name="Heading" style:family="table-cell" style:parent-style-name="Default">
+            <style:text-properties fo:color="#000000" fo:font-size="24pt" fo:font-style="normal" fo:font-weight="bold" />
+        </style:style>
+        <style:style style:name="Heading1" style:family="table-cell" style:parent-style-name="Heading">
+            <style:table-cell-properties style:rotation-angle="90" />
+        </style:style>
+        <style:style style:name="Heading_20_1" style:display-name="Heading 1" style:family="table-cell" style:parent-style-name="Heading">
+            <style:text-properties fo:color="#000000" fo:font-size="18pt" fo:font-style="normal" fo:font-weight="normal" />
+        </style:style>
+        <style:style style:name="Heading_20_2" style:display-name="Heading 2" style:family="table-cell" style:parent-style-name="Heading">
+            <style:text-properties fo:color="#000000" fo:font-size="12pt" fo:font-style="normal" fo:font-weight="normal" />
+        </style:style>
+        <style:style style:name="Text" style:family="table-cell" style:parent-style-name="Default" />
+        <style:style style:name="Note" style:family="table-cell" style:parent-style-name="Text">
+            <style:table-cell-properties fo:background-color="#ffffcc" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" fo:border="0.74pt solid #808080" />
+            <style:text-properties fo:color="#333333" fo:font-size="10pt" fo:font-style="normal" fo:font-weight="normal" />
+        </style:style>
+        <style:style style:name="Footnote" style:family="table-cell" style:parent-style-name="Text">
+            <style:text-properties fo:color="#808080" fo:font-size="10pt" fo:font-style="italic" fo:font-weight="normal" />
+        </style:style>
+        <style:style style:name="Status" style:family="table-cell" style:parent-style-name="Default" />
+        <style:style style:name="Good" style:family="table-cell" style:parent-style-name="Status">
+            <style:table-cell-properties fo:background-color="#ccffcc" />
+            <style:text-properties fo:color="#006600" fo:font-size="10pt" fo:font-style="normal" fo:font-weight="normal" />
+        </style:style>
+        <style:style style:name="Neutral" style:family="table-cell" style:parent-style-name="Status">
+            <style:table-cell-properties fo:background-color="#ffffcc" />
+            <style:text-properties fo:color="#996600" fo:font-size="10pt" fo:font-style="normal" fo:font-weight="normal" />
+        </style:style>
+        <style:style style:name="Bad" style:family="table-cell" style:parent-style-name="Status">
+            <style:table-cell-properties fo:background-color="#ffcccc" />
+            <style:text-properties fo:color="#cc0000" fo:font-size="10pt" fo:font-style="normal" fo:font-weight="normal" />
+        </style:style>
+        <style:style style:name="Warning" style:family="table-cell" style:parent-style-name="Status">
+            <style:text-properties fo:color="#cc0000" fo:font-size="10pt" fo:font-style="normal" fo:font-weight="normal" />
+        </style:style>
+        <style:style style:name="Error" style:family="table-cell" style:parent-style-name="Status">
+            <style:table-cell-properties fo:background-color="#cc0000" />
+            <style:text-properties fo:color="#ffffff" fo:font-size="10pt" fo:font-style="normal" fo:font-weight="bold" />
+        </style:style>
+        <style:style style:name="Accent" style:family="table-cell" style:parent-style-name="Default">
+            <style:text-properties fo:color="#000000" fo:font-size="10pt" fo:font-style="normal" fo:font-weight="bold" />
+        </style:style>
+        <style:style style:name="Accent_20_1" style:display-name="Accent 1" style:family="table-cell" style:parent-style-name="Accent">
+            <style:table-cell-properties fo:background-color="#000000" />
+            <style:text-properties fo:color="#ffffff" fo:font-size="10pt" fo:font-style="normal" fo:font-weight="normal" />
+        </style:style>
+        <style:style style:name="Accent_20_2" style:display-name="Accent 2" style:family="table-cell" style:parent-style-name="Accent">
+            <style:table-cell-properties fo:background-color="#808080" />
+            <style:text-properties fo:color="#ffffff" fo:font-size="10pt" fo:font-style="normal" fo:font-weight="normal" />
+        </style:style>
+        <style:style style:name="Accent_20_3" style:display-name="Accent 3" style:family="table-cell" style:parent-style-name="Accent">
+            <style:table-cell-properties fo:background-color="#dddddd" />
+        </style:style>
+    </office:styles>
+    <office:automatic-styles>
+        <style:style style:name="co1" style:family="table-column">
+            <style:table-column-properties fo:break-before="auto" style:column-width="32.4pt" />
+        </style:style>
+        <style:style style:name="co2" style:family="table-column">
+            <style:table-column-properties fo:break-before="auto" style:column-width="200.69pt" />
+        </style:style>
+        <style:style style:name="co3" style:family="table-column">
+            <style:table-column-properties fo:break-before="auto" style:column-width="414.26pt" />
+        </style:style>
+        <style:style style:name="co4" style:family="table-column">
+            <style:table-column-properties fo:break-before="auto" style:column-width="327.8pt" />
+        </style:style>
+        <style:style style:name="co5" style:family="table-column">
+            <style:table-column-properties fo:break-before="auto" style:column-width="226.4pt" />
+        </style:style>
+        <style:style style:name="co6" style:family="table-column">
+            <style:table-column-properties fo:break-before="auto" style:column-width="64.01pt" />
+        </style:style>
+        <style:style style:name="ro1" style:family="table-row">
+            <style:table-row-properties style:row-height="12.81pt" fo:break-before="auto" style:use-optimal-row-height="true" />
+        </style:style>
+        <style:style style:name="ro2" style:family="table-row">
+            <style:table-row-properties style:row-height="13.8pt" fo:break-before="auto" style:use-optimal-row-height="true" />
+        </style:style>
+        <style:style style:name="ta1" style:family="table" style:master-page-name="Default">
+            <style:table-properties table:display="true" style:writing-mode="lr-tb" />
+        </style:style>
+        <style:style style:name="ce1" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N0">
+            <style:table-cell-properties style:text-align-source="fix" style:repeat-content="false" style:vertical-align="automatic" />
+            <style:paragraph-properties fo:text-align="center" />
+        </style:style>
+        <style:style style:name="ce2" style:family="table-cell" style:parent-style-name="Default">
+            <style:table-cell-properties style:text-align-source="fix" style:repeat-content="false" />
+            <style:paragraph-properties fo:text-align="center" fo:margin-left="0pt" />
+        </style:style>
+        <style:style style:name="ce3" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N0" />
+        <style:style style:name="ce4" style:family="table-cell" style:parent-style-name="Default">
+            <style:text-properties fo:color="#000000" style:font-name="Liberation Sans1" fo:font-size="11pt" style:font-name-asian="Liberation Sans1" style:font-size-asian="11pt" style:font-name-complex="Liberation Sans1" style:font-size-complex="11pt" />
+        </style:style>
+        <style:style style:name="ce5" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N0">
+            <style:text-properties fo:language="pt" fo:country="PT" />
+        </style:style>
+        <style:style style:name="ce6" style:family="table-cell" style:parent-style-name="Default">
+            <style:text-properties fo:language="la" fo:country="VA" />
+        </style:style>
+        <style:style style:name="ce7" style:family="table-cell" style:parent-style-name="Default">
+            <style:text-properties fo:language="pt" fo:country="PT" />
+        </style:style>
+        <style:page-layout style:name="pm1">
+            <style:page-layout-properties style:writing-mode="lr-tb" />
+            <style:header-style>
+                <style:header-footer-properties fo:min-height="21.26pt" fo:margin-left="0pt" fo:margin-right="0pt" fo:margin-bottom="7.09pt" />
+            </style:header-style>
+            <style:footer-style>
+                <style:header-footer-properties fo:min-height="21.26pt" fo:margin-left="0pt" fo:margin-right="0pt" fo:margin-top="7.09pt" />
+            </style:footer-style>
+        </style:page-layout>
+        <style:page-layout style:name="pm2">
+            <style:page-layout-properties style:writing-mode="lr-tb" />
+            <style:header-style>
+                <style:header-footer-properties fo:min-height="21.26pt" fo:margin-left="0pt" fo:margin-right="0pt" fo:margin-bottom="7.09pt" fo:border="2.49pt solid #000000" fo:padding="0.51pt" fo:background-color="#c0c0c0">
+                    <style:background-image />
+                </style:header-footer-properties>
+            </style:header-style>
+            <style:footer-style>
+                <style:header-footer-properties fo:min-height="21.26pt" fo:margin-left="0pt" fo:margin-right="0pt" fo:margin-top="7.09pt" fo:border="2.49pt solid #000000" fo:padding="0.51pt" fo:background-color="#c0c0c0">
+                    <style:background-image />
+                </style:header-footer-properties>
+            </style:footer-style>
+        </style:page-layout>
+    </office:automatic-styles>
+    <office:master-styles>
+        <style:master-page style:name="Default" style:page-layout-name="pm1">
+            <style:header>
+                <text:p>
+                    <text:sheet-name>???</text:sheet-name>
+                </text:p>
+            </style:header>
+            <style:header-left style:display="false" />
+            <style:footer>
+                <text:p>Page&#x0A;&#x0A;                    
+                    <text:page-number>1</text:page-number>
+                </text:p>
+            </style:footer>
+            <style:footer-left style:display="false" />
+        </style:master-page>
+        <style:master-page style:name="Report" style:page-layout-name="pm2">
+            <style:header>
+                <style:region-left>
+                    <text:p>
+                        <text:sheet-name>???</text:sheet-name> (&#x0A;&#x0A;                        
+                        <text:title>???</text:title>)&#x0A;&#x0A;                    
+                    </text:p>
+                </style:region-left>
+                <style:region-right>
+                    <text:p>
+                        <text:date style:data-style-name="N2" text:date-value="2017-10-14">00/00/0000</text:date>,&#x0A;&#x0A;                        
+                        <text:time style:data-style-name="N2" text:time-value="14:22:02.191085218">00:00:00</text:time>
+                    </text:p>
+                </style:region-right>
+            </style:header>
+            <style:header-left style:display="false" />
+            <style:footer>
+                <text:p>Page&#x0A;&#x0A;                    
+                    <text:page-number>1</text:page-number> /&#x0A;&#x0A;                    
+                    <text:page-count>99</text:page-count>
+                </text:p>
+            </style:footer>
+            <style:footer-left style:display="false" />
+        </style:master-page>
+    </office:master-styles>
+    <office:body>
+        <office:spreadsheet>
+            <table:calculation-settings table:automatic-find-labels="false" table:use-regular-expressions="false" table:use-wildcards="true" />
+            <table:table table:name="Sheet1" table:style-name="ta1" table:hash="5b4eadc6f9a90d2b12661f9a2601e3d6">
+                <table:table-column table:style-name="co1" table:default-cell-style-name="ce1" />
+                <table:table-column table:style-name="co2" table:default-cell-style-name="ce3" />
+                <table:table-column table:style-name="co3" table:default-cell-style-name="Default" />
+                <table:table-column table:style-name="co4" table:default-cell-style-name="Default" />
+                <table:table-column table:style-name="co5" table:default-cell-style-name="Default" />
+                <table:table-column table:style-name="co6" table:default-cell-style-name="ce3" />
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>-</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>String Name</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>en</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>pt</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>ru</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="Default" office:value-type="string" calcext:value-type="string">
+                        <text:p>es</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="1" calcext:value-type="float">
+                        <text:p>1</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="Default" office:value-type="string" calcext:value-type="string">
+                        <text:p>languageNameInLanguage</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>English</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Português</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Русский</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Español</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="2" calcext:value-type="float">
+                        <text:p>2</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="Default" office:value-type="string" calcext:value-type="string">
+                        <text:p>languageNameInEnglish</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>English</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Portuguese</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Russian</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Spanish</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="3" calcext:value-type="float">
+                        <text:p>3</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>endScreenBackToHomeButton</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Back to home</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Voltar ao menu principal</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Regresar a inicio</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="4" calcext:value-type="float">
+                        <text:p>4</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>endScreenKills</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Kills:</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Assassinatos:</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Asesinatos:</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="5" calcext:value-type="float">
+                        <text:p>5</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>endScreenRank</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Rank:</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Colocação:</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Rango:</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="6" calcext:value-type="float">
+                        <text:p>6</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>endScreenYouLost</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>You lost!</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Você perdeu!</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Perdiste!</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="7" calcext:value-type="float">
+                        <text:p>7</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>endScreenYouWon</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>You won!</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Você venceu!</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Ganaste!</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="8" calcext:value-type="float">
+                        <text:p>8</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryCapacity</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Capacity %s/%s</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Capacidade %s/%s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Capacidad %s/%s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="9" calcext:value-type="float">
+                        <text:p>9</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryEquipPrimaryWeapon</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Equip primary weapon %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Equipar arma primária %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Equipar arma primaria %s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="10" calcext:value-type="float">
+                        <text:p>10</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryEquipSecondaryWeapon</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Equip secondary weapon %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Equipar arma secundária %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Equipar arma secundaria %s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="11" calcext:value-type="float">
+                        <text:p>11</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryEquipSpecialWeapon</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Equip special weapon %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Equipar arma especial %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Equipar arma especial %s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="12" calcext:value-type="float">
+                        <text:p>12</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryItemAmount</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Amount</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Quantidade</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Cantidad</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="13" calcext:value-type="float">
+                        <text:p>13</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryMessageFullHealth</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Health is full</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Vida cheia</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Vida llena</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="14" calcext:value-type="float">
+                        <text:p>14</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryMessageFullInventory</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Inventory is full</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Mochila cheia</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Inventario lleno</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="15" calcext:value-type="float">
+                        <text:p>15</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryMessageNoAmmo</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>No ammo</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Sem munição</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Sin munición</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="16" calcext:value-type="float">
+                        <text:p>16</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryMessageUseItem</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Used %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Usou %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Has usado %s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="17" calcext:value-type="float">
+                        <text:p>17</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryPlayerName</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>%s</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>%s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>%s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="18" calcext:value-type="float">
+                        <text:p>18</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryStatus</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:number-columns-repeated="2" office:value-type="string" calcext:value-type="string">
+                        <text:p>Status</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Estado</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="19" calcext:value-type="float">
+                        <text:p>19</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryUseItem</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Use %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Usar %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Usar %s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="20" calcext:value-type="float">
+                        <text:p>20</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryVicinityLoot</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Vicinity Loot</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Itens no chão</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Botín</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="21" calcext:value-type="float">
+                        <text:p>21</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>inventoryYourLoot</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Your loot</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Seus itens</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Su Botín</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="22" calcext:value-type="float">
+                        <text:p>22</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>lobbyCountdownTimer</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Countdown: %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Contador: %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Contador: %s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="23" calcext:value-type="float">
+                        <text:p>23</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>lobbyHelpText1</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>The blue circle shows where the red zone will be next!</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>O círculo azul mostra o próximo avanço da zona vermelha.</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>El círculo azul muestra donde se movera la zona roja!</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="24" calcext:value-type="float">
+                        <text:p>24</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>lobbyHelpText2</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>The F11 map shows the radius the danger zone!</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Pressione F11 para ver a zona vermelha no mapa.</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Presion F11 para ver el radio de la zona de peligro!</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="25" calcext:value-type="float">
+                        <text:p>25</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>lobbyHelpText3</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Press &apos;Tab&apos; to open your inventory once the match has started!</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Pressione Tab para abrir o inventário durante a partida.</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Presione Tab para abrir el inventario</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="26" calcext:value-type="float">
+                        <text:p>26</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>lobbyHelpText4</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Matches can only start if there are at least two players inside the lobby.</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Partidas só começarão na presença de dois ou mais jogadores.</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Para comenzar una partida deben haber al menos 2 jugadores</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="27" calcext:value-type="float">
+                        <text:p>27</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>lobbyHelpText5</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Lobby is the island you are currently walking on.</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Você está no salão de espera.</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Estas en la sala de espera</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="28" calcext:value-type="float">
+                        <text:p>28</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>lobbyHelpText6</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>The red zone indicates a danger zone - you will receive damage if you stand outside of it!</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>A zona vermelha significa perigo – você levará dano se ficar for a dela!</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>La zona roja indica la zona de peligro - recibirás daño dentro</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="29" calcext:value-type="float">
+                        <text:p>29</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>lobbyInsuficientPlayersError</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Need at least two players to start a match</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce5" office:value-type="string" calcext:value-type="string">
+                        <text:p>São necessários ao menos dois jogadores para iniciar a partida</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>По крайней мере, игроки должны начать игру.</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Es necesario al menos dos jugadores para comenzar la partida</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="30" calcext:value-type="float">
+                        <text:p>30</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>lobbyMatchAlreadyRunningError</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>There’s a match already running</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Há outra partida em progresso</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Hay otra partida en progreso!</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="31" calcext:value-type="float">
+                        <text:p>31</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>lobbyPlayerCount</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Players in the lobby: %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Jogadores no salão de espera: %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Jugadores esperando: %s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="32" calcext:value-type="float">
+                        <text:p>32</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>lobbyStartMatchCountdown</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>The match will start in %s seconds</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>A partida começará em %s segundos</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>La partida comenzará en: %s segundos</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="33" calcext:value-type="float">
+                        <text:p>33</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelBlankAlphaKeyError</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Please enter the alpha key</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Por favor, entre com a chave alfa</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Por favor ingrese su clave de acceso alpha</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="34" calcext:value-type="float">
+                        <text:p>34</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelID</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:number-columns-repeated="2" office:value-type="string" calcext:value-type="string">
+                        <text:p>ID</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>ID</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="35" calcext:value-type="float">
+                        <text:p>35</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelIDTakenError</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>ID already taken</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>ID já está sendo usado</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>El ID ya esta siendo utilizado</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="36" calcext:value-type="float">
+                        <text:p>36</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelInvalidAccountOrPasswordError</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Please enter correct password</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Por favor digite a senha correta</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Por favor ingrese una contraseña válida</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="37" calcext:value-type="float">
+                        <text:p>37</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelInvlidAlphaKeyError</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Please enter a valid alpha key</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Entre com uma chave alfa válida</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Por favor ingrese una clave de acceso alpha válida</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="38" calcext:value-type="float">
+                        <text:p>38</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelKey</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Key</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Chave</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Clave</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="39" calcext:value-type="float">
+                        <text:p>39</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelKeyAlreadyUsedError</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Alpha key has been used</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Chave alfa já foi usada</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Esa clave ya fue usada</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="40" calcext:value-type="float">
+                        <text:p>40</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelLoginButton</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Login</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Entrar</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Loguear</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="41" calcext:value-type="float">
+                        <text:p>41</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelNoSerialError</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>No serial</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Serial ausente</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Serial ausente</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="42" calcext:value-type="float">
+                        <text:p>42</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelPassword</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Password</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Senha</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Contraseña</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="43" calcext:value-type="float">
+                        <text:p>43</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelRegisterButton</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Register</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Registrar</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Registrarse</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="44" calcext:value-type="float">
+                        <text:p>44</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelRememberPassword</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Remember password</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Lembrar senha</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Recordar contraseña</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="45" calcext:value-type="float">
+                        <text:p>45</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelUnknownError</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Unknown Error</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Erro desconhecido</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Error desconocido</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="46" calcext:value-type="float">
+                        <text:p>46</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>loginPanelWelcomeMessage</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Welcome!</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Bem-vind@!</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Bienvenido/a</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="47" calcext:value-type="float">
+                        <text:p>47</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>mainMenuCharacterButton</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Character</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Personagem</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Personaje</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="48" calcext:value-type="float">
+                        <text:p>48</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>mainMenuHomeButton</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Home</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Início</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Inicio</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="49" calcext:value-type="float">
+                        <text:p>49</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>mainMenuPlayButton</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Play</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Jogar</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Играть</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Jugar</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="50" calcext:value-type="float">
+                        <text:p>50</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>mainMenuPlayButtonShadow</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Play</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Jogar</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Играть</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Jugar</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="51" calcext:value-type="float">
+                        <text:p>51</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>mainMenuPlayerName</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:number-columns-repeated="2" office:value-type="string" calcext:value-type="string">
+                        <text:p>%s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>%s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro2">
+                    <table:table-cell office:value-type="float" office:value="52" calcext:value-type="float">
+                        <text:p>52</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>mainMenuSoonButton</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce4" office:value-type="string" calcext:value-type="string">
+                        <text:p>Soon</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Em breve</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Pronto</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="53" calcext:value-type="float">
+                        <text:p>53</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>mainMenuStatisticsButton</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Statistics</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Estatísticas</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Estadísticas</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="54" calcext:value-type="float">
+                        <text:p>54</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>matchAliveCount</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Alive players: </text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Jogadores vivos: </text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Jugadores vivos:</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="55" calcext:value-type="float">
+                        <text:p>55</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>matchPlayerDied</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Player %s has died - %s left</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Jogador %s morreu - %s restam</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>%s ha muerto - %s restantes</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="56" calcext:value-type="float">
+                        <text:p>56</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>matchPlayerKilled</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Player %s was killed by %s - %s left</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Jogador %s foi morto por %s - %s restam</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>%s fue asesinado por %s - %s restantes</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="57" calcext:value-type="float">
+                        <text:p>57</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>rewardsMenuCommonCrates</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Common Crates</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Caixas comuns</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Cajas comunes</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="58" calcext:value-type="float">
+                        <text:p>58</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>rewardsMenuEpicCrates</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Epic Crates</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Caixas épicas</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Cajas épicas</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="59" calcext:value-type="float">
+                        <text:p>59</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>rewardsMenuLegendaryCrates</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Legendary Crates</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Caixas legendárias</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Cajas legendarias</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="60" calcext:value-type="float">
+                        <text:p>60</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>rewardsMenuUncommonCrates</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Uncommon crates</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce6" office:value-type="string" calcext:value-type="string">
+                        <text:p>Caixas incomuns</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Cajas descomunales</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="61" calcext:value-type="float">
+                        <text:p>61</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>shrinkSafeZoneWarning</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>The safe zone is about to shrink!</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce5" office:value-type="string" calcext:value-type="string">
+                        <text:p>A áera segura está prestes a diminuir!</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Безопасная область собирается сжиматься!</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>La zona segura esta a punto de disminuir</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="62" calcext:value-type="float">
+                        <text:p>62</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>sideMenuCheckBody</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Check body</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Examinar corpo</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Examinar cuerpo</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="63" calcext:value-type="float">
+                        <text:p>63</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>sideMenuCorpseGear</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Corpse (%s)</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Corpo (%s)</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Cuerpo (%s)</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="64" calcext:value-type="float">
+                        <text:p>64</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>sideMenuGear</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Gear</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Itens</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Items</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="65" calcext:value-type="float">
+                        <text:p>65</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>sideMenuHideBody</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Hide body</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Esconder corpo</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Esconder cuerpo</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="66" calcext:value-type="float">
+                        <text:p>66</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>sideMenuTake</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Take %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Pegar %s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Recoger %s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="67" calcext:value-type="float">
+                        <text:p>67</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>skinsMenuNotAvailableYet</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Not Available Yet</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Não disponível</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>No disponible aun</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="68" calcext:value-type="float">
+                        <text:p>68</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>skinsMenuPresetSkins</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Preset Skins</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Skins padronizadas</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Skins preestablecidas</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="69" calcext:value-type="float">
+                        <text:p>69</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuBattlePointsEarned</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>BattlePoints earned</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>BattlePoints ganhos</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>BattlePoints ganados</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="70" calcext:value-type="float">
+                        <text:p>70</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuBattlePointsSpent</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>BattlePoints Spent</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>BattlePoints gastos</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>BattlePoints gastados</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="71" calcext:value-type="float">
+                        <text:p>71</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuDeaths</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Deaths</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Mortes</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Muertes</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="72" calcext:value-type="float">
+                        <text:p>72</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuGamesPlayed</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Games Played</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Partidas jogadas</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Partidas jugadas</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="73" calcext:value-type="float">
+                        <text:p>73</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuHeadshots</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Headshots</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Tiros na cabeça</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Disparos a la cabeza</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="74" calcext:value-type="float">
+                        <text:p>74</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuID</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:number-columns-repeated="2" office:value-type="string" calcext:value-type="string">
+                        <text:p>ID</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>ID</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="75" calcext:value-type="float">
+                        <text:p>75</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuKillDeathRatio</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Kill/Death</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Assassinatos/Mortes</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Asesinatos/Muertes</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="76" calcext:value-type="float">
+                        <text:p>76</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuKills</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Kills</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Assassinatos</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Asesinatos</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell table:style-name="ce2" office:value-type="float" office:value="77" calcext:value-type="float">
+                        <text:p>77</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuLosses</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Losses</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Derrotas</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Derrotas</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell table:style-name="ce2" office:value-type="float" office:value="78" calcext:value-type="float">
+                        <text:p>78</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuNA</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>N/A</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>N/A</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>N/D</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="79" calcext:value-type="float">
+                        <text:p>79</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuPlayerName</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:number-columns-repeated="2" office:value-type="string" calcext:value-type="string">
+                        <text:p>%s</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>%s</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="80" calcext:value-type="float">
+                        <text:p>80</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuWinLossRatio</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Win/Loss ratio</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce7" office:value-type="string" calcext:value-type="string">
+                        <text:p>Vitórias/Derrotas</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Victorias/Derrotas</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="81" calcext:value-type="float">
+                        <text:p>81</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>statisticsMenuWins</text:p>
+                    </table:table-cell>
+                    <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+                        <text:p>Wins</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Vitórias</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Victorias</text:p>
+                    </table:table-cell>
+                </table:table-row>
+                <table:table-row table:style-name="ro1">
+                    <table:table-cell office:value-type="float" office:value="82" calcext:value-type="float">
+                        <text:p>82</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>vehicleFuel</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Fuel: %s L</text:p>
+                    </table:table-cell>
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Combustível: %s L</text:p>
+                    </table:table-cell>
+                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Combustible: %s L.</text:p>
+                    </table:table-cell>
+                </table:table-row>
+            </table:table>
+            <table:named-expressions />
+            <table:database-ranges>
+                <table:database-range table:name="__Anonymous_Sheet_DB__0" table:target-range-address="Sheet1.B3:Sheet1.E83">
+                    <table:sort>
+                        <table:sort-by table:field-number="0" table:data-type="automatic" />
+                    </table:sort>
+                </table:database-range>
+            </table:database-ranges>
+        </office:spreadsheet>
+    </office:body>
+</office:document>
