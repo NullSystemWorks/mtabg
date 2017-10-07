@@ -1,9 +1,9 @@
 --[[
 
-					MTA:BG
-				MTA Battlegrounds
-	Developed By: L, CiBeR, neves768, 1BOY, expert975
-			 © 2017 Null System Works
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: Null System Works
+
 ]]--
 
 mysql_link = false

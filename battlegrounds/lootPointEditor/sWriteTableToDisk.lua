@@ -1,3 +1,11 @@
+--[[
+
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: Null System Works
+
+]]--
+
 local clock = getTickCount --licalize getTickCount() function
 local lootColPos = lootColPos --localize lootColPos table
 

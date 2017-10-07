@@ -1,3 +1,11 @@
+--[[
+
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: Null System Works
+
+]]--
+
 --Loop spawn point positions
 lootColPos = {
 	["Supermarket"] = {

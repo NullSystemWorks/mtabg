@@ -2,7 +2,7 @@
 
 				MTA:BG
 			MTA Battlegrounds
-	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
+	Developed By: Null System Works
 
 ]]--
 

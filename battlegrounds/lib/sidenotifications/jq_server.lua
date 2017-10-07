@@ -1,15 +1,9 @@
 --[[
-+----------------------------------------------------------------------------
-|   Dx Side Chat Script
-|   ========================================
-|   by MrTasty
-|   (c) 2012-2014 | Creative Commons 3.0
-|   http://creativecommons.org/licenses/by/3.0/
-|   ========================================
-+-----------------------------------------------------------------------------
-|   You are allowed to adapt, copy, redistribute this script.
-|   You are not allowed to remove the original author of this script.
-+-----------------------------------------------------------------------------
+
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: Null System Works
+
 ]]--
 
 function outputSideChat(message, to, r, g, b)

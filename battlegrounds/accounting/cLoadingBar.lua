@@ -1,3 +1,11 @@
+--[[
+
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: Null System Works
+
+]]--
+
 local gifRoot = {["x"] = 0, ["y"] = 0}
 local gifSize = {["x"] = 208, ["y"] = 13}
 local gifFrameCount = 10

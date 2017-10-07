@@ -1,12 +1,10 @@
 --[[
-#---------------------------------------------------------------#
-----*			DayZ MTA Script jq_client.lua				*----
-----* This Script is owned by Marwin, you are not allowed to use or own it.
-----* Owner: Marwin W., Germany, Lower Saxony, Otterndorf
-----* Skype: xxmavxx96
-----*														*----
-#---------------------------------------------------------------#
-]]
+
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: Null System Works
+
+]]--
 
 theTexts = {}
 theTextTimer = {}

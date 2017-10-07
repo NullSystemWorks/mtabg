@@ -1,3 +1,11 @@
+--[[
+
+				MTA:BG
+			MTA Battlegrounds
+	Developed By: Null System Works
+
+]]--
+
 local editorKey = "F2"
 local clock = getTickCount --licalize getTickCount()
 local lootColPos = lootColPos --localize lootColPos table
