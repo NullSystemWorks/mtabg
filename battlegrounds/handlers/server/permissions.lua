@@ -2,16 +2,20 @@
 
 				MTA:BG
 			MTA Battlegrounds
-	Developed By: Null System Works (L, CiBeR, neves768, 1BOY & expert975)
+	Developed By: Null System Works
 
 ]]--
 
+local restrictedCommands = { 
+	["say"] = true, 
+	["teamsay"] = true, 
+	["showchat"] = true, 
+	["register"] = true, 
+	["me"] = true
+}
+
 local function restrictCommands(cmd)
-	if (cmd == "say" and not getElementData(source,"inLobby"))
-		or cmd == "teamsay"
-		or cmd == "showchat"
-		or cmd == "register"
-		or cmd == "me" then
+	if (restrictedCommands[cmd] and not getElementData(source,"inLobby")) then
 			cancelEvent()
 	end
 end
