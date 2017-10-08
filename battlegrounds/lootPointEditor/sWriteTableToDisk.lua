@@ -12,7 +12,7 @@ local lootColPos = lootColPos --localize lootColPos table
 --Writes de table to file in lua sintax. It's a script that writes a script
 function writeTableToDisk()
 	-- local time = clock()
-	local colFile = fileCreate("lootPoints.lua") --create file
+	local colFile = fileCreate("lootPointEditor/lootPoints.lua") --create file
 	colFile:write("--Loop spawn point positions\n") --write a header
 
 	colFile:write("lootColPos = {\n") --main table declaration
