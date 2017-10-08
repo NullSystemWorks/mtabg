@@ -333,6 +333,16 @@ end
 addEvent("mtabg_showEndscreen",true)
 addEventHandler("mtabg_showEndscreen",root,showEndScreen)
 
+local function showDeathMessage(aliveCount, killedName, killerName)
+	if killerName then
+		outputSideChat(str("matchPlayerKilled", killedName, killerName, aliveCount), 255, 255, 255)
+	else
+		outputSideChat(str("matchPlayerDied", killedName, aliveCount), 255, 255, 255)
+	end
+end
+addEvent("onShowDeathMessage", true)
+addEventHandler("onShowDeathMessage", localPlayer, showDeathMessage)
+
 function onMouseOverBackToHomeScreenLabelSelect()
 	guiSetProperty(endScreen.image[2], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
 end

@@ -347,9 +347,9 @@ function onPlayerUseItem(itemName,itemInfo)
 							end
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName,255,255,255)
+							triggerClientEvent(client, "onShowInventoryMessage", client, "use", itemName)
 						else
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!",255,0,0)
+							triggerClientEvent(client, "onShowInventoryMessage", client, "fullHealth")
 						end
 					end
 				elseif itemName == "First Aid Kit" then
@@ -358,9 +358,9 @@ function onPlayerUseItem(itemName,itemInfo)
 							data[3] = 100
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName,255,255,255)
+							triggerClientEvent(client, "onShowInventoryMessage", client, "use", itemName)
 						else
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!",255,0,0)
+							triggerClientEvent(client, "onShowInventoryMessage", client, "fullHealth")
 						end
 					end
 				elseif itemName == "Painkiller" then
@@ -372,16 +372,16 @@ function onPlayerUseItem(itemName,itemInfo)
 							end
 							itemUsed = true
 							triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName,255,255,255)
+							triggerClientEvent(client, "onShowInventoryMessage", client, "use", itemName)
 						else
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!",255,0,0)
+							triggerClientEvent(client, "onShowInventoryMessage", client, "fullHealth")
 						end
 					end
 				elseif itemName == "Energy Drink" then
 					if data[2] == "health" then
 						if data[3] < 100 then
 							itemUsed = true
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Used: "..itemName,255,255,255)
+							triggerClientEvent(client, "onShowInventoryMessage", client, "use", itemName)
 							if isTimer(energyDrinkTimer) then killTimer(energyDrinkTimer) end
 								energyDrinkTimer = setTimer(function(client)
 								data[3] = data[3]+1
@@ -391,7 +391,7 @@ function onPlayerUseItem(itemName,itemInfo)
 								triggerClientEvent(client,"mtabg_onClientBattleGroundsSetPlayerHealthGUI",client,false,data[3])
 							end,3000,10,client,data[3])
 						else
-							triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"At full health!",255,0,0)
+							triggerClientEvent(client, "onShowInventoryMessage", client, "fullHealth")
 						end
 					end
 				end
@@ -479,7 +479,7 @@ function equipWeapon(weapon,info,player)
 				triggerClientEvent(player,"mtabg_changeEquippedWeaponGUI",player,info,weapon,imagePath,guiLabelName,relativeSizeX,relativeSizeY,relativePosX,relativePosY)
 				break
 			else
-				triggerClientEvent(player,"mtabg_sendErrorToInventory",player,"Not enough ammo!",255,0,0)
+				triggerClientEvent(player, "onShowInventoryMessage", player, "noAmmo")
 				return
 			end
 		end
@@ -584,7 +584,7 @@ function getPlayerCapacity(item)
 		itemWeight = 0
 	end
 	if itemWeight and usedCapacity+itemWeight > maxCapacity then
-		triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Not enough inventory capacity!", 255, 255, 255)
+		triggerClientEvent(client, "onShowInventoryMessage", client, "fullInventory")
 		return false
 	else
 		return true

@@ -368,7 +368,25 @@ addEventHandler("mtabg_logSetAvatarimg", getRootElement(), setAvatarImg)
 
 
 function showError(errorMsg)
-	guiSetText(LoginScreen.label[6],tostring(errorMsg))
+	local msg
+	if errorMsg == "unknownError" then
+		msg = str("loginPanelUnknownError")
+	elseif errorMsg == "wrongPass" then
+		msg = str("loginPanelInvalidAccountOrPasswordError")
+	elseif errorMsg == "noSerial" then
+		msg = str("loginPanelNoSerialError")
+	elseif errorMsg == "IDTaken" then
+		msg = str("loginPanelIDTakenError")
+	elseif errorMsg == "blankAlphaKey" then
+		msg = str("loginPanelBlankAlphaKeyError")
+	elseif errorMsg == "invlidAlphaKey" then
+		msg = str("loginPanelInvlidAlphaKeyError")
+	elseif errorMsg == "keyAlreadyUsed" then
+		msg = str("loginPanelKeyAlreadyUsedError")
+	else
+		msg = errorMsg
+	end
+	guiSetText(LoginScreen.label[6], msg)
 	setTimer(function()
 		guiSetText(LoginScreen.label[6],"")
 	end,3000,1)

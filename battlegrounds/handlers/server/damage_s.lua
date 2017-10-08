@@ -96,7 +96,7 @@ function killBattleGroundsPlayer(player,killer,headshot)
 			setElementData(pedCol,"playername",getPlayerName(player))
 			setElementData(pedCol,"deadman",true)
 			setElementPosition(ped,x,y,z)
-		end	
+		end
 	end
 	if killer and killer ~= player then
 		for i, data in ipairs(playerDataInfo[killer]) do
@@ -142,8 +142,8 @@ function killBattleGroundsPlayer(player,killer,headshot)
 		setElementData(player,"participatingInGame",false)
 		checkForWinner(killer)
 		for i, players in ipairs(getElementsByType("player")) do
-			if getElementData(players,"participatingInGame") then	
-				outputSideChat("Player "..getPlayerName(player).." was killed by "..getPlayerName(killer).." - "..gameCache["playerAmount"].." left",players,255,255,255)
+			if getElementData(players,"participatingInGame") then
+				triggerClientEvent(players, "onShowDeathMessage", players, gameCache["playerAmount"], player.name, killer.name)
 			end
 		end
 		triggerClientEvent(player,"mtabg_showEndscreen",player,finalRank,homeScreenDimension)
@@ -158,7 +158,7 @@ function killBattleGroundsPlayer(player,killer,headshot)
 		else
 			for i, players in ipairs(getElementsByType("player")) do
 				if getElementData(players,"participatingInGame") then
-					outputSideChat("Player "..getPlayerName(player).." has died - "..gameCache["playerAmount"].." left",players,255,255,255)
+					triggerClientEvent(players, "onShowDeathMessage", players, gameCache["playerAmount"], player.name)
 				end
 			end
 		end
@@ -198,16 +198,16 @@ function awardPlayerWithStatistics(player)
 				stat_headshots = data[3]
 			end
 		end
-		--[[ 
+		--[[
 		If a player is rank #1 -> 101-1 = 100
 		If coins value was, for example, 20 -> 20*100 -> 2000 Battlepoints earned
-		
+
 		If a player is rank #50 -> 101-50 = 51
 		If coins value was, for example, 20 -> 20*51 = 1020 Battlepoints earned
-		
+
 		If a player is rank #100 -> 101-100 = 1
 		If coins value was, for example, 10 -> 10*1 = 10 Battlepoints earned
-		
+
 		-> Division by 5 due to sheer amount of battlepoints earned
 		]]
 		coins = math.floor((coins*(101-finalRank))/5)
@@ -230,7 +230,7 @@ function awardPlayerWithStatistics(player)
 		setUserData(player,"killdeathratio",killdeathratio)
 		setUserData(player,"headshots",headshots+stat_headshots)
 		setUserData(player,"battlepoints",battlepoints+coins)
-		
+
 	end
 end
 
@@ -254,7 +254,7 @@ end
 -- To check if there is a player remaining (= winner)
 --[[
 function checkPlayerAmount()
-	if gameCache["playerAmount"] <= 1 then 
+	if gameCache["playerAmount"] <= 1 then
 		for i, players in ipairs(getElementsByType("player")) do
 			if not isPedDead(players) then
 				setElementFrozen(players,true)

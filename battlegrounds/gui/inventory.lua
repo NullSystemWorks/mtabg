@@ -207,7 +207,7 @@ function displayInventory(key,keyState)
 				triggerServerEvent("mtabg_refreshLoot",localPlayer,col,gearName)
 			end
 		end
-	end	
+	end
 end
 bindKey ("tab","down",displayInventory)
 
@@ -244,17 +244,29 @@ end
 addEvent("refreshLootManually",true)
 addEventHandler("refreshLootManually",localPlayer,refreshLootManually)
 
-local errorTimer 
-function sendErrorToInventory(info,r,g,b)
-	if info then
-		if isTimer(errorTimer) then killTimer(errorTimer) end
-		guiSetText(inventoryGUI.label[9],info)
-		guiLabelSetColor(inventoryGUI.label[9],r,g,b)
-		errorTimer = setTimer(guiSetText,3000,1,inventoryGUI.label[9],"")
+local msgTimer
+local function showInventoryMessage(info,r,g,b)
+	if isTimer(msgTimer) then
+		killTimer(msgTimer)
+	end
+	guiSetText(inventoryGUI.label[9],info)
+	guiLabelSetColor(inventoryGUI.label[9],r,g,b)
+	msgTimer = setTimer(guiSetText,3000,1,inventoryGUI.label[9],"")
+end
+
+local function chooseInventoryMessage(message, ...)
+	if message == "use" then
+		showInventoryMessage(str("inventoryMessageUseItem", arg[1]), 255, 255, 255)
+	elseif message == "noAmmo" then
+		showInventoryMessage(str("inventoryMessageNoAmmo"), 255, 0, 0)
+	elseif message == "fullHealth" then
+		showInventoryMessage(str("inventoryMessageFullHealth"), 255, 0, 0)
+	elseif message == "fullInventory" then
+		showInventoryMessage(str("inventoryMessageFullInventory"), 255, 0, 0)
 	end
 end
-addEvent("mtabg_sendErrorToInventory",true)
-addEventHandler("mtabg_sendErrorToInventory",localPlayer,sendErrorToInventory)
+addEvent("onShowInventoryMessage",true)
+addEventHandler("onShowInventoryMessage", localPlayer, chooseInventoryMessage)
 
 function changeEquippedWeaponGUI(weaponType,weaponName,imagePath,guiLabelName,relX,relY,posX,posY)
 	guiSetText(inventoryGUI.label[guiLabelName],weaponName)
@@ -387,7 +399,7 @@ function showRightClickMenu(itemName, itemInfo)
 		guiSetSize(rightClick["window"], width+10, y, false)
 		guiBringToFront(rightClick["window"])
 		setElementData(rightClick["window"], "iteminfo", {itemName, itemInfo})
-		if isTimer(hideTimer) then 
+		if isTimer(hideTimer) then
 			killTimer(hideTimer)
 			hideTimer = setTimer(hideRightClickInventoryMenu,5000,1)
 		else
@@ -406,8 +418,3 @@ function onPlayerRightClickMenu(button, state)
 	end
 end
 addEventHandler("onClientGUIClick", rightClick["label"], onPlayerRightClickMenu, false)
-
-
-
-
-  
