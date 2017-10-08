@@ -29,13 +29,11 @@ dataStore = { -- Default values
 
 function mtabg_mysql_init()
 	if gameplayVariables['database'] == 0 then
-		outputDebugString("[MTABG] Connecting to DB...")
 		mysql_link = dbConnect( "mysql", "dbname="..gameplayVariables['db_name']..";host="..gameplayVariables['db_host']..";port="..gameplayVariables['db_port'], gameplayVariables['db_user'], gameplayVariables['db_pass'], "share=1" )
 		if mysql_link then
 			dbExec(mysql_link,"CREATE TABLE IF NOT EXISTS `accounts` (`ID` int(11) NOT NULL AUTO_INCREMENT, `email` text NOT NULL, `pass` text NOT NULL, `serial` text NOT NULL, `IP` text NOT NULL, `data` text NOT NULL, `avatar` longtext NOT NULL, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;")
-			outputDebugString("[MTABG] Connected to DB: "..gameplayVariables['db_name'])
 		else
-			outputDebugString("[MTABG] Error connecting to MySQL Database. Stoping Resource...")
+			outputDebugString("[MTABG] Error connecting to MySQL Database. Stoping Resource...", 1)
 			cancelEvent()
 			return
 		end

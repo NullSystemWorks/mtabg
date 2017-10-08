@@ -17,5 +17,3 @@ sItemLang = {}
 
 -- // Game Cache Table // --
 gameCache = {}
-
-outputDebugString("[MTA:BG] cfgBaseDefines loaded")
