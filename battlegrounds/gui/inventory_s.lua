@@ -584,7 +584,7 @@ function getPlayerCapacity(item)
 		itemWeight = 0
 	end
 	if itemWeight and usedCapacity+itemWeight > maxCapacity then
-		triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Not enough inventory capacity!")
+		triggerClientEvent(client,"mtabg_sendErrorToInventory",client,"Not enough inventory capacity!", 255, 255, 255)
 		return false
 	else
 		return true
