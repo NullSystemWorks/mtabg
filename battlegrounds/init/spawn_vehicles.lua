@@ -24,8 +24,12 @@ vehicleSpawnPositionTable = {
 }
 
 vehicleDataTable = {}
-
+checkFTimer = false
 function spawnVehiclesOnMatchStart()
+	if checkFTimer then 
+		killTimer(checkFTimer)
+		checkFTimer = false
+	end
 	for i, veh in ipairs(getElementsByType("vehicle")) do
 		if veh then
 			destroyElement(veh)
@@ -36,14 +40,16 @@ function spawnVehiclesOnMatchStart()
 		vehicleDataTable[veh] = {}
 		vehicleDataTable[veh]["fuel"] = math.random(10,100)
 	end
-	setTimer(checkFuelOfVehicle,1000,0,veh)
+	checkFTimer = setTimer(checkFuelOfVehicle,10000,0)
 end
 
-function checkFuelOfVehicle(veh)
-	if veh then
-		if vehicleDataTable[veh] then --this is here to stop console spam, no guarantee it will work
+function checkFuelOfVehicle()
+	for i, veh in ipairs(getElementsByType("vehicle")) do
+		if vehicleDataTable[veh] then
 			if vehicleDataTable[veh]["fuel"] then
-				if vehicleDataTable[veh]["fuel"] <= 0 then setVehicleEngineState(veh,false) end
+				if vehicleDataTable[veh]["fuel"] <= 0 then 
+					setVehicleEngineState(veh,false)
+				end
 			end
 		end
 	end
