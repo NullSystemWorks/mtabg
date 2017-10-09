@@ -213,6 +213,7 @@ function sendToHomeScreen(dimension)
 	setPlayerHudComponentVisible("area_name",false)
 	setPlayerHudComponentVisible("money",false)
 	guiSetVisible(inventoryGUI.window[1],false)
+	setWeather(0)
 end
 addEvent("mtabg_sendToHomeScreen",true)
 addEventHandler("mtabg_sendToHomeScreen",root,sendToHomeScreen)

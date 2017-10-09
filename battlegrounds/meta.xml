@@ -77,6 +77,8 @@ Version: 0.0.1 Pre-Alpha
 	<script src="hud/hud_c.lua" type="client" cache="false"/>
 	<script src="hud/matchud.lua" type="client" cache="false"/>
 
+	<!-- World -->
+	<script src="world/cAmbient.lua" type="client" cache="false"/>
 
 	<!-- Handlers -->
 	<script src="handlers/server/permissions.lua" type="server" />
