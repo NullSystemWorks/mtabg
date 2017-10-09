@@ -83,11 +83,12 @@ function sendPlayerToLobby(player, forcedStart, quickTick)
 			fadeCamera(player,true)
 		end
 	end,500,1,player)
-	setPlayerHudComponentVisible(player,"radar",false)
-	setPlayerHudComponentVisible(player,"clock",false)
-	setPlayerHudComponentVisible(player,"health",false)
-	setPlayerHudComponentVisible(player,"area_name",false)
-	setPlayerHudComponentVisible(player,"money",false)
+	-- Disable hud components
+	local disableComponent = { "radar", "clock", "health", "area_name", "money"}
+	for i, component in ipairs(disableComponent) do
+		setPlayerHudComponentVisible(player, component, false)
+	end
+
 	playerDataInfo[player] = {}
 	for i, data in ipairs(playerDataTable) do
 		table.insert(playerDataInfo[player],{i,data[1],data[2]})
@@ -216,11 +217,13 @@ function startGame()
 			local dataID = -1
 			playerInfo[player] = {}
 			playerDataInfo[player] = {}
-			--setPlayerHudComponentVisible(player,"radar",false)
-			setPlayerHudComponentVisible(player,"clock",false)
-			setPlayerHudComponentVisible(player,"health",false)
-			setPlayerHudComponentVisible(player,"area_name",false)
-			setPlayerHudComponentVisible(player,"money",false)
+			
+			-- Disable hud components
+			local disableComponent = { "clock", "health", "area_name", "money"}
+			for i, component in ipairs(disableComponent) do
+				setPlayerHudComponentVisible(player, component, false)
+			end
+
 			x,y,z = math.random(-2500,2500),math.random(-2500,2500),1000
 			spawnPlayer(player,x,y,z, math.random(0,360), 0, 0, gameCache["playingField"])
 			giveWeapon(player,46,1,true)
