@@ -106,7 +106,6 @@ local helpText = {
 	str("lobbyHelpText6")
 }
 
-local text = ""
 local countdown = ""
 lobbyLabel[1] = guiCreateLabel(0.02, 0.31, 0.32, 0.05, "", true)
 lobbyLabel[2] = guiCreateLabel(0.02, 0.36, 0.32, 0.05, "", true)
@@ -194,9 +193,17 @@ function displayHealthGUI()
 end
 addEventHandler("onClientRender",root,displayHealthGUI)
 
+local currentHelpTextIndex
+local function updateHelpText()
+	if currentHelpTextIndex then
+		guiSetText(lobbyLabel[4],helpText[currentHelpTextIndex])
+	end
+end
+
 function setRandomHelpText()
 	if getElementData(localPlayer,"inLobby") then
-		guiSetText(lobbyLabel[4],helpText[math.random(1,#helpText)])
+		currentHelpTextIndex = math.random(1, #helpText)
+		updateHelpText()
 	end
 end
 setTimer(setRandomHelpText,10000,0)
@@ -246,7 +253,10 @@ end
 addEvent("mtabg_onClientBattleGroundsSetCountdown",true)
 addEventHandler("mtabg_onClientBattleGroundsSetCountdown",root,onClientBattleGroundsSetCountdown)
 
+local lobbyLabelNumber
 function onClientBattleGroundsAnnounceMatchStart(number)
+	number = number or lobbyLabelNumber
+	lobbyLabelNumber = number
 	if number == "More players needed" then
 		guiSetText(lobbyLabel[3], str("lobbyInsuficientPlayersError"))
 	elseif number == "Match running" then
@@ -272,7 +282,6 @@ endScreen = {
 	font = {}
 }
 
-local text = ""
 local rank = ""
 
 endScreen.font[1] = guiCreateFont("/fonts/etelka.ttf",11)
@@ -305,16 +314,20 @@ end
 guiSetVisible(endScreen.image[1],false)
 guiSetVisible(endScreen.image[2],false)
 
+local endScreenRank
+local function updateEndScreenText()
+	if endScreenRank ~= 1 then
+		guiSetText(endScreen.label[2], str("endScreenYouLost"))
+	else
+		guiSetText(endScreen.label[2], str("endScreenYouWon"))
+	end
+	guiSetText(endScreen.label[5],"#"..tostring(endScreenRank))
+end
+
 local homeScreenDimension = 500
 function showEndScreen(rank,dimension)
-	if rank ~= 1 then
-		text = str("endScreenYouLost")
-		guiSetText(endScreen.label[2],text)
-	else
-		text = str("endScreenYouWon")
-		guiSetText(endScreen.label[2],text)
-	end
-	guiSetText(endScreen.label[5],"#"..tostring(rank))
+	endScreenRank = rank
+	updateEndScreenText()
 	guiSetVisible(endScreen.image[1],true)
 	guiSetVisible(endScreen.image[2],true)
 	guiBringToFront(endScreen.label[7])
@@ -420,3 +433,23 @@ local function moveLittleDude() --moves littleDude
 	end
 end
 addEventHandler("onClientRender", root, moveLittleDude)
+
+local function changeLanguage(newLang)
+	helpText = {
+		str("lobbyHelpText1"),
+		str("lobbyHelpText2"),
+		str("lobbyHelpText3"),
+		str("lobbyHelpText4"),
+		str("lobbyHelpText5"),
+		str("lobbyHelpText6")
+	}
+	updateHelpText()
+	fuelLabel:setText(str("vehicleFuel"))
+	fuelLabel:setText(str("vehicleFuel", tostring(fuelAmount)))
+	endScreen.label[3]:setText(str("endScreenRank"))
+	endScreen.label[4]:setText(str("endScreenKills"))
+	endScreen.label[7]:setText(str("endScreenBackToHomeButton"))
+	onClientBattleGroundsAnnounceMatchStart()
+	updateEndScreenText()
+end
+addEventHandler("onUserLanguageChange", resourceRoot, changeLanguage)

@@ -397,3 +397,21 @@ function onPlayerRightClickMenu(button, state)
 	end
 end
 addEventHandler("onClientGUIClick", rightClick["label"], onPlayerRightClickMenu, false)
+
+
+local function changeLanguage(newLang)
+	inventoryGUI.gridlist[1]:setColumnTitle(inventoryGUI.gridlist["inventory"], str("inventoryYourLoot"))
+	inventoryGUI.gridlist[1]:setColumnTitle(inventoryGUI.gridlist["inventoryamount"], str("inventoryItemAmount"))
+	inventoryGUI.gridlist[2]:setColumnTitle(inventoryGUI.gridlist["loot"], str("inventoryVicinityLoot"))
+	inventoryGUI.gridlist[2]:setColumnTitle(inventoryGUI.gridlist["lootamount"], str("inventoryItemAmount"))
+	inventoryGUI.label[7]:setText(str("inventoryVicinityLoot"))
+	inventoryGUI.label[8]:setText(str("inventoryYourLoot"))
+	inventoryGUI.label[11]:setText(str("inventoryStatus"))
+	inventoryGUI.label[4]:setText(str("inventoryPlayerName", localPlayer.name))
+	inventoryGUI.label[10]:setText(str("inventoryCapacity",
+		tostring(playerCapacity.used),
+		tostring(playerCapacity.maxCapacity)))
+	updateInventoryMessage()
+	updateRightClickMenuText()
+end
+addEventHandler("onUserLanguageChange", resourceRoot, changeLanguage)

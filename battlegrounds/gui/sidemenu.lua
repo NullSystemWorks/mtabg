@@ -25,9 +25,14 @@ function initSideMenu()
 end
 addEventHandler("onClientResourceStart",getResourceRootElement(getThisResource()),initSideMenu)
 
-
-function showClientMenuItem(arg1,arg2,arg3,arg4)
-local number = 0
+local sideMenuArg1
+local sideMenuArg2
+function showClientMenuItem(arg1,arg2)
+	arg1 = arg1 or sideMenuArg1
+	arg2 = arg2 or sideMenuArg2
+	sideMenuArg1 = arg1
+	sideMenuArg2 = arg2
+	local number = 0
 	if arg1 == "Take" then
 		number = number+1
 		guiSetVisible(rowImage[number],true)
@@ -51,14 +56,14 @@ local number = 0
 			setElementData(rowText[number],"markedMenuItem",true)
 		end
 		setElementData(rowText[number],"usedItem","dead")
-		number = number+1
-		setElementData(rowText[number],"usedItem","deadreason")
-		guiSetVisible(rowImage[number],true)
-		guiSetText(rowText[number], str("sideMenuCheckBody"))
+		-- number = number+1
+		-- setElementData(rowText[number],"usedItem","deadreason")
+		-- guiSetVisible(rowImage[number],true)
+		-- guiSetText(rowText[number], str("sideMenuCheckBody"))
 
-		setElementData(rowText[3],"usedItem","hidebody")
-  		guiSetVisible(rowImage[3],true)
-  		guiSetText(rowText[3], str("sideMenuHideBody"))
+		-- setElementData(rowText[3],"usedItem","hidebody")
+  	-- 	guiSetVisible(rowImage[3],true)
+  	-- 	guiSetText(rowText[3], str("sideMenuHideBody"))
 	end
 	if arg1 == "Gear" then
 		number = number+1
@@ -186,3 +191,8 @@ function getMenuMarkedItem()
 		end
 	end
 end
+
+local function changeLanguage(newLang)
+	showClientMenuItem()
+end
+addEventHandler("onUserLanguageChange", resourceRoot, changeLanguage)

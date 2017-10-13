@@ -13,6 +13,8 @@ homeScreen = {
 	font = {}
 }
 
+
+
 homeScreen.font[1] = guiCreateFont("/fonts/etelka.ttf",13)
 homeScreen.font[2] = guiCreateFont("/fonts/etelka.ttf",25)
 
@@ -650,3 +652,33 @@ function getMatrixAgain()
 	outputChatBox(tostring(g)..", "..tostring(h))
 end
 addCommandHandler("getit",getMatrixAgain)
+
+local function changeLanguage(newLang)
+	homeScreen.label[1]:setText(str("mainMenuHomeButton"))
+	homeScreen.label[2]:setText(str("mainMenuCharacterButton"))
+	homeScreen.label[3]:setText(str("mainMenuSoonButton"))
+	homeScreen.label[4]:setText(str("mainMenuStatisticsButton"))
+	homeScreen.label[5]:setText(str("mainMenuPlayerName", localPlayer.name):gsub("#%x%x%x%x%x%x", ""))
+	homeScreen.label[7]:setText(str("mainMenuPlayButtonShadow"))
+	homeScreen.label[8]:setText(str("mainMenuPlayButton"))
+	homeScreen.label["gamesplayed"]:setText(str("statisticsMenuGamesPlayed"))
+	homeScreen.label["wins"]:setText(str("statisticsMenuWins"))
+	homeScreen.label["losses"]:setText(str("statisticsMenuLosses"))
+	homeScreen.label["winlossratio"]:setText(str("statisticsMenuWinLossRatio"))
+	homeScreen.label["kills"]:setText(str("statisticsMenuKills"))
+	homeScreen.label["deaths"]:setText(str("statisticsMenuDeaths"))
+	homeScreen.label["killdeathratio"]:setText(str("statisticsMenuKillDeathRatio"))
+	homeScreen.label["headshots"]:setText(str("statisticsMenuHeadshots"))
+	homeScreen.label["battlepoints"]:setText(str("statisticsMenuBattlePointsEarned"))
+	homeScreen.label["battlepointsspent"]:setText(str("statisticsMenuBattlePointsSpent"))
+	homeScreen.label[19]:setText(str("statisticsMenuPlayerName", localPlayer.name):gsub("#%x%x%x%x%x%x", ""))
+	homeScreen.label[30]:setText(str("statisticsMenuID"))
+	homeScreen.label[31]:setText(str("statisticsMenuNA"))
+	homeScreen.label["legendary"]:setText(str("rewardsMenuLegendaryCrates"))
+	homeScreen.label["epic"]:setText(str("rewardsMenuEpicCrates"))
+	homeScreen.label["uncommon"]:setText(str("rewardsMenuUncommonCrates"))
+	homeScreen.label["common"]:setText(str("rewardsMenuCommonCrates"))
+	homeScreen.label[36]:setText(str("skinsMenuNotAvailableYet"))
+	homeScreen.label[37]:setText(str("skinsMenuPresetSkins"))
+end
+addEventHandler("onUserLanguageChange", resourceRoot, changeLanguage)

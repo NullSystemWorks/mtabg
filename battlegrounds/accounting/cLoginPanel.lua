@@ -18,6 +18,7 @@ LoginScreen = {
     edit = {}
 }
 
+
 LoginScreen.staticimage[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "accounting/img/background.png", true)
 LoginScreen.staticimage[2] = guiCreateStaticImage(0.11, 0.06, 0.77, 0.28, "accounting/img/battlegrounds_logo.png", true, LoginScreen.staticimage[1])
 LoginScreen.edit[1] = guiCreateEdit(0.35, 0.41, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- ID
@@ -422,3 +423,14 @@ addEventHandler("onClientResourceStart", getResourceRootElement(), function()
 	Camera.fade(false, .1) --fade camera on resource restart
 	triggerServerEvent("mtabg_onJoin", localPlayer)
 end)
+
+
+local function changeLanguage(newLang)
+	LoginScreen.label[1]:setText(str("loginPanelID"))
+	LoginScreen.label[7]:setText(str("loginPanelKey"))
+	LoginScreen.label[2]:setText(str("loginPanelPassword"))
+	LoginScreen.checkbox[1]:setText(str("loginPanelRememberPassword"))
+	LoginScreen.label[4]:setText(str("loginPanelLoginButton"))
+	LoginScreen.label[5]:setText(str("loginPanelRegisterButton"))
+end
+addEventHandler("onUserLanguageChange", resourceRoot, changeLanguage)
