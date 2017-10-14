@@ -338,6 +338,7 @@ end)
 function sendPlayerToLobbyOnPlayPress(button)
 	if button == "left" then
 		triggerServerEvent("mtabg_sendPlayerToLobby",localPlayer)
+		LanguageSelection.setShowing(false)
 		guiSetVisible(homeScreen.staticimage[1],false)
 		guiSetVisible(homeScreen.staticimage[5],false)
 		for i=6,21 do

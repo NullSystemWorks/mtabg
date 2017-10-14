@@ -78,6 +78,7 @@ local function closeLoginPanel()
 	loadingBar.hide()
 	guiSetVisible(homeScreen.staticimage[1],true)
 	fadeCamera(true)
+	LanguageSelection.setShowing(true)
 end
 
 local function showLoadingBar()

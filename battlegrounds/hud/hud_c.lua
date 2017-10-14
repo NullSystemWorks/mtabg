@@ -368,6 +368,7 @@ addEventHandler("onClientMouseLeave",endScreen.label[7],onMouseOverBackToHomeScr
 
 function sendPlayerBackToHomeScreenOnDeath()
 	guiSetVisible(homeScreen.staticimage[1],true)
+	LanguageSelection.setShowing(true)
 	guiSetVisible(endScreen.image[1],false)
 	guiSetVisible(endScreen.image[2],false)
 	sendToHomeScreen(homeScreenDimension)
