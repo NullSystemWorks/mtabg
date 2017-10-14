@@ -45,9 +45,12 @@ Version: 0.0.1 Pre-Alpha
 	<script src="lang/cLanguageStrings.lua" type="client" cache="false" />
 	<script src="lang/cLanguage.lua" type="client" cache="false" />
 	<script src="lang/cDebug.lua" type="client" cache="false" />
+	<script src="lang/cLanguageGlobeButton.lua" type="client" cache="false" />
+	<script src="lang/cLanguageSelection.lua" type="client" cache="false" />
 
 	<config src="lang/language.fods" type="server" />
 
+	<file src="lang/globeIcon.png"/>
 
 	<!-- lootPointEditor -->
 	<script src="lootPointEditor/lootPoints.lua" type="server" /> <!-- Must be the first -->

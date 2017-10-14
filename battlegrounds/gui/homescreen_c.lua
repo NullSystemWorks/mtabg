@@ -184,7 +184,7 @@ end
 
 addEventHandler("onClientResourceStart", getResourceRootElement(),
 	function()
-		battlegroundsVersion = "MTA:Battlegrounds 0.0.3.2a"
+		battlegroundsVersion = "MTA:Battlegrounds 0.0.5a"
 		versionLabel = guiCreateLabel(1,1,0.3,0.3, battlegroundsVersion, true)
 		guiSetSize ( versionLabel, guiLabelGetTextExtent ( versionLabel ), guiLabelGetFontHeight ( versionLabel ), false )
 		x,y = guiGetSize(versionLabel,true)
@@ -338,6 +338,7 @@ end)
 function sendPlayerToLobbyOnPlayPress(button)
 	if button == "left" then
 		triggerServerEvent("mtabg_sendPlayerToLobby",localPlayer)
+		LanguageSelection.setShowing(false)
 		guiSetVisible(homeScreen.staticimage[1],false)
 		guiSetVisible(homeScreen.staticimage[5],false)
 		for i=6,21 do
