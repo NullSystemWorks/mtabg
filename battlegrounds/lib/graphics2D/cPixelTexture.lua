@@ -3,8 +3,8 @@ local pixelTexture_mt = {__index = pixelTexture} --the metatable
 local renderTable = {} --textures being rendered
 local renderingCount = 0 --how many items are being rendered
 local fadeTable = {} --elements fading
-fadeTable["in"] = {}
-fadeTable["out"] = {}
+	fadeTable["in"] = {}
+	fadeTable["out"] = {}
 local fadingCount  = {["in"] = 0, ["out"] = 0} --how many items are being faded
 local crazyModeState = false
 
@@ -17,7 +17,7 @@ local sx, sy = guiGetScreenSize()
 function pixelTexture:new(r, g, b, a, rootx, rooty, width, height)
 	local tex = dxCreateTexture(1,1) --generate texture
 	local pixel = dxGetTexturePixels (tex) --get pixel
-	dxSetPixelColor (pixel, 0, 0, r or 0, g or 0, b or 0, a or 255) --set pixel color
+	dxSetPixelColor (pixel, 0, 0, 255, 255, 255, 255) --set pixel color to white
 	dxSetTexturePixels (tex, pixel) --set pixel
 
 	local newInst = { --the new instance
@@ -58,7 +58,7 @@ end
 --Render all elements int render table
 local function renderPixels()
 	for k, pix in ipairs(renderTable) do
-		dxDrawImage(pix.rootx, pix.rooty, pix.width, pix.height, pix.texture)
+		dxDrawImage(pix.rootx, pix.rooty, pix.width, pix.height, pix.texture, 0, 0, 0, tocolor(pix.r, pix.g, pix.b, pix.a))
 	end
 end
 
@@ -72,7 +72,6 @@ local function fadeIn()
 			if pix.a > 255 then --constrain values
 				pix.a = 255
 			end
-			pix:commitColor() --commit color change
 			pix.tick = getTickCount() --save time for next run
 		else
 			if fadingCount["in"] == 1 then --if removing the last element
@@ -94,7 +93,6 @@ local function fadeOut()
 			if pix.a < 0 then --constrain values
 				pix.a = 0
 			end
-			pix:commitColor() --commit color change
 			pix.tick = getTickCount() --save time for next run
 		else
 			if fadingCount["out"] == 1 then --if removing the last element
@@ -106,23 +104,16 @@ local function fadeOut()
 	end
 end
 
---Effectively change color
-function pixelTexture:commitColor()
-	local pixels = dxGetTexturePixels (self.texture)
-	dxSetPixelColor (pixels, 0, 0, self.r, self.g, self.b, self.a)
-	dxSetTexturePixels (self.texture, pixels)
-end
-
 --Color manipulation
-function pixelTexture:setR(r) self.r = r self:commitColor() end
-function pixelTexture:setG(g) self.g = g self:commitColor() end
-function pixelTexture:setB(b) self.b = b self:commitColor() end
-function pixelTexture:setA(a) self.a = a self:commitColor() end
+function pixelTexture:setR(r) self.r = r end
+function pixelTexture:setG(g) self.g = g end
+function pixelTexture:setB(b) self.b = b end
+function pixelTexture:setA(a) self.a = a end
 function pixelTexture:getR()	return self.r end
 function pixelTexture:getG() return self.g end
 function pixelTexture:getB() return self.b end
 function pixelTexture:getA() return self.a end
-function pixelTexture:setRGBA(r,g,b,a) self.r, self.g, self.b, self.a = r, g, b, a commitColor() end
+function pixelTexture:setRGBA(r,g,b,a) self.r, self.g, self.b, self.a = r, g, b, a end
 function pixelTexture:getRGBA() return self.r, self.g, self.b, self.a end
 function pixelTexture:setSize(width, height) self.width = width self.height = height end
 function pixelTexture:getSize() return self.width, self.height end
@@ -204,3 +195,14 @@ function pixelTexture:getCrazy() return crazyModeState end
 
 --TODO: implement render order management
 --TODO: optimize code(mainly localize)
+
+--Test example
+-- local function testpix()
+-- 	pix = pixelTexture:new(255, 0, 0, 255, 500, 500, 128, 64)
+-- 	pix:setRendering(true)
+-- 	setTimer(function() pix:fadeOut(2000) end, 5000, 1)
+-- 	setTimer(function() pix:setR(150) end, 4000, 1)
+-- 	setTimer(function() pix:setG(150) end, 3000, 1)
+-- 	setTimer(function() pix:setB(150) end, 2000, 1)
+-- end
+-- addEventHandler("onClientResourceStart", root, testpix)
