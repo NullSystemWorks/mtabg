@@ -1,5 +1,5 @@
-pixelTexture = {} --pixelTexture class
-local pixelTexture_mt = {__index = pixelTexture} --the metatable
+PixelTexture = {} --PixelTexture class
+local pixelTexture_mt = {__index = PixelTexture} --the metatable
 local renderTable = {} --textures being rendered
 local renderingCount = 0 --how many items are being rendered
 local fadeTable = {} --elements fading
@@ -14,7 +14,7 @@ local sx, sy = guiGetScreenSize()
 
 
 --Generate pixel textures
-function pixelTexture:new(r, g, b, a, rootx, rooty, width, height)
+function PixelTexture.new(r, g, b, a, rootx, rooty, width, height)
 	local tex = dxCreateTexture(1,1) --generate texture
 	local pixel = dxGetTexturePixels (tex) --get pixel
 	dxSetPixelColor (pixel, 0, 0, 255, 255, 255, 255) --set pixel color to white
@@ -40,7 +40,7 @@ function pixelTexture:new(r, g, b, a, rootx, rooty, width, height)
 	end
 end
 
-function pixelTexture:print()
+function PixelTexture:print()
 	print(self.r)
 	print(self.g)
 	print(self.b)
@@ -54,6 +54,18 @@ local function crazyRender()
 		dxDrawImage(math.random(0,sx),math.random(0,sy), math.random(32,64), math.random(32,64), pix.texture)
 	end
 end
+
+function PixelTexture.setParty(goCrazy)
+	if not crazyModeState and goCrazy then
+		addEventHandler("onClientRender", root, crazyRender) --enables the render
+		crazyModeState = true
+	elseif crazyModeState and not goCrazy then
+		removeEventHandler("onClientRender", root, crazyRender) --disables the render
+		crazyModeState = false
+	end
+end
+
+function PixelTexture.getParty() return crazyModeState end
 
 --Render all elements int render table
 local function renderPixels()
@@ -105,23 +117,23 @@ local function fadeOut()
 end
 
 --Color manipulation
-function pixelTexture:setR(r) self.r = r end
-function pixelTexture:setG(g) self.g = g end
-function pixelTexture:setB(b) self.b = b end
-function pixelTexture:setA(a) self.a = a end
-function pixelTexture:getR()	return self.r end
-function pixelTexture:getG() return self.g end
-function pixelTexture:getB() return self.b end
-function pixelTexture:getA() return self.a end
-function pixelTexture:setRGBA(r,g,b,a) self.r, self.g, self.b, self.a = r, g, b, a end
-function pixelTexture:getRGBA() return self.r, self.g, self.b, self.a end
-function pixelTexture:setSize(width, height) self.width = width self.height = height end
-function pixelTexture:getSize() return self.width, self.height end
-function pixelTexture:setRoot(rootx, rooty) self.rootx = rootx self.rooty = rooty end
-function pixelTexture:getRoot() return self.rootx, self.rooty end
+function PixelTexture:setR(r) self.r = r end
+function PixelTexture:setG(g) self.g = g end
+function PixelTexture:setB(b) self.b = b end
+function PixelTexture:setA(a) self.a = a end
+function PixelTexture:getR()	return self.r end
+function PixelTexture:getG() return self.g end
+function PixelTexture:getB() return self.b end
+function PixelTexture:getA() return self.a end
+function PixelTexture:setRGBA(r,g,b,a) self.r, self.g, self.b, self.a = r, g, b, a end
+function PixelTexture:getRGBA() return self.r, self.g, self.b, self.a end
+function PixelTexture:setSize(width, height) self.width = width self.height = height end
+function PixelTexture:getSize() return self.width, self.height end
+function PixelTexture:setRoot(rootx, rooty) self.rootx = rootx self.rooty = rooty end
+function PixelTexture:getRoot() return self.rootx, self.rooty end
 
 --Enable disable rendering
-function pixelTexture:setRendering(shouldRender)
+function PixelTexture:setRendering(shouldRender)
 	if shouldRender then --should start rendering
 		if not renderTable[self] then --element not in render table
 			if shouldRender and renderingCount == 0 then --if adding the first element
@@ -157,9 +169,9 @@ function pixelTexture:setRendering(shouldRender)
 	-- iprint("----")
 end
 
-function pixelTexture:getRendering() return renderTable[self] or false end
+function PixelTexture:getRendering() return renderTable[self] or false end
 
-function pixelTexture:fadeIn(fadingSpeed)
+function PixelTexture:fadeIn(fadingSpeed)
 	if not fadeTable["in"][self] then --element not in fading table
 		if fadingCount["in"] == 0 then --if adding the first element
 			addEventHandler("onClientRender", root, fadeIn) --something to fade
@@ -170,7 +182,7 @@ function pixelTexture:fadeIn(fadingSpeed)
 	end
 end
 
-function pixelTexture:fadeOut(fadingSpeed)
+function PixelTexture:fadeOut(fadingSpeed)
 	if not fadeTable["out"][self] then --element not in fading table
 		if fadingCount["out"] == 0 then --if adding the first element
 			addEventHandler("onClientRender", root, fadeOut) --something to fade
@@ -181,24 +193,12 @@ function pixelTexture:fadeOut(fadingSpeed)
 	end
 end
 
-function pixelTexture:setParty(goCrazy)
-	if not crazyModeState and goCrazy then
-		addEventHandler("onClientRender", root, crazyRender) --enables the render
-		crazyModeState = true
-	elseif crazyModeState and not goCrazy then
-		removeEventHandler("onClientRender", root, crazyRender) --disables the render
-		crazyModeState = false
-	end
-end
-
-function pixelTexture:getCrazy() return crazyModeState end
-
 --TODO: implement render order management
 --TODO: optimize code(mainly localize)
 
 --Test example
 -- local function testpix()
--- 	pix = pixelTexture:new(255, 0, 0, 255, 500, 500, 128, 64)
+-- 	pix = PixelTexture.new(255, 0, 0, 255, 500, 500, 128, 64)
 -- 	pix:setRendering(true)
 -- 	setTimer(function() pix:fadeOut(2000) end, 5000, 1)
 -- 	setTimer(function() pix:setR(150) end, 4000, 1)

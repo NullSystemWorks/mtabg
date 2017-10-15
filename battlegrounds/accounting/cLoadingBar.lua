@@ -83,13 +83,13 @@ end
 local function initializeLoadingBar()
 	for k, v in ipairs(color) do --generate pixel textures
 		if k == 3 then --if progress bar
-			pixelTextures[k] = pixelTexture:new(v[1], v[2], v[3], v[4],
+			pixelTextures[k] = PixelTexture.new(v[1], v[2], v[3], v[4],
 			pos.bar[1], pos.bar[2], 0, pos.bar[4])
 		elseif k ~= 1 then --if not background
-			pixelTextures[k] = pixelTexture:new(v[1], v[2], v[3], v[4],
+			pixelTextures[k] = PixelTexture.new(v[1], v[2], v[3], v[4],
 				pos.bar[1], pos.bar[2], pos.bar[3], pos.bar[4])
 		else --if other bars
-			pixelTextures[k] = pixelTexture:new(v[1], v[2], v[3], v[4],
+			pixelTextures[k] = PixelTexture.new(v[1], v[2], v[3], v[4],
 				pos.background[1], pos.background[2], pos.background[3], pos.background[4])
 		end
 	end
