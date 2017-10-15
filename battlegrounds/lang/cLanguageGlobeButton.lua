@@ -1,5 +1,5 @@
 local sx, sy = guiGetScreenSize()
-local globeTexture = DxTexture("lang/globe2.png")
+local globeTexture = DxTexture("lang/globeIcon.png")
 local color = 0
 local lastTick = 0
 local rootx = sx*0.013020833 --25
