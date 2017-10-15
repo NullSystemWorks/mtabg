@@ -1,4 +1,4 @@
-local lang = "en"
+local currentLanguage = "en"
 
 function Language.getCount()
 	return #Language.available
@@ -17,16 +17,16 @@ function Language.getLanguageNameFromCode(code)
 end
 
 function Language.getCurrent()
-	return lang
+	return currentLanguage
 end
 
 function Language.getCurrentName()
-	return Language[lang].languageNameInLanguage
+	return Language[currentLanguage].languageNameInLanguage
 end
 
 function Language.set(newLang)
 	if newLang ~= Language.getCurrent() then
-		lang = newLang
+		currentLanguage = newLang
 		triggerEvent("onUserLanguageChange", resourceRoot, newLang)
 	end
 end
@@ -35,8 +35,8 @@ addEventHandler("onUserLanguageChange", resourceRoot, Language.set)
 
 function str(stringName, ...)
 	if arg.n == 0 then
-		return Language[lang][stringName]
+		return Language[currentLanguage][stringName]
 	else
-		return string.format(Language[lang][stringName], unpack(arg))
+		return string.format(Language[currentLanguage][stringName], unpack(arg))
 	end
 end
