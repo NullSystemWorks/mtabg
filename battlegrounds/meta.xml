@@ -34,6 +34,20 @@ Version: 0.0.1 Pre-Alpha
 	<script src="lib/sidenotifications/jq_client.lua" type="client" cache="false" />
 
 	<!-- Translations -->
+	<script src="lang/sLanguageParser.lua" type="server" />
+	<script src="lang/sWriteLuaFile.lua" type="server" />
+	<script src="lang/sTreatRawStringTable.lua" type="server" />
+	<script src="lang/sXMLHandler.lua" type="server" />
+
+	<script src="lang/sGetLuaFilePaths.lua" type="server" />
+	<script src="lang/sUpdateSpreadsheet.lua" type="server" />
+
+	<script src="lang/cLanguageStrings.lua" type="client" cache="false" />
+	<script src="lang/cLanguage.lua" type="client" cache="false" />
+	<script src="lang/cDebug.lua" type="client" cache="false" />
+
+	<config src="lang/language.fods" type="server" />
+
 
 	<!-- lootPointEditor -->
 	<script src="lootPointEditor/lootPoints.lua" type="server" /> <!-- Must be the first -->
