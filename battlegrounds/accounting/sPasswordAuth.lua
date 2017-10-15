@@ -189,7 +189,6 @@ local function authenticateUser(player)
 		if not (authQueue.timr[player] or mHash.currentClient == player) then --player is not in queue
 			authQueue.timr[player] = Timer(authenticateUser, 1000, 0, player) --queue player
 			outputDebugString("Another hash is in progress, login posponed for " ..tostring(player))
-			triggerClientEvent("onHashingStart", player) --show waiting gif
 		end
 	else --if the hash is not running
 		if isTimer(authQueue.timr[player]) then --if timer was used
@@ -281,7 +280,6 @@ local function hashNewPassword(player)
 		if not (authQueue.timr[player] or mHash.currentClient == player) then --player is not in queue
 			authQueue.timr[player] = Timer(hashNewPassword, 1000, 0, player) --queue player
 			outputDebugString("Another hash is in progress, register posponed for " ..tostring(player))
-			triggerClientEvent("onHashingStart", player) --show waiting gif
 		end
 	else --if the hash is not running
 		if isTimer(authQueue.timr[player]) then --if timer was used

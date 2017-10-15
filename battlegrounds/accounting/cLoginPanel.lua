@@ -47,13 +47,27 @@ guiLabelSetHorizontalAlign(LoginScreen.label[5], "center", false)
 guiLabelSetVerticalAlign(LoginScreen.label[5], "center")
 LoginScreen.label[6] = guiCreateLabel(0.25, 0.588, 0.46, 0.05, "", true, LoginScreen.staticimage[1])
 
+local function resetLoadingBar()
+	loadingBar.setWaiting(false)
+	loadingBar.bar[4]:setA(0) -- hide red bar
+	loadingBar.bar[5]:setA(0) -- hide green bar
+	loadingBar.changeIcon(1)
+end
+
+local function hashingStart()
+	resetLoadingBar()
+	loadingBar.setWaiting(true)
+end
+
 local function clickRegisterButton()
 	local password = guiGetText(LoginScreen.edit[2])
 	local alphaKey = guiGetText(LoginScreen.edit[3])
+	hashingStart()
 	triggerServerEvent("mtabg_register", localPlayer, password, "None", false, alphaKey)
 end
 
 local function clickLoginButton()
+	hashingStart()
 	triggerServerEvent("mtabg_login", localPlayer, guiGetText(LoginScreen.edit[2]))
 end
 
@@ -73,13 +87,6 @@ local function showLoadingBar()
 end
 addEventHandler("onClientResourceStart", resourceRoot, showLoadingBar)
 
-local function resetLoadingBar()
-	loadingBar.setWaiting(false)
-	loadingBar.bar[4]:setA(0) -- hide red bar
-	loadingBar.bar[5]:setA(0) -- hide green bar
-	loadingBar.changeIcon(1)
-end
-
 local function loadingBarSetProgress(progress)
 	loadingBar.setProgress(progress)
 	resetLoadingBar()
@@ -98,13 +105,6 @@ local function hashingEnd()
 end
 addEvent("mtabg_registerDone", true)
 addEventHandler("mtabg_registerDone", localPlayer, hashingEnd)
-
-local function hashingStart()
-	resetLoadingBar()
-	loadingBar.setWaiting(true)
-end
-addEvent("onHashingStart", true)
-addEventHandler("onHashingStart", localPlayer, hashingStart)
 
 local errorFont
 local screenSize = guiGetScreenSize()
