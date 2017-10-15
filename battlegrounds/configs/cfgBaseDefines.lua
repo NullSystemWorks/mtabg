@@ -9,11 +9,5 @@
 -- // For Setup // --
 gameplayVariables = {}
 
--- // Language Table // --
-sLang = {}
-
--- // Item Language Table // --
-sItemLang = {}
-
 -- // Game Cache Table // --
 gameCache = {}

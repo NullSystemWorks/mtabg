@@ -34,9 +34,6 @@ Version: 0.0.1 Pre-Alpha
 	<script src="lib/sidenotifications/jq_client.lua" type="client" cache="false" />
 
 	<!-- Translations -->
-	<script src="locale/lang-en_US.lua" type="shared" cache="false" />
-	<script src="locale/lang-es.lua" type="shared" cache="false" />
-	<script src="locale/lang-pt_BR.lua" type="shared" cache="false" />
 
 	<!-- lootPointEditor -->
 	<script src="lootPointEditor/lootPoints.lua" type="server" /> <!-- Must be the first -->

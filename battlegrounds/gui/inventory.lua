@@ -367,10 +367,8 @@ end
 bindKey("mouse2","down",onPlayerRightMouseButton)
 
 function getInventoryInfosForRightClickMenu(itemName)
-	for i, itemInfo in ipairs(sItemLang["en_US"]) do
-		if itemName == itemInfo[1] then
-			return itemName,itemInfo[2]
-		end
+	if inventoryIsShowing then
+		return itemInventoryAction[itemName]
 	end
 end
 
