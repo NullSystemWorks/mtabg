@@ -4,7 +4,6 @@ local function onResourceStart ( resource )
 	for k, v in pairs ( players ) do
 		setElementData ( v, "parachuting", false )
 	end
-	outputDebugString("Parachutes started with MTA:Battlegrounds")
 end
 addEventHandler ( "onResourceStart", resourceRoot, onResourceStart )
 
