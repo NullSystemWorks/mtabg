@@ -1,5 +1,5 @@
 --[[
-	
+
 				MTA:BG
 			MTA Battlegrounds
 	Developed By: Null System Works
@@ -94,5 +94,3 @@ function loadTheSkins()
 end
 addEventHandler("onClientResourceStart",getResourceRootElement(getThisResource()),loadTheSkins)
 ]]--
-
-

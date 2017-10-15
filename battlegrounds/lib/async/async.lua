@@ -5,7 +5,7 @@
 -- @dependency slither.lua https://bitbucket.org/bartbes/slither
 
 class "Async" {
-    
+
     -- Constructor mehtod
     -- Starts timer to manage scheduler
     -- @access public
@@ -30,7 +30,7 @@ class "Async" {
 
     -- Switch scheduler state
     -- @access private
-    -- @param boolean [istimer] Identifies whether or not 
+    -- @param boolean [istimer] Identifies whether or not
         -- switcher was called from main loop
     switch = function(self, istimer)
         self.state = "running";
@@ -46,10 +46,10 @@ class "Async" {
                 return;
             end
 
-            -- setTimer(function theFunction, int timeInterval, int timesToExecute) 
+            -- setTimer(function theFunction, int timeInterval, int timesToExecute)
             -- (GTA:MTA server scripting function)
             -- For other environments use alternatives.
-            setTimer(function() 
+            setTimer(function()
                 self:switch();
             end, self.resting, 1);
         end
@@ -83,7 +83,7 @@ class "Async" {
 
 
     -- Set priority for executor
-    -- Use before you call 'iterate' or 'foreach' 
+    -- Use before you call 'iterate' or 'foreach'
     -- @access public
     -- @param string|int param1 "low"|"normal"|"high" or number to set 'resting' time
     -- @param int|void param2 number to set 'maxtime' of thread
@@ -127,9 +127,9 @@ class "Async" {
             local a = getTickCount();
             local lastresume = getTickCount();
             for i = from, to do
-                func(i); 
+                func(i);
 
-                -- int getTickCount() 
+                -- int getTickCount()
                 -- (GTA:MTA server scripting function)
                 -- For other environments use alternatives.
                 if getTickCount() > lastresume + self.maxtime then
@@ -167,7 +167,7 @@ class "Async" {
             for k,v in ipairs(array) do
                 func(v,k);
 
-                -- int getTickCount() 
+                -- int getTickCount()
                 -- (GTA:MTA server scripting function)
                 -- For other environments use alternatives.
                 if getTickCount() > lastresume + self.maxtime then

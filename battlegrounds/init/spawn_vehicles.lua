@@ -26,7 +26,7 @@ vehicleSpawnPositionTable = {
 vehicleDataTable = {}
 checkFTimer = false
 function spawnVehiclesOnMatchStart()
-	if checkFTimer then 
+	if checkFTimer then
 		killTimer(checkFTimer)
 		checkFTimer = false
 	end
@@ -47,7 +47,7 @@ function checkFuelOfVehicle()
 	for i, veh in ipairs(getElementsByType("vehicle")) do
 		if vehicleDataTable[veh] then
 			if vehicleDataTable[veh]["fuel"] then
-				if vehicleDataTable[veh]["fuel"] <= 0 then 
+				if vehicleDataTable[veh]["fuel"] <= 0 then
 					setVehicleEngineState(veh,false)
 				end
 			end

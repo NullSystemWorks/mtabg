@@ -63,7 +63,7 @@ function putAttachedElementsOnBones()
 			local objy = y+offx*xy+offy*yy+offz*zy
 			local objz = z+offx*xz+offy*yz+offz*zz
 			local rxx,rxy,rxz,ryx,ryy,ryz,rzx,rzy,rzz = getMatrixFromEulerAngles(offrx,offry,offrz)
-			
+
 			local txx = rxx*xx+rxy*yx+rxz*zx
 			local txy = rxx*xy+rxy*yy+rxz*zy
 			local txz = rxx*xz+rxy*yz+rxz*zz
@@ -74,7 +74,7 @@ function putAttachedElementsOnBones()
 			local tzy = rzx*xy+rzy*yy+rzz*zy
 			local tzz = rzx*xz+rzy*yz+rzz*zz
 			offrx,offry,offrz = getEulerAnglesFromMatrix(txx,txy,txz,tyx,tyy,tyz,tzx,tzy,tzz)
-			
+
 			if (not tonumber(tostring(objx)) or not tonumber(tostring(objy)) or not tonumber(tostring(objz))) then return end
 			if (not tonumber(tostring(offrx)) or not tonumber(tostring(offry)) or not tonumber(tostring(offrz))) then return end
 			setElementPosition(element,objx,objy,objz)

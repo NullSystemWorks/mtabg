@@ -1,5 +1,5 @@
 --[[
-	
+
 				MTA:BG
 			MTA Battlegrounds
 	Developed By: Null System Works
@@ -66,7 +66,7 @@ function addBackpackToPlayer(dataName,oldValue)
 		else
 			attachElementToBone(elementBackpack[source],source,3,0,-0.225,0.05,90,0,0)
 		end
-	end	
+	end
 end
 --addEventHandler ("onElementDataChange", root, addBackpackToPlayer)
 
@@ -119,7 +119,7 @@ end
 function removeBackWeaponOnDrop ()
 	if elementWeaponBack[source] then
 		detachElementFromBone(elementWeaponBack[source])
-		destroyElement(elementWeaponBack[source])	
+		destroyElement(elementWeaponBack[source])
 		elementWeaponBack[source] = false
 	end
 end

@@ -6,11 +6,11 @@
 
 ]]--
 
-local restrictedCommands = { 
-	["say"] = true, 
-	["teamsay"] = true, 
+local restrictedCommands = {
+	["say"] = true,
+	["teamsay"] = true,
 	["showchat"] = true, 
-	["register"] = true, 
+	["register"] = true,
 	["me"] = true
 }
 

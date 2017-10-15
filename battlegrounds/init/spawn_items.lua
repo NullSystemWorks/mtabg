@@ -24,7 +24,7 @@ function createItemPickup(item,x,y,z,itemName,itemAmount)
 		}
 		table.insert(lootpointData[lootCol],{itemName,itemAmount})
 		setElementData(lootCol,"itemloot",true)
-		setElementData(lootCol,"parent","FullList")	
+		setElementData(lootCol,"parent","FullList")
 		local objectTable = {}
 		for i, item in ipairs(lootItems["FullList"]) do
 			for k, spot in ipairs(lootpointData[lootCol]) do
@@ -37,7 +37,7 @@ function createItemPickup(item,x,y,z,itemName,itemAmount)
 					setElementDimension(objectTable[1],gameCache["playingField"])
 				end
 			end
-		end	
+		end
 		table.insert(lootpointData[lootCol]["objects"],{objectTable[1],itemName})
 		return lootpointData[lootCol]
 	end
@@ -81,12 +81,12 @@ function createColOnPosition(lootSpot)
 							elseif item[1] == "1866 Slug" then
 								itemChance = math.ceil(itemChance*15)
 							elseif item[1] == "12 Gauge Pellet" then
-								itemChance = math.ceil(itemChance*7)	
+								itemChance = math.ceil(itemChance*7)
 							end
 						end
 						table.insert(lootpointData[lootCol],{item[1],itemChance})
 					end)
-					
+
 					setElementData(lootCol,"itemloot",true)
 					setElementData(lootCol,"parent",lootSpot)
 					local objectCounter = 0
@@ -152,7 +152,7 @@ function createLootPoint(lootSpot,x,y,z,ID)
 			elseif item[1] == "1866 Slug" then
 				itemChance = math.ceil(itemChance*15)
 			elseif item[1] == "12 Gauge Pellet" then
-				itemChance = math.ceil(itemChance*7)	
+				itemChance = math.ceil(itemChance*7)
 			end
 		end
 		table.insert(lootpointData[lootCol],{item[1],itemChance})

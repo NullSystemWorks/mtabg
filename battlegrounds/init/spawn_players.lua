@@ -168,7 +168,7 @@ function startCountDown(forcedStart, quickTick)
 				if getElementData(players,"inLobby") then
 					triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,240)
 				end
-			end	
+			end
 		end
 		if gameCache["countdown"] == 100 then
 			outputDebugString("[MTA:BG] Spawning Industry Loot Points(20%)")
@@ -218,7 +218,7 @@ function startGame()
 			local dataID = -1
 			playerInfo[player] = {}
 			playerDataInfo[player] = {}
-			
+
 			-- Disable hud components
 			local disableComponent = { "clock", "health", "area_name", "money"}
 			for i, component in ipairs(disableComponent) do

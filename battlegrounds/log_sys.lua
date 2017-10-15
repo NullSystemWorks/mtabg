@@ -16,11 +16,11 @@ function isCorrectLogType(logtype)
 			break
 		end
 	end
-	
+
 	if _isCorrectLogType ~= true then
 		outputDebugString( "[MTA:BG Logs] Error in 'saveLog' function. Wrong log type '".. logtype .."'!"  )
 		return false
-	end	
+	end
 end
 
 function fileLog(logtype,tstring)
@@ -37,7 +37,7 @@ function fileLog(logtype,tstring)
 end
 
 
-function saveLog( tstring, logtype )	
+function saveLog( tstring, logtype )
 	if isCorrectLogType(logtype) ~= false then
 		return fileLog(logtype,tstring)
 	else
@@ -54,7 +54,7 @@ addEventHandler("onResourceStart", resourceRoot,
 				outputDebugString( "[MTA:BG Logs] File: " .. logFile .. " not found. " )
 				local newFile = fileCreate( logFile )
 				if not newFile then
-					outputDebugString( "[MTA:BG Logs] File: cannot create file " .. logFile .. "." )	
+					outputDebugString( "[MTA:BG Logs] File: cannot create file " .. logFile .. "." )
 				else
 					outputDebugString( "[MTA:BG Logs] File: " .. logFile .. " has been created." )
 				end

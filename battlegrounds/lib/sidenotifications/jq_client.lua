@@ -48,7 +48,7 @@ local screenWidth, screenHeight = guiGetScreenSize()
 local boxSpace = dxGetFontHeight(1,"default-bold")+dxGetFontHeight(1,"default-bold")*0.3
 
 
-addEventHandler("onClientRender", getRootElement(), 
+addEventHandler("onClientRender", getRootElement(),
 	function()
 		for id, value in pairs(theTexts) do
 				if #theTexts == 4 or #theTexts == 2 then
@@ -153,5 +153,3 @@ function togOOCCMD (cname,arg)
 end
 --addCommandHandler ("tog",togOOCCMD)
 --addCommandHandler ("toggle",togOOCCMD)
-
-

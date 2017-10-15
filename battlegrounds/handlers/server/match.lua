@@ -14,16 +14,16 @@ function createLobby(gameType,roomName,slots)
 	local ID = #games+1
 	games[ID] = {
 		["config"] = {
-			["gameType"] = "solo", 
-			["RoomName"] = roomName, 
-			["slots"] = slots, 
-			["minPlayers"] = 1, 
+			["gameType"] = "solo",
+			["RoomName"] = roomName,
+			["slots"] = slots,
+			["minPlayers"] = 1,
 			["started"] = false
-			}, 
+			},
 			["players"] = {
 				[client] = true
-				}, 
-			["deadPlayers"] = {}, 
+				},
+			["deadPlayers"] = {},
 			["spectating"] = {}
 		}
 end
@@ -75,7 +75,7 @@ addEvent("mtabg_startMatch", true)
 addEventHandler("mtabg_startMatch", getRootElement(), startMatch)
 
 function endMatch(ID)
-	
+
 end
 
 function checkMatch(ID)
