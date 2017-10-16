@@ -249,7 +249,7 @@ function startGame()
 			gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
 			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetStatus",player,true,0)
 			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetAliveCount",player,gameCache["playerAmount"])
-			triggerClientEvent(player,"mtabg_onMatchStartChangeWeather", weather)
+			triggerClientEvent(player,"onSetClientWeather", player, weather)
 			setElementData(player,"inLobby",false)
 			giveWeapon(player,46,1,true)
 			setPedWeaponSlot(player,11)

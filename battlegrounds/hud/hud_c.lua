@@ -27,7 +27,6 @@ local countDownHasStarted = false
 local maxDistance = 100 --max distance represented by littleDude
 local littleDudeDistance = maxDistance --relative distance from littleDude to safe area
 local distanceToSafeArea --distance from player to safe area
-local screenx, screeny = guiGetScreenSize() --screen size
 local safeAreaCol
 local guiPlayerHealth = 100
 
@@ -414,8 +413,10 @@ local function calculateLittleDudeDistance()
 	local sx,sy
 	if isElement(safeAreaCol) then
 		sx, sy = safeAreaCol.position.x, safeAreaCol.position.y --safe area coords
+	else
+		return maxDistance
 	end
-	distanceToSafeArea = (getDistanceBetweenPoints2D(px, py, sx, sy) - safeZoneRadius > 0) and
+	distanceToSafeArea = (getDistanceBetweenPoints2D(px, py, sx, sy) - safeZoneRadius) > 0 and
 	getDistanceBetweenPoints2D(px, py, sx, sy) - safeZoneRadius or 0 --show positive or 0
 	if distanceToSafeArea > maxDistance then --if too far
 		return 0 --stay at max
@@ -430,7 +431,6 @@ local function moveLittleDude() --moves littleDude
 	if gameStatus then
 		littleDudeDistance = calculateLittleDudeDistance()
 		guiSetPosition(zoneIndicators.image[3], littleDudeDistance, 0.69, true) --set littleDudes position
-		--dxDrawText(math.floor(distanceToSafeArea), screenx*(littleDudeDistance + 0.027) , screeny*0.96) --draw distance
 	end
 end
 addEventHandler("onClientRender", root, moveLittleDude)
