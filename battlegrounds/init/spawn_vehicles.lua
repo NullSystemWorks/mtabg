@@ -70,12 +70,14 @@ end
 
 local fuelTimer = false
 function onPlayerEnterVehicleCheckFuel(player,seat)
-	if vehicleDataTable[source]["fuel"] <= 0 then
-		setVehicleEngineState(source,false)
-		if isTimer(fuelTimer) then killTimer(fuelTimer) end
-	else
-		triggerClientEvent(player,"mtabg_onPlayerIsInsideVehicle",player,vehicleDataTable[source]["fuel"])
-		fuelTimer = setTimer(setVehicleFuelConsumption,10000,0,source,player,seat)
+	if vehicleDataTable[source] then
+		if vehicleDataTable[source]["fuel"] <= 0 then
+			setVehicleEngineState(source,false)
+			if isTimer(fuelTimer) then killTimer(fuelTimer) end
+		else
+			triggerClientEvent(player,"mtabg_onPlayerIsInsideVehicle",player,vehicleDataTable[source]["fuel"])
+			fuelTimer = setTimer(setVehicleFuelConsumption,10000,0,source,player,seat)
+		end
 	end
 end
 addEventHandler("onVehicleEnter",root,onPlayerEnterVehicleCheckFuel)
