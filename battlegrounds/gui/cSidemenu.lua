@@ -13,11 +13,11 @@ local font = {}
 local number = 0
 local moveDown = 0
 local playerPickedUpItem = false
-font[1] = guiCreateFont("/fonts/etelka.ttf", 10)
+font[1] = guiCreateFont("/font/etelka.ttf", 10)
 
 function initSideMenu()
 	row[1] = ""
-	rowImage[1] = guiCreateStaticImage(0,0.400,0.35,0.03,"gui/images/solo_slot.png",true)
+	rowImage[1] = guiCreateStaticImage(0,0.400,0.35,0.03,"gui/img/solo_slot.png",true)
 	rowText[1] = guiCreateLabel(0.05,0.05,0.995,0.95,row[1],true,rowImage[1])
 	guiLabelSetColor(rowText[1],255,255,255)
 	guiSetFont(rowText[1],font[1])

@@ -111,13 +111,13 @@ addEventHandler("mtabg_registerDone", localPlayer, hashingEnd)
 local errorFont
 local screenSize = guiGetScreenSize()
 if screenSize >= 1920 then
-	errorFont = guiCreateFont("fonts/tahomab.ttf",13)
+	errorFont = guiCreateFont("font/tahomab.ttf",13)
 elseif screenSize >= 1336 then
-	errorFont = guiCreateFont("fonts/tahomab.ttf",8)
+	errorFont = guiCreateFont("font/tahomab.ttf",8)
 elseif screenSize >= 800 then
-	errorFont = guiCreateFont("fonts/tahomab.ttf",6)
+	errorFont = guiCreateFont("font/tahomab.ttf",6)
 else
-	errorFont = guiCreateFont("fonts/tahomab.ttf",5)
+	errorFont = guiCreateFont("font/tahomab.ttf",5)
 end
 guiSetFont ( LoginScreen.label[6], errorFont )
 

@@ -7,6 +7,7 @@
 ]]--
 
 -- Init game status
+gameCache = {}
 gameCache["status"] = false
 gameCache['status_duo'] = false -- Currently not in use
 gameCache['status_squad'] = false -- Currently not in use

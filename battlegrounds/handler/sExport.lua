@@ -42,3 +42,8 @@ function setRadiationRate(rate)
 	end
 	return false
 end
+
+--[[
+Exports:
+saveLog(string tstring, string logtype) LOGTYPES: "admin", "debug", "updates", "accounts", "game", "chat"
+]]

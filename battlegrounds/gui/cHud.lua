@@ -60,8 +60,8 @@ function createZoneRadius(dangerZone,safeZone,radius,initialZoneRadius,timer)
 	elseif screenX == 1920 then
 		radiusDivide = 2.34
 	end
-	dangerBlip = exports.customblips:createCustomBlip(x,y,radius/radiusDivide,radius/radiusDivide,"hud/radius.png",radius)
-	safeBlip = exports.customblips:createCustomBlip(x2,y2,initialZoneRadius/radiusDivide,initialZoneRadius/radiusDivide,"hud/radius2.png",initialZoneRadius)
+	dangerBlip = exports.customblips:createCustomBlip(x,y,radius/radiusDivide,radius/radiusDivide,"gui/img/radius.png",radius)
+	safeBlip = exports.customblips:createCustomBlip(x2,y2,initialZoneRadius/radiusDivide,initialZoneRadius/radiusDivide,"gui/img/radius2.png",initialZoneRadius)
 	exports.customblips:setCustomBlipRadarScale(dangerBlip,1)
 	exports.customblips:setCustomBlipStreamRadius(dangerBlip,0)
 	exports.customblips:setCustomBlipRadarScale(safeBlip,1)
@@ -110,8 +110,8 @@ lobbyLabel[1] = guiCreateLabel(0.02, 0.31, 0.32, 0.05, "", true)
 lobbyLabel[2] = guiCreateLabel(0.02, 0.36, 0.32, 0.05, "", true)
 lobbyLabel[3] = guiCreateLabel(0.26, 0.70, 0.48, 0.13, "", true)
 lobbyLabel[4] = guiCreateLabel(0.02, 0.46, 0.32, 0.29, "", true)
-lobbyLabel["font_big"] = guiCreateFont("/fonts/tahomab.ttf",20)
-lobbyLabel["font_small"] = guiCreateFont("/fonts/tahomab.ttf",12)
+lobbyLabel["font_big"] = guiCreateFont("/font/tahomab.ttf",20)
+lobbyLabel["font_small"] = guiCreateFont("/font/tahomab.ttf",12)
 guiLabelSetHorizontalAlign(lobbyLabel[3], "center", true)
 guiLabelSetVerticalAlign(lobbyLabel[3], "center")
 guiLabelSetHorizontalAlign(lobbyLabel[4], "left", true)
@@ -283,13 +283,13 @@ endScreen = {
 
 local rank = ""
 
-endScreen.font[1] = guiCreateFont("/fonts/etelka.ttf",11)
-endScreen.font[2] = guiCreateFont("/fonts/etelka.ttf",15)
-endScreen.font[3] = guiCreateFont("/fonts/etelka.ttf",20)
-endScreen.font[4] = guiCreateFont("/fonts/etelka.ttf",25)
+endScreen.font[1] = guiCreateFont("/font/etelka.ttf",11)
+endScreen.font[2] = guiCreateFont("/font/etelka.ttf",15)
+endScreen.font[3] = guiCreateFont("/font/etelka.ttf",20)
+endScreen.font[4] = guiCreateFont("/font/etelka.ttf",25)
 
-endScreen.image[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.17, "/gui/images/solo_slot.png", true)
-endScreen.image[2] = guiCreateStaticImage(0.73, 0.87, 0.20, 0.06,"/gui/images/solo_slot.png", true)
+endScreen.image[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.17, "/gui/img/solo_slot.png", true)
+endScreen.image[2] = guiCreateStaticImage(0.73, 0.87, 0.20, 0.06,"/gui/img/solo_slot.png", true)
 guiSetProperty(endScreen.image[1], "ImageColours", "tl:EB000000 tr:EB000000 bl:EB000000 br:EB000000")
 endScreen.label[1] = guiCreateLabel(0.02, 0.06, 0.38, 0.08, getPlayerName(localPlayer), true, endScreen.image[1])
 endScreen.label[2] = guiCreateLabel(0.02, 0.14, 1, 0.09, "", true, endScreen.image[1])
@@ -394,11 +394,11 @@ zoneIndicators = {
 }
 
 zoneIndicators.label[1] = guiCreateLabel(0.02, 0.73, 0.24, 0.03, "", true)
-zoneIndicators.image[1] = guiCreateStaticImage (0.02, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true) --starting position
+zoneIndicators.image[1] = guiCreateStaticImage (0.02, 0.71, 0.01, 0.02, "/gui/img/solo_slot.png", true) --starting position
 guiSetProperty(zoneIndicators.image[1], "ImageColours", "tl:FEFB0000 tr:FEFB0000 bl:FEFB0000 br:FEFB0000")
-zoneIndicators.image[2] = guiCreateStaticImage (0.25, 0.71, 0.01, 0.02, "/gui/images/solo_slot.png", true) --finishing position
+zoneIndicators.image[2] = guiCreateStaticImage (0.25, 0.71, 0.01, 0.02, "/gui/img/solo_slot.png", true) --finishing position
 guiSetProperty(zoneIndicators.image[2], "ImageColours", "tl:FE000CFA tr:FE000CFA bl:FE000CFA br:FE000CFA")
-zoneIndicators.image[3] = guiCreateStaticImage (0.02, 0.69, 0.04, 0.04, "hud/running.png", true) --our littledude
+zoneIndicators.image[3] = guiCreateStaticImage (0.02, 0.69, 0.04, 0.04, "gui/img/running.png", true) --our littledude
 
 for i=1,3 do
 	guiSetVisible(zoneIndicators.image[i],false)

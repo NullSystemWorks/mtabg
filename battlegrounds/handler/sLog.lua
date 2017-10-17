@@ -24,7 +24,7 @@ function isCorrectLogType(logtype)
 end
 
 function fileLog(logtype,tstring)
-	local file = fileOpen("logs/".. logtype .. ".log")
+	local file = fileOpen("log/".. logtype .. ".log")
 	local size = fileGetSize( file )
 	if tstring then
 		local set = fileSetPos( file, size )
@@ -49,7 +49,7 @@ end
 addEventHandler("onResourceStart", resourceRoot,
 	function()
 		for _, typeLog in ipairs( logTypes )do
-			local logFile = "logs/" .. typeLog .. ".log"
+			local logFile = "log/" .. typeLog .. ".log"
 			if not fileExists( logFile ) then
 				outputDebugString( "[MTA:BG Logs] File: " .. logFile .. " not found. " )
 				local newFile = fileCreate( logFile )

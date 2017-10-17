@@ -92,7 +92,7 @@ local sx,sy = guiGetScreenSize ()
 local scState = true
 local maxLines = 8
 local oocMessages = {}
-local bitstream = dxCreateFont("/fonts/bitstream.ttf", 9)
+local bitstream = dxCreateFont("/font/bitstream.ttf", 9)
 
 addEventHandler ("onClientRender",getRootElement(),
 	function ()

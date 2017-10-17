@@ -17,25 +17,80 @@ inventoryGUI = {
 	font = {}
 }
 
-inventoryGUI.font[1] = guiCreateFont("/fonts/bebas.otf",13)
-inventoryGUI.font[2] = guiCreateFont("/fonts/bebas.otf",15)
-inventoryGUI.font[3] = guiCreateFont("/fonts/bebas.otf",20)
-inventoryGUI.font[4] = guiCreateFont("/fonts/bebas.otf",25)
+local itemInventoryAction =
+{
+	["M1911"] = "equipSecondary",
+	["Revolver"] = "equipSecondary",
+	["Bizon PP-19 SD"] = "equipSecondary",
+	["M9"] = "equipSecondary",
+	["Makarov SD"] = "equipSecondary",
+	["PDW"] = "equipSecondary",
+	["MP5A5"] = "equipSecondary",
+	["Lee Enfield"] = "equipPrimary",
+	["AK-74"] = "equipPrimary",
+	["AKM"] = "equipPrimary",
+	["Sa58V CCO"] = "equipPrimary",
+	["FN FAL"] = "equipPrimary",
+	["M24"] = "equipPrimary",
+	["G36C"] = "equipPrimary",
+	["M16A2"] = "equipPrimary",
+	["M4A1"] = "equipPrimary",
+	["SVD Dragunov"] = "equipPrimary",
+	["Mosin-Nagant"] = "equipPrimary",
+	["Winchester 1866"] = "equipPrimary",
+	["Double-barreled Shotgun"] = "equipPrimary",
+	["M1014"] = "equipPrimary",
+	["Compound Crossbow"] = "equipPrimary",
+	["Baseball Bat"] = "equipSpecial",
+	["Axe"] = "equipSpecial",
+	["Machete"] = "equipSpecial",
+	["Grenade"] = "equipSpecial",
+	["Hunting Knife"] = "equipSpecial",
+	["Binoculars"] = "equipSpecial",
+	["Range Finder"] = "equipSpecial",
+	["Shovel"] = "equipSpecial",
+	["11.43x23mm Cartridge"] = "",
+	["9x18mm Cartridge"] = "",
+	["9x19mm Cartridge"] = "",
+	[".303 British Cartridge"] = "",
+	["7.62x39mm Cartridge"] = "",
+	["5.56x45mm Cartridge"] = "",
+	["7.62x54mm Cartridge"] = "",
+	["1866 Slug"] = "",
+	["12 Gauge Pellet"] = "",
+	["Bolt"] = "",
+	["Energy Drink"] = "useItem",
+	["Bandage"] = "useItem",
+	["Full Gas Canister"] = "",
+	["First Aid Kit"] = "useItem",
+	["Painkiller"] = "useItem",
+	["Backpack (Level 1)"] = "useItem",
+	["Backpack (Level 2)"] = "useItem",
+	["Backpack (Level 3)"] = "useItem",
+	["Police Vest (Level 1)"] = "useItem",
+	["Police Vest (Level 2)"] = "useItem",
+	["Military Vest (Level 3)"] = "useItem"
+}
+
+inventoryGUI.font[1] = guiCreateFont("/font/bebas.otf",13)
+inventoryGUI.font[2] = guiCreateFont("/font/bebas.otf",15)
+inventoryGUI.font[3] = guiCreateFont("/font/bebas.otf",20)
+inventoryGUI.font[4] = guiCreateFont("/font/bebas.otf",25)
 
 -- Inventory Init
-inventoryGUI.window[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "gui/images/solo_slot.png", true)
+inventoryGUI.window[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "gui/img/solo_slot.png", true)
 guiSetAlpha(inventoryGUI.window[1], 0.98)
 guiSetProperty(inventoryGUI.window[1], "ImageColours", "tl:FE111111 tr:FE111111 bl:FE111111 br:FE111111")
 
 --Inventory Divider
-inventoryGUI.staticimage[2] = guiCreateStaticImage(0.58, 0.35, 0.40, 0.003, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
-inventoryGUI.staticimage[3] = guiCreateStaticImage(0.58, 0.53, 0.40, 0.003, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
-inventoryGUI.staticimage[4] = guiCreateStaticImage(0.58, 0.71, 0.40, 0.003, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
+inventoryGUI.staticimage[2] = guiCreateStaticImage(0.58, 0.35, 0.40, 0.003, "gui/img/solo_slot.png", true, inventoryGUI.window[1])
+inventoryGUI.staticimage[3] = guiCreateStaticImage(0.58, 0.53, 0.40, 0.003, "gui/img/solo_slot.png", true, inventoryGUI.window[1])
+inventoryGUI.staticimage[4] = guiCreateStaticImage(0.58, 0.71, 0.40, 0.003, "gui/img/solo_slot.png", true, inventoryGUI.window[1])
 
 -- Weapons pictures
-inventoryGUI.staticimage["shotsniper"] = guiCreateStaticImage(0.58, 0.21, 0.40, 0.13, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
-inventoryGUI.staticimage["rifles"] = guiCreateStaticImage(0.58, 0.40, 0.40, 0.13, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
-inventoryGUI.staticimage["handsub"] = guiCreateStaticImage(0.58, 0.59, 0.40, 0.13, "gui/images/solo_slot.png", true, inventoryGUI.window[1])
+inventoryGUI.staticimage["shotsniper"] = guiCreateStaticImage(0.58, 0.21, 0.40, 0.13, "gui/img/solo_slot.png", true, inventoryGUI.window[1])
+inventoryGUI.staticimage["rifles"] = guiCreateStaticImage(0.58, 0.40, 0.40, 0.13, "gui/img/solo_slot.png", true, inventoryGUI.window[1])
+inventoryGUI.staticimage["handsub"] = guiCreateStaticImage(0.58, 0.59, 0.40, 0.13, "gui/img/solo_slot.png", true, inventoryGUI.window[1])
 guiSetVisible(inventoryGUI.staticimage["shotsniper"],false)
 guiSetVisible(inventoryGUI.staticimage["rifles"],false)
 guiSetVisible(inventoryGUI.staticimage["handsub"],false)
@@ -59,12 +114,12 @@ inventoryGUI.gridlist["lootamount"] = guiGridListAddColumn(inventoryGUI.gridlist
 guiGridListSetSortingEnabled(inventoryGUI.gridlist[2],false)
 
 -- Inventory buttons
-inventoryGUI.button[1] = guiCreateStaticImage(0.21, 0.17, 0.04, 0.54, "gui/images/solo_slot.png", true, inventoryGUI.window[1]) -- ->
+inventoryGUI.button[1] = guiCreateStaticImage(0.21, 0.17, 0.04, 0.54, "gui/img/solo_slot.png", true, inventoryGUI.window[1]) -- ->
 guiSetProperty(inventoryGUI.button[1], "ImageColours", "tl:FE111111 tr:FE111111 bl:FE111111 br:FE111111")
 inventoryGUI.label[6] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "->", true, inventoryGUI.button[1])
 guiLabelSetHorizontalAlign(inventoryGUI.label[6], "center", false)
 guiLabelSetVerticalAlign(inventoryGUI.label[6], "center")
-inventoryGUI.button[2] = guiCreateStaticImage(0.26, 0.17, 0.04, 0.54, "gui/images/solo_slot.png", true, inventoryGUI.window[1]) -- <-
+inventoryGUI.button[2] = guiCreateStaticImage(0.26, 0.17, 0.04, 0.54, "gui/img/solo_slot.png", true, inventoryGUI.window[1]) -- <-
 guiSetProperty(inventoryGUI.button[2], "ImageColours", "tl:FE111111 tr:FE111111 bl:FE111111 br:FE111111")
  inventoryGUI.label[5] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "<-", true, inventoryGUI.button[2])
 guiLabelSetColor(inventoryGUI.label[5], 254, 254, 254)
@@ -86,12 +141,12 @@ guiLabelSetVerticalAlign(inventoryGUI.label[10], "center")
 
 inventoryGUI.label[11] = guiCreateLabel(0.58, 0.72, 0.40, 0.04, str("inventoryStatus"), true, inventoryGUI.window[1])
 
-inventoryGUI.staticimage[10] = guiCreateStaticImage(0.58, 0.76, 0.10, 0.14, "gui/images/solo_slot.png", true, inventoryGUI.window[1]) -- Armor
+inventoryGUI.staticimage[10] = guiCreateStaticImage(0.58, 0.76, 0.10, 0.14, "gui/img/solo_slot.png", true, inventoryGUI.window[1]) -- Armor
 inventoryGUI.progressbar[2] = guiCreateProgressBar(0.58, 0.91, 0.10, 0.02, true, inventoryGUI.window[1])
 guiSetVisible(inventoryGUI.staticimage[10],false)
 guiSetVisible(inventoryGUI.progressbar[2],false)
 
-inventoryGUI.staticimage[11] = guiCreateStaticImage(0.69, 0.76, 0.10, 0.14, "gui/images/solo_slot.png", true, inventoryGUI.window[1]) -- Energy Drink Regeneration
+inventoryGUI.staticimage[11] = guiCreateStaticImage(0.69, 0.76, 0.10, 0.14, "gui/img/solo_slot.png", true, inventoryGUI.window[1]) -- Energy Drink Regeneration
 inventoryGUI.progressbar[3] = guiCreateProgressBar(0.69, 0.91, 0.10, 0.02, true, inventoryGUI.window[1])
 guiSetVisible(inventoryGUI.staticimage[11],false)
 guiSetVisible(inventoryGUI.progressbar[3],false)
@@ -228,7 +283,7 @@ function changeEquippedWeaponGUI(weaponType,weaponName,imagePath,guiLabelName,re
 	if isElement(inventoryGUI.staticimage[guiLabelName]) then
 		destroyElement(inventoryGUI.staticimage[guiLabelName])
 	end
-	inventoryGUI.staticimage[guiLabelName] = guiCreateStaticImage(posX,posY,relX,relY,"gui/images/"..imagePath,true,inventoryGUI.window[1])
+	inventoryGUI.staticimage[guiLabelName] = guiCreateStaticImage(posX,posY,relX,relY,"gui/img/"..imagePath,true,inventoryGUI.window[1])
 	guiSetVisible(inventoryGUI.staticimage[guiLabelName],true)
 end
 addEvent("mtabg_changeEquippedWeaponGUI",true)
@@ -238,7 +293,7 @@ function onPlayerAddArmorImage(armor)
 	if isElement(inventoryGUI.staticimage[10]) then
 		destroyElement(inventoryGUI.staticimage[10])
 	end
-	inventoryGUI.staticimage[10] = guiCreateStaticImage(0.58, 0.76, 0.10, 0.14, "gui/images/"..armor..".png", true, inventoryGUI.window[1])
+	inventoryGUI.staticimage[10] = guiCreateStaticImage(0.58, 0.76, 0.10, 0.14, "gui/img/"..armor..".png", true, inventoryGUI.window[1])
 	guiSetVisible(inventoryGUI.staticimage[10],true)
 	guiSetVisible(inventoryGUI.progressbar[2],true)
 end
@@ -318,7 +373,7 @@ addEventHandler("onClientGUIClick",inventoryGUI.label[6],moveItemFromLootToInven
 
 rightClick = {}
 
-rightClick["window"] = guiCreateStaticImage(0, 0, 0.05, 0.0215, "gui/images/solo_slot.png", true)
+rightClick["window"] = guiCreateStaticImage(0, 0, 0.05, 0.0215, "gui/img/solo_slot.png", true)
 rightClick["label"] = guiCreateLabel(0, 0, 1, 1, "", true, rightClick["window"])
 guiLabelSetHorizontalAlign(rightClick["label"], "center")
 guiLabelSetVerticalAlign(rightClick["label"], "center")

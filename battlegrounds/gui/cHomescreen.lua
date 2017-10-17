@@ -15,11 +15,11 @@ homeScreen = {
 
 
 
-homeScreen.font[1] = guiCreateFont("/fonts/etelka.ttf",13)
-homeScreen.font[2] = guiCreateFont("/fonts/etelka.ttf",25)
+homeScreen.font[1] = guiCreateFont("/font/etelka.ttf",13)
+homeScreen.font[2] = guiCreateFont("/font/etelka.ttf",25)
 
-homeScreen.staticimage[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "gui/images/background_transparent.png", true)
-homeScreen.staticimage[2] = guiCreateStaticImage(0.00, 0.02, 1.00, 0.06, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
+homeScreen.staticimage[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "gui/img/background_transparent.png", true)
+homeScreen.staticimage[2] = guiCreateStaticImage(0.00, 0.02, 1.00, 0.06, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[2], "ImageColours", "tl:66B7B7B7 tr:66B7B7B7 bl:66B7B7B7 br:66B7B7B7")
 homeScreen.label[1] = guiCreateLabel(0.33, 0.29, 0.16, 0.45, str("mainMenuHomeButton"), true, homeScreen.staticimage[2])
 guiLabelSetHorizontalAlign(homeScreen.label[1], "center", false)
@@ -44,12 +44,12 @@ homeScreen.label[5] = guiCreateLabel(0.64, 0.11, 0.24, 0.05, str("mainMenuPlayer
 guiLabelSetVerticalAlign(homeScreen.label[5], "center")
 guiSetFont(homeScreen.label[5],homeScreen.font[1])
 guiLabelSetColor(homeScreen.label[5],0,0,0)
-homeScreen.staticimage[4] = guiCreateStaticImage(0.87, 0.11, 0.05, 0.05,"gui/images/battlepointsicon.png",true,homeScreen.staticimage[1])
+homeScreen.staticimage[4] = guiCreateStaticImage(0.87, 0.11, 0.05, 0.05,"gui/img/battlepointsicon.png",true,homeScreen.staticimage[1])
 homeScreen.label[6] = guiCreateLabel(0.95, 0.11, 0.12, 0.05, "0", true, homeScreen.staticimage[1])
 guiLabelSetVerticalAlign(homeScreen.label[6], "center")
 guiSetFont(homeScreen.label[6],homeScreen.font[1])
 guiLabelSetColor(homeScreen.label[6],0,0,0)
-homeScreen.staticimage[3] = guiCreateStaticImage(0.00, 0.00, 0.30, 0.15, "gui/images/button.png", true, homeScreen.staticimage[1])
+homeScreen.staticimage[3] = guiCreateStaticImage(0.00, 0.00, 0.30, 0.15, "gui/img/button.png", true, homeScreen.staticimage[1])
 homeScreen.label[7] = guiCreateLabel(0.05, 0.19, 0.58, 0.30, str("mainMenuPlayButtonShadow"), true, homeScreen.staticimage[3])
 guiLabelSetColor(homeScreen.label[7],0,0,0)
 guiLabelSetHorizontalAlign(homeScreen.label[7], "left", false)
@@ -61,7 +61,7 @@ guiLabelSetHorizontalAlign(homeScreen.label[8], "left", false)
 guiLabelSetVerticalAlign(homeScreen.label[8], "center")
 guiSetFont(homeScreen.label[8],homeScreen.font[2])
 
-homeScreen.staticimage[5] = guiCreateStaticImage(0.30, 0.27, 0.69, 0.66, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
+homeScreen.staticimage[5] = guiCreateStaticImage(0.30, 0.27, 0.69, 0.66, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[5], "ImageColours", "tl:B2040404 tr:B2040404 bl:B2040404 br:B2040404")
 homeScreen.label["gamesplayed"] = guiCreateLabel(0.02, 0.22, 0.18, 0.07, str("statisticsMenuGamesPlayed"), true, homeScreen.staticimage[5])
 guiLabelSetVerticalAlign(homeScreen.label["gamesplayed"], "center")
@@ -113,63 +113,63 @@ homeScreen.label[31] = guiCreateLabel(0.78, 0.93, 0.22, 0.07, str("statisticsMen
 guiLabelSetVerticalAlign(homeScreen.label[31], "center")
 
 
-homeScreen.staticimage[6] = guiCreateStaticImage(0.09, 0.29, 0.08, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
+homeScreen.staticimage[6] = guiCreateStaticImage(0.09, 0.29, 0.08, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[6], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.staticimage[7] = guiCreateStaticImage(0, 0, 1.00, 1.00, "gui/images/legendary_crate.png", true, homeScreen.staticimage[6])
+homeScreen.staticimage[7] = guiCreateStaticImage(0, 0, 1.00, 1.00, "gui/img/legendary_crate.png", true, homeScreen.staticimage[6])
 
-homeScreen.staticimage[8] = guiCreateStaticImage(0.09, 0.41, 0.08, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
+homeScreen.staticimage[8] = guiCreateStaticImage(0.09, 0.41, 0.08, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[8], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.staticimage[9] = guiCreateStaticImage(0, 0, 1, 1, "gui/images/epic_crate.png", true, homeScreen.staticimage[8])
+homeScreen.staticimage[9] = guiCreateStaticImage(0, 0, 1, 1, "gui/img/epic_crate.png", true, homeScreen.staticimage[8])
 
-homeScreen.staticimage[10] = guiCreateStaticImage(0.09, 0.53, 0.08, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
+homeScreen.staticimage[10] = guiCreateStaticImage(0.09, 0.53, 0.08, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[10], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.staticimage[11] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "gui/images/uncommon_crate.png", true, homeScreen.staticimage[10])
+homeScreen.staticimage[11] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "gui/img/uncommon_crate.png", true, homeScreen.staticimage[10])
 
-homeScreen.staticimage[12] = guiCreateStaticImage(0.09, 0.65, 0.08, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
+homeScreen.staticimage[12] = guiCreateStaticImage(0.09, 0.65, 0.08, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[12], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.staticimage[13] = guiCreateStaticImage(0, 0, 1, 1, "gui/images/common_crate.png", true, homeScreen.staticimage[12])
+homeScreen.staticimage[13] = guiCreateStaticImage(0, 0, 1, 1, "gui/img/common_crate.png", true, homeScreen.staticimage[12])
 
-homeScreen.staticimage[14] = guiCreateStaticImage(0.18, 0.29, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
+homeScreen.staticimage[14] = guiCreateStaticImage(0.18, 0.29, 0.31, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[14], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
 homeScreen.label["legendary"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, str("rewardsMenuLegendaryCrates"), true, homeScreen.staticimage[14])
 guiLabelSetVerticalAlign(homeScreen.label["legendary"], "center")
 
-homeScreen.staticimage[15] = guiCreateStaticImage(0.18, 0.41, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
+homeScreen.staticimage[15] = guiCreateStaticImage(0.18, 0.41, 0.31, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[15], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
 homeScreen.label["epic"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, str("rewardsMenuEpicCrates"), true, homeScreen.staticimage[15])
 guiLabelSetVerticalAlign(homeScreen.label["epic"], "center")
 
 
-homeScreen.staticimage[16] = guiCreateStaticImage(0.18, 0.53, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
+homeScreen.staticimage[16] = guiCreateStaticImage(0.18, 0.53, 0.31, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[16], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
 homeScreen.label["uncommon"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, str("rewardsMenuUncommonCrates"), true, homeScreen.staticimage[16])
 guiLabelSetVerticalAlign(homeScreen.label["uncommon"], "center")
 
 
-homeScreen.staticimage[17] = guiCreateStaticImage(0.18, 0.65, 0.31, 0.11, "gui/images/solo_slot.png", true, homeScreen.staticimage[1])
+homeScreen.staticimage[17] = guiCreateStaticImage(0.18, 0.65, 0.31, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[17], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
 homeScreen.label["common"] = guiCreateLabel(0.02, 0.15, 0.94, 0.70, str("rewardsMenuCommonCrates"), true, homeScreen.staticimage[17])
 guiLabelSetVerticalAlign(homeScreen.label["common"], "center")
 
-homeScreen.staticimage[18] = guiCreateStaticImage(0.21, 0.28, 0.29, 0.04, "gui/images/solo_slot.png", true)
+homeScreen.staticimage[18] = guiCreateStaticImage(0.21, 0.28, 0.29, 0.04, "gui/img/solo_slot.png", true)
 guiSetProperty(homeScreen.staticimage[18], "ImageColours", "tl:E3020202 tr:E3020202 bl:E3020202 br:E3020202")
 homeScreen.label[36] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, str("skinsMenuNotAvailableYet"), true, homeScreen.staticimage[18]) -- CUSTOMIZABLE SKIN
 guiLabelSetHorizontalAlign(homeScreen.label[36], "center", false)
 guiLabelSetVerticalAlign(homeScreen.label[36], "center")
 
-homeScreen.staticimage[19] = guiCreateStaticImage(0.50, 0.28, 0.28, 0.05, "gui/images/solo_slot.png", true)
+homeScreen.staticimage[19] = guiCreateStaticImage(0.50, 0.28, 0.28, 0.05, "gui/img/solo_slot.png", true)
 guiSetProperty(homeScreen.staticimage[19], "ImageColours", "tl:DDAFAFAF tr:DDAFAFAF bl:DDAFAFAF br:DDAFAFAF")
 homeScreen.label[37] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, str("skinsMenuPresetSkins"), true, homeScreen.staticimage[19])
 guiLabelSetHorizontalAlign(homeScreen.label[37], "center", false)
 guiLabelSetVerticalAlign(homeScreen.label[37], "center")
 
-homeScreen.staticimage[20] = guiCreateStaticImage(0.18, 0.32, 0.03, 0.59, "gui/images/solo_slot.png", true)
+homeScreen.staticimage[20] = guiCreateStaticImage(0.18, 0.32, 0.03, 0.59, "gui/img/solo_slot.png", true)
 guiSetProperty(homeScreen.staticimage[20], "ImageColours", "tl:DD484848 tr:DD484848 bl:DD484848 br:DD484848")
 homeScreen.label[38] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "<-", true, homeScreen.staticimage[20])
 guiLabelSetHorizontalAlign(homeScreen.label[38], "center", false)
 guiLabelSetVerticalAlign(homeScreen.label[38], "center")
 
-homeScreen.staticimage[21] = guiCreateStaticImage(0.78, 0.32, 0.03, 0.59, "gui/images/solo_slot.png", true)
+homeScreen.staticimage[21] = guiCreateStaticImage(0.78, 0.32, 0.03, 0.59, "gui/img/solo_slot.png", true)
 guiSetProperty(homeScreen.staticimage[21], "ImageColours", "tl:DD484848 tr:DD484848 bl:DD484848 br:DD484848")
 homeScreen.label[39] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "->", true, homeScreen.staticimage[21])
 guiLabelSetHorizontalAlign(homeScreen.label[39], "center", false)

@@ -63,3 +63,6 @@ playerInventoryTable = {
 {"Police Vest (Level 2)",0},
 {"Military Vest (Level 3)",0},
 }
+
+playerInfo = {}
+playerDataInfo = {}

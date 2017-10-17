@@ -6,9 +6,10 @@
 
 ]]--
 
+gameplayVariables = {}
+
 --[ Dev Settings ]--
 gameplayVariables['allowstats'] = true -- Allow or disallow stats being sent to the dev team. | DEFAULT: true
-
 
 --[ Match Settings ]--
 gameplayVariables['matchtime'] = 1800 -- Time in seconds the match will last | DEFAULT: 1800(30 min)
