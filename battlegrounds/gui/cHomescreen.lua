@@ -6,6 +6,7 @@
 
 ]]--
 
+local Music = Music.mainMenu
 
 homeScreen = {
     label = {},
@@ -196,8 +197,7 @@ addEventHandler("onClientResourceStart", getResourceRootElement(),
 local screenX,screenY = guiGetScreenSize()
 function sendToHomeScreen(dimension)
 	local number = math.random(1,2)
-	soundtrack = playSound("/sounds/Unsung Briefing "..number..".mp3",true)
-	setSoundVolume(soundtrack,0.4)
+	Music.play()
 	setCameraMatrix(1720.41125,-1646.7942,21.0576,1721.21911,-1647.3781,20.9919,0,70)
 	setElementModel(localPlayer,0)
 	setElementPosition(localPlayer,1724.22998,-1647.8363,20.2283)
@@ -345,7 +345,7 @@ function sendPlayerToLobbyOnPlayPress(button)
 			guiSetVisible(homeScreen.staticimage[i],false)
 		end
 		showCursor(false)
-		stopSound(soundtrack)
+		Music.stop()
 		setCameraTarget(localPlayer)
 		setElementFrozen(localPlayer,false)
 	end

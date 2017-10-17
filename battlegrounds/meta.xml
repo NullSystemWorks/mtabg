@@ -70,6 +70,7 @@
 	<script src="handler/sPermission.lua" type="server" />
 	<script src="handler/sBackpack.lua" type="server" />
 	<script src="handler/sDamage.lua" type="server" />
+	<script src="handler/cMusic.lua" type="client" cache="false"/>
 	<script src="handler/cAmbient.lua" type="client" cache="false"/>
 	<script src="handler/cDamage.lua" type="client" cache="false"/>
 
@@ -88,7 +89,6 @@
 	<file src="account/img/battlegrounds_logo.png" />
 	<file src="account/img/background.png" />
 	<file src="account/img/white.png" />
-	<file src="sounds/siege.mp3" />
 
 	<!-- Font -->
 	<file src="font/etelka.ttf" />
@@ -136,8 +136,6 @@
 	<file src="gui/img/epic_crate.png" />
 	<file src="gui/img/uncommon_crate.png" />
 	<file src="gui/img/common_crate.png" />
-	<file src="sounds/Unsung Briefing 1.mp3" />
-	<file src="sounds/Unsung Briefing 2.mp3" />
 
 	<!-- Model -->
 	<script src="model/cLoadSkins.lua" type="client" cache="false" />

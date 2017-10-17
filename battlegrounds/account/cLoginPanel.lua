@@ -6,10 +6,9 @@
 
 ]]--
 
-
+local Music = Music.loginPanel
 
 local anticheat_avatar = false
-local soundtrack = false
 
 LoginScreen = {
 	checkbox = {},
@@ -135,10 +134,7 @@ function loginPanel(state)
 		copyright = guiCreateLabel(0.00, 0.97, 0.46, 0.03, "MTA:Battlegrounds ©2017 Null System Works. All Rights Reserved.", true, LoginScreen.staticimage[1])
 		guiSetAlpha(copyright, 0.35)
 		guiLabelSetHorizontalAlign(copyright, "left", true)
-		if not soundtrack then
-			soundtrack = playSound("sounds/siege.mp3",true)
-			setSoundVolume(soundtrack,0.1)
-		end
+		Music.play()
 		oldFile = xmlLoadFile("loginCredentials.xml")
 		confFile = xmlLoadFile("@loginCredentials.xml")
 		local checkbox = false
@@ -193,8 +189,6 @@ function loginPanel(state)
 		guiSetVisible(LoginScreen.staticimage[1],false)
 		removeEventHandler("onClientGUIClick",LoginScreen.label[4], clickLoginButton)
 		removeEventHandler("onClientGUIClick",LoginScreen.label[5], clickRegisterButton)
-		stopSound(soundtrack)
-		soundtrack = false
 	end
 end
 
