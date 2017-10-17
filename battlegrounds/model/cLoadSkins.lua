@@ -35,10 +35,10 @@ modelDFF = {}
 function loadModels()
 	for i, v in pairs(models) do
 		-- Load TXD
-		modelTXD[i] = engineLoadTXD("models/items/txd/"..v..".txd")
+		modelTXD[i] = engineLoadTXD("model/items/txd/"..v..".txd")
 		engineImportTXD(modelTXD[i], i)
 		-- Load DFF
-		modelDFF[i] = engineLoadDFF("models/items/dff/"..v..".dff", i)
+		modelDFF[i] = engineLoadDFF("model/items/dff/"..v..".dff", i)
 		engineReplaceModel(modelDFF[i], i)
 	end
 end
@@ -88,8 +88,8 @@ weaponDFF = {}
 
 function loadTheSkins()
 	for i, skin in ipairs(weaponSkinTable) do
-		weaponTXD[i] = engineLoadTXD("models/weapons/txd/"..skin[1]..".txd")
-		weaponDFF[i] = engineLoadDFF("models/weapons/dff/"..skin[1]..".dff", 0)
+		weaponTXD[i] = engineLoadTXD("model/weapons/txd/"..skin[1]..".txd")
+		weaponDFF[i] = engineLoadDFF("model/weapons/dff/"..skin[1]..".dff", 0)
 	end
 end
 addEventHandler("onClientResourceStart",getResourceRootElement(getThisResource()),loadTheSkins)

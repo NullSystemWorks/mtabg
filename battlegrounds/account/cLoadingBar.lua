@@ -25,7 +25,7 @@ loadingBar = {}
 local sx, sy =  guiGetScreenSize()
 local rootx, rooty = sx*0.353, sy*0.59 --677, 637
 
-local atlasTexture = dxCreateTexture("accounting/img/atlas.png")
+local atlasTexture = dxCreateTexture("account/img/atlas.png")
 local color = {
 	{255, 255, 255, 255}, --backgound
 	{222, 242, 250, 255}, --inBackgound

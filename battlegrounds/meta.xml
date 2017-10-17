@@ -140,11 +140,12 @@
 	<file src="sounds/Unsung Briefing 2.mp3" />
 
 	<!-- Model -->
-	<script src="model/cLoadskins.lua" type="client" cache="false" />
+	<script src="model/cLoadSkins.lua" type="client" cache="false" />
 	<file src="model/items/txd/cola_can.txd" />
 	<file src="model/items/dff/cola_can.dff" />
 	<file src="model/items/txd/jerrycan.txd" />
 	<file src="model/items/dff/jerrycan.dff" />
+	<file src="model/items/txd/9x18cartridge.txd" />
 	<file src="model/items/dff/9x18cartridge.dff" />
 	<file src="model/items/txd/9x19cartridge.txd" />
 	<file src="model/items/dff/9x19cartridge.dff" />

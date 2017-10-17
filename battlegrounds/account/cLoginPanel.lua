@@ -19,8 +19,8 @@ LoginScreen = {
 }
 
 
-LoginScreen.staticimage[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "accounting/img/background.png", true)
-LoginScreen.staticimage[2] = guiCreateStaticImage(0.11, 0.06, 0.77, 0.28, "accounting/img/battlegrounds_logo.png", true, LoginScreen.staticimage[1])
+LoginScreen.staticimage[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "account/img/background.png", true)
+LoginScreen.staticimage[2] = guiCreateStaticImage(0.11, 0.06, 0.77, 0.28, "account/img/battlegrounds_logo.png", true, LoginScreen.staticimage[1])
 LoginScreen.edit[1] = guiCreateEdit(0.35, 0.41, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- ID
 guiEditSetReadOnly(LoginScreen.edit[1], true)
 LoginScreen.label[1] = guiCreateLabel(0.27, 0.42, 0.08, 0.04, str("loginPanelID"), true, LoginScreen.staticimage[1])
@@ -36,12 +36,12 @@ LoginScreen.label[2] = guiCreateLabel(0.27, 0.51, 0.08, 0.04, str("loginPanelPas
 guiSetFont(LoginScreen.label[2], "default-bold-small")
 guiLabelSetHorizontalAlign(LoginScreen.label[2], "center", false)
 LoginScreen.checkbox[1] = guiCreateCheckBox(0.35, 0.56, 0.21, 0.02, str("loginPanelRememberPassword"), false, true, LoginScreen.staticimage[1])
-LoginScreen.staticimage[3] = guiCreateStaticImage(0.35, 0.66, 0.29, 0.07, "accounting/img/white.png", true, LoginScreen.staticimage[1])
+LoginScreen.staticimage[3] = guiCreateStaticImage(0.35, 0.66, 0.29, 0.07, "account/img/white.png", true, LoginScreen.staticimage[1])
 guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
 LoginScreen.label[4] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, str("loginPanelLoginButton"), true, LoginScreen.staticimage[3])
 guiLabelSetHorizontalAlign(LoginScreen.label[4], "center", false)
 guiLabelSetVerticalAlign(LoginScreen.label[4], "center")
-LoginScreen.staticimage[4] = guiCreateStaticImage(0.35, 0.66, 0.29, 0.07, "accounting/img/white.png", true, LoginScreen.staticimage[1])
+LoginScreen.staticimage[4] = guiCreateStaticImage(0.35, 0.66, 0.29, 0.07, "account/img/white.png", true, LoginScreen.staticimage[1])
 guiSetProperty(LoginScreen.staticimage[4], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
 LoginScreen.label[5] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, str("loginPanelRegisterButton"), true, LoginScreen.staticimage[4])
 guiLabelSetHorizontalAlign(LoginScreen.label[5], "center", false)
@@ -234,7 +234,7 @@ addEventHandler("onClientMouseLeave",LoginScreen.label[5],changeColorOfRegisterB
 		guiLabelSetColor(LoginScreen.label[2], 254, 254, 254)
 		guiLabelSetHorizontalAlign(LoginScreen.label[2], "center", false)
 		guiLabelSetVerticalAlign(LoginScreen.label[2], "center")
-		LoginScreen.staticimage[3] = guiCreateStaticImage(0.47, 0.50, 0.06, 0.04, ":accounting/img/white.png", true, Loginbg)
+		LoginScreen.staticimage[3] = guiCreateStaticImage(0.47, 0.50, 0.06, 0.04, ":account/img/white.png", true, Loginbg)
 		guiSetAlpha(LoginScreen.staticimage[3], 0.95)
 		guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FFCF8F00 tr:FFCF8F00 bl:FFCF8F00 br:FFCF8F00")
 
@@ -262,7 +262,7 @@ RegisterScreen = {
 
 function registerPanel(state)
 	if not RegisterScreen.staticimage[2] and Loginbg and state then
-		RegisterScreen.staticimage[2] = guiCreateStaticImage(0.46, 0.16, 0.08, 0.14, ":accounting/img/defaultavatar.png", true, Loginbg)
+		RegisterScreen.staticimage[2] = guiCreateStaticImage(0.46, 0.16, 0.08, 0.14, ":account/img/defaultavatar.png", true, Loginbg)
 
 		RegisterScreen.edit[1] = guiCreateEdit(0.44, 0.49, 0.11, 0.03, "password", true, Loginbg)
 		guiEditSetMasked(RegisterScreen.edit[1], true)
@@ -278,7 +278,7 @@ function registerPanel(state)
 		guiLabelSetColor(RegisterScreen.label[2], 254, 254, 254)
 		guiLabelSetHorizontalAlign(RegisterScreen.label[2], "center", false)
 		guiLabelSetVerticalAlign(RegisterScreen.label[2], "center")
-		RegisterScreen.staticimage[3] = guiCreateStaticImage(0.47, 0.56, 0.06, 0.04, ":accounting/img/white.png", true, Loginbg)
+		RegisterScreen.staticimage[3] = guiCreateStaticImage(0.47, 0.56, 0.06, 0.04, ":account/img/white.png", true, Loginbg)
 		guiSetAlpha(RegisterScreen.staticimage[3], 0.95)
 		guiSetProperty(RegisterScreen.staticimage[3], "ImageColours", "tl:FFCF8F00 tr:FFCF8F00 bl:FFCF8F00 br:FFCF8F00")
 
@@ -303,7 +303,7 @@ function registerPanel(state)
 		guiLabelSetColor(RegisterScreen.label[5], 254, 254, 254)
 		guiLabelSetHorizontalAlign(RegisterScreen.label[5], "center", false)
 		guiLabelSetVerticalAlign(RegisterScreen.label[5], "center")
-		RegisterScreen.staticimage[4] = guiCreateStaticImage(0.55, 0.16, 0.13, 0.14, ":accounting/img/white.png", true, Loginbg)
+		RegisterScreen.staticimage[4] = guiCreateStaticImage(0.55, 0.16, 0.13, 0.14, ":account/img/white.png", true, Loginbg)
 		guiSetAlpha(RegisterScreen.staticimage[4], 0.68)
 		guiSetProperty(RegisterScreen.staticimage[4], "ImageColours", "tl:FF1B1B1B tr:FF1B1B1B bl:FF1B1B1B br:FF1B1B1B")
 
@@ -322,7 +322,7 @@ function registerPanel(state)
 		end)
 
 
-        RegisterScreen.staticimage[5] = guiCreateStaticImage(0.44, 0.16, 0.02, 0.03, ":accounting/img/white.png", true, Loginbg)
+        RegisterScreen.staticimage[5] = guiCreateStaticImage(0.44, 0.16, 0.02, 0.03, ":account/img/white.png", true, Loginbg)
         guiSetProperty(RegisterScreen.staticimage[5], "ImageColours", "tl:FF1B1B1B tr:FF1B1B1B bl:FF1B1B1B br:FF1B1B1B")
 
         RegisterScreen.label[8] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, "R", true, RegisterScreen.staticimage[5])
