@@ -8,13 +8,13 @@ local url =
 {
 	["mainMenu"] =
 	{
-		"http://download1642.mediafireuserdownload.com/148sd69916ug/qmh5x3jp0cd3zuk/Unsung+Briefing+1.mp3",
-		"http://download1081.mediafireuserdownload.com/rv3zjspijgag/c57alfaqwt6t8q2/Unsung+Briefing+2.mp3"
+		"https://dl.dropboxusercontent.com/s/0mc31vjvkhuedfi/Unsung%20Briefing%201.mp3?dl=0",
+		"https://dl.dropboxusercontent.com/s/ql1654iyew9aat8/Unsung%20Briefing%202.mp3?dl=0"
 	},
 
 	["loginPanel"] =
 	{
-		"http://download2128.mediafireuserdownload.com/qvjtavc0r4kg/d34cab53otlzqay/siege.mp3"
+		"https://dl.dropboxusercontent.com/s/r472yqhq98mmjye/siege.mp3?dl=0"
 	}
 }
 
