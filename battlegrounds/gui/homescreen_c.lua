@@ -572,7 +572,7 @@ function showStatistics()
 			elseif data[1] == "killdeathratio" then
 				guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2]).."%")
 			else
-				-- guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2])) --FIXME: gotta fix your stuff, bro
+				guiSetText(homeScreen.label[data[1].."_value"],tostring(data[2]))
 			end
 		end
 	end
