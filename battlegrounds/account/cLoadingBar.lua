@@ -57,6 +57,13 @@ local function setProgress(percentage)
 	pixelTextures[3]:setSize(position, pos.bar[4])
 end
 
+local function isIdle()
+	local isProgressZero = pixelTextures[3]:getSize() <= 0
+	local isGifRendeing = loadGif:getRendering()
+	local idle = isProgressZero and not isGifRendeing
+	return idle
+end
+
 local function setDone(status)
 	if status then
 		changeIcon(2) --grenn V
@@ -65,6 +72,7 @@ local function setDone(status)
 		changeIcon(3) --red X
 		pixelTextures[4]:fadeIn(600) --red bar
 	end
+	loadGif:setRendering(false)
 end
 
 local function setWaiting(status)
@@ -102,6 +110,7 @@ local function initializeLoadingBar()
 	loadingBar.changeIcon = changeIcon
 	loadingBar.hide = hide
 	loadingBar.setProgress = setProgress
+	loadingBar.isIdle = isIdle
 	loadingBar.setDone = setDone
 	loadingBar.setWaiting = setWaiting
 end

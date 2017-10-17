@@ -54,26 +54,40 @@ local function resetLoadingBar()
 	loadingBar.changeIcon(1)
 end
 
-local function hashingStart()
+local function loginStart()
 	resetLoadingBar()
 	loadingBar.setWaiting(true)
 end
 
 local function clickRegisterButton()
-	local password = guiGetText(LoginScreen.edit[2])
-	local alphaKey = guiGetText(LoginScreen.edit[3])
-	hashingStart()
-	triggerServerEvent("mtabg_register", localPlayer, password, "None", false, alphaKey)
+	if loadingBar.isIdle() then
+		local password = guiGetText(LoginScreen.edit[2])
+		local alphaKey = guiGetText(LoginScreen.edit[3])
+		loginStart()
+		triggerServerEvent("mtabg_register", localPlayer, password, "None", false, alphaKey)
+	end
 end
 
 local function clickLoginButton()
-	hashingStart()
-	triggerServerEvent("mtabg_login", localPlayer, guiGetText(LoginScreen.edit[2]))
+	if loadingBar.isIdle() then
+		loginStart()
+		triggerServerEvent("mtabg_login", localPlayer, guiGetText(LoginScreen.edit[2]))
+	end
+end
+
+local function disableButton()
+	removeEventHandler("onClientGUIClick", LoginScreen.label[4], clickLoginButton)
+	removeEventHandler("onClientGUIClick", LoginScreen.label[5], clickRegisterButton)
+end
+
+--TODO: make login and register the same button
+local function enableButton()
+	addEventHandler("onClientGUIClick", LoginScreen.label[4], clickLoginButton, false)
+	addEventHandler("onClientGUIClick", LoginScreen.label[5], clickRegisterButton, false)
 end
 
 local function closeLoginPanel()
 	loginPanel(false)
-	-- showCursor(false) --WTF: should this really be here?
 	loadingBar.hide()
 	guiSetVisible(homeScreen.staticimage[1],true)
 	fadeCamera(true)
@@ -95,17 +109,55 @@ end
 addEvent("onLoginLoadingBarSetProgress", true)
 addEventHandler("onLoginLoadingBarSetProgress", localPlayer, loadingBarSetProgress)
 
---TODO: expand to handle hashingResults, not only success
-local function hashingEnd()
-	showError(str("loginPanelWelcomeMessage")) --TODO: error? right...
-	loadingBar.setDone(true)
-	Timer( closeLoginPanel, 2000, 1) --close login panel after a while
-	--TODO: get this into a proper function
-	removeEventHandler("onClientGUIClick",LoginScreen.label[4], clickLoginButton)
-	removeEventHandler("onClientGUIClick",LoginScreen.label[5], clickRegisterButton)
+local function scheduleHide()
+	if isTimer(msgTimer) then
+		msgTimer:destroy()
+	end
+	msgTimer = Timer(
+	function()
+		guiSetText(LoginScreen.label[6], "")
+		msgTimer = nil
+		resetLoadingBar()
+		loadingBar.setProgress(0)
+	end, 3000, 1)
 end
-addEvent("mtabg_registerDone", true)
-addEventHandler("mtabg_registerDone", localPlayer, hashingEnd)
+
+local msgTimer
+local function showMessage(loginResult)
+	local msg
+	if loginResult == "unknownError" then
+		msg = str("loginPanelUnknownError")
+	elseif loginResult == "wrongPass" then
+		msg = str("loginPanelInvalidAccountOrPasswordError")
+	elseif loginResult == "noSerial" then
+		msg = str("loginPanelNoSerialError")
+	elseif loginResult == "IDTaken" then
+		msg = str("loginPanelIDTakenError")
+	elseif loginResult == "blankAlphaKey" then
+		msg = str("loginPanelBlankAlphaKeyError")
+	elseif loginResult == "invlidAlphaKey" then
+		msg = str("loginPanelInvlidAlphaKeyError")
+	elseif loginResult == "keyAlreadyUsed" then
+		msg = str("loginPanelKeyAlreadyUsedError")
+	elseif loginResult == "success" then
+		msg = str("loginPanelWelcomeMessage")
+	end
+	guiSetText(LoginScreen.label[6], msg)
+end
+
+local function LoginEnd(loginResult)
+	if loginResult == "success" then
+		Timer(closeLoginPanel, 2000, 1) --close login panel after a while
+		disableButton()
+		loadingBar.setDone(true)
+	else
+		loadingBar.setDone(false)
+	end
+	scheduleHide()
+	showMessage(loginResult)
+end
+addEvent("onSendLoginStatus", true)
+addEventHandler("onSendLoginStatus", localPlayer, LoginEnd)
 
 local errorFont
 local screenSize = guiGetScreenSize()
@@ -128,8 +180,7 @@ guiSetVisible(LoginScreen.staticimage[1],false)
 function loginPanel(state)
 	if state then
 		guiSetVisible(LoginScreen.staticimage[1],true)
-		addEventHandler("onClientGUIClick", LoginScreen.label[4], clickLoginButton, false)
-		addEventHandler("onClientGUIClick", LoginScreen.label[5], clickRegisterButton, false)
+		enableButton()
 		guiBringToFront(LoginScreen.staticimage[1])
 		copyright = guiCreateLabel(0.00, 0.97, 0.46, 0.03, "MTA:Battlegrounds ©2017 Null System Works. All Rights Reserved.", true, LoginScreen.staticimage[1])
 		guiSetAlpha(copyright, 0.35)
@@ -187,8 +238,7 @@ function loginPanel(state)
 			xmlUnloadFile(confFile)
 		end
 		guiSetVisible(LoginScreen.staticimage[1],false)
-		removeEventHandler("onClientGUIClick",LoginScreen.label[4], clickLoginButton)
-		removeEventHandler("onClientGUIClick",LoginScreen.label[5], clickRegisterButton)
+		disableButton()
 	end
 end
 
@@ -211,6 +261,46 @@ function changeColorOfRegisterButtonOnMouseLeave()
 	guiSetProperty(LoginScreen.staticimage[4], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
 end
 addEventHandler("onClientMouseLeave",LoginScreen.label[5],changeColorOfRegisterButtonOnMouseLeave,false)
+
+local hasAccount = false
+function loadLoginScreen(serial, account)
+	if guiGetVisible(LoginScreen.staticimage[1]) then return end
+	loginPanel(true)
+	guiSetVisible(LoginScreen.staticimage[1],true)
+	guiSetText(LoginScreen.edit[1], serial)
+	showCursor(true)
+	hasAccount = account
+	if not account then
+		guiSetVisible(LoginScreen.edit[3], true)
+		guiSetVisible(LoginScreen.label[7], true)
+		guiSetVisible(LoginScreen.staticimage[3],false)
+		guiSetVisible(LoginScreen.staticimage[4],true)
+	else
+		guiSetVisible(LoginScreen.edit[3], false)
+		guiSetVisible(LoginScreen.label[7], false)
+		guiSetVisible(LoginScreen.staticimage[3],true)
+		guiSetVisible(LoginScreen.staticimage[4],false)
+	end
+end
+addEvent("openLoginPanel", true)
+addEventHandler("openLoginPanel", getRootElement(), loadLoginScreen)
+
+addEventHandler("onClientResourceStart", getResourceRootElement(), function()
+	Camera.fade(false, .1) --fade camera on resource restart
+	triggerServerEvent("mtabg_onJoin", localPlayer)
+end)
+
+
+local function changeLanguage(newLang)
+	LoginScreen.label[1]:setText(str("loginPanelID"))
+	LoginScreen.label[7]:setText(str("loginPanelKey"))
+	LoginScreen.label[2]:setText(str("loginPanelPassword"))
+	LoginScreen.checkbox[1]:setText(str("loginPanelRememberPassword"))
+	LoginScreen.label[4]:setText(str("loginPanelLoginButton"))
+	LoginScreen.label[5]:setText(str("loginPanelRegisterButton"))
+end
+addEventHandler("onUserLanguageChange", resourceRoot, changeLanguage)
+
 
 --[[
 
@@ -361,71 +451,3 @@ end
 addEvent("mtabg_logSetAvatarimg", true)
 addEventHandler("mtabg_logSetAvatarimg", getRootElement(), setAvatarImg)
 ]]
-
-
-function showError(errorMsg)
-	local msg
-	if errorMsg == "unknownError" then
-		msg = str("loginPanelUnknownError")
-	elseif errorMsg == "wrongPass" then
-		msg = str("loginPanelInvalidAccountOrPasswordError")
-	elseif errorMsg == "noSerial" then
-		msg = str("loginPanelNoSerialError")
-	elseif errorMsg == "IDTaken" then
-		msg = str("loginPanelIDTakenError")
-	elseif errorMsg == "blankAlphaKey" then
-		msg = str("loginPanelBlankAlphaKeyError")
-	elseif errorMsg == "invlidAlphaKey" then
-		msg = str("loginPanelInvlidAlphaKeyError")
-	elseif errorMsg == "keyAlreadyUsed" then
-		msg = str("loginPanelKeyAlreadyUsedError")
-	else
-		msg = errorMsg
-	end
-	guiSetText(LoginScreen.label[6], msg)
-	setTimer(function()
-		guiSetText(LoginScreen.label[6],"")
-	end,3000,1)
-	loadingBar.setDone(false)
-end
-addEvent("MTABG_LoginError", true)
-addEventHandler("MTABG_LoginError", getRootElement(), showError)
-
-local hasAccount = false
-function loadLoginScreen(serial, account)
-	if guiGetVisible(LoginScreen.staticimage[1]) then return end
-	loginPanel(true)
-	guiSetVisible(LoginScreen.staticimage[1],true)
-	guiSetText(LoginScreen.edit[1], serial)
-	showCursor(true)
-	hasAccount = account
-	if not account then
-		guiSetVisible(LoginScreen.edit[3], true)
-		guiSetVisible(LoginScreen.label[7], true)
-		guiSetVisible(LoginScreen.staticimage[3],false)
-		guiSetVisible(LoginScreen.staticimage[4],true)
-	else
-		guiSetVisible(LoginScreen.edit[3], false)
-		guiSetVisible(LoginScreen.label[7], false)
-		guiSetVisible(LoginScreen.staticimage[3],true)
-		guiSetVisible(LoginScreen.staticimage[4],false)
-	end
-end
-addEvent("openLoginPanel", true)
-addEventHandler("openLoginPanel", getRootElement(), loadLoginScreen)
-
-addEventHandler("onClientResourceStart", getResourceRootElement(), function()
-	Camera.fade(false, .1) --fade camera on resource restart
-	triggerServerEvent("mtabg_onJoin", localPlayer)
-end)
-
-
-local function changeLanguage(newLang)
-	LoginScreen.label[1]:setText(str("loginPanelID"))
-	LoginScreen.label[7]:setText(str("loginPanelKey"))
-	LoginScreen.label[2]:setText(str("loginPanelPassword"))
-	LoginScreen.checkbox[1]:setText(str("loginPanelRememberPassword"))
-	LoginScreen.label[4]:setText(str("loginPanelLoginButton"))
-	LoginScreen.label[5]:setText(str("loginPanelRegisterButton"))
-end
-addEventHandler("onUserLanguageChange", resourceRoot, changeLanguage)

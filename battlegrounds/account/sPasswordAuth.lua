@@ -82,14 +82,14 @@ end
 local function loginCallback(player)
 	if authQueue.code[player] == 0 then --authention success
 		if LoginMagic(player, authQueue.data[player]) then
-			triggerClientEvent(player, "mtabg_registerDone", player)
+			triggerClientEvent(player, "onSendLoginStatus", player, "success")
 		else
-			triggerClientEvent(player, "MTABG_LoginError", player, "unknownError")
+			triggerClientEvent(player, "onSendLoginStatus", player, "unknownError")
 		end
 	elseif authQueue.code[player] == 1 then --wrong account or pass
-		triggerClientEvent(player, "MTABG_LoginError", player, "wrongPass")
+		triggerClientEvent(player, "onSendLoginStatus", player, "wrongPass")
 	elseif authQueue.code[player] == 2 then --no serial
-		triggerClientEvent(player, "MTABG_LoginError", player, "noSerial")
+		triggerClientEvent(player, "onSendLoginStatus", player, "noSerial")
 	end
 	removePlayerFromQueue(player)
 end
@@ -114,12 +114,12 @@ local function registerCallback(player)
 			authQueue.data[player] = data --give it delfault values
 			loginCallback(player) --call login directly
 		else
-			triggerClientEvent(player, "MTABG_LoginError", player, "unknownError")
+			triggerClientEvent(player, "onSendLoginStatus", player, "unknownError")
 		end
 	elseif authQueue.code[player] == -2 then --ID taken
-		triggerClientEvent(player, "MTABG_LoginError", player, "IDTaken")
+		triggerClientEvent(player, "onSendLoginStatus", player, "IDTaken")
 	elseif authQueue.code[player] == 2 then --no serial
-		triggerClientEvent(player, "MTABG_LoginError", player, "noSerial")
+		triggerClientEvent(player, "onSendLoginStatus", player, "noSerial")
 	end
 	removePlayerFromQueue(player)
 end
@@ -252,10 +252,10 @@ local function validateAlphaKey(player, key)
 	local serialPoll = dbPoll(dbQuery(mysql_link, "SELECT serial FROM alpha WHERE joinKey='"..key.."'"), -1)[1]
 	local isValidAlphaKey = false
 	if key == "" then --key field blank
-		triggerClientEvent(player, "MTABG_LoginError", player, "blankAlphaKey")
+		triggerClientEvent(player, "onSendLoginStatus", player, "blankAlphaKey")
 	elseif not serialPoll then --unvalid key
 		iprint("Key not in database. Please insert a valid key.") --show error
-		triggerClientEvent(player, "MTABG_LoginError", player, "invlidAlphaKey")
+		triggerClientEvent(player, "onSendLoginStatus", player, "invlidAlphaKey")
 	else
 		local serialForKey = serialPoll["serial"]
 		if serialForKey == "unclaimed" then --unclaimed key
@@ -264,10 +264,10 @@ local function validateAlphaKey(player, key)
 			isValidAlphaKey = true --allow registering
 		elseif serialForKey == playerSerial then --this account registered with this key
 			iprint("Key already registered, please login.") --do nothing
-			triggerClientEvent(player, "MTABG_LoginError", player, "keyAlreadyUsed")
+			triggerClientEvent(player, "onSendLoginStatus", player, "keyAlreadyUsed")
 		else
 			iprint("This key has been used.") --do nothing
-			triggerClientEvent(player, "MTABG_LoginError", player, "keyAlreadyUsed")
+			triggerClientEvent(player, "onSendLoginStatus", player, "keyAlreadyUsed")
 		end
 	end
 	iprint(serialPoll)
