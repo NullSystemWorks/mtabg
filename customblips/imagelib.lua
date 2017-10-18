@@ -31,7 +31,7 @@ function dxImage:create( path, x, y, width, height, relative )
 		outputDebugString ( "dxImage:create - Bad argument", 0, 112, 112, 112 )
 		return false
 	end
-    local new = {}
+	local new = {}
 	setmetatable( new, dxImage_mt )
 	--Add default settings
 	for i,v in pairs(defaults) do
@@ -147,4 +147,3 @@ addEventHandler ( "onClientRender", getRootElement(),
 		end
 	end
 )
-

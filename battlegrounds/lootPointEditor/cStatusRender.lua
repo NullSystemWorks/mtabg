@@ -1,11 +1,3 @@
---[[
-
-				MTA:BG
-			MTA Battlegrounds
-	Developed By: Null System Works
-
-]]--
-
 local sx, sy = guiGetScreenSize()
 local sHalfY = sy/2
 local sHalfX = sx/2

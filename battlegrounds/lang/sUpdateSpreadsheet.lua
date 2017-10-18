@@ -116,7 +116,7 @@ local function announceNewStrings()
 		outputDebugString(string.format("Found %d new language entries:", getNewStringCount()))
 		outputDebugString(inspect(stringsToBeAdded))
 	end
-	outputDebugString(string.format("%d available languages: %s",  #LanguageParser.availableLanguages, inspect(LanguageParser.availableLanguages)))
+	outputDebugString(string.format("%d available languages: %s", #LanguageParser.availableLanguages, inspect(LanguageParser.availableLanguages)))
 	outputDebugString(string.format("Table size: %d (%d x %d)", #LanguageParser.rawLanguageStrings, LanguageParser.columnCount, LanguageParser.rowCount))
 end
 

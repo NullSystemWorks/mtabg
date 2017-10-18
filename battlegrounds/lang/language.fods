@@ -3,34 +3,36 @@
 <office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:css3t="http://www.w3.org/TR/css3-text/" office:version="1.2" office:mimetype="application/vnd.oasis.opendocument.spreadsheet">
     <office:meta>
         <meta:creation-date>2017-09-29T17:18:18.264057974</meta:creation-date>
-        <dc:date>2017-10-14T14:29:24.038833224</dc:date>
-        <meta:editing-duration>PT7H59M30S</meta:editing-duration>
-        <meta:editing-cycles>108</meta:editing-cycles>
+        <dc:date>2017-12-29T09:55:11.208346739</dc:date>
+        <meta:editing-duration>PT8H4M</meta:editing-duration>
+        <meta:editing-cycles>111</meta:editing-cycles>
         <meta:generator>LibreOffice/5.2.7.2$Linux_X86_64 LibreOffice_project/20m0$Build-2</meta:generator>
+        
+        
         <meta:document-statistic meta:table-count="1" meta:cell-count="422" meta:object-count="0" />
     </office:meta>
     <office:settings>
         <config:config-item-set config:name="ooo:view-settings">
             <config:config-item config:name="VisibleAreaTop" config:type="int">0</config:config-item>
             <config:config-item config:name="VisibleAreaLeft" config:type="int">0</config:config-item>
-            <config:config-item config:name="VisibleAreaWidth" config:type="int">44645</config:config-item>
+            <config:config-item config:name="VisibleAreaWidth" config:type="int">50757</config:config-item>
             <config:config-item config:name="VisibleAreaHeight" config:type="int">37514</config:config-item>
             <config:config-item-map-indexed config:name="Views">
                 <config:config-item-map-entry>
                     <config:config-item config:name="ViewId" config:type="string">view1</config:config-item>
                     <config:config-item-map-named config:name="Tables">
                         <config:config-item-map-entry config:name="Sheet1">
-                            <config:config-item config:name="CursorPositionX" config:type="int">5</config:config-item>
-                            <config:config-item config:name="CursorPositionY" config:type="int">25</config:config-item>
+                            <config:config-item config:name="CursorPositionX" config:type="int">0</config:config-item>
+                            <config:config-item config:name="CursorPositionY" config:type="int">69</config:config-item>
                             <config:config-item config:name="HorizontalSplitMode" config:type="short">0</config:config-item>
                             <config:config-item config:name="VerticalSplitMode" config:type="short">0</config:config-item>
                             <config:config-item config:name="HorizontalSplitPosition" config:type="int">0</config:config-item>
                             <config:config-item config:name="VerticalSplitPosition" config:type="int">0</config:config-item>
                             <config:config-item config:name="ActiveSplitRange" config:type="short">2</config:config-item>
-                            <config:config-item config:name="PositionLeft" config:type="int">3</config:config-item>
+                            <config:config-item config:name="PositionLeft" config:type="int">0</config:config-item>
                             <config:config-item config:name="PositionRight" config:type="int">0</config:config-item>
                             <config:config-item config:name="PositionTop" config:type="int">0</config:config-item>
-                            <config:config-item config:name="PositionBottom" config:type="int">52</config:config-item>
+                            <config:config-item config:name="PositionBottom" config:type="int">65</config:config-item>
                             <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
                             <config:config-item config:name="ZoomValue" config:type="int">150</config:config-item>
                             <config:config-item config:name="PageViewZoomValue" config:type="int">60</config:config-item>
@@ -38,7 +40,7 @@
                         </config:config-item-map-entry>
                     </config:config-item-map-named>
                     <config:config-item config:name="ActiveTable" config:type="string">Sheet1</config:config-item>
-                    <config:config-item config:name="HorizontalScrollbarWidth" config:type="int">1857</config:config-item>
+                    <config:config-item config:name="HorizontalScrollbarWidth" config:type="int">1303</config:config-item>
                     <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
                     <config:config-item config:name="ZoomValue" config:type="int">150</config:config-item>
                     <config:config-item config:name="PageViewZoomValue" config:type="int">60</config:config-item>
@@ -209,6 +211,9 @@
             <style:table-column-properties fo:break-before="auto" style:column-width="226.4pt" />
         </style:style>
         <style:style style:name="co6" style:family="table-column">
+            <style:table-column-properties fo:break-before="auto" style:column-width="237.26pt" />
+        </style:style>
+        <style:style style:name="co7" style:family="table-column">
             <style:table-column-properties fo:break-before="auto" style:column-width="64.01pt" />
         </style:style>
         <style:style style:name="ro1" style:family="table-row">
@@ -240,6 +245,9 @@
         </style:style>
         <style:style style:name="ce7" style:family="table-cell" style:parent-style-name="Default">
             <style:text-properties fo:language="pt" fo:country="PT" />
+        </style:style>
+        <style:style style:name="ce8" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N0">
+            <style:text-properties style:font-name="Liberation Sans" style:font-name-asian="DejaVu Sans" style:font-name-complex="FreeSans" />
         </style:style>
         <style:page-layout style:name="pm1">
             <style:page-layout-properties style:writing-mode="lr-tb" />
@@ -273,7 +281,7 @@
             </style:header>
             <style:header-left style:display="false" />
             <style:footer>
-                <text:p>Page&#x0A;&#x0A;&#x0A;
+                <text:p>Page 
                     <text:page-number>1</text:page-number>
                 </text:p>
             </style:footer>
@@ -283,21 +291,21 @@
             <style:header>
                 <style:region-left>
                     <text:p>
-                        <text:sheet-name>???</text:sheet-name> (&#x0A;&#x0A;&#x0A;
-                        <text:title>???</text:title>)&#x0A;&#x0A;&#x0A;
+                        <text:sheet-name>???</text:sheet-name> ( 
+                        <text:title>???</text:title>) 
                     </text:p>
                 </style:region-left>
                 <style:region-right>
                     <text:p>
-                        <text:date style:data-style-name="N2" text:date-value="2017-10-14">00/00/0000</text:date>,&#x0A;&#x0A;&#x0A;
-                        <text:time style:data-style-name="N2" text:time-value="14:22:02.191085218">00:00:00</text:time>
+                        <text:date style:data-style-name="N2" text:date-value="2017-12-29">00/00/0000</text:date>, 
+                        <text:time style:data-style-name="N2" text:time-value="09:54:47.537402907">00:00:00</text:time>
                     </text:p>
                 </style:region-right>
             </style:header>
             <style:header-left style:display="false" />
             <style:footer>
-                <text:p>Page&#x0A;&#x0A;&#x0A;
-                    <text:page-number>1</text:page-number> /&#x0A;&#x0A;&#x0A;
+                <text:p>Page 
+                    <text:page-number>1</text:page-number> / 
                     <text:page-count>99</text:page-count>
                 </text:p>
             </style:footer>
@@ -307,7 +315,7 @@
     <office:body>
         <office:spreadsheet>
             <table:calculation-settings table:automatic-find-labels="false" table:use-regular-expressions="false" table:use-wildcards="true" />
-            <table:table table:name="Sheet1" table:style-name="ta1" table:hash="67895f63b718d07862158872a313d4c1">
+            <table:table table:name="Sheet1" table:style-name="ta1" table:hash="e583a74619e7de7bde4cd0eea31d26e7">
                 <table:table-column table:style-name="co1" table:default-cell-style-name="ce1" />
                 <table:table-column table:style-name="co2" table:default-cell-style-name="ce3" />
                 <table:table-column table:style-name="co3" table:default-cell-style-name="Default" />
@@ -951,17 +959,17 @@
                         <text:p>35</text:p>
                     </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
-                        <text:p>loginPanelIDTakenError</text:p>
+                        <text:p>loginPanelEmptyPasswordError</text:p>
                     </table:table-cell>
                     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
-                        <text:p>ID already taken</text:p>
+                        <text:p>Please enter a password</text:p>
                     </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
-                        <text:p>ID já está sendo usado</text:p>
+                        <text:p>Por favor digite uma senha</text:p>
                     </table:table-cell>
                     <table:table-cell />
-                    <table:table-cell office:value-type="string" calcext:value-type="string">
-                        <text:p>El ID ya esta siendo utilizado</text:p>
+                    <table:table-cell table:style-name="ce8" office:value-type="string" calcext:value-type="string">
+                        <text:p>Por favor ingrese una contraseña</text:p>
                     </table:table-cell>
                 </table:table-row>
                 <table:table-row table:style-name="ro1">
@@ -1566,17 +1574,17 @@
                         <text:p>69</text:p>
                     </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
-                        <text:p>statisticsMenuBattlePointsEarned</text:p>
+                        <text:p>statisticsMenuBattlePointsBalance</text:p>
                     </table:table-cell>
                     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
-                        <text:p>BattlePoints earned</text:p>
+                        <text:p>BattlePoints</text:p>
                     </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
-                        <text:p>BattlePoints ganhos</text:p>
+                        <text:p>BattlePoints</text:p>
                     </table:table-cell>
                     <table:table-cell />
                     <table:table-cell office:value-type="string" calcext:value-type="string">
-                        <text:p>BattlePoints ganados</text:p>
+                        <text:p>BattlePoints</text:p>
                     </table:table-cell>
                 </table:table-row>
                 <table:table-row table:style-name="ro1">

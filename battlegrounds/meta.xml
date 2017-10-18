@@ -10,7 +10,7 @@
 		author="Null System Works"
 		name="MTA:BG"
 		description="MTA Battlegrounds"
-		version="0.0.5a"
+		version="0.1.0a"
 		type="gamemode"
 	/>
 	<min_mta_version server="1.5.4" client="1.5.4" />
@@ -19,25 +19,16 @@
 	<!-- Map -->
 	<map src="spawnisland.map" />
 
-	<!-- Config -->
-	<script src="config/sServer.lua" type="server" />
-
 	<!-- Library -->
 	<script src="lib/math.lua" type="shared" cache="false" />
 	<script src="lib/graphics2D/cMisc.lua" type="client" cache="false" />
 	<script src="lib/graphics2D/cAtlas.lua" type="client" cache="false" />
 	<script src="lib/graphics2D/cGif.lua" type="client" cache="false" />
 	<script src="lib/graphics2D/cPixelTexture.lua" type="client" cache="false" />
-	<script src="lib/async/slither.lua" type="shared" cache="false" />
-	<script src="lib/async/async.lua" type="shared" cache="false" />
-	<script src="lib/bone_attach/bone_attach.lua" type="server" />
-	<script src="lib/bone_attach/attach_func.lua" type="server" />
-	<script src="lib/bone_attach/bone_attach_c.lua" type="client" cache="false" />
-	<script src="lib/bone_attach/attach_func.lua" type="client" cache="false" />
-	<script src="lib/bone_attach/bone_pos_rot.lua" type="client" cache="false" />
-	<script src="lib/sidenotifications/jq_server.lua" type="server" />
-	<script src="lib/sidenotifications/textlib.lua" type="client" cache="false" />
-	<script src="lib/sidenotifications/jq_client.lua" type="client" cache="false" />
+	<script src="lib/boneAttach/server.lua" type="server" />
+	<script src="lib/boneAttach/both.lua" type="server" />
+	<script src="lib/boneAttach/both.lua" type="client" cache="false" />
+	<script src="lib/boneAttach/client.lua" type="client" cache="false" />
 
 	<!-- Language -->
 	<config src="lang/language.fods" type="server" />
@@ -56,23 +47,45 @@
 
 	<!-- Table -->
 	<script src="lootPointEditor/lootPoints.lua" type="server" />
-	<script src="table/sItem.lua" type="server" />
-	<script src="table/sPlayer.lua" type="server" />
-	<script src="table/sLootPoints.lua" type="server" />
-	<script src="table/sWeapon.lua" type="server" />
 
 	<!-- Handler -->
-	<script src="handler/sPlayer.lua" type="server" />
-	<script src="handler/sItem.lua" type="server" />
-	<script src="handler/sVehicle.lua" type="server" />
-	<script src="handler/sLog.lua" type="server" />
-	<script src="handler/sExport.lua" type="server" />
-	<script src="handler/sPermission.lua" type="server" />
-	<script src="handler/sBackpack.lua" type="server" />
-	<script src="handler/sDamage.lua" type="server" />
-	<script src="handler/cMusic.lua" type="client" cache="false"/>
-	<script src="handler/cAmbient.lua" type="client" cache="false"/>
-	<script src="handler/cDamage.lua" type="client" cache="false"/>
+	<script src="class/sClassStash.lua" type="server" />
+	<script src="class/sQueue.lua" type="server" />
+	<script src="class/sThread.lua" type="server" />
+	<script src="class/sElement.lua" type="server" />
+	<script src="class/sAdmin.lua" type="server" />
+	<script src="class/sRemote.lua" type="server" />
+	<script src="class/sHash.lua" type="server" />
+	<script src="class/sRandom.lua" type="server" />
+	<script src="class/sDatabase.lua" type="server" />
+	<script src="class/sAccount.lua" type="server" />
+	<script src="class/sAlphaKey.lua" type="server" />
+	<script src="class/bConstant.lua" type="shared" cache="false" />
+	<script src="class/sLootSpot.lua" type="server" />
+	<script src="class/sWorldObject.lua" type="server" />
+	<script src="class/sLobby.lua" type="server" />
+	<script src="class/sZone.lua" type="server" />
+	<script src="class/sMatch.lua" type="server" />
+	<script src="class/sPlayer.lua" type="server" />
+	<script src="class/sDeadPlayer.lua" type="server" />
+	<script src="class/sPed.lua" type="server" />
+	<script src="class/bItemTypes.lua" type="shared" cache="false" />
+	<script src="class/sVehicle.lua" type="server" />
+	<script src="class/sPermission.lua" type="server" />
+	<script src="class/sBackpack.lua" type="server" />
+	<script src="class/sInventory.lua" type="server" />
+	<script src="class/cPlayer.lua" type="client" cache="false"/>
+	<script src="class/cMusic.lua" type="client" cache="false"/>
+	<script src="class/cAmbient.lua" type="client" cache="false"/>
+	<script src="class/cNotification.lua" type="client" cache="false"/>
+	<script src="class/sTest.lua" type="server" />
+	<script src="class/cTest.lua" type="client" cache="false"/>
+	<script src="class/cHud.lua" type="client" cache="false"/>
+	<script src="class/cInventory.lua" type="client" cache="false"/>
+	<script src="class/cSidemenu.lua" type="client" cache="false"/>
+	<script src="class/cHomescreen.lua" type="client" cache="false" />
+	<script src="class/cLoadingBar.lua" type="client" cache="false" />
+	<script src="class/cLoginPanel.lua" type="client" cache="false" />
 
 	<!-- lootPointEditor -->
 	<script src="lootPointEditor/sWriteTableToDisk.lua" type="server" />
@@ -81,10 +94,6 @@
 	<file src="lootPointEditor/arrow.png"/>
 
 	<!-- Authentication -->
-	<script src="account/sAccountSystem.lua" type="server" />
-	<script src="account/sPasswordAuth.lua" type="server" />
-	<script src="account/cLoadingBar.lua" type="client" cache="false" />
-	<script src="account/cLoginPanel.lua" type="client" cache="false" />
 	<file src="account/img/atlas.png" />
 	<file src="account/img/battlegrounds_logo.png" />
 	<file src="account/img/background.png" />
@@ -97,13 +106,6 @@
 	<file src="font/tahomab.ttf" />
 
 	<!-- Gui -->
-	<script src="gui/sHud.lua" type="server" />
-	<script src="gui/sInventory.lua" type="server" />
-	<script src="gui/cHud.lua" type="client" cache="false"/>
-	<script src="gui/cMatch.lua" type="client" cache="false"/>
-	<script src="gui/cInventory.lua" type="client" cache="false"/>
-	<script src="gui/cSidemenu.lua" type="client" cache="false"/>
-	<script src="gui/cHomescreen.lua" type="client" cache="false" />
 	<file src="gui/img/radius.png" />
 	<file src="gui/img/radius2.png" />
 	<file src="gui/img/running.png" />
@@ -139,8 +141,6 @@
 
 	<!-- Model -->
 	<script src="model/cLoadSkins.lua" type="client" cache="false" />
-	<file src="model/items/txd/cola_can.txd" />
-	<file src="model/items/dff/cola_can.dff" />
 	<file src="model/items/txd/jerrycan.txd" />
 	<file src="model/items/dff/jerrycan.dff" />
 	<file src="model/items/txd/9x18cartridge.txd" />
@@ -151,8 +151,6 @@
 	<file src="model/items/dff/12gauge.dff" />
 	<file src="model/items/txd/308winchester.txd" />
 	<file src="model/items/dff/308winchester.dff" />
-	<file src="model/items/txd/545x39cartridge.txd" />
-	<file src="model/items/dff/545x39cartridge.dff" />
 	<file src="model/items/txd/556x45cartridge.txd" />
 	<file src="model/items/dff/556x45cartridge.dff" />
 	<file src="model/items/txd/762x51cartridge.txd" />

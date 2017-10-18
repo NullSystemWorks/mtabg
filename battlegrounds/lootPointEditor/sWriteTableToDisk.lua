@@ -1,11 +1,3 @@
---[[
-
-				MTA:BG
-			MTA Battlegrounds
-	Developed By: Null System Works
-
-]]--
-
 local clock = getTickCount --licalize getTickCount() function
 local lootColPos = lootColPos --localize lootColPos table
 
@@ -42,7 +34,7 @@ function writeTableToDisk()
 		colFile:write("},\n") --close y coord table
 
 		colFile:write("		[\"z\"] = {") --z coordinate
-		for colID = 1, #classTable.z, 1 do  --iterate through z coords
+		for colID = 1, #classTable.z, 1 do --iterate through z coords
 			if classTable.z[colID] ~= false then --check if entry was not erased
 				colFile:write(classTable.z[colID].. ",")
 			else

@@ -9,7 +9,7 @@ function openChute ( object, player, time )
 	sound = playSound3D ( "parachuteopen.mp3", getElementPosition(player) )
 	setSoundMinDistance ( sound, 25 )
 	setObjectScale ( object, 0 )
-	openingChutes[object]  = {}
+	openingChutes[object] = {}
 	openingChutes[object].time = time
 	openingChutes[object].player = player
 	openingChutes[object].originalTick = getTickCount()

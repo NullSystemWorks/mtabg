@@ -1,11 +1,3 @@
---[[
-
-				MTA:BG
-			MTA Battlegrounds
-	Developed By: Null System Works
-
-]]--
-
 local editorKey = "F2"
 local clock = getTickCount --licalize getTickCount()
 local lootColPos = lootColPos --localize lootColPos table
@@ -164,7 +156,7 @@ local function getNextTablePosition(class)
 	return #lootColPos[class].x + 1 --no empty index found, return last class slot ID +1
 end
 
---Copy coords from old  class to new class entry
+--Copy coords from old class to new class entry
 local function transferDataToNewMarker(markerID, markerClass, newClass)
 	local nextPos = getNextTablePosition(newClass) --get the last entry of the class table
 	lootColPos[newClass].x[nextPos] = lootColPos[markerClass].x[markerID] --set new entry on old's position
@@ -228,16 +220,16 @@ end
 
 --Output class colors an bindings to chat
 local function printHelpMenu(player)
-    outputChatBox(" ", player) --must fill the chat
-    outputChatBox(" ", player)
-    outputChatBox(" ", player)
-		outputChatBox("backspace: Delete", player, 255, 255, 255)
-    outputChatBox("0: Info ", player, 255, 255, 255)
-    outputChatBox("1: Residential", player, getClassColor("Residential"))
-    outputChatBox("2: Military", player, getClassColor("Military"))
-    outputChatBox("3: Supermarket", player, getClassColor("Supermarket"))
-    outputChatBox("4: Farm", player, getClassColor("Farm"))
-    outputChatBox("5: Industrial", player, getClassColor("Industry"))
+	outputChatBox(" ", player) --must fill the chat
+	outputChatBox(" ", player)
+	outputChatBox(" ", player)
+	outputChatBox("backspace: Delete", player, 255, 255, 255)
+	outputChatBox("0: Info ", player, 255, 255, 255)
+	outputChatBox("1: Residential", player, getClassColor("Residential"))
+	outputChatBox("2: Military", player, getClassColor("Military"))
+	outputChatBox("3: Supermarket", player, getClassColor("Supermarket"))
+	outputChatBox("4: Farm", player, getClassColor("Farm"))
+	outputChatBox("5: Industrial", player, getClassColor("Industry"))
 end
 
 --Checks if player has permission to join the editor

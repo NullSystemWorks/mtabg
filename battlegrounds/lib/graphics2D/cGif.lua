@@ -5,7 +5,7 @@ local renderingCount = 0 --how many gifs are being rendered
 
 local sx, sy = guiGetScreenSize()
 
-function Gif:new(atlas, atlasRootx, atlasRooty, spriteWidth, spriteHeight, spriteCount)
+function Gif.new(atlas, atlasRootx, atlasRooty, spriteWidth, spriteHeight, spriteCount)
 	if getElementType(atlas) == "texture"
 	and type(atlasRootx) == "number" and atlasRootx >= 0
 	and type(atlasRooty) == "number" and atlasRooty >= 0

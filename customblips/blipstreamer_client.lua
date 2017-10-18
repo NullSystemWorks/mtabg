@@ -9,12 +9,12 @@ function guiConvertToCustomBlip ( guiElem, x, y, fRadius )
 		return
 	end
 	--Check for valid arguments first
-	if ( not isElement(guiElem) ) or 
-		string.find(getElementType(guiElem),"gui-") ~= 1 or 
+	if ( not isElement(guiElem) ) or
+		string.find(getElementType(guiElem),"gui-") ~= 1 or
 		not tonumber(x) or
 		not tonumber(y) then
 			outputDebugString("guiConvertToCustomBlip - Bad argument",0)
-			return false	
+			return false
 	end
 	fRadius = tonumber(fRadius) or DEFAULT_STREAM_DISTANCE
 
@@ -24,13 +24,13 @@ function guiConvertToCustomBlip ( guiElem, x, y, fRadius )
 	streamedBlips[guiElem].x = x
 	streamedBlips[guiElem].y = y
 	streamedBlips[guiElem].visible = true
-	
+
 	local width,height = guiGetSize(guiElem,false)
 	streamedBlips[guiElem].width = width
 	streamedBlips[guiElem].height = height
-	
+
 	VISIBLE_BLIP_COUNT = VISIBLE_BLIP_COUNT + 1
-	
+
 	addEventHandler ( "onClientElementDestroy", guiElem,
 		function()
 			streamedBlips[source] = nil
@@ -38,7 +38,7 @@ function guiConvertToCustomBlip ( guiElem, x, y, fRadius )
 			destroyWidget ( source )
 		end,
 	false )
-	
+
 	return guiElem
 end
 
@@ -47,11 +47,11 @@ function createCustomBlip ( x, y, width, height, path, fRadius )
 		not tonumber(y) or
 		not type(path) == "string" then
 			outputDebugString("createCustomBlip - Bad argument",0)
-			return false	
+			return false
 	end
 	sourceResource = sourceResource or getThisResource()
 	local resourceName = getResourceName(sourceResource)
-	
+
 	fRadius = fRadius or DEFAULT_STREAM_DISTANCE
 	if not tonumber(fRadius) then
 		outputDebugString("createCustomBlip - Bad argument",0)
@@ -66,9 +66,9 @@ function createCustomBlip ( x, y, width, height, path, fRadius )
 	streamedBlips[image].width = width
 	streamedBlips[image].height = height
 	streamedBlips[image].visible = true
-	
+
 	VISIBLE_BLIP_COUNT = VISIBLE_BLIP_COUNT + 1
-	
+
 	addEventHandler ( "onClientResourceStop", getResourceRootElement(sourceResource),
 		function()
 			streamedBlips[image] = nil
@@ -76,7 +76,7 @@ function createCustomBlip ( x, y, width, height, path, fRadius )
 			destroyWidget ( image )
 		end
 	)
-	
+
 	return image.id
 end
 
@@ -85,7 +85,7 @@ function getCustomBlipStreamRadius(blip)
 	--Check for valid arguments first
 	if not isWidget(blip) or not streamedBlips[blip] then
 		outputDebugString("getCustomBlipStreamRadius - Bad 'custom blip' argument",0)
-		return false	
+		return false
 	end
 	return streamedBlips[blip].radius or false
 end
@@ -96,7 +96,7 @@ function setCustomBlipStreamRadius(blip, fRadius)
 	--Check for valid arguments first
 	if not isWidget(blip) or not streamedBlips[blip] or not fRadius then
 		outputDebugString("setCustomBlipStreamRadius - Bad 'custom blip' argument",0)
-		return false	
+		return false
 	end
 	streamedBlips[blip].radius = fRadius
 	return true
@@ -107,7 +107,7 @@ function getCustomBlipPosition(blip)
 	--Check for valid arguments first
 	if not isWidget(blip) or not streamedBlips[blip] then
 		outputDebugString("getCustomBlipPosition - Bad 'custom blip' argument",0)
-		return false	
+		return false
 	end
 	return streamedBlips[blip].x,streamedBlips[blip].y
 end
@@ -119,9 +119,9 @@ function setCustomBlipPosition(blip, x,y)
 	--Check for valid arguments first
 	if not isWidget(blip) or not streamedBlips[blip] or not x or not y then
 		outputDebugString("setCustomBlipPosition - Bad argument",0)
-		return false	
+		return false
 	end
-	streamedBlips[blip].x,streamedBlips[blip].y = x,y 
+	streamedBlips[blip].x,streamedBlips[blip].y = x,y
 	return true
 end
 
@@ -131,7 +131,7 @@ function setCustomBlipRadarScale(blip, scale)
 	--Check for valid arguments first
 	if not isWidget(blip) or not streamedBlips[blip] then
 		outputDebugString("setCustomBlipRadarScale - Bad argument",0)
-		return false	
+		return false
 	end
 	streamedBlips[blip].radarScale = scale or nil
 	return true
@@ -143,7 +143,7 @@ function setCustomBlipAlpha(blip, alpha)
 	--Check for valid arguments first
 	if not isWidget(blip) or not streamedBlips[blip] or not alpha then
 		outputDebugString("setCustomBlipAlpha - Bad argument",0)
-		return false	
+		return false
 	end
 	setWidgetAlpha(blip,alpha)
 	return true
@@ -152,16 +152,16 @@ end
 function setCustomBlipVisible(blip,visible)
 	blip = convertToWidget ( blip )
 	visible = not not visible
-	
+
 	if not isWidget(blip) or not streamedBlips[blip] then
 		outputDebugString("setCustomBlipVisible - Bad argument",0)
 		return false
 	end
-	
+
 	if visible == streamedBlips[blip].visible then return false end
-	
+
 	streamedBlips[blip].visible = visible
-	
+
 	if setWidgetVisible ( blip, visible ) then
 		VISIBLE_BLIP_COUNT = visible and (VISIBLE_BLIP_COUNT + 1) or (VISIBLE_BLIP_COUNT - 1)
 		return true
@@ -182,8 +182,8 @@ function destroyCustomBlip(blip)
 	blip = convertToWidget ( blip )
 	if not isWidget(blip) or not streamedBlips[blip] then
 		outputDebugString("destroyCustomBlip - Bad 'custom blip' argument",0)
-		return false	
-	end	
+		return false
+	end
 	streamedBlips[blip] = nil
 	VISIBLE_BLIP_COUNT = VISIBLE_BLIP_COUNT - 1
 	return destroyWidget ( blip )
@@ -200,14 +200,14 @@ addEventHandler("onClientRender",g_root,
 		local toF11Map = isPlayerMapVisible()
 		local camX,camY,_,camTargetX,camTargetY = getCameraMatrix()
 		local x,y,camRot,F11minX,F11minY,F11maxX,F11maxY,F11sizeX,F11sizeY
-		
+
 		--Are we in fixed camera mode?
 		if not cameraTarget then
 			x,y = camX,camY
 		else
 			x,y = getElementPosition(cameraTarget)
 		end
-	
+
 		if not toF11Map then --Render to the radar
 			--Are we in fixed camera mode?
 			if not cameraTarget then
@@ -219,7 +219,7 @@ addEventHandler("onClientRender",g_root,
 					if getPedControlState"vehicle_look_behind" or
 					( getPedControlState"vehicle_look_left" and getPedControlState"vehicle_look_right" ) or
 					--Look left/right on any vehicle except planes and helis (these rotate them)
-					( getVehicleType(vehicle)~="Plane" and getVehicleType(vehicle)~="Helicopter" and 
+					( getVehicleType(vehicle)~="Plane" and getVehicleType(vehicle)~="Helicopter" and
 					( getPedControlState"vehicle_look_left" or getPedControlState"vehicle_look_right" ) ) then
 						camRot = -math.rad(getPedRotation(localPlayer))
 					else
@@ -241,7 +241,7 @@ addEventHandler("onClientRender",g_root,
 		end
 		for blip,infoTable in pairs(streamedBlips) do
 			if isWidget(blip) then
-				if streamedBlips[blip].visible  then
+				if streamedBlips[blip].visible then
 					local bx,by = infoTable.x,infoTable.y
 					--outputChatBox ( tostring(getDistanceBetweenPoints2D ( x,y,bx,by )-getRadarRadius()).." "..tostring(infoTable.radius))
 					if 	( toF11Map ) then
@@ -266,4 +266,3 @@ addEventHandler("onClientRender",g_root,
 		end
 	end
 )
-
