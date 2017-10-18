@@ -253,6 +253,19 @@ addEvent("mtabg_onClientBattleGroundsSetCountdown",true)
 addEventHandler("mtabg_onClientBattleGroundsSetCountdown",root,onClientBattleGroundsSetCountdown)
 
 local lobbyLabelNumber
+local lobbyLabelNumberTimer
+local function clearLobbyLabelNumber()
+	if isTimer(lobbyLabelNumberTimer) then
+		lobbyLabelNumberTimer:destroy()
+	end
+	lobbyLabelNumberTimer = Timer(
+	function()
+		guiSetText(lobbyLabel[3], "")
+		lobbyLabelNumberTimer = nil
+		lobbyLabelNumber = nil
+	end, 3000, 1)
+end
+
 function onClientBattleGroundsAnnounceMatchStart(number)
 	number = number or lobbyLabelNumber
 	lobbyLabelNumber = number
@@ -260,9 +273,9 @@ function onClientBattleGroundsAnnounceMatchStart(number)
 		guiSetText(lobbyLabel[3], str("lobbyinsufficientPlayersError"))
 	elseif number == "matchRunning" then
 		guiSetText(lobbyLabel[3], str("lobbyMatchAlreadyRunningError"))
-	else
+	elseif number ~= nil then
 		guiSetText(lobbyLabel[3], str("lobbyStartMatchCountdown", tostring(number)))
-		setTimer(guiSetText,3000,1,lobbyLabel[3],"")
+		clearLobbyLabelNumber()
 	end
 end
 addEvent("mtabg_onClientBattleGroundsAnnounceMatchStart",true)
