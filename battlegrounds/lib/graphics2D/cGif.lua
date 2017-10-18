@@ -78,3 +78,7 @@ function Gif:setRendering(shouldRender)
 		end
 	end
 end
+
+function Gif:getRendering()
+	return renderTable[self]
+end
