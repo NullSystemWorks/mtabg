@@ -256,9 +256,9 @@ local lobbyLabelNumber
 function onClientBattleGroundsAnnounceMatchStart(number)
 	number = number or lobbyLabelNumber
 	lobbyLabelNumber = number
-	if number == "More players needed" then
-		guiSetText(lobbyLabel[3], str("lobbyInsuficientPlayersError"))
-	elseif number == "Match running" then
+	if number == "insufficientPlayers" then
+		guiSetText(lobbyLabel[3], str("lobbyinsufficientPlayersError"))
+	elseif number == "matchRunning" then
 		guiSetText(lobbyLabel[3], str("lobbyMatchAlreadyRunningError"))
 	else
 		guiSetText(lobbyLabel[3], str("lobbyStartMatchCountdown", tostring(number)))

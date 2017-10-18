@@ -55,7 +55,7 @@ function onPlayerLeavingGame()
 			stopCountDown()
 			for i, players in ipairs(getElementsByType("player")) do
 				if getElementData(players,"inLobby") then
-					triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"More players needed")
+					triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"insufficientPlayers")
 					triggerClientEvent(players,"mtabg_onClientBattleGroundsSetCountdown",players,"N/A")
 				end
 			end
@@ -113,14 +113,14 @@ function sendPlayerToLobby(player, forcedStart, quickTick)
 			else
 				for i, players in ipairs(getElementsByType("player")) do
 					if getElementData(players,"inLobby") then
-						triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"More players needed")
+						triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"insufficientPlayers")
 					end
 				end
 			end
 		else
 			for i, players in ipairs(getElementsByType("player")) do
 				if getElementData(players,"inLobby") then
-					triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"Match running")
+					triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"matchRunning")
 					triggerClientEvent(players,"mtabg_onClientBattleGroundsSetStatus",players,false,gameCache["initialPlayerAmount"])
 				end
 			end
@@ -139,7 +139,7 @@ function startCountDown(forcedStart, quickTick)
 	if gameCache["initialPlayerAmount"] < 2 and not forcedStart then
 		for i, players in ipairs(getElementsByType("player")) do
 			if getElementData(players,"inLobby") then
-				triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"More players needed")
+				triggerClientEvent(players,"mtabg_onClientBattleGroundsAnnounceMatchStart",players,"insufficientPlayers")
 			end
 		end
 		return
