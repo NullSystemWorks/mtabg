@@ -109,6 +109,8 @@ end
 addEvent("onLoginLoadingBarSetProgress", true)
 addEventHandler("onLoginLoadingBarSetProgress", localPlayer, loadingBarSetProgress)
 
+local msgTimer
+local currentMessage
 local function scheduleHide()
 	if isTimer(msgTimer) then
 		msgTimer:destroy()
@@ -117,32 +119,40 @@ local function scheduleHide()
 	function()
 		guiSetText(LoginScreen.label[6], "")
 		msgTimer = nil
+		currentMessage = nil
 		resetLoadingBar()
 		loadingBar.setProgress(0)
 	end, 3000, 1)
 end
 
-local msgTimer
-local function showMessage(loginResult)
-	local msg
+local function chooseMessage(loginResult)
+	local message
 	if loginResult == "unknownError" then
-		msg = str("loginPanelUnknownError")
+		message = str("loginPanelUnknownError")
 	elseif loginResult == "wrongPass" then
-		msg = str("loginPanelInvalidAccountOrPasswordError")
+		message = str("loginPanelInvalidAccountOrPasswordError")
 	elseif loginResult == "noSerial" then
-		msg = str("loginPanelNoSerialError")
+		message = str("loginPanelNoSerialError")
 	elseif loginResult == "IDTaken" then
-		msg = str("loginPanelIDTakenError")
+		message = str("loginPanelIDTakenError")
 	elseif loginResult == "blankAlphaKey" then
-		msg = str("loginPanelBlankAlphaKeyError")
+		message = str("loginPanelBlankAlphaKeyError")
 	elseif loginResult == "invlidAlphaKey" then
-		msg = str("loginPanelInvlidAlphaKeyError")
+		message = str("loginPanelInvlidAlphaKeyError")
 	elseif loginResult == "keyAlreadyUsed" then
-		msg = str("loginPanelKeyAlreadyUsedError")
+		message = str("loginPanelKeyAlreadyUsedError")
 	elseif loginResult == "success" then
-		msg = str("loginPanelWelcomeMessage")
+		message = str("loginPanelWelcomeMessage")
 	end
-	guiSetText(LoginScreen.label[6], msg)
+	return message
+end
+
+local function showMessage(loginResult)
+	if loginResult or currentMessage then
+		loginResult = loginResult or currentMessage
+		currentMessage = loginResult
+		guiSetText(LoginScreen.label[6], chooseMessage(loginResult))
+	end
 end
 
 local function LoginEnd(loginResult)
@@ -298,6 +308,7 @@ local function changeLanguage(newLang)
 	LoginScreen.checkbox[1]:setText(str("loginPanelRememberPassword"))
 	LoginScreen.label[4]:setText(str("loginPanelLoginButton"))
 	LoginScreen.label[5]:setText(str("loginPanelRegisterButton"))
+	showMessage()
 end
 addEventHandler("onUserLanguageChange", resourceRoot, changeLanguage)
 
