@@ -122,10 +122,21 @@ end
 
 function getElementSpeed(theElement, unit)
 	-- Check arguments for errors
-	assert(isElement(theElement), "Bad argument 1 @ getElementSpeed (element expected, got " .. type(theElement) .. ")")
+	if not isElement(theElement) then
+		error("Bad argument 1 @ getElementSpeed (element expected, got " .. type(theElement) .. ")", 2)
+	end
 	local elementType = getElementType(theElement)
-	assert(elementType == "player" or elementType == "ped" or elementType == "object" or elementType == "vehicle" or elementType == "projectile", "Invalid element type @ getElementSpeed (player/ped/object/vehicle/projectile expected, got " .. elementType .. ")")
-	assert((unit == nil or type(unit) == "string" or type(unit) == "number") and (unit == nil or (tonumber(unit) and (tonumber(unit) == 0 or tonumber(unit) == 1 or tonumber(unit) == 2)) or unit == "m/s" or unit == "km/h" or unit == "mph"), "Bad argument 2 @ getElementSpeed (invalid speed unit)")
+	if not (elementType == "player"
+	or elementType == "ped"
+	or elementType == "object"
+	or elementType == "vehicle"
+	or elementType == "projectile") then
+		error("Invalid element type @ getElementSpeed (player/ped/object/vehicle/projectile expected, got " .. elementType .. ")", 2)
+	end
+	if not ((unit == nil or type(unit) == "string" or type(unit) == "number") and (unit == nil or (tonumber(unit) and (tonumber(unit) == 0 or tonumber(unit) == 1 or tonumber(unit) == 2)) or unit == "m/s" or unit == "km/h" or unit == "mph")) then
+		error("Bad argument 2 @ getElementSpeed (invalid speed unit)", 2)
+	end
+
 	-- Default to m/s if no unit specified and 'ignore' argument type if the string contains a number
 	unit = unit == nil and 0 or ((not tonumber(unit)) and unit or tonumber(unit))
 	-- Setup our multiplier to convert the velocity to the specified unit
