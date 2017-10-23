@@ -212,7 +212,8 @@ end
 
 function startGame()
 	gameCache["status"] = false
-	local weather = math.random(0, 22)
+	local pWeather = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,43,36,37,38,39}
+	local rWeather = pWeather[math.random(1,28)]
 	for i, player in ipairs(getElementsByType("player")) do
 		if getElementData(player, "inLobby") then
 			showChat(player,false)
@@ -250,7 +251,7 @@ function startGame()
 			gameCache["playerAmount"] = gameCache["initialPlayerAmount"]
 			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetStatus",player,true,0)
 			triggerClientEvent(player,"mtabg_onClientBattleGroundsSetAliveCount",player,gameCache["playerAmount"])
-			triggerClientEvent(player,"onSetClientWeather", player, weather)
+			triggerClientEvent(player,"onSetClientWeather", player, rWeather)
 			setElementData(player,"inLobby",false)
 			giveWeapon(player,46,1,true)
 			setPedWeaponSlot(player,11)
