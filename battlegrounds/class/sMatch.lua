@@ -175,7 +175,7 @@ end
 function Match:setRandomWeather()
 	local weatherCount = #weatherOfTheStaticMatchClass
 	local chosenWeather = math.random(weatherCount)
-	self:setWeather(chosenWeather)
+	self:setWeather(weatherOfTheStaticMatchClass[chosenWeather])
 end
 
 function Match:getVehicleCount()
