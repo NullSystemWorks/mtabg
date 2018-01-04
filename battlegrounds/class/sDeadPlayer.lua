@@ -14,6 +14,9 @@ function DeadPlayer.new(player)
 		lootSpot = LootSpot.new(pos.x, pos.y, pos.z, player:getMatch()),
 	}
 	setmetatable(newInst, deadplayer_mt)
+	if player:getBackpack() then
+		player:transferBackpackTo(newInst.ped)
+	end
 	newInst.ped:kill()
 	player.match:addLootSpot(newInst)
 

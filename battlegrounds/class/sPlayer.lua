@@ -17,6 +17,7 @@ function Player.new()
 	local remote = Remote.new(client)
 	local newInst =
 	{
+		type = "player",
 		name = client.name,
 		remote = remote,
 		account = Account.new(remote),
@@ -73,7 +74,7 @@ function Player.getAll()
 end
 
 function Player.isPlayer(element)
-	return element and element.remote and element.remote:getRemote():getType() == "player"
+	return element and element.type == "player"
 end
 
 function Player.getNameOrNil(player)
@@ -298,9 +299,7 @@ end
 function Player:setBackpack(itemName)
 	self:removeBackpack()
 	if isItemBackpack(itemName) then
-		local newBackpack = Backpack.new(itemName)
-		newBackpack:attachToPlayer(self.remote:getRemote())
-		self.backpack = newBackpack
+		self.backpack = Backpack.new(itemName, self)
 		self.inventory:setCapacity(getBackpackSlotCount(itemName))
 	end
 end
@@ -311,6 +310,12 @@ function Player:removeBackpack()
 		backpack:destroy()
 		self.inventory:setCapacity(Player.DEFAULT_INVENTORY_SIZE)
 		self.backpack = false
+	end
+end
+
+function Player:transferBackpackTo(ped)
+	if self:getBackpack() then
+		self:getBackpack():transferTo(ped)
 	end
 end
 

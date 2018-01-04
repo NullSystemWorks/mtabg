@@ -21,6 +21,7 @@ function Vehicle.new(x, y, z, dimension, id)
 	local newInst =
 	{
 		remote = Remote.new(mtaVehicle),
+		type = "Vehicle",
 		name = name,
 		needsFuel = true,
 		isBurningFuel = false,

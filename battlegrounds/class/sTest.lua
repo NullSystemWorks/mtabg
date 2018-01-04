@@ -53,10 +53,17 @@ function Test.testMatch()
 	end
 end
 
-function Test.testDeadPlayer()
+function Test.testPed()
 	for i=1,1000 do
+		local ped = Ped.new()
+		ped:destroy()
+	end
+end
+
+function Test.testDeadPlayer()
+	for i=1,100 do
 		local deadPlayer = DeadPlayer.new(Remote.getSuperFromRemote(getElementsByType("player")[1]))
-		deadPlayer:destroy()
+		-- deadPlayer:destroy() --Can't destroy, reference kept in match
 	end
 end
 
@@ -73,6 +80,7 @@ end
 -- addCommandHandler("testAccount", test)
 -- addCommandHandler("testVehicle", test)
 -- addCommandHandler("testPlayer", test)
+-- addCommandHandler("testPed", test)
 -- addCommandHandler("testDeadPlayer", test)
 
 
