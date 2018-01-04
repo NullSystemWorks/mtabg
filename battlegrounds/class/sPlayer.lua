@@ -40,6 +40,7 @@ function Player.new()
 	newInst.remote:setSuper(newInst)
 	newInst:askCredentials()
 	newInst.inventory:setCapacity(Player.DEFAULT_INVENTORY_SIZE)
+	newInst:giveInitialItems()
 	return newInst
 end
 addEvent("onJoin", true)
@@ -118,6 +119,7 @@ end
 function Player:clearMatchData()
 	self:removeBackpack()
 	self.inventory:setEmpty()
+	self:giveInitialItems()
 	self:getMatch():getZone():sendNoZoneToPlayer(self)
 	self:setMatch(false)
 	self:takeAllWeapons()
@@ -129,6 +131,10 @@ function Player:clearMatchData()
 	self.armor = 0
 	self.kills = 0
 	self.headshots = 0
+end
+
+function Player:giveInitialItems()
+	self.inventory:giveItem("Bandage")
 end
 
 function Player:askCredentials()
