@@ -23,6 +23,11 @@ function Inventory:setEmpty()
 		iprint("Taking all "  ..itemName)
 		self:takeAll(itemName)
 	end
+	self:giveInitialItems()
+end
+
+function Inventory:giveInitialItems()
+	self:giveItem("Bandage")
 end
 
 function Inventory:getItemList()

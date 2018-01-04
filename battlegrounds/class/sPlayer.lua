@@ -39,7 +39,6 @@ function Player.new()
 	newInst.remote:setSuper(newInst)
 	newInst:askCredentials()
 	newInst.inventory:setCapacity(Player.DEFAULT_INVENTORY_SIZE)
-	newInst.inventory:giveItem("Bandage")
 	return newInst
 end
 addEvent("onJoin", true)
