@@ -122,7 +122,6 @@
 	<file src="gui/img/sa58v.png"/>
 	<file src="gui/img/fnfal.png"/>
 	<file src="gui/img/M24.png"/>
-	<file src="gui/img/bat.png"/>
 	<file src="gui/img/g36c.png"/>
 	<file src="gui/img/m4.png"/>
 	<file src="gui/img/svd.png"/>
@@ -134,10 +133,6 @@
 	<file src="gui/img/vestlevel2.png" />
 	<file src="gui/img/vestlevel3.png" />
 	<file src="gui/img/background_transparent.png" />
-	<file src="gui/img/legendary_crate.png" />
-	<file src="gui/img/epic_crate.png" />
-	<file src="gui/img/uncommon_crate.png" />
-	<file src="gui/img/common_crate.png" />
 
 	<!-- Model -->
 	<script src="model/cLoadSkins.lua" type="client" cache="false" />

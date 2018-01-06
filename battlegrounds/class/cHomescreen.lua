@@ -112,19 +112,19 @@ guiLabelSetVerticalAlign(homeScreen.label[31], "center")
 
 homeScreen.staticimage[6] = guiCreateStaticImage(0.09, 0.29, 0.08, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[6], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.staticimage[7] = guiCreateStaticImage(0, 0, 1.00, 1.00, "gui/img/legendary_crate.png", true, homeScreen.staticimage[6])
+homeScreen.staticimage[7] = guiCreateStaticImage(0, 0, 1.00, 1.00, "gui/img/battlepointsicon.png", true, homeScreen.staticimage[6])
 
 homeScreen.staticimage[8] = guiCreateStaticImage(0.09, 0.41, 0.08, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[8], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.staticimage[9] = guiCreateStaticImage(0, 0, 1, 1, "gui/img/epic_crate.png", true, homeScreen.staticimage[8])
+homeScreen.staticimage[9] = guiCreateStaticImage(0, 0, 1, 1, "gui/img/battlepointsicon.png", true, homeScreen.staticimage[8])
 
 homeScreen.staticimage[10] = guiCreateStaticImage(0.09, 0.53, 0.08, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[10], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.staticimage[11] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "gui/img/uncommon_crate.png", true, homeScreen.staticimage[10])
+homeScreen.staticimage[11] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "gui/img/battlepointsicon.png", true, homeScreen.staticimage[10])
 
 homeScreen.staticimage[12] = guiCreateStaticImage(0.09, 0.65, 0.08, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[12], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
-homeScreen.staticimage[13] = guiCreateStaticImage(0, 0, 1, 1, "gui/img/common_crate.png", true, homeScreen.staticimage[12])
+homeScreen.staticimage[13] = guiCreateStaticImage(0, 0, 1, 1, "gui/img/battlepointsicon.png", true, homeScreen.staticimage[12])
 
 homeScreen.staticimage[14] = guiCreateStaticImage(0.18, 0.29, 0.31, 0.11, "gui/img/solo_slot.png", true, homeScreen.staticimage[1])
 guiSetProperty(homeScreen.staticimage[14], "ImageColours", "tl:B93C3C3C tr:B93C3C3C bl:B93C3C3C br:B93C3C3C")
