@@ -105,6 +105,7 @@ type="gamemode"
 <file src="gui/img/pixel.png" />
 <file src="gui/img/button.png" />
 <file src="gui/img/battlepointsicon.png" />
+<file src="gui/img/grenade.png"/>
 <file src="gui/img/colt45.png"/>
 <file src="gui/img/revolver.png"/>
 <file src="gui/img/silenced_colt45.png"/>

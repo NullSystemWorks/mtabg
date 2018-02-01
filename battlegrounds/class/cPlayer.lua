@@ -39,3 +39,11 @@ local function delegatePlayerDamage(attacker, weapon, bodypart, loss)
 	                   attacker, weapon, bodypart, loss)
 end
 addEventHandler("onClientPlayerDamage", localPlayer, delegatePlayerDamage)
+
+function treatProjectileCreation(creator)
+	if creator == localPlayer
+	and source:getType() == 16 then --Only for grenades
+		triggerServerEvent("onPlayerWeaponThrow", resourceRoot)
+	end
+end
+addEventHandler("onClientProjectileCreation", root, treatProjectileCreation)

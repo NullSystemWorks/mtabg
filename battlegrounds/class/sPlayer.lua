@@ -452,6 +452,23 @@ local function handlePlayerWeaponFire()
 end
 addEventHandler("onPlayerWeaponFire", root, handlePlayerWeaponFire)
 
+function Player:handleWeaponThrow()
+	local currentWeapon = self:getCurrentWeapon()
+	if currentWeapon then
+		self.inventory:takeItem(currentWeapon)
+		if not self.inventory:doesHaveItem(currentWeapon) then
+			self:takeWeapon(currentWeapon)
+		end
+	end
+end
+
+local function handlePlayerWeaponThrow()
+	local player = Remote.getSuperFromRemote(client)
+	player:handleWeaponThrow()
+end
+addEvent("onPlayerWeaponThrow", true)
+addEventHandler("onPlayerWeaponThrow", resourceRoot, handlePlayerWeaponThrow)
+
 function Player:setHeadshots(_headshots)
 	self.headshots = _headshots
 end
@@ -486,6 +503,7 @@ function Player:getFinalDamageAndDeduceArmor(damage)
 	return damage
 end
 
+local GRENADE_MAX_DAMAGE = 82.5 --or so it seems
 function Player:handleDamage(attacker, weapon, bodypart, loss)
 	iprint(tostring(Player.getNameOrNil(attacker)).. " attacked " ..self.name)
 	if self:getInMatch() then
@@ -494,6 +512,10 @@ function Player:handleDamage(attacker, weapon, bodypart, loss)
 		if weapon == Damage.FALL then
 			damage = loss
 			iprint(self.name.. " fell. Damage: " ..damage)
+		elseif weapon == 16 then --grenade
+			damage = getWeaponDamage("Grenade")*(loss/GRENADE_MAX_DAMAGE)
+			iprint(tostring(attacker.name).. " blew " ..tostring(self.name)
+				.. " up using grenade. Damage: " ..tostring(damage))
 		elseif Player.isPlayer(attacker) and attacker:getCurrentWeapon()
 		and getWeaponID(attacker:getCurrentWeapon()) == weapon then
 			damage = getWeaponDamage(attacker:getCurrentWeapon())
@@ -502,7 +524,10 @@ function Player:handleDamage(attacker, weapon, bodypart, loss)
 				damage = damage*2
 			end
 			damage = self:getFinalDamageAndDeduceArmor(damage)
-			iprint(tostring(attacker.name).. " shot " ..tostring(self.name).. " using " ..tostring(attacker:getCurrentWeapon()).. ". Damage: " ..tostring(damage).. ". Headshot: " ..tostring(headshot))
+			iprint(tostring(attacker.name).. " shot " ..tostring(self.name)
+				.. " using " ..tostring(attacker:getCurrentWeapon())
+				.. ". Damage: " ..tostring(damage)
+				.. ". Headshot: " ..tostring(headshot))
 		end
 		self:harm(damage, attacker, headshot)
 	end

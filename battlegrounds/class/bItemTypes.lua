@@ -1,4 +1,38 @@
 local ITEM_DEFINITIONS = {
+	["Grenade"] =
+	{
+		["inventoryItem"] =
+		{
+			["weight"] = 2,
+		},
+		["worldObject"] =
+		{
+			["model"] = 342,
+			["scale"] = 1,
+			["rotation"] = 90
+		},
+		["spawnChance"] =
+		{
+			["Residential"] = 0,
+			["Industry"] = 0,
+			["Farm"] = 0,
+			["Supermarket"] = 0,
+			["Military"] = 10,
+		},
+		["weapon"] =
+		{
+			["weaponID"] = 16,
+			["damage"] = 99,
+			["ammo"] = "Grenade",
+			["slot"] = 2,
+			["imagePath"] = "grenade.png",
+		},
+		["ammo"] =
+		{
+			["clipSize"] = 1,
+		},
+	},
+
 	["Colt45"] =
 	{
 		["inventoryItem"] =
