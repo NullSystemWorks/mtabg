@@ -29,7 +29,7 @@ function Match.new()
 		participantCount = 0,
 		lootSpots = {},
 		vehicles = {},
-		dimension = 0,
+		dimension = 1,
 		weather = 0,
 		isRunning = false,
 	}
