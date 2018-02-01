@@ -493,6 +493,7 @@ function Player:handleDamage(attacker, weapon, bodypart, loss)
 		local headshot = false
 		if weapon == Damage.FALL then
 			damage = loss
+			iprint(self.name.. " fell. Damage: " ..damage)
 		elseif Player.isPlayer(attacker) and attacker:getCurrentWeapon()
 		and getWeaponID(attacker:getCurrentWeapon()) == weapon then
 			damage = getWeaponDamage(attacker:getCurrentWeapon())
