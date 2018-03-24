@@ -26,7 +26,7 @@ end
 
 function Account:register(password)
 	Database.createAccount(self.ip, self:getSerial(), password)
-	self.data = Database.getAccount(serial)
+	self.data = Database.getAccount(self.serial)
 end
 
 function Account:setInHashQueue(_inHashQueue)
