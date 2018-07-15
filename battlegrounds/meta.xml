@@ -148,8 +148,8 @@
 	<file src="model/items/dff/sniper_ammo.dff" />
 	<file src="model/items/txd/revolver_ammo.txd" />
 	<file src="model/items/dff/revolver_ammo.dff" />
-	<file src="model/items/txd/1866slug.txd" />
-	<file src="model/items/dff/1866slug.dff" />
+	<file src="model/items/txd/shotgun_ammo.txd" />
+	<file src="model/items/dff/shotgun_ammo.dff" />
 	<file src="model/items/txd/bandage.txd" />
 	<file src="model/items/dff/bandage.dff" />
 	<file src="model/items/txd/painkillers.txd" />

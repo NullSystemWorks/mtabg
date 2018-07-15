@@ -293,7 +293,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 25,
 			["damage"] = 100,
-			["ammo"] = "1866 Slug",
+			["ammo"] = "Shotgun ammo",
 			["slot"] = 1,
 			["imagePath"] = "shotgun.png",
 		},
@@ -518,7 +518,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	["1866 Slug"] =
+	["Shotgun ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -526,7 +526,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "1866slug",
+			["textureName"] = "shotgun_ammo",
 			["model"] = 2033,
 			["scale"] = 2,
 			["rotation"] = 0
