@@ -114,10 +114,9 @@
 	<file src="gui/img/battlepointsicon.png" />
 	<file src="gui/img/colt45.png"/>
 	<file src="gui/img/revolver.png"/>
-	<file src="gui/img/bizon.png"/>
 	<file src="gui/img/m9sd.png"/>
 	<file src="gui/img/pdw.png"/>
-	<file src="gui/img/mp5a5.png"/>
+	<file src="gui/img/mp5.png"/>
 	<file src="gui/img/ak47.png"/>
 	<file src="gui/img/sa58v.png"/>
 	<file src="gui/img/fnfal.png"/>

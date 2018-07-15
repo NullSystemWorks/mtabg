@@ -59,36 +59,6 @@ local ITEM_DEFINITIONS = {
 		},
 	},
 
-	["Bizon PP-19 SD"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 5,
-		},
-		["worldObject"] =
-		{
-			["model"] = 353,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 7.64,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 10.38,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 29,
-			["damage"] = 27,
-			["ammo"] = "9x19mm Cartridge",
-			["slot"] = 2,
-			["imagePath"] = "bizon.png",
-		},
-	},
-
 	["Makarov SD"] =
 	{
 		["inventoryItem"] =
@@ -149,7 +119,7 @@ local ITEM_DEFINITIONS = {
 		},
 	},
 
-	["MP5A5"] =
+	["MP5"] =
 	{
 		["inventoryItem"] =
 		{
@@ -163,11 +133,11 @@ local ITEM_DEFINITIONS = {
 		},
 		["spawnChance"] =
 		{
-			["Residential"] = 0,
+			["Residential"] = 3.82,
 			["Industry"] = 0,
 			["Farm"] = 0,
 			["Supermarket"] = 0,
-			["Military"] = 10.76,
+			["Military"] = 10.57,
 		},
 		["weapon"] =
 		{
