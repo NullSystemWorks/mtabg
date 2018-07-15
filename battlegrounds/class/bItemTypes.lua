@@ -173,7 +173,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 30,
 			["damage"] = 40,
-			["ammo"] = "7.62x39mm Cartridge",
+			["ammo"] = "Assault rifle ammo",
 			["slot"] = 1,
 			["imagePath"] = "ak47.png",
 		},
@@ -437,7 +437,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	["7.62x39mm Cartridge"] =
+	["Assault rifle ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -445,7 +445,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "762x51cartridge",
+			["textureName"] = "assault_ammo",
 			["model"] = 2034,
 			["scale"] = 2,
 			["rotation"] = 0

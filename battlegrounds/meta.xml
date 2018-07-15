@@ -142,8 +142,8 @@
 	<file src="model/items/dff/308winchester.dff" />
 	<file src="model/items/txd/556x45cartridge.txd" />
 	<file src="model/items/dff/556x45cartridge.dff" />
-	<file src="model/items/txd/762x51cartridge.txd" />
-	<file src="model/items/dff/762x51cartridge.dff" />
+	<file src="model/items/txd/assault_ammo.txd" />
+	<file src="model/items/dff/assault_ammo.dff" />
 	<file src="model/items/txd/sniper_ammo.txd" />
 	<file src="model/items/dff/sniper_ammo.dff" />
 	<file src="model/items/txd/revolver_ammo.txd" />
