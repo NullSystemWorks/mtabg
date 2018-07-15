@@ -53,7 +53,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 24,
 			["damage"] = 42,
-			["ammo"] = "11.43x23mm Cartridge",
+			["ammo"] = "Revolver ammo",
 			["slot"] = 2,
 			["imagePath"] = "revolver.png",
 		},
@@ -329,7 +329,7 @@ local ITEM_DEFINITIONS = {
 		},
 	},
 
-	["11.43x23mm Cartridge"] =
+	["Revolver ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -337,7 +337,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "1143x23cartridge",
+			["textureName"] = "revolver_ammo",
 			["model"] = 3013,
 			["scale"] = 2,
 			["rotation"] = 0
