@@ -209,7 +209,7 @@ local ITEM_DEFINITIONS = {
 		},
 	},
 
-	["G36C"] =
+	["M4"] =
 	{
 		["inventoryItem"] =
 		{
@@ -227,72 +227,12 @@ local ITEM_DEFINITIONS = {
 			["Industry"] = 0,
 			["Farm"] = 0,
 			["Supermarket"] = 0,
-			["Military"] = 3,
+			["Military"] = 6.8,
 		},
 		["weapon"] =
 		{
 			["weaponID"] = 31,
-			["damage"] = 37,
-			["ammo"] = "5.56x45mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "g36c.png",
-		},
-	},
-
-	["M16A2"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 356,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 9.96,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 31,
-			["damage"] = 37,
-			["ammo"] = "5.56x45mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "m4.png",
-		},
-	},
-
-	["M4A1"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 356,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 7.38,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 31,
-			["damage"] = 42,
+			["damage"] = 40,
 			["ammo"] = "5.56x45mm Cartridge",
 			["slot"] = 1,
 			["imagePath"] = "m4.png",
