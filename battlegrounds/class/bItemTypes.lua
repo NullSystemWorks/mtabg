@@ -203,7 +203,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 34,
 			["damage"] = 77,
-			["ammo"] = "7.62x54mm Cartridge",
+			["ammo"] = "Sniper ammo",
 			["slot"] = 1,
 			["imagePath"] = "sniper.png",
 		},
@@ -491,7 +491,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	["7.62x54mm Cartridge"] =
+	["Sniper ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -499,7 +499,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "762x54cartridge",
+			["textureName"] = "sniper_ammo",
 			["model"] = 1271,
 			["scale"] = 2,
 			["rotation"] = 0
