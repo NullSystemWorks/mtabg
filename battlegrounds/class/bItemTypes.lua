@@ -83,7 +83,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 23,
 			["damage"] = 32,
-			["ammo"] = "9x18mm Cartridge",
+			["ammo"] = "Colt45 ammo",
 			["slot"] = 2,
 			["imagePath"] = "silenced_colt45.png",
 		},
@@ -356,7 +356,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	["9x18mm Cartridge"] =
+	["Colt45 ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -364,7 +364,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "9x18cartridge",
+			["textureName"] = "colt45_ammo",
 			["model"] = 2057,
 			["scale"] = 2,
 			["rotation"] = 0

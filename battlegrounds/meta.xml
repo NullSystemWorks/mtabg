@@ -132,8 +132,8 @@
 	<script src="model/cLoadSkins.lua" type="client" cache="false" />
 	<file src="model/items/txd/jerrycan.txd" />
 	<file src="model/items/dff/jerrycan.dff" />
-	<file src="model/items/txd/9x18cartridge.txd" />
-	<file src="model/items/dff/9x18cartridge.dff" />
+	<file src="model/items/txd/colt45_ammo.txd" />
+	<file src="model/items/dff/colt45_ammo.dff" />
 	<file src="model/items/txd/9x19cartridge.txd" />
 	<file src="model/items/dff/9x19cartridge.dff" />
 	<file src="model/items/txd/12gauge.txd" />
