@@ -269,7 +269,7 @@ local ITEM_DEFINITIONS = {
 		},
 	},
 
-	["Winchester 1866"] =
+	["Shotgun"] =
 	{
 		["inventoryItem"] =
 		{
@@ -285,7 +285,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["Residential"] = 0,
 			["Industry"] = 0,
-			["Farm"] = 5.94,
+			["Farm"] = 8,
 			["Supermarket"] = 0.94,
 			["Military"] = 10,
 		},
@@ -295,37 +295,7 @@ local ITEM_DEFINITIONS = {
 			["damage"] = 100,
 			["ammo"] = "1866 Slug",
 			["slot"] = 1,
-			["imagePath"] = "winchester.png",
-		},
-	},
-
-	["Double-barreled Shotgun"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 351,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 9.88,
-			["Supermarket"] = 0.94,
-			["Military"] = 10,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 25,
-			["damage"] = 100,
-			["ammo"] = "1866 Slug",
-			["slot"] = 1,
-			["imagePath"] = "sawn.png",
+			["imagePath"] = "shotgun.png",
 		},
 	},
 
