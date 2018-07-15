@@ -136,8 +136,6 @@
 	<file src="model/items/dff/colt45_ammo.dff" />
 	<file src="model/items/txd/machinegun_ammo.txd" />
 	<file src="model/items/dff/machinegun_ammo.dff" />
-	<file src="model/items/txd/12gauge.txd" />
-	<file src="model/items/dff/12gauge.dff" />
 	<file src="model/items/txd/rifle_ammo.txd" />
 	<file src="model/items/dff/rifle_ammo.dff" />
 	<file src="model/items/txd/556x45cartridge.txd" />

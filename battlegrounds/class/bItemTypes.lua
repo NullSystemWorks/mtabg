@@ -527,33 +527,6 @@ local ITEM_DEFINITIONS = {
 		["worldObject"] =
 		{
 			["textureName"] = "shotgun_ammo",
-			["model"] = 2033,
-			["scale"] = 2,
-			["rotation"] = 0
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 40,
-			["Farm"] = 30,
-			["Supermarket"] = 15,
-			["Military"] = 10,
-		},
-		["ammo"] =
-		{
-			["clipSize"] = 15,
-		}
-	},
-
-	["12 Gauge Pellet"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 0.2,
-		},
-		["worldObject"] =
-		{
-			["textureName"] = "12gauge",
 			["model"] = 2358,
 			["scale"] = 2,
 			["rotation"] = 0
