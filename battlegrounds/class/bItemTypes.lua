@@ -323,7 +323,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 27,
 			["damage"] = 92,
-			["ammo"] = "12 Gauge Pellet",
+			["ammo"] = "Shotgun ammo",
 			["slot"] = 1,
 			["imagePath"] = "combat_shotgun.png",
 		},
