@@ -179,7 +179,7 @@ local ITEM_DEFINITIONS = {
 		},
 	},
 
-	["M24"] =
+	["Sniper"] =
 	{
 		["inventoryItem"] =
 		{
@@ -197,15 +197,15 @@ local ITEM_DEFINITIONS = {
 			["Industry"] = 0,
 			["Farm"] = 0,
 			["Supermarket"] = 0,
-			["Military"] = 0.19,
+			["Military"] = 2,
 		},
 		["weapon"] =
 		{
 			["weaponID"] = 34,
-			["damage"] = 100,
+			["damage"] = 77,
 			["ammo"] = "7.62x54mm Cartridge",
 			["slot"] = 1,
-			["imagePath"] = "M24.png",
+			["imagePath"] = "sniper.png",
 		},
 	},
 
@@ -236,36 +236,6 @@ local ITEM_DEFINITIONS = {
 			["ammo"] = "5.56x45mm Cartridge",
 			["slot"] = 1,
 			["imagePath"] = "m4.png",
-		},
-	},
-
-	["SVD Dragunov"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 358,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 2,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 34,
-			["damage"] = 77,
-			["ammo"] = "7.62x54mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "svd.png",
 		},
 	},
 
