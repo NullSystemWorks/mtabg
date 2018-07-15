@@ -134,8 +134,8 @@
 	<file src="model/items/dff/jerrycan.dff" />
 	<file src="model/items/txd/colt45_ammo.txd" />
 	<file src="model/items/dff/colt45_ammo.dff" />
-	<file src="model/items/txd/9x19cartridge.txd" />
-	<file src="model/items/dff/9x19cartridge.dff" />
+	<file src="model/items/txd/machinegun_ammo.txd" />
+	<file src="model/items/dff/machinegun_ammo.dff" />
 	<file src="model/items/txd/12gauge.txd" />
 	<file src="model/items/dff/12gauge.dff" />
 	<file src="model/items/txd/308winchester.txd" />

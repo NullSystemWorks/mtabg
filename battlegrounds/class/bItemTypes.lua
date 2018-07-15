@@ -23,7 +23,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 22,
 			["damage"] = 35,
-			["ammo"] = "9x19mm Cartridge",
+			["ammo"] = "Machine gun ammo",
 			["slot"] = 2,
 			["imagePath"] = "colt45.png",
 		},
@@ -113,7 +113,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 28,
 			["damage"] = 27,
-			["ammo"] = "9x19mm Cartridge",
+			["ammo"] = "Machine gun ammo",
 			["slot"] = 2,
 			["imagePath"] = "pdw.png",
 		},
@@ -143,7 +143,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 29,
 			["damage"] = 27,
-			["ammo"] = "9x19mm Cartridge",
+			["ammo"] = "Machine gun ammo",
 			["slot"] = 2,
 			["imagePath"] = "mp5a5.png",
 		},
@@ -383,7 +383,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	["9x19mm Cartridge"] =
+	["Machine gun ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -391,7 +391,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "9x19cartridge",
+			["textureName"] = "machinegun_ammo",
 			["model"] = 2041,
 			["scale"] = 2,
 			["rotation"] = 0
