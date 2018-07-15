@@ -149,7 +149,7 @@ local ITEM_DEFINITIONS = {
 		},
 	},
 
-	["AK-74"] =
+	["AK-47"] =
 	{
 		["inventoryItem"] =
 		{
@@ -164,108 +164,18 @@ local ITEM_DEFINITIONS = {
 		["spawnChance"] =
 		{
 			["Residential"] = 0,
-			["Industry"] = 0,
+			["Industry"] = 1.7,
 			["Farm"] = 0,
 			["Supermarket"] = 0,
-			["Military"] = 12.53,
+			["Military"] = 12,
 		},
 		["weapon"] =
 		{
 			["weaponID"] = 30,
-			["damage"] = 42,
+			["damage"] = 40,
 			["ammo"] = "7.62x39mm Cartridge",
 			["slot"] = 1,
 			["imagePath"] = "ak47.png",
-		},
-	},
-
-	["AKM"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 355,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 12,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 30,
-			["damage"] = 42,
-			["ammo"] = "7.62x39mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "ak47.png",
-		},
-	},
-
-	["Sa58V CCO"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 355,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 6.69,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 12,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 30,
-			["damage"] = 37,
-			["ammo"] = "7.62x39mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "sa58v.png",
-		},
-	},
-
-	["FN FAL"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 355,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 12,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 30,
-			["damage"] = 37,
-			["ammo"] = "7.62x39mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "fnfal.png",
 		},
 	},
 
