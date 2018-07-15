@@ -138,8 +138,8 @@
 	<file src="model/items/dff/machinegun_ammo.dff" />
 	<file src="model/items/txd/12gauge.txd" />
 	<file src="model/items/dff/12gauge.dff" />
-	<file src="model/items/txd/308winchester.txd" />
-	<file src="model/items/dff/308winchester.dff" />
+	<file src="model/items/txd/rifle_ammo.txd" />
+	<file src="model/items/dff/rifle_ammo.dff" />
 	<file src="model/items/txd/556x45cartridge.txd" />
 	<file src="model/items/dff/556x45cartridge.dff" />
 	<file src="model/items/txd/assault_ammo.txd" />

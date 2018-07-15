@@ -263,7 +263,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 33,
 			["damage"] = 50,
-			["ammo"] = ".303 British Cartridge",
+			["ammo"] = "Rifle ammo",
 			["slot"] = 1,
 			["imagePath"] = "rifle.png",
 		},
@@ -410,7 +410,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	[".303 British Cartridge"] =
+	["Rifle ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -418,7 +418,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "308winchester",
+			["textureName"] = "rifle_ammo",
 			["model"] = 2036,
 			["scale"] = 2,
 			["rotation"] = 0
