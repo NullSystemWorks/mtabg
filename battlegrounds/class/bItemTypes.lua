@@ -1,5 +1,5 @@
 local ITEM_DEFINITIONS = {
-	["M1911"] =
+	["Colt45"] =
 	{
 		["inventoryItem"] =
 		{
@@ -13,19 +13,19 @@ local ITEM_DEFINITIONS = {
 		},
 		["spawnChance"] =
 		{
-			["Residential"] = 13.40,
+			["Residential"] = 8.425,
 			["Industry"] = 0,
 			["Farm"] = 0,
-			["Supermarket"] = 1.89,
-			["Military"] = 11.40,
+			["Supermarket"] = 0.945,
+			["Military"] = 11.18,
 		},
 		["weapon"] =
 		{
 			["weaponID"] = 22,
-			["damage"] = 42,
-			["ammo"] = "11.43x23mm Cartridge",
+			["damage"] = 35,
+			["ammo"] = "9x19mm Cartridge",
 			["slot"] = 2,
-			["imagePath"] = "m1911.png",
+			["imagePath"] = "colt45.png",
 		},
 	},
 
@@ -86,36 +86,6 @@ local ITEM_DEFINITIONS = {
 			["ammo"] = "9x19mm Cartridge",
 			["slot"] = 2,
 			["imagePath"] = "bizon.png",
-		},
-	},
-
-	["M9"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 5,
-		},
-		["worldObject"] =
-		{
-			["model"] = 346,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 3.45,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 10.96,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 22,
-			["damage"] = 27,
-			["ammo"] = "9x19mm Cartridge",
-			["slot"] = 2,
-			["imagePath"] = "m9sd.png",
 		},
 	},
 
