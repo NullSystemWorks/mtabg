@@ -464,33 +464,6 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	["5.56x45mm Cartridge"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 0.2,
-		},
-		["worldObject"] =
-		{
-			["textureName"] = "556x45cartridge",
-			["model"] = 2035,
-			["scale"] = 2,
-			["rotation"] = 0
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 40,
-			["Farm"] = 30,
-			["Supermarket"] = 15,
-			["Military"] = 10,
-		},
-		["ammo"] =
-		{
-			["clipSize"] = 20,
-		}
-	},
-
 	["Sniper ammo"] =
 	{
 		["inventoryItem"] =
