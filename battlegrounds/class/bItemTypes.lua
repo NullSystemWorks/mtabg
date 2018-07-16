@@ -233,7 +233,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 31,
 			["damage"] = 40,
-			["ammo"] = "5.56x45mm Cartridge",
+			["ammo"] = "Assault rifle ammo",
 			["slot"] = 1,
 			["imagePath"] = "m4.png",
 		},
