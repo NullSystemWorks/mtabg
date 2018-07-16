@@ -1,5 +1,5 @@
 local ITEM_DEFINITIONS = {
-	["M1911"] =
+	["Colt45"] =
 	{
 		["inventoryItem"] =
 		{
@@ -13,19 +13,19 @@ local ITEM_DEFINITIONS = {
 		},
 		["spawnChance"] =
 		{
-			["Residential"] = 13.40,
+			["Residential"] = 8.425,
 			["Industry"] = 0,
 			["Farm"] = 0,
-			["Supermarket"] = 1.89,
-			["Military"] = 11.40,
+			["Supermarket"] = 0.945,
+			["Military"] = 11.18,
 		},
 		["weapon"] =
 		{
 			["weaponID"] = 22,
-			["damage"] = 42,
-			["ammo"] = "11.43x23mm Cartridge",
+			["damage"] = 35,
+			["ammo"] = "Colt45 ammo",
 			["slot"] = 2,
-			["imagePath"] = "m1911.png",
+			["imagePath"] = "colt45.png",
 		},
 	},
 
@@ -53,73 +53,13 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 24,
 			["damage"] = 42,
-			["ammo"] = "11.43x23mm Cartridge",
+			["ammo"] = "Revolver ammo",
 			["slot"] = 2,
 			["imagePath"] = "revolver.png",
 		},
 	},
 
-	["Bizon PP-19 SD"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 5,
-		},
-		["worldObject"] =
-		{
-			["model"] = 353,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 7.64,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 10.38,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 29,
-			["damage"] = 27,
-			["ammo"] = "9x19mm Cartridge",
-			["slot"] = 2,
-			["imagePath"] = "bizon.png",
-		},
-	},
-
-	["M9"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 5,
-		},
-		["worldObject"] =
-		{
-			["model"] = 346,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 3.45,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 10.96,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 22,
-			["damage"] = 27,
-			["ammo"] = "9x19mm Cartridge",
-			["slot"] = 2,
-			["imagePath"] = "m9sd.png",
-		},
-	},
-
-	["Makarov SD"] =
+	["Silenced colt45"] =
 	{
 		["inventoryItem"] =
 		{
@@ -143,9 +83,9 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 23,
 			["damage"] = 32,
-			["ammo"] = "9x18mm Cartridge",
+			["ammo"] = "Colt45 ammo",
 			["slot"] = 2,
-			["imagePath"] = "m9sd.png",
+			["imagePath"] = "silenced_colt45.png",
 		},
 	},
 
@@ -173,13 +113,13 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 28,
 			["damage"] = 27,
-			["ammo"] = "9x19mm Cartridge",
+			["ammo"] = "Machine gun ammo",
 			["slot"] = 2,
 			["imagePath"] = "pdw.png",
 		},
 	},
 
-	["MP5A5"] =
+	["MP5"] =
 	{
 		["inventoryItem"] =
 		{
@@ -193,23 +133,23 @@ local ITEM_DEFINITIONS = {
 		},
 		["spawnChance"] =
 		{
-			["Residential"] = 0,
+			["Residential"] = 3.82,
 			["Industry"] = 0,
 			["Farm"] = 0,
 			["Supermarket"] = 0,
-			["Military"] = 10.76,
+			["Military"] = 10.57,
 		},
 		["weapon"] =
 		{
 			["weaponID"] = 29,
 			["damage"] = 27,
-			["ammo"] = "9x19mm Cartridge",
+			["ammo"] = "Machine gun ammo",
 			["slot"] = 2,
 			["imagePath"] = "mp5a5.png",
 		},
 	},
 
-	["AK-74"] =
+	["AK-47"] =
 	{
 		["inventoryItem"] =
 		{
@@ -224,232 +164,22 @@ local ITEM_DEFINITIONS = {
 		["spawnChance"] =
 		{
 			["Residential"] = 0,
-			["Industry"] = 0,
+			["Industry"] = 1.7,
 			["Farm"] = 0,
 			["Supermarket"] = 0,
-			["Military"] = 12.53,
+			["Military"] = 12,
 		},
 		["weapon"] =
 		{
 			["weaponID"] = 30,
-			["damage"] = 42,
-			["ammo"] = "7.62x39mm Cartridge",
+			["damage"] = 40,
+			["ammo"] = "Assault rifle ammo",
 			["slot"] = 1,
 			["imagePath"] = "ak47.png",
 		},
 	},
 
-	["AKM"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 355,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 12,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 30,
-			["damage"] = 42,
-			["ammo"] = "7.62x39mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "ak47.png",
-		},
-	},
-
-	["Sa58V CCO"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 355,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 6.69,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 12,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 30,
-			["damage"] = 37,
-			["ammo"] = "7.62x39mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "sa58v.png",
-		},
-	},
-
-	["FN FAL"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 355,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 12,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 30,
-			["damage"] = 37,
-			["ammo"] = "7.62x39mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "fnfal.png",
-		},
-	},
-
-	["M24"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 358,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 0.19,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 34,
-			["damage"] = 100,
-			["ammo"] = "7.62x54mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "M24.png",
-		},
-	},
-
-	["G36C"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 356,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 3,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 31,
-			["damage"] = 37,
-			["ammo"] = "5.56x45mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "g36c.png",
-		},
-	},
-
-	["M16A2"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 356,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 9.96,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 31,
-			["damage"] = 37,
-			["ammo"] = "5.56x45mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "m4.png",
-		},
-	},
-
-	["M4A1"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 356,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 0,
-			["Supermarket"] = 0,
-			["Military"] = 7.38,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 31,
-			["damage"] = 42,
-			["ammo"] = "5.56x45mm Cartridge",
-			["slot"] = 1,
-			["imagePath"] = "m4.png",
-		},
-	},
-
-	["SVD Dragunov"] =
+	["Sniper"] =
 	{
 		["inventoryItem"] =
 		{
@@ -473,13 +203,43 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 34,
 			["damage"] = 77,
-			["ammo"] = "7.62x54mm Cartridge",
+			["ammo"] = "Sniper ammo",
 			["slot"] = 1,
-			["imagePath"] = "svd.png",
+			["imagePath"] = "sniper.png",
 		},
 	},
 
-	["Mosin-Nagant"] =
+	["M4"] =
+	{
+		["inventoryItem"] =
+		{
+			["weight"] = 10,
+		},
+		["worldObject"] =
+		{
+			["model"] = 356,
+			["scale"] = 1,
+			["rotation"] = 90
+		},
+		["spawnChance"] =
+		{
+			["Residential"] = 0,
+			["Industry"] = 0,
+			["Farm"] = 0,
+			["Supermarket"] = 0,
+			["Military"] = 6.8,
+		},
+		["weapon"] =
+		{
+			["weaponID"] = 31,
+			["damage"] = 40,
+			["ammo"] = "Assault rifle ammo",
+			["slot"] = 1,
+			["imagePath"] = "m4.png",
+		},
+	},
+
+	["Rifle"] =
 	{
 		["inventoryItem"] =
 		{
@@ -503,13 +263,13 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 33,
 			["damage"] = 50,
-			["ammo"] = ".303 British Cartridge",
+			["ammo"] = "Rifle ammo",
 			["slot"] = 1,
-			["imagePath"] = "enfield.png",
+			["imagePath"] = "rifle.png",
 		},
 	},
 
-	["Winchester 1866"] =
+	["Shotgun"] =
 	{
 		["inventoryItem"] =
 		{
@@ -525,7 +285,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["Residential"] = 0,
 			["Industry"] = 0,
-			["Farm"] = 5.94,
+			["Farm"] = 8,
 			["Supermarket"] = 0.94,
 			["Military"] = 10,
 		},
@@ -533,43 +293,13 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 25,
 			["damage"] = 100,
-			["ammo"] = "1866 Slug",
+			["ammo"] = "Shotgun ammo",
 			["slot"] = 1,
-			["imagePath"] = "winchester.png",
+			["imagePath"] = "shotgun.png",
 		},
 	},
 
-	["Double-barreled Shotgun"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 10,
-		},
-		["worldObject"] =
-		{
-			["model"] = 351,
-			["scale"] = 1,
-			["rotation"] = 90
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 0,
-			["Farm"] = 9.88,
-			["Supermarket"] = 0.94,
-			["Military"] = 10,
-		},
-		["weapon"] =
-		{
-			["weaponID"] = 25,
-			["damage"] = 100,
-			["ammo"] = "1866 Slug",
-			["slot"] = 1,
-			["imagePath"] = "sawn.png",
-		},
-	},
-
-	["M1014"] =
+	["Combat shotgun"] =
 	{
 		["inventoryItem"] =
 		{
@@ -593,13 +323,13 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 27,
 			["damage"] = 92,
-			["ammo"] = "12 Gauge Pellet",
+			["ammo"] = "Shotgun ammo",
 			["slot"] = 1,
-			["imagePath"] = "spaz.png",
+			["imagePath"] = "combat_shotgun.png",
 		},
 	},
 
-	["11.43x23mm Cartridge"] =
+	["Revolver ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -607,7 +337,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "1143x23cartridge",
+			["textureName"] = "revolver_ammo",
 			["model"] = 3013,
 			["scale"] = 2,
 			["rotation"] = 0
@@ -626,7 +356,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	["9x18mm Cartridge"] =
+	["Colt45 ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -634,7 +364,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "9x18cartridge",
+			["textureName"] = "colt45_ammo",
 			["model"] = 2057,
 			["scale"] = 2,
 			["rotation"] = 0
@@ -653,7 +383,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	["9x19mm Cartridge"] =
+	["Machine gun ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -661,7 +391,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "9x19cartridge",
+			["textureName"] = "machinegun_ammo",
 			["model"] = 2041,
 			["scale"] = 2,
 			["rotation"] = 0
@@ -680,7 +410,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	[".303 British Cartridge"] =
+	["Rifle ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -688,7 +418,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "308winchester",
+			["textureName"] = "rifle_ammo",
 			["model"] = 2036,
 			["scale"] = 2,
 			["rotation"] = 0
@@ -707,7 +437,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	["7.62x39mm Cartridge"] =
+	["Assault rifle ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -715,7 +445,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "762x51cartridge",
+			["textureName"] = "assault_ammo",
 			["model"] = 2034,
 			["scale"] = 2,
 			["rotation"] = 0
@@ -734,7 +464,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	["5.56x45mm Cartridge"] =
+	["Sniper ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -742,34 +472,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "556x45cartridge",
-			["model"] = 2035,
-			["scale"] = 2,
-			["rotation"] = 0
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 40,
-			["Farm"] = 30,
-			["Supermarket"] = 15,
-			["Military"] = 10,
-		},
-		["ammo"] =
-		{
-			["clipSize"] = 20,
-		}
-	},
-
-	["7.62x54mm Cartridge"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 0.2,
-		},
-		["worldObject"] =
-		{
-			["textureName"] = "762x54cartridge",
+			["textureName"] = "sniper_ammo",
 			["model"] = 1271,
 			["scale"] = 2,
 			["rotation"] = 0
@@ -788,7 +491,7 @@ local ITEM_DEFINITIONS = {
 		}
 	},
 
-	["1866 Slug"] =
+	["Shotgun ammo"] =
 	{
 		["inventoryItem"] =
 		{
@@ -796,34 +499,7 @@ local ITEM_DEFINITIONS = {
 		},
 		["worldObject"] =
 		{
-			["textureName"] = "1866slug",
-			["model"] = 2033,
-			["scale"] = 2,
-			["rotation"] = 0
-		},
-		["spawnChance"] =
-		{
-			["Residential"] = 0,
-			["Industry"] = 40,
-			["Farm"] = 30,
-			["Supermarket"] = 15,
-			["Military"] = 10,
-		},
-		["ammo"] =
-		{
-			["clipSize"] = 15,
-		}
-	},
-
-	["12 Gauge Pellet"] =
-	{
-		["inventoryItem"] =
-		{
-			["weight"] = 0.2,
-		},
-		["worldObject"] =
-		{
-			["textureName"] = "12gauge",
+			["textureName"] = "shotgun_ammo",
 			["model"] = 2358,
 			["scale"] = 2,
 			["rotation"] = 0
