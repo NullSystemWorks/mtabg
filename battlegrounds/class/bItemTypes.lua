@@ -23,7 +23,7 @@ local ITEM_DEFINITIONS = {
 		{
 			["weaponID"] = 22,
 			["damage"] = 35,
-			["ammo"] = "Machine gun ammo",
+			["ammo"] = "Colt45 ammo",
 			["slot"] = 2,
 			["imagePath"] = "colt45.png",
 		},
