@@ -59,7 +59,7 @@ local ITEM_DEFINITIONS = {
 		},
 	},
 
-	["Makarov SD"] =
+	["Silenced colt45"] =
 	{
 		["inventoryItem"] =
 		{
@@ -85,7 +85,7 @@ local ITEM_DEFINITIONS = {
 			["damage"] = 32,
 			["ammo"] = "9x18mm Cartridge",
 			["slot"] = 2,
-			["imagePath"] = "m9sd.png",
+			["imagePath"] = "silenced_colt45.png",
 		},
 	},
 
