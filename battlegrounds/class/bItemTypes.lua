@@ -239,7 +239,7 @@ local ITEM_DEFINITIONS = {
 		},
 	},
 
-	["Mosin-Nagant"] =
+	["Rifle"] =
 	{
 		["inventoryItem"] =
 		{
@@ -265,7 +265,7 @@ local ITEM_DEFINITIONS = {
 			["damage"] = 50,
 			["ammo"] = ".303 British Cartridge",
 			["slot"] = 1,
-			["imagePath"] = "enfield.png",
+			["imagePath"] = "rifle.png",
 		},
 	},
 
