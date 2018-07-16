@@ -299,7 +299,7 @@ local ITEM_DEFINITIONS = {
 		},
 	},
 
-	["M1014"] =
+	["Combat shotgun"] =
 	{
 		["inventoryItem"] =
 		{
@@ -325,7 +325,7 @@ local ITEM_DEFINITIONS = {
 			["damage"] = 92,
 			["ammo"] = "12 Gauge Pellet",
 			["slot"] = 1,
-			["imagePath"] = "spaz.png",
+			["imagePath"] = "combat_shotgun.png",
 		},
 	},
 
