@@ -23,7 +23,7 @@ local function pointToNextFile()
 end
 
 local function openFile()
-	workingFile = File(path)
+	workingFile = fileOpen(path)
 	if not workingFile then
 		outputDebugString("Filed to open file!")
 	end
