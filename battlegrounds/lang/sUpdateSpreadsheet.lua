@@ -23,7 +23,7 @@ local function pointToNextFile()
 end
 
 local function openFile()
-	workingFile = fileOpen(path, true)
+	workingFile = File:open(path, true)
 	if not workingFile then
 		outputDebugString("Filed to open file!")
 	end
