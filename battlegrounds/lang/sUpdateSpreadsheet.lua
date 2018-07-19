@@ -25,7 +25,7 @@ end
 local function openFile()
 	workingFile = File.open(path, true)
 	if not workingFile then
-		outputDebugString("Filed to open file!")
+		outputDebugString("Failed to open file!")
 	end
 end
 
