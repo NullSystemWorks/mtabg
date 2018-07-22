@@ -1,26 +1,37 @@
-PixelTexture = {} --PixelTexture class
-local pixelTexture_mt = {__index = PixelTexture} --the metatable
-local renderTable = {} --textures being rendered
-local renderingCount = 0 --how many items are being rendered
-local fadeTable = {} --elements fading
-	fadeTable["in"] = {}
-	fadeTable["out"] = {}
-local fadingCount = {["in"] = 0, ["out"] = 0} --how many items are being faded
-local crazyModeState = false
+PixelTexture = {}
+local pixelTexture_mt = {__index = PixelTexture}
+
+--This hex incantation represents a white pixel
+local BASE_PIXEL = "\255\255\255\255\001\000\001\000"
+local IN, OUT = 0, 1 --magic names for magic numbers
+local rendering = {}
+local renderingCount = 0
+local fading = {[IN] = {}, [OUT] = {}}
+local fadingCount = {[IN] = 0, [OUT] = 0}
+local fadingHandler = {}
+local crazyMode = false
 
 local sx, sy = guiGetScreenSize()
 
---Localized functions
+local DxTexture = DxTexture
+local dxGetTexturePixels = dxGetTexturePixels
+local dxSetPixelColor = dxSetPixelColor
+local dxSetTexturePixels = dxSetTexturePixels
+local setmetatable = setmetatable
+local addEventHandler = addEventHandler
+local removeEventHandler = removeEventHandler
+local table = table
+local ipairs = ipairs
+local pairs = pairs
+local dxDrawImage = dxDrawImage
+local math = math
+local tocolor = tocolor
+local getTickCount = getTickCount
 
-
---Generate pixel textures
 function PixelTexture.new(r, g, b, a, rootx, rooty, width, height)
-	local tex = dxCreateTexture(1,1) --generate texture
-	local pixel = dxGetTexturePixels (tex) --get pixel
-	dxSetPixelColor (pixel, 0, 0, 255, 255, 255, 255) --set pixel color to white
-	dxSetTexturePixels (tex, pixel) --set pixel
+	local tex = DxTexture(BASE_PIXEL)
 
-	local newInst = { --the new instance
+	local newInst = {
 		rootx = rootx or 0,
 		rooty = rooty or 0,
 		width = width or 128,
@@ -29,89 +40,80 @@ function PixelTexture.new(r, g, b, a, rootx, rooty, width, height)
 		g = g or 0,
 		b = b or 0,
 		a = a or 255,
-		tick = 0,
+		isRendering = false,
+		lastTick = 0,
 		texture = tex
 	}
-	setmetatable(newInst, pixelTexture_mt) --all instances share the same metatable
-	if tex then
-		return newInst
-	else
-		return false
-	end
-end
-
-function PixelTexture:print()
-	print(self.r)
-	print(self.g)
-	print(self.b)
-	print(self.a)
-	iprint(self.texture)
+	setmetatable(newInst, pixelTexture_mt)
+	return tex and newInst or false
 end
 
 --Pixel showcase
 local function crazyRender()
-	for k, pix in ipairs(renderTable) do
-		dxDrawImage(math.random(0,sx),math.random(0,sy), math.random(32,64), math.random(32,64), pix.texture)
+	for _, pix in ipairs(rendering) do
+		dxDrawImage(math.random(0,sx),math.random(0,sy),
+			math.random(32,64), math.random(32,64), pix.texture,
+			0, 0, 0, tocolor(pix.r, pix.g, pix.b, pix.a))
 	end
 end
 
 function PixelTexture.setParty(goCrazy)
-	if not crazyModeState and goCrazy then
-		addEventHandler("onClientRender", root, crazyRender) --enables the render
-		crazyModeState = true
-	elseif crazyModeState and not goCrazy then
-		removeEventHandler("onClientRender", root, crazyRender) --disables the render
-		crazyModeState = false
+	if not crazyMode and goCrazy then
+		addEventHandler("onClientRender", root, crazyRender)
+		crazyMode = true
+	elseif crazyMode and not goCrazy then
+		removeEventHandler("onClientRender", root, crazyRender)
+		crazyMode = false
 	end
 end
 
-function PixelTexture.getParty() return crazyModeState end
+function PixelTexture.getParty()
+	return crazyMode
+end
 
---Render all elements int render table
-local function renderPixels()
-	for k, pix in ipairs(renderTable) do
-		dxDrawImage(pix.rootx, pix.rooty, pix.width, pix.height, pix.texture, 0, 0, 0, tocolor(pix.r, pix.g, pix.b, pix.a))
+local function renderFrame()
+	for _, pix in ipairs(rendering) do
+		dxDrawImage(pix.rootx, pix.rooty, pix.width, pix.height,
+			pix.texture, 0, 0, 0, tocolor(pix.r, pix.g, pix.b, pix.a))
 	end
 end
 
---Handle fading textures
-local function fadeIn()
-	for pix, fadeTime in pairs(fadeTable["in"]) do --for every fading object
+fadingHandler[IN] = function()
+	for pix, fadeTime in pairs(fading[IN]) do
 		if pix.a < 255 then --if fade is not done
-			local dTime = getTickCount() - pix.tick --time since last frame
-			local controlVar = (256*dTime)/fadeTime --how much to change for this step
-			pix.a = pix.a + controlVar --change alpha
-			if pix.a > 255 then --constrain values
+			local frameTime = getTickCount() - pix.lastTick
+			local changeStep = (256*frameTime)/fadeTime
+			pix.a = pix.a + changeStep
+			if pix.a > 255 then
 				pix.a = 255
 			end
-			pix.tick = getTickCount() --save time for next run
+			pix.lastTick = getTickCount()
 		else
-			if fadingCount["in"] == 1 then --if removing the last element
-				removeEventHandler("onClientRender", root, fadeIn) --nothing to fade
+			if fadingCount[IN] == 1 then --if removing the last element
+				removeEventHandler("onClientRender", root, fadingHandler[IN])
 			end
-			fadeTable["in"][pix] = nil --remove from fading list
-			fadingCount["in"] = fadingCount["in"] - 1
+			fading[IN][pix] = nil
+			fadingCount[IN] = fadingCount[IN] - 1
 		end
 	end
 end
 
---Handle fading textures
-local function fadeOut()
-	for pix, fadeTime in pairs(fadeTable["out"]) do --for every fading object
+fadingHandler[OUT] = function()
+	for pix, fadeTime in pairs(fading[OUT]) do
 		if pix.a > 0 then --if fade is not done
-			local dTime = getTickCount() - pix.tick --time since last frame
-			local controlVar = (256*dTime)/fadeTime --how much to change for this step
-			pix.a = pix.a - controlVar --change alpha
-			if pix.a < 0 then --constrain values
+			local frameTime = getTickCount() - pix.lastTick
+			local changeStep = (256*frameTime)/fadeTime
+			pix.a = pix.a - changeStep
+			if pix.a < 0 then
 				pix.a = 0
 			end
-			pix.tick = getTickCount() --save time for next run
+			pix.lastTick = getTickCount()
 		else
-			if fadingCount["out"] == 1 then --if removing the last element
-				removeEventHandler("onClientRender", root, fadeOut) --nothing to fade
+			if fadingCount[OUT] == 1 then --if removing the last element
+				removeEventHandler("onClientRender", root, fadingHandler[OUT])
 			end
-			fadeTable["out"][pix] = nil --remove from fading list
-			fadingCount["out"] = fadingCount["out"] - 1
+			fading[OUT][pix] = nil
+			fadingCount[OUT] = fadingCount[OUT] - 1
 		end
 	end
 end
@@ -121,77 +123,90 @@ function PixelTexture:setR(r) self.r = r end
 function PixelTexture:setG(g) self.g = g end
 function PixelTexture:setB(b) self.b = b end
 function PixelTexture:setA(a) self.a = a end
-function PixelTexture:getR()	return self.r end
+function PixelTexture:getR() return self.r end
 function PixelTexture:getG() return self.g end
 function PixelTexture:getB() return self.b end
 function PixelTexture:getA() return self.a end
-function PixelTexture:setRGBA(r,g,b,a) self.r, self.g, self.b, self.a = r, g, b, a end
-function PixelTexture:getRGBA() return self.r, self.g, self.b, self.a end
-function PixelTexture:setSize(width, height) self.width = width self.height = height end
-function PixelTexture:getSize() return self.width, self.height end
-function PixelTexture:setRoot(rootx, rooty) self.rootx = rootx self.rooty = rooty end
-function PixelTexture:getRoot() return self.rootx, self.rooty end
+function PixelTexture:setRGBA(r,g,b,a)
+	self.r, self.g, self.b, self.a = r, g, b, a
+end
+function PixelTexture:getRGBA()
+	return self.r, self.g, self.b, self.a
+end
+function PixelTexture:setSize(width, height)
+	self.width = width
+	self.height = height
+end
+function PixelTexture:getSize()
+	return self.width, self.height
+end
+function PixelTexture:setRoot(rootx, rooty)
+	self.rootx = rootx
+	self.rooty = rooty
+end
+function PixelTexture:getRoot()
+	return self.rootx, self.rooty
+end
 
---Enable disable rendering
+local function stopRenderingIfLastElement()
+	if #rendering == 0 then
+		removeEventHandler("onClientRender", root, renderFrame)
+	end
+end
+
+local function startRenderingIfFirstElement()
+	if #rendering == 0 then
+		addEventHandler("onClientRender", root, renderFrame)
+	end
+end
+
+local function removeFromRenderingQueue(self)
+	for removeIndex, pix in ipairs(rendering) do
+		if pix == self then
+			--could we use a weak table to remove this loop?
+			table.remove(rendering, removeIndex)
+			break
+		end
+	end
+end
+
+local function insertIntoRenderingQueue(self)
+	table.insert(rendering, self)
+end
+
 function PixelTexture:setRendering(shouldRender)
-	if shouldRender then --should start rendering
-		if not renderTable[self] then --element not in render table
-			if shouldRender and renderingCount == 0 then --if adding the first element
-				addEventHandler("onClientRender", root, renderPixels) --something to render
-			end
-			renderTable[self] = true --set element as rendering
-			table.insert(renderTable, self)
-			renderingCount = renderingCount + 1
-		end
-	else
-		if renderTable[self] then --should stop rendering
-			if not shouldRender and renderingCount == 1 then --if removing the last element
-				removeEventHandler("onClientRender", root, renderPixels) --nothing to render
-			end
-			local counter = 1
-			for k, v in pairs(renderTable) do
-				if v == self then
-					-- print(renderTable[counter])
-					table.remove(renderTable, counter)
-				end
-				counter = counter + 1
-			end
-			renderTable[self] = nil --remove from rendering list
-			renderingCount = renderingCount - 1
-		end
-	end
-	-- iprint("----")
-	-- local count = 0
-	-- for k,v in pairs(renderTable) do
-	-- 	count = count + 1
-	-- 	print(k, v, count)
-	-- end
-	-- iprint("----")
-end
-
-function PixelTexture:getRendering() return renderTable[self] or false end
-
-function PixelTexture:fadeIn(fadingSpeed)
-	if not fadeTable["in"][self] then --element not in fading table
-		if fadingCount["in"] == 0 then --if adding the first element
-			addEventHandler("onClientRender", root, fadeIn) --something to fade
-		end
-		self.tick = getTickCount()
-		fadeTable["in"][self] = fadingSpeed --set element as fading and set a fading speed
-		fadingCount["in"] = fadingCount["in"] + 1
+	if not self.isRendering and shouldRender then
+		startRenderingIfFirstElement()
+		self.isRendering = true
+		insertIntoRenderingQueue(self)
+	elseif self.isRendering and not shouldRender then
+		self.isRendering = false
+		removeFromRenderingQueue(self)
+		stopRenderingIfLastElement()
 	end
 end
 
-function PixelTexture:fadeOut(fadingSpeed)
-	if not fadeTable["out"][self] then --element not in fading table
-		if fadingCount["out"] == 0 then --if adding the first element
-			addEventHandler("onClientRender", root, fadeOut) --something to fade
+function PixelTexture:getRendering()
+	return self.isRendering
+end
+
+local function startFade(self, fadeDuration, fadeType)
+	if not fading[fadeType][self] then
+		if fadingCount[fadeType] == 0 then
+			addEventHandler("onClientRender", root, fadingHandler[fadeType])
 		end
-		self.tick = getTickCount()
-		fadeTable["out"][self] = fadingSpeed --set element as fading and set a fading speed
-		fadingCount["out"] = fadingCount["out"] + 1
+		self.lastTick = getTickCount()
+		fading[fadeType][self] = fadeDuration
+		fadingCount[fadeType] = fadingCount[fadeType] + 1
 	end
 end
 
---TODO: implement render order management
---TODO: optimize code(mainly localize)
+function PixelTexture:fadeIn(fadeDuration)
+	startFade(self, fadeDuration, IN)
+end
+
+function PixelTexture:fadeOut(fadeDuration)
+	startFade(self, fadeDuration, OUT)
+end
+
+--TODO: implement rendering order management
