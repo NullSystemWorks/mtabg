@@ -1,170 +1,171 @@
 <meta>
-	<info
-		author="Null System Works"
-		name="MTA:BG"
-		description="MTA Battlegrounds"
-		version="0.1.0a"
-		type="gamemode"
-	/>
-	<min_mta_version server="1.5.4" client="1.5.4" />
-	<oop>true</oop>
+<info
+author="Null System Works"
+name="MTA:BG"
+description="MTA Battlegrounds"
+version="0.1.0a"
+type="gamemode"
+/>
 
-	<!-- Map -->
-	<map src="spawnisland.map" />
+<min_mta_version server="1.5.4" client="1.5.4" />
+<oop>true</oop>
 
-	<!-- Library -->
-	<script src="lib/math.lua" type="shared" cache="false" />
-	<script src="lib/graphics2D/cMisc.lua" type="client" cache="false" />
-	<script src="lib/graphics2D/cAtlas.lua" type="client" cache="false" />
-	<script src="lib/graphics2D/cGif.lua" type="client" cache="false" />
-	<script src="lib/graphics2D/cPixelTexture.lua" type="client" cache="false" />
-	<script src="lib/boneAttach/server.lua" type="server" />
-	<script src="lib/boneAttach/both.lua" type="server" />
-	<script src="lib/boneAttach/both.lua" type="client" cache="false" />
-	<script src="lib/boneAttach/client.lua" type="client" cache="false" />
+<!-- Map -->
+<map src="spawnisland.map" />
 
-	<!-- Language -->
-	<config src="lang/language.fods" type="server" />
-	<script src="lang/sLanguageParser.lua" type="server" />
-	<script src="lang/sWriteLuaFile.lua" type="server" />
-	<script src="lang/sTreatRawStringTable.lua" type="server" />
-	<script src="lang/sXMLHandler.lua" type="server" />
-	<script src="lang/sGetLuaFilePaths.lua" type="server" />
-	<script src="lang/sUpdateSpreadsheet.lua" type="server" />
-	<script src="lang/cLanguageStrings.lua" type="client" cache="false" />
-	<script src="lang/cLanguage.lua" type="client" cache="false" />
-	<script src="lang/cDebug.lua" type="client" cache="false" />
-	<script src="lang/cLanguageGlobeButton.lua" type="client" cache="false" />
-	<script src="lang/cLanguageSelection.lua" type="client" cache="false" />
-	<file src="lang/globeIcon.png"/>
+<!-- Library -->
+<script src="lib/math.lua" type="shared" cache="false" />
+<script src="lib/graphics2D/cMisc.lua" type="client" cache="false" />
+<script src="lib/graphics2D/cAtlas.lua" type="client" cache="false" />
+<script src="lib/graphics2D/cGif.lua" type="client" cache="false" />
+<script src="lib/graphics2D/cPixelTexture.lua" type="client" cache="false" />
+<script src="lib/boneAttach/server.lua" type="server" />
+<script src="lib/boneAttach/both.lua" type="server" />
+<script src="lib/boneAttach/both.lua" type="client" cache="false" />
+<script src="lib/boneAttach/client.lua" type="client" cache="false" />
 
-	<!-- Table -->
-	<script src="lootPointEditor/lootPoints.lua" type="server" />
+<!-- Language -->
+<config src="lang/language.fods" type="server" />
+<script src="lang/sLanguageParser.lua" type="server" />
+<script src="lang/sWriteLuaFile.lua" type="server" />
+<script src="lang/sTreatRawStringTable.lua" type="server" />
+<script src="lang/sXMLHandler.lua" type="server" />
+<script src="lang/sGetLuaFilePaths.lua" type="server" />
+<script src="lang/sUpdateSpreadsheet.lua" type="server" />
+<script src="lang/cLanguageStrings.lua" type="client" cache="false" />
+<script src="lang/cLanguage.lua" type="client" cache="false" />
+<script src="lang/cDebug.lua" type="client" cache="false" />
+<script src="lang/cLanguageGlobeButton.lua" type="client" cache="false" />
+<script src="lang/cLanguageSelection.lua" type="client" cache="false" />
+<file src="lang/globeIcon.png"/>
 
-	<!-- Handler -->
-	<script src="class/sClassStash.lua" type="server" />
-	<script src="class/sQueue.lua" type="server" />
-	<script src="class/sThread.lua" type="server" />
-	<script src="class/sElement.lua" type="server" />
-	<script src="class/sAdmin.lua" type="server" />
-	<script src="class/sRemote.lua" type="server" />
-	<script src="class/sHash.lua" type="server" />
-	<script src="class/sRandom.lua" type="server" />
-	<script src="class/sDatabase.lua" type="server" />
-	<script src="class/sAccount.lua" type="server" />
-	<script src="class/sAlphaKey.lua" type="server" />
-	<script src="class/bConstant.lua" type="shared" cache="false" />
-	<script src="class/sLootSpot.lua" type="server" />
-	<script src="class/sWorldObject.lua" type="server" />
-	<script src="class/sLobby.lua" type="server" />
-	<script src="class/sZone.lua" type="server" />
-	<script src="class/sMatch.lua" type="server" />
-	<script src="class/sPlayer.lua" type="server" />
-	<script src="class/sDeadPlayer.lua" type="server" />
-	<script src="class/sPed.lua" type="server" />
-	<script src="class/bItemTypes.lua" type="shared" cache="false" />
-	<script src="class/sVehicle.lua" type="server" />
-	<script src="class/sPermission.lua" type="server" />
-	<script src="class/sBackpack.lua" type="server" />
-	<script src="class/sInventory.lua" type="server" />
-	<script src="class/cPlayer.lua" type="client" cache="false"/>
-	<script src="class/cMusic.lua" type="client" cache="false"/>
-	<script src="class/cAmbient.lua" type="client" cache="false"/>
-	<script src="class/cNotification.lua" type="client" cache="false"/>
-	<script src="class/sTest.lua" type="server" />
-	<script src="class/cTest.lua" type="client" cache="false"/>
-	<script src="class/cHud.lua" type="client" cache="false"/>
-	<script src="class/cInventory.lua" type="client" cache="false"/>
-	<script src="class/cSidemenu.lua" type="client" cache="false"/>
-	<script src="class/cHomescreen.lua" type="client" cache="false" />
-	<script src="class/cLoadingBar.lua" type="client" cache="false" />
-	<script src="class/cLoginPanel.lua" type="client" cache="false" />
+<!-- Table -->
+<script src="lootPointEditor/lootPoints.lua" type="server" />
 
-	<!-- lootPointEditor -->
-	<script src="lootPointEditor/sWriteTableToDisk.lua" type="server" />
-	<script src="lootPointEditor/sLootEditor.lua" type="server" />
-	<script src="lootPointEditor/cStatusRender.lua" type="client" cache="false" />
-	<file src="lootPointEditor/arrow.png"/>
+<!-- Handler -->
+<script src="class/sClassStash.lua" type="server" />
+<script src="class/sQueue.lua" type="server" />
+<script src="class/sThread.lua" type="server" />
+<script src="class/sElement.lua" type="server" />
+<script src="class/sAdmin.lua" type="server" />
+<script src="class/sRemote.lua" type="server" />
+<script src="class/sHash.lua" type="server" />
+<script src="class/sRandom.lua" type="server" />
+<script src="class/sDatabase.lua" type="server" />
+<script src="class/sAccount.lua" type="server" />
+<script src="class/sAlphaKey.lua" type="server" />
+<script src="class/bConstant.lua" type="shared" cache="false" />
+<script src="class/sLootSpot.lua" type="server" />
+<script src="class/sWorldObject.lua" type="server" />
+<script src="class/sLobby.lua" type="server" />
+<script src="class/sZone.lua" type="server" />
+<script src="class/sMatch.lua" type="server" />
+<script src="class/sPlayer.lua" type="server" />
+<script src="class/sDeadPlayer.lua" type="server" />
+<script src="class/sPed.lua" type="server" />
+<script src="class/bItemTypes.lua" type="shared" cache="false" />
+<script src="class/sVehicle.lua" type="server" />
+<script src="class/sPermission.lua" type="server" />
+<script src="class/sBackpack.lua" type="server" />
+<script src="class/sInventory.lua" type="server" />
+<script src="class/cPlayer.lua" type="client" cache="false"/>
+<script src="class/cMusic.lua" type="client" cache="false"/>
+<script src="class/cAmbient.lua" type="client" cache="false"/>
+<script src="class/cNotification.lua" type="client" cache="false"/>
+<script src="class/sTest.lua" type="server" />
+<script src="class/cTest.lua" type="client" cache="false"/>
+<script src="class/cInventory.lua" type="client" cache="false"/>
+<script src="class/cHud.lua" type="client" cache="false"/>
+<script src="class/cSidemenu.lua" type="client" cache="false"/>
+<script src="class/cLootSpot.lua" type="client" cache="false"/>
+<script src="class/cHomeScreen.lua" type="client" cache="false" />
+<script src="class/cLoadingBar.lua" type="client" cache="false" />
+<script src="class/cLoginPanel.lua" type="client" cache="false" />
 
-	<!-- Authentication -->
-	<file src="account/img/atlas.png" />
-	<file src="account/img/battlegrounds_logo.png" />
-	<file src="account/img/background.png" />
-	<file src="account/img/white.png" />
+<!-- lootPointEditor -->
+<script src="lootPointEditor/sWriteTableToDisk.lua" type="server" />
+<script src="lootPointEditor/sLootEditor.lua" type="server" />
+<script src="lootPointEditor/cStatusRender.lua" type="client" cache="false" />
+<file src="lootPointEditor/arrow.png"/>
 
-	<!-- Font -->
-	<file src="font/etelka.ttf" />
-	<file src="font/bitstream.ttf" />
-	<file src="font/bebas.otf" />
-	<file src="font/tahomab.ttf" />
+<!-- Authentication -->
+<file src="account/img/atlas.png" />
+<file src="account/img/battlegrounds_logo.png" />
+<file src="account/img/white.png" />
 
-	<!-- Gui -->
-	<file src="gui/img/radius.png" />
-	<file src="gui/img/radius2.png" />
-	<file src="gui/img/running.png" />
-	<file src="gui/img/solo_slot.png" />
-	<file src="gui/img/button.png" />
-	<file src="gui/img/battlepointsicon.png" />
-	<file src="gui/img/colt45.png"/>
-	<file src="gui/img/revolver.png"/>
-	<file src="gui/img/silenced_colt45.png"/>
-	<file src="gui/img/pdw.png"/>
-	<file src="gui/img/mp5.png"/>
-	<file src="gui/img/ak47.png"/>
-	<file src="gui/img/sniper.png"/>
-	<file src="gui/img/m4.png"/>
-	<file src="gui/img/rifle.png"/>
-	<file src="gui/img/shotgun.png"/>
-	<file src="gui/img/combat_shotgun.png"/>
-	<file src="gui/img/vestlevel1.png" />
-	<file src="gui/img/vestlevel2.png" />
-	<file src="gui/img/vestlevel3.png" />
-	<file src="gui/img/background_transparent.png" />
+<!-- Font -->
+<file src="font/etelka.ttf" />
+<file src="font/bitstream.ttf" />
+<file src="font/bebas.otf" />
+<file src="font/tahomab.ttf" />
 
-	<!-- Model -->
-	<script src="model/cLoadSkins.lua" type="client" cache="false" />
-	<file src="model/items/txd/jerrycan.txd" />
-	<file src="model/items/dff/jerrycan.dff" />
-	<file src="model/items/txd/colt45_ammo.txd" />
-	<file src="model/items/dff/colt45_ammo.dff" />
-	<file src="model/items/txd/machinegun_ammo.txd" />
-	<file src="model/items/dff/machinegun_ammo.dff" />
-	<file src="model/items/txd/rifle_ammo.txd" />
-	<file src="model/items/dff/rifle_ammo.dff" />
-	<file src="model/items/txd/assault_ammo.txd" />
-	<file src="model/items/dff/assault_ammo.dff" />
-	<file src="model/items/txd/sniper_ammo.txd" />
-	<file src="model/items/dff/sniper_ammo.dff" />
-	<file src="model/items/txd/revolver_ammo.txd" />
-	<file src="model/items/dff/revolver_ammo.dff" />
-	<file src="model/items/txd/shotgun_ammo.txd" />
-	<file src="model/items/dff/shotgun_ammo.dff" />
-	<file src="model/items/txd/bandage.txd" />
-	<file src="model/items/dff/bandage.dff" />
-	<file src="model/items/txd/painkillers.txd" />
-	<file src="model/items/dff/painkillers.dff" />
-	<file src="model/items/txd/first_aid_kit.txd" />
-	<file src="model/items/dff/first_aid_kit.dff" />
-	<file src="model/items/txd/backpack_pouch.txd" />
-	<file src="model/items/dff/backpack_pouch.dff" />
-	<file src="model/items/txd/backpack_survival.txd" />
-	<file src="model/items/dff/backpack_survival.dff" />
-	<file src="model/items/txd/backpack_alice.txd" />
-	<file src="model/items/dff/backpack_alice.dff" />
+<!-- Gui -->
+<file src="gui/img/radius.png" />
+<file src="gui/img/radius2.png" />
+<file src="gui/img/running.png" />
+<file src="gui/img/pixel.png" />
+<file src="gui/img/button.png" />
+<file src="gui/img/battlepointsicon.png" />
+<file src="gui/img/colt45.png"/>
+<file src="gui/img/revolver.png"/>
+<file src="gui/img/silenced_colt45.png"/>
+<file src="gui/img/pdw.png"/>
+<file src="gui/img/mp5.png"/>
+<file src="gui/img/ak47.png"/>
+<file src="gui/img/sniper.png"/>
+<file src="gui/img/m4.png"/>
+<file src="gui/img/rifle.png"/>
+<file src="gui/img/shotgun.png"/>
+<file src="gui/img/combat_shotgun.png"/>
+<file src="gui/img/vestlevel1.png" />
+<file src="gui/img/vestlevel2.png" />
+<file src="gui/img/vestlevel3.png" />
 
-	<!-- Export -->
-	<export function="saveLog" type="server" />
-	<export function="isGameRunning" type="server" />
-	<export function="setAFKTime" type="server" />
-	<export function="setRadiationRate" type="server" />
+<!-- Model -->
+<script src="model/cLoadSkins.lua" type="client" cache="false" />
+<file src="model/items/txd/jerrycan.txd" />
+<file src="model/items/dff/jerrycan.dff" />
+<file src="model/items/txd/colt45_ammo.txd" />
+<file src="model/items/dff/colt45_ammo.dff" />
+<file src="model/items/txd/machinegun_ammo.txd" />
+<file src="model/items/dff/machinegun_ammo.dff" />
+<file src="model/items/txd/rifle_ammo.txd" />
+<file src="model/items/dff/rifle_ammo.dff" />
+<file src="model/items/txd/assault_ammo.txd" />
+<file src="model/items/dff/assault_ammo.dff" />
+<file src="model/items/txd/sniper_ammo.txd" />
+<file src="model/items/dff/sniper_ammo.dff" />
+<file src="model/items/txd/revolver_ammo.txd" />
+<file src="model/items/dff/revolver_ammo.dff" />
+<file src="model/items/txd/shotgun_ammo.txd" />
+<file src="model/items/dff/shotgun_ammo.dff" />
+<file src="model/items/txd/bandage.txd" />
+<file src="model/items/dff/bandage.dff" />
+<file src="model/items/txd/painkillers.txd" />
+<file src="model/items/dff/painkillers.dff" />
+<file src="model/items/txd/first_aid_kit.txd" />
+<file src="model/items/dff/first_aid_kit.dff" />
+<file src="model/items/txd/backpack_pouch.txd" />
+<file src="model/items/dff/backpack_pouch.dff" />
+<file src="model/items/txd/backpack_survival.txd" />
+<file src="model/items/dff/backpack_survival.dff" />
+<file src="model/items/txd/backpack_alice.txd" />
+<file src="model/items/dff/backpack_alice.dff" />
 
-	<!-- Resource -->
-	<include resource="customblips" />
-	<include resource="parachutes" />
+<!-- Export -->
+<export function="saveLog" type="server" />
+<export function="isGameRunning" type="server" />
+<export function="setAFKTime" type="server" />
+<export function="setRadiationRate" type="server" />
 
-	<!-- ACL request -->
-	<aclrequest>
-		<right name="function.stopResource" access="true" />
-		<right name="function.restartResource" access="true" />
-	</aclrequest>
+<!-- Resource -->
+<include resource="customblips" />
+<include resource="parachutes" />
+
+<!-- ACL request -->
+<aclrequest>
+<right name="function.stopResource" access="true" />
+<right name="function.restartResource" access="true" />
+</aclrequest>
+
 </meta>

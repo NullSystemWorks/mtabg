@@ -1,11 +1,16 @@
-Gif = {} --gif class
-local gif_mt = { __index = Gif} --gif metatable
-local renderTable = {} --gifs being rendered
-local renderingCount = 0 --how many gifs are being rendered
+Gif = {}
+local gif_mt = { __index = Gif}
+local rendering = {}
+local renderingCount = 0
 
 local sx, sy = guiGetScreenSize()
 
-function Gif.new(atlas, atlasRootx, atlasRooty, spriteWidth, spriteHeight, spriteCount)
+local getTickCount = getTickCount
+local dxDrawImage = dxDrawImage
+local pairs = pairs
+
+function Gif.new(atlas, atlasRootx, atlasRooty,
+                 spriteWidth, spriteHeight, spriteCount)
 	if getElementType(atlas) == "texture"
 	and type(atlasRootx) == "number" and atlasRootx >= 0
 	and type(atlasRooty) == "number" and atlasRooty >= 0
@@ -13,13 +18,15 @@ function Gif.new(atlas, atlasRootx, atlasRooty, spriteWidth, spriteHeight, sprit
 	and type(spriteHeight) == "number" and spriteHeight > 0
 	and type(spriteCount) == "number" and spriteCount > 0 then
 		local atlasx, atlasy = atlas:getSize()
+		--TODO: Test this condition. It looks fishy
 		if (atlasRootx + spriteWidth) > atlasx --sprites outside atlas
-		and (atlasRootx + spriteHeight*spriteCount) > atlasy then --sprites outside atlas
+		and (atlasRootx + spriteHeight*spriteCount) > atlasy then
 			return false
 		end
 
 		local newInst = {
-			frame = unpackAtlas(atlas, atlasRootx, atlasRooty, spriteWidth, spriteHeight, spriteCount),
+			frame = Atlas.unpack(atlas, atlasRootx, atlasRooty,
+			                     spriteWidth, spriteHeight, spriteCount),
 			frameCount = spriteCount,
 			rootx,
 			rooty,
@@ -27,7 +34,7 @@ function Gif.new(atlas, atlasRootx, atlasRooty, spriteWidth, spriteHeight, sprit
 			height,
 			gifSpeed,
 			currentFrame,
-			tick
+			lastTick
 		}
 
 		setmetatable(newInst, gif_mt)
@@ -39,13 +46,15 @@ end
 
 --Render loop frames
 local function renderGifFrames()
-	for gif, time in pairs(renderTable) do
-		local dTime = getTickCount() - gif.tick --time since last frame
-		if dTime >= gif.gifSpeed then
-			gif.currentFrame = gif.currentFrame < gif.frameCount and gif.currentFrame + 1 or 1
-			gif.tick = getTickCount() --store last frame change
+	for gif, time in pairs(rendering) do
+		local frameTime = getTickCount() - gif.lastTick
+		if frameTime >= gif.gifSpeed then
+			gif.currentFrame = gif.currentFrame < gif.frameCount
+				and gif.currentFrame + 1 or 1
+			gif.lastTick = getTickCount() --store last frame change
 		end
-		dxDrawImage(gif.rootx, gif.rooty, gif.width, gif.height, gif.frame[gif.currentFrame])
+		dxDrawImage(gif.rootx, gif.rooty,
+		            gif.width, gif.height, gif.frame[gif.currentFrame])
 	end
 end
 
@@ -59,26 +68,26 @@ function Gif:setTarget(rootx, rooty, width, height, gifSpeed)
 end
 
 function Gif:setRendering(shouldRender)
-	if shouldRender then --should start rendering
-		if not renderTable[self] then --element not in render table
-			if shouldRender and renderingCount == 0 then --if adding the first element
-				addEventHandler("onClientRender", root, renderGifFrames) --something to render
+	if shouldRender then
+		if not rendering[self] then
+			if shouldRender and renderingCount == 0 then
+				addEventHandler("onClientRender", root, renderGifFrames)
 			end
-			self.tick = getTickCount()
-			renderTable[self] = true --set element as rendering
+			self.lastTick = getTickCount()
+			rendering[self] = true
 			renderingCount = renderingCount + 1
 		end
 	else
-		if renderTable[self] then --should stop rendering
-			if not shouldRender and renderingCount == 1 then --if removing the last element
-				removeEventHandler("onClientRender", root, renderGifFrames) --nothing to render
+		if rendering[self] then
+			if not shouldRender and renderingCount == 1 then
+				removeEventHandler("onClientRender", root, renderGifFrames)
 			end
-			renderTable[self] = nil --remove from rendering list
+			rendering[self] = nil
 			renderingCount = renderingCount - 1
 		end
 	end
 end
 
 function Gif:getRendering()
-	return renderTable[self]
+	return rendering[self] or false
 end

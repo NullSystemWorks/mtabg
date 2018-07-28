@@ -13,15 +13,21 @@ local isRendering = false
 local functionToCallOnClick
 local Globe = {}
 
+local dxDrawImage = dxDrawImage
+local tocolor = tocolor
+local getTickCount = getTickCount
+local math = math
+
 local function render()
-	dxDrawImage(rootx, rooty, sizex, sizey, globeTexture, 0, 0, 0, tocolor(color,color,color,255), false)
+	dxDrawImage(rootx, rooty, sizex, sizey, globeTexture, 0, 0, 0,
+	            tocolor(color,color,color,255), false)
 end
 
-local function isClickInsideGlobe(button, state, cursorx, cursory)
-	if button == "left" and state == "up" then
+local function isClickInsideGlobe(mouseButton, state, cursorx, cursory)
+	if mouseButton == "left" and state == "up" then
 		local distance = math.sqrt(
 			math.pow(centerx - cursorx, 2)
-		+ math.pow(centery - cursory, 2)
+			+ math.pow(centery - cursory, 2)
 		)
 		local isInside = distance <= radius
 		if isInside and functionToCallOnClick then
@@ -32,9 +38,9 @@ end
 
 local function fadeIn()
 	if color < 255 then
-		local dTime = getTickCount() - lastTick
-		local controlVar = (256*dTime)/1000
-		color = color + controlVar
+		local frameTime = getTickCount() - lastTick
+		local changeStep = (256*frameTime)/1000
+		color = color + changeStep
 		if color > 255 then
 			color = 255
 		end

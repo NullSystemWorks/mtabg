@@ -82,7 +82,8 @@ end
 local function checkIfNewString()
 	for _, stringName in ipairs(LanguageParser.stringNames) do
 		if stringName == getCurrentMatch() then
-			-- outputDebugString(string.format("Already present string: %s", getCurrentMatch()))
+			-- outputDebugString(
+			-- 	string.format("Already present string: %s", getCurrentMatch()))
 			return
 		end
 	end
@@ -113,11 +114,17 @@ end
 
 local function announceNewStrings()
 	if getNewStringCount() > 0 then
-		outputDebugString(string.format("Found %d new language entries:", getNewStringCount()))
+		outputDebugString(string.format("Found %d new language entries:",
+		                                getNewStringCount()))
 		outputDebugString(inspect(stringsToBeAdded))
 	end
-	outputDebugString(string.format("%d available languages: %s", #LanguageParser.availableLanguages, inspect(LanguageParser.availableLanguages)))
-	outputDebugString(string.format("Table size: %d (%d x %d)", #LanguageParser.rawLanguageStrings, LanguageParser.columnCount, LanguageParser.rowCount))
+	outputDebugString(string.format("%d available languages: %s",
+	                                #LanguageParser.availableLanguages,
+	                                inspect(LanguageParser.availableLanguages)))
+	outputDebugString(string.format("Table size: %d (%d x %d)",
+	                                #LanguageParser.rawLanguageStrings,
+	                                LanguageParser.columnCount,
+	                                LanguageParser.rowCount))
 end
 
 local function updateLanguageTable()

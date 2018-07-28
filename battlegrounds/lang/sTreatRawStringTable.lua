@@ -25,13 +25,15 @@ local function registerStringsForLanguage()
 	LanguageParser.stringsOfALanguage[currentLanguage] = {}
 	for row = STRING_START_ROW, LanguageParser.rowCount do
 		workingRow = row
-		table.insert(LanguageParser.stringsOfALanguage[currentLanguage], getCellString())
+		table.insert(LanguageParser.stringsOfALanguage[currentLanguage],
+		             getCellString())
 	end
 	workingRow = oldWorkingRow
 end
 
 local function registerStringNames()
-	if workingColumn == STRING_NAME_COLUMN and workingRow >= STRING_START_ROW then
+	if workingColumn == STRING_NAME_COLUMN
+	and workingRow >= STRING_START_ROW then
 		table.insert(LanguageParser.stringNames, getCellString())
 	end
 end
@@ -45,7 +47,8 @@ end
 
 local function registerLanguageNames()
 	for k, language in ipairs(LanguageParser.availableLanguages) do
-		table.insert(LanguageParser.availableLanguageNames, LanguageParser.stringsOfALanguage[language][1])
+		table.insert(LanguageParser.availableLanguageNames,
+		             LanguageParser.stringsOfALanguage[language][1])
 	end
 end
 

@@ -11,7 +11,8 @@ local function setNewLanguage()
 end
 
 local function createComboBox()
-	languageComboBox = guiCreateComboBox(rootx, rooty, 100, 20, Language.getCurrentName(), false)
+	languageComboBox = guiCreateComboBox(rootx, rooty, 100, 20,
+	                                     Language.getCurrentName(), false)
 	guiComboBoxAdjustHeight(languageComboBox, Language.getCount())
 end
 

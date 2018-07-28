@@ -33,8 +33,9 @@ end
 addEvent("onSetInLobby", true)
 addEventHandler("onSetInLobby", localPlayer, Player.setInLobby)
 
-function delegateServerWithPlayerDamage(attacker, weapon, bodypart, loss)
+local function delegatePlayerDamage(attacker, weapon, bodypart, loss)
 	cancelEvent()
-	triggerServerEvent("onDamagePlayer", resourceRoot, attacker, weapon, bodypart, loss)
+	triggerServerEvent("onDamagePlayer", resourceRoot,
+	                   attacker, weapon, bodypart, loss)
 end
-addEventHandler("onClientPlayerDamage", localPlayer, delegateServerWithPlayerDamage)
+addEventHandler("onClientPlayerDamage", localPlayer, delegatePlayerDamage)

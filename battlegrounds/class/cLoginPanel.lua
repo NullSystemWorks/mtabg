@@ -1,104 +1,121 @@
 local Music = Music.loginPanel
 
-local anticheat_avatar = false
+local imgBackground = GuiStaticImage(0.00, 0.00, 1.00, 1.00,
+	"gui/img/pixel.png", true)
+imgBackground:setProperty("ImageColours",
+	"tl:00000000 tr:00000000 bl:00000000 br:00000000")
 
-LoginScreen = {
-	checkbox = {},
-	staticimage = {},
-	label = {},
-	edit = {}
-}
+local imgLogo = GuiStaticImage(0.11, 0.06, 0.77, 0.28,
+	"account/img/battlegrounds_logo.png", true, imgBackground)
 
-LoginScreen.staticimage[1] = guiCreateStaticImage(0.00, 0.00, 1.00, 1.00, "account/img/background.png", true)
-LoginScreen.staticimage[2] = guiCreateStaticImage(0.11, 0.06, 0.77, 0.28, "account/img/battlegrounds_logo.png", true, LoginScreen.staticimage[1])
-LoginScreen.edit[1] = guiCreateEdit(0.35, 0.41, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- ID
-guiEditSetReadOnly(LoginScreen.edit[1], true)
-LoginScreen.label[1] = guiCreateLabel(0.27, 0.42, 0.08, 0.04, str("loginPanelID"), true, LoginScreen.staticimage[1])
-guiSetFont(LoginScreen.label[1], "default-bold-small")
-guiLabelSetHorizontalAlign(LoginScreen.label[1], "center", false)
-LoginScreen.edit[2] = guiCreateEdit(0.35, 0.50, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- PWD
-guiEditSetMasked(LoginScreen.edit[2],true)
-LoginScreen.edit[3] = guiCreateEdit(0.35, 0.32, 0.29, 0.05, "", true, LoginScreen.staticimage[1]) -- Alpha key
-LoginScreen.label[7] = guiCreateLabel(0.27, 0.33, 0.08, 0.04, str("loginPanelKey"), true, LoginScreen.staticimage[1])
-guiSetFont(LoginScreen.label[7], "default-bold-small")
-guiLabelSetHorizontalAlign(LoginScreen.label[7], "center", false)
-LoginScreen.label[2] = guiCreateLabel(0.27, 0.51, 0.08, 0.04, str("loginPanelPassword"), true, LoginScreen.staticimage[1])
-guiSetFont(LoginScreen.label[2], "default-bold-small")
-guiLabelSetHorizontalAlign(LoginScreen.label[2], "center", false)
-LoginScreen.checkbox[1] = guiCreateCheckBox(0.35, 0.56, 0.21, 0.02, str("loginPanelRememberPassword"), false, true, LoginScreen.staticimage[1])
-LoginScreen.staticimage[3] = guiCreateStaticImage(0.35, 0.66, 0.29, 0.07, "account/img/white.png", true, LoginScreen.staticimage[1])
-guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
-LoginScreen.label[4] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, str("loginPanelLoginButton"), true, LoginScreen.staticimage[3])
-guiLabelSetHorizontalAlign(LoginScreen.label[4], "center", false)
-guiLabelSetVerticalAlign(LoginScreen.label[4], "center")
-LoginScreen.staticimage[4] = guiCreateStaticImage(0.35, 0.66, 0.29, 0.07, "account/img/white.png", true, LoginScreen.staticimage[1])
-guiSetProperty(LoginScreen.staticimage[4], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
-LoginScreen.label[5] = guiCreateLabel(0.00, 0.00, 1.00, 1.00, str("loginPanelRegisterButton"), true, LoginScreen.staticimage[4])
-guiLabelSetHorizontalAlign(LoginScreen.label[5], "center", false)
-guiLabelSetVerticalAlign(LoginScreen.label[5], "center")
-LoginScreen.label[6] = guiCreateLabel(0.25, 0.588, 0.46, 0.05, "", true, LoginScreen.staticimage[1])
+local editId = GuiEdit(0.35, 0.41, 0.29, 0.05, "", true, imgBackground)
+editId:setReadOnly(true)
+
+local lblID =
+	GuiLabel(0.27, 0.42, 0.08, 0.04, str("loginPanelID"), true, imgBackground)
+lblID:setFont("default-bold-small")
+lblID:setHorizontalAlign("center", false)
+
+local lblPassword = GuiLabel(0.27, 0.51, 0.08, 0.04,
+	str("loginPanelPassword"), true, imgBackground)
+lblPassword:setFont("default-bold-small")
+lblPassword:setHorizontalAlign("center", false)
+
+local editPassword = GuiEdit(0.35, 0.50, 0.29, 0.05, "", true, imgBackground)
+editPassword:setMasked(true)
+
+local editAlphaKey = GuiEdit(0.35, 0.32, 0.29, 0.05, "", true, imgBackground)
+
+local lblKey =
+	GuiLabel(0.27, 0.33, 0.08, 0.04, str("loginPanelKey"), true, imgBackground)
+lblKey:setFont("default-bold-small")
+lblKey:setHorizontalAlign("center", false)
+
+local checkRememberPassword = GuiCheckBox(0.35, 0.56, 0.21, 0.02,
+	str("loginPanelRememberPassword"), false, true, imgBackground)
+
+local loginButton = GuiStaticImage(0.35, 0.66, 0.29, 0.07,
+	"account/img/white.png", true, imgBackground)
+
+loginButton:setProperty("ImageColours",
+	"tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
+
+local lblLoginButton = GuiLabel(0.00, 0.00, 1.00, 1.00,
+	str("loginPanelLoginButton"), true, loginButton)
+lblLoginButton:setHorizontalAlign("center", false)
+lblLoginButton:setVerticalAlign("center")
+
+local registerButton = GuiStaticImage(0.35, 0.66, 0.29, 0.07,
+	"account/img/white.png", true, imgBackground)
+
+registerButton:setProperty("ImageColours",
+	"tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
+
+local lblRegisterButton = GuiLabel(0.00, 0.00, 1.00, 1.00,
+	str("loginPanelRegisterButton"), true, registerButton)
+lblRegisterButton:setHorizontalAlign("center", false)
+lblRegisterButton:setVerticalAlign("center")
+
+local lblLoginResult =
+	GuiLabel(0.25, 0.588, 0.46, 0.05, "", true, imgBackground)
 
 local function resetLoadingBar()
-	loadingBar.setWaiting(false)
-	loadingBar.bar[4]:setA(0) -- hide red bar
-	loadingBar.bar[5]:setA(0) -- hide green bar
-	loadingBar.changeIcon(1)
+	LoadingBar.setWaiting(false)
+	LoadingBar.bar[4]:setA(0) -- hide red bar
+	LoadingBar.bar[5]:setA(0) -- hide green bar
+	LoadingBar.changeIcon(1)
 end
 
 local function loginStart()
 	resetLoadingBar()
-	loadingBar.setWaiting(true)
+	LoadingBar.setWaiting(true)
 end
 
 local function clickRegisterButton()
-	if loadingBar.isIdle() then
-		local password = guiGetText(LoginScreen.edit[2])
-		local alphaKey = guiGetText(LoginScreen.edit[3])
+	if LoadingBar.isIdle() then
+		local password = editPassword:getText()
+		local alphaKey = editAlphaKey:getText()
 		loginStart()
 		triggerServerEvent("onRegister", localPlayer, password, alphaKey)
 	end
 end
 
 local function clickLoginButton()
-	if loadingBar.isIdle() then
+	if LoadingBar.isIdle() then
 		loginStart()
-		triggerServerEvent("onLogin", localPlayer, guiGetText(LoginScreen.edit[2]))
+		triggerServerEvent("onLogin", localPlayer, editPassword:getText())
 	end
 end
 
 local function disableButton()
-	removeEventHandler("onClientGUIClick", LoginScreen.label[4], clickLoginButton)
-	removeEventHandler("onClientGUIClick", LoginScreen.label[5], clickRegisterButton)
+	removeEventHandler("onClientGUIClick", lblLoginButton, clickLoginButton)
+	removeEventHandler("onClientGUIClick",
+	                   lblRegisterButton, clickRegisterButton)
 end
 
 --TODO: make login and register the same button
 local function enableButton()
-	addEventHandler("onClientGUIClick", LoginScreen.label[4], clickLoginButton, false)
-	addEventHandler("onClientGUIClick", LoginScreen.label[5], clickRegisterButton, false)
-end
-
-local function closeLoginPanel()
-	loginPanel(false)
-	loadingBar.hide()
-	guiSetVisible(homeScreen.staticimage[1],true)
-	fadeCamera(true)
-	LanguageSelection.setShowing(true)
+	addEventHandler("onClientGUIClick",
+	                lblLoginButton, clickLoginButton, false)
+	addEventHandler("onClientGUIClick",
+	                lblRegisterButton, clickRegisterButton, false)
 end
 
 local function showLoadingBar()
-	for k, v in ipairs(loadingBar.bar) do
-		loadingBar.bar[k]:setRendering(true) --start rendering all textures
+	for bar in ipairs(LoadingBar.bar) do
+		LoadingBar.bar[bar]:setRendering(true) --start rendering all textures
 	end
-	loadingBar.changeIcon(1) --start with faded V icon
+	LoadingBar.changeIcon(1) --start with faded V icon
 end
 addEventHandler("onClientResourceStart", resourceRoot, showLoadingBar)
 
 local function loadingBarSetProgress(progress)
-	loadingBar.setProgress(progress)
+	LoadingBar.setProgress(progress)
 	resetLoadingBar()
 end
 addEvent("onLoginLoadingBarSetProgress", true)
-addEventHandler("onLoginLoadingBarSetProgress", localPlayer, loadingBarSetProgress)
+addEventHandler("onLoginLoadingBarSetProgress",
+                localPlayer, loadingBarSetProgress)
 
 local msgTimer
 local currentMessage
@@ -107,53 +124,151 @@ local function scheduleHide()
 		msgTimer:destroy()
 	end
 	msgTimer = Timer(
-	function()
-		guiSetText(LoginScreen.label[6], "")
-		msgTimer = nil
-		currentMessage = nil
-		resetLoadingBar()
-		loadingBar.setProgress(0)
-	end, 3000, 1)
+		function()
+			lblLoginResult:setText("")
+			msgTimer = nil
+			currentMessage = nil
+			resetLoadingBar()
+			LoadingBar.setProgress(0)
+		end, 3000, 1)
 end
 
+local loginMessage =
+{
+	success = str("loginPanelWelcomeMessage"),
+	keyAlreadyUsed = str("loginPanelKeyAlreadyUsedError"),
+	invalidAlphaKey = str("loginPanelInvlidAlphaKeyError"),
+	blankAlphaKey = str("loginPanelBlankAlphaKeyError"),
+	noPassword = str("loginPanelEmptyPasswordError"),
+	noSerial = str("loginPanelNoSerialError"),
+	wrongPass = str("loginPanelInvalidAccountOrPasswordError"),
+	unknownError = str("loginPanelUnknownError"),
+}
+
 local function chooseMessage(loginResult)
-	local message
-	if loginResult == "unknownError" then
-		message = str("loginPanelUnknownError")
-	elseif loginResult == "wrongPass" then
-		message = str("loginPanelInvalidAccountOrPasswordError")
-	elseif loginResult == "noSerial" then
-		message = str("loginPanelNoSerialError")
-	elseif loginResult == "noPassword" then
-		message = str("loginPanelEmptyPasswordError")
-	elseif loginResult == "blankAlphaKey" then
-		message = str("loginPanelBlankAlphaKeyError")
-	elseif loginResult == "invalidAlphaKey" then
-		message = str("loginPanelInvlidAlphaKeyError")
-	elseif loginResult == "keyAlreadyUsed" then
-		message = str("loginPanelKeyAlreadyUsedError")
-	elseif loginResult == "success" then
-		message = str("loginPanelWelcomeMessage")
-	end
-	return message
+	return loginMessage[loginResult]
 end
 
 local function showMessage(loginResult)
 	if loginResult or currentMessage then
 		loginResult = loginResult or currentMessage
 		currentMessage = loginResult
-		guiSetText(LoginScreen.label[6], chooseMessage(loginResult))
+		lblLoginResult:setText(chooseMessage(loginResult))
 	end
+end
+
+local errorFont
+local screenSize = guiGetScreenSize()
+if screenSize >= 1920 then
+	errorFont = GuiFont("font/tahomab.ttf", 13)
+elseif screenSize >= 1336 then
+	errorFont = GuiFont("font/tahomab.ttf", 8)
+elseif screenSize >= 800 then
+	errorFont = GuiFont("font/tahomab.ttf", 6)
+else
+	errorFont = GuiFont("font/tahomab.ttf", 5)
+end
+lblLoginResult:setFont(errorFont)
+
+lblLoginResult:setHorizontalAlign("center", false)
+lblLoginResult:setVerticalAlign("center")
+
+imgBackground:setVisible(false)
+
+local function setVisible(state)
+	if state then
+		imgBackground:setVisible(true)
+		enableButton()
+		imgBackground:bringToFront()
+		local copyright =
+			GuiLabel(0.00, 0.97, 0.46, 0.03,
+			         "MTA:Battlegrounds ©2017, 2018 Null System Works. "
+				         .."Licensed under AGPL3.", true,
+			         imgBackground)
+		copyright:setAlpha(0.35)
+		copyright:setHorizontalAlign("left", true)
+		local sourceDownload =
+			GuiLabel(0.00, 0.95, 0.46, 0.03,
+			         "Gamemode source code can be found at: "
+				         .."https://github.com/ciber96/mtabg", true,
+			         imgBackground)
+		sourceDownload:setAlpha(0.35)
+		sourceDownload:setHorizontalAlign("left", true)
+		Music.play()
+		local oldFile = XML.load("loginCredentials.xml")
+		local confFile = XML.load("@loginCredentials.xml")
+		local checkbox = false
+		local pass = ""
+		if not confFile and oldFile then
+			confFile = XML("@loginCredentials.xml", "user")
+			pass = oldFile:getAttribute("password")
+			checkbox = oldFile:getAttribute("checkbox")
+			confFile:setAttribute("password", pass)
+			confFile:setAttribute("checkbox", checkbox)
+			confFile:saveFile()
+		end
+		if oldFile then
+			oldFile:unload()
+		end
+		confFile = XML.load("@loginCredentials.xml")
+		if(confFile) then
+			pass = confFile:getAttribute("password")
+			checkbox = confFile:getAttribute("checkbox")
+			editPassword:setText(pass)
+			if checkbox == "true" then
+				checkbox = true
+			else
+				checkbox = false
+			end
+			checkRememberPassword:setSelected(checkbox)
+		else
+			confFile = XML("@loginCredentials.xml","user")
+			confFile:setAttribute("password", "")
+			confFile:setAttribute("checkbox", "true")
+			pass = ""
+			checkbox = true
+			editPassword:setText(pass)
+			checkRememberPassword:setSelected(checkbox)
+		end
+		confFile:saveFile()
+		confFile:unload()
+	else
+		if checkRememberPassword:getSelected() then
+			local confFile = XML.load("@loginCredentials.xml")
+			confFile:setAttribute("password", editPassword:getText())
+			confFile:setAttribute("checkbox",
+				tostring(checkRememberPassword:getSelected()))
+			confFile:saveFile()
+			confFile:unload()
+		else
+			local confFile = XML.load("@loginCredentials.xml")
+			confFile:setAttribute("password", "")
+			confFile:setAttribute("checkbox",
+				tostring(checkRememberPassword:getSelected()))
+			confFile:saveFile()
+			confFile:unload()
+		end
+		imgBackground:setVisible(false)
+		disableButton()
+	end
+end
+
+local function closeLoginPanel()
+	setVisible(false)
+	LoadingBar.hide()
+	HomeScreen.setVisible(true)
+	Camera.fade(true)
+	LanguageSelection.setShowing(true)
 end
 
 local function endLogin(loginResult)
 	if loginResult == "success" then
-		Timer(closeLoginPanel, 2000, 1) --close login panel after a while
 		disableButton()
-		loadingBar.setDone(true)
-		sendToHomeScreen()
+		Timer(closeLoginPanel, 2000, 1) --close login panel after a while
+		LoadingBar.setDone(true)
+		HomeScreen.show()
 	else
-		loadingBar.setDone(false)
+		LoadingBar.setDone(false)
 	end
 	scheduleHide()
 	showMessage(loginResult)
@@ -161,148 +276,73 @@ end
 addEvent("onSendLoginStatus", true)
 addEventHandler("onSendLoginStatus", localPlayer, endLogin)
 
-local errorFont
-local screenSize = guiGetScreenSize()
-if screenSize >= 1920 then
-	errorFont = guiCreateFont("font/tahomab.ttf",13)
-elseif screenSize >= 1336 then
-	errorFont = guiCreateFont("font/tahomab.ttf",8)
-elseif screenSize >= 800 then
-	errorFont = guiCreateFont("font/tahomab.ttf",6)
-else
-	errorFont = guiCreateFont("font/tahomab.ttf",5)
+local function changeColorOfLoginButtonOnMouseEnter()
+	loginButton:setProperty("ImageColours",
+		"tl:FF3A8CF7 tr:FF3A8CF7 bl:FF3A8CF7 br:FF3A8CF7")
 end
-guiSetFont ( LoginScreen.label[6], errorFont )
+addEventHandler("onClientMouseEnter", lblLoginButton,
+                changeColorOfLoginButtonOnMouseEnter, false)
 
-guiLabelSetHorizontalAlign(LoginScreen.label[6], "center", false)
-guiLabelSetVerticalAlign(LoginScreen.label[6], "center")
-
-guiSetVisible(LoginScreen.staticimage[1],false)
-
-function loginPanel(state)
-	if state then
-		guiSetVisible(LoginScreen.staticimage[1],true)
-		enableButton()
-		guiBringToFront(LoginScreen.staticimage[1])
-		copyright = guiCreateLabel(0.00, 0.97, 0.46, 0.03, "MTA:Battlegrounds ©2017, 2018 Null System Works. Licensed under AGPL3.", true, LoginScreen.staticimage[1])
-		guiSetAlpha(copyright, 0.35)
-		guiLabelSetHorizontalAlign(copyright, "left", true)
-		sourceDownload = guiCreateLabel(0.00, 0.95, 0.46, 0.03, "Gamemode source code can be found at: https://github.com/ciber96/mtabg", true, LoginScreen.staticimage[1])
-		guiSetAlpha(sourceDownload, 0.35)
-		guiLabelSetHorizontalAlign(sourceDownload, "left", true)
-		Music.play()
-		oldFile = xmlLoadFile("loginCredentials.xml")
-		confFile = xmlLoadFile("@loginCredentials.xml")
-		local checkbox = false
-		local pass = ""
-		if not confFile and oldFile then
-			confFile = xmlCreateFile("@loginCredentials.xml","user")
-			pass = xmlNodeGetAttribute(oldFile,"password")
-			checkbox = xmlNodeGetAttribute(oldFile,"checkbox")
-			xmlNodeSetAttribute(confFile, "password", pass)
-			xmlNodeSetAttribute(confFile, "checkbox", checkbox)
-			xmlSaveFile(confFile)
-		end
-		if oldFile then
-			xmlUnloadFile(oldFile)
-		end
-		confFile = xmlLoadFile("@loginCredentials.xml")
-		if (confFile) then
-			pass = xmlNodeGetAttribute(confFile,"password")
-			checkbox = xmlNodeGetAttribute(confFile,"checkbox")
-			guiSetText(LoginScreen.edit[2],pass)
-			if checkbox == "true" then
-				checkbox = true
-			else
-				checkbox = false
-			end
-			guiCheckBoxSetSelected(LoginScreen.checkbox[1],checkbox)
-		else
-			confFile = xmlCreateFile("@loginCredentials.xml","user")
-			xmlNodeSetAttribute(confFile,"password","")
-			xmlNodeSetAttribute(confFile,"checkbox","true")
-			pass = ""
-			checkbox = true
-			guiSetText(LoginScreen.edit[2],pass)
-			guiCheckBoxSetSelected(LoginScreen.checkbox[1],checkbox)
-		end
-		xmlSaveFile(confFile)
-		xmlUnloadFile(confFile)
-	else
-		if guiCheckBoxGetSelected(LoginScreen.checkbox[1]) then
-			confFile = xmlLoadFile("@loginCredentials.xml")
-			xmlNodeSetAttribute(confFile, "password", guiGetText(LoginScreen.edit[2]))
-			xmlNodeSetAttribute(confFile, "checkbox", tostring(guiCheckBoxGetSelected(LoginScreen.checkbox[1])))
-			xmlSaveFile(confFile)
-			xmlUnloadFile(confFile)
-		else
-			confFile = xmlLoadFile("@loginCredentials.xml")
-			xmlNodeSetAttribute(confFile, "password", "")
-			xmlNodeSetAttribute(confFile, "checkbox", tostring(guiCheckBoxGetSelected(LoginScreen.checkbox[1])))
-			xmlSaveFile(confFile)
-			xmlUnloadFile(confFile)
-		end
-		guiSetVisible(LoginScreen.staticimage[1],false)
-		disableButton()
-	end
+local function changeColorOfLoginButtonOnMouseLeave()
+	loginButton:setProperty("ImageColours",
+		"tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
 end
+addEventHandler("onClientMouseLeave", lblLoginButton,
+                changeColorOfLoginButtonOnMouseLeave, false)
 
-function changeColorOfLoginButtonOnMouseEnter()
-	guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FF3A8CF7 tr:FF3A8CF7 bl:FF3A8CF7 br:FF3A8CF7")
+local function changeColorOfRegisterButtonOnMouseEnter()
+	registerButton:setProperty("ImageColours",
+		"tl:FF3A8CF7 tr:FF3A8CF7 bl:FF3A8CF7 br:FF3A8CF7")
 end
-addEventHandler("onClientMouseEnter",LoginScreen.label[4],changeColorOfLoginButtonOnMouseEnter,false)
+addEventHandler("onClientMouseEnter", lblRegisterButton,
+                changeColorOfRegisterButtonOnMouseEnter,false)
 
-function changeColorOfLoginButtonOnMouseLeave()
-	guiSetProperty(LoginScreen.staticimage[3], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
+local function changeColorOfRegisterButtonOnMouseLeave()
+	registerButton:setProperty("ImageColours",
+		"tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
 end
-addEventHandler("onClientMouseLeave",LoginScreen.label[4],changeColorOfLoginButtonOnMouseLeave,false)
-
-function changeColorOfRegisterButtonOnMouseEnter()
-	guiSetProperty(LoginScreen.staticimage[4], "ImageColours", "tl:FF3A8CF7 tr:FF3A8CF7 bl:FF3A8CF7 br:FF3A8CF7")
-end
-addEventHandler("onClientMouseEnter",LoginScreen.label[5],changeColorOfRegisterButtonOnMouseEnter,false)
-
-function changeColorOfRegisterButtonOnMouseLeave()
-	guiSetProperty(LoginScreen.staticimage[4], "ImageColours", "tl:FFF48E0A tr:FFF48E0A bl:FFF48E0A br:FFF48E0A")
-end
-addEventHandler("onClientMouseLeave",LoginScreen.label[5],changeColorOfRegisterButtonOnMouseLeave,false)
+addEventHandler("onClientMouseLeave", lblRegisterButton,
+                changeColorOfRegisterButtonOnMouseLeave, false)
 
 local hasAccount = false
-function loadLoginScreen(serial, account)
-	if guiGetVisible(LoginScreen.staticimage[1]) then return end
-	loginPanel(true)
-	guiSetVisible(LoginScreen.staticimage[1],true)
-	guiSetText(LoginScreen.edit[1], serial)
+local function loadLoginScreen(serial, account)
+	if imgBackground:getVisible() then
+		return
+	end
+	setVisible(true)
+	imgBackground:setVisible(true)
+	editId:setText(serial)
 	showCursor(true)
 	hasAccount = account
 	if not account then
-		guiSetVisible(LoginScreen.edit[3], true)
-		guiSetVisible(LoginScreen.label[7], true)
-		guiSetVisible(LoginScreen.staticimage[3],false)
-		guiSetVisible(LoginScreen.staticimage[4],true)
+		editAlphaKey:setVisible(true)
+		lblKey:setVisible(true)
+		loginButton:setVisible(false)
+		registerButton:setVisible(true)
 	else
-		guiSetVisible(LoginScreen.edit[3], false)
-		guiSetVisible(LoginScreen.label[7], false)
-		guiSetVisible(LoginScreen.staticimage[3],true)
-		guiSetVisible(LoginScreen.staticimage[4],false)
+		editAlphaKey:setVisible(false)
+		lblKey:setVisible(false)
+		loginButton:setVisible(true)
+		registerButton:setVisible(false)
 	end
 end
 addEvent("onOpenLoginPanel", true)
-addEventHandler("onOpenLoginPanel", getRootElement(), loadLoginScreen)
+addEventHandler("onOpenLoginPanel", localPlayer, loadLoginScreen)
 
-addEventHandler("onClientResourceStart", getResourceRootElement(), function()
-	Camera.fade(false, .1) --fade camera on resource restart
-	triggerServerEvent("onJoin", resourceRoot)
-end)
-
+addEventHandler("onClientResourceStart", resourceRoot,
+	function()
+		Camera.fade(false, .1) --fade camera on resource restart
+		triggerServerEvent("onJoin", resourceRoot)
+	end
+)
 
 local function changeLanguage(newLang)
-	LoginScreen.label[1]:setText(str("loginPanelID"))
-	LoginScreen.label[7]:setText(str("loginPanelKey"))
-	LoginScreen.label[2]:setText(str("loginPanelPassword"))
-	LoginScreen.checkbox[1]:setText(str("loginPanelRememberPassword"))
-	LoginScreen.label[4]:setText(str("loginPanelLoginButton"))
-	LoginScreen.label[5]:setText(str("loginPanelRegisterButton"))
+	lblID:setText(str("loginPanelID"))
+	lblKey:setText(str("loginPanelKey"))
+	lblPassword:setText(str("loginPanelPassword"))
+	checkRememberPassword:setText(str("loginPanelRememberPassword"))
+	lblLoginButton:setText(str("loginPanelLoginButton"))
+	lblRegisterButton:setText(str("loginPanelRegisterButton"))
 	showMessage()
 end
 addEventHandler("onUserLanguageChange", resourceRoot, changeLanguage)

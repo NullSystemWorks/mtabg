@@ -1,4 +1,4 @@
-loadingBar = {}
+LoadingBar = {}
 local gifRoot = {["x"] = 0, ["y"] = 0}
 local gifSize = {["x"] = 208, ["y"] = 13}
 local gifFrameCount = 10
@@ -26,12 +26,15 @@ local color = {
 }
 local pos = {
 	["background"] = {rootx, rooty, sx*0.28125, sy*0.046296296}, --540, 50
-	["icon"] = {rootx + sx*0.256770833, rooty + sy*0.009259259, sx*0.016666667, sy*0.02962963}, --493, 10, 32, 32
-	["bar"] = {rootx + sx*0.007291667, rooty + sy*0.014814815, sx*0.239583333, sy*0.018518519 } --14, 16, 460, 20
+	["icon"] = {rootx + sx*0.256770833, rooty + sy*0.009259259,
+	            sx*0.016666667, sy*0.02962963}, --493, 10, 32, 32
+	["bar"] = {rootx + sx*0.007291667, rooty + sy*0.014814815,
+	           sx*0.239583333, sy*0.018518519 } --14, 16, 460, 20
 }
 
 local function renderIcon()
-	dxDrawImage(pos.icon[1], pos.icon[2], pos.icon[3], pos.icon[4], iconFrames[iconToRender])
+	dxDrawImage(pos.icon[1], pos.icon[2], pos.icon[3],
+	            pos.icon[4], iconFrames[iconToRender])
 end
 
 local function changeIcon(iconSelection)
@@ -89,20 +92,25 @@ local function initializeLoadingBar()
 				pos.bar[1], pos.bar[2], pos.bar[3], pos.bar[4])
 		else --if other bars
 			pixelTextures[k] = PixelTexture.new(v[1], v[2], v[3], v[4],
-				pos.background[1], pos.background[2], pos.background[3], pos.background[4])
+			                                    pos.background[1],
+			                                    pos.background[2],
+			                                    pos.background[3],
+			                                    pos.background[4])
 		end
 	end
-	iconFrames = unpackAtlas(atlasTexture, iconRoot.x, iconRoot.y, iconSize.x, iconSize.y, iconFrameCount)
-	loadGif = Gif.new(atlasTexture, gifRoot.x, gifRoot.y, gifSize.x, gifSize.y, gifFrameCount )
+	iconFrames = Atlas.unpack(atlasTexture, iconRoot.x, iconRoot.y,
+	                          iconSize.x, iconSize.y, iconFrameCount)
+	loadGif = Gif.new(atlasTexture, gifRoot.x, gifRoot.y,
+	                  gifSize.x, gifSize.y, gifFrameCount)
 	loadGif:setTarget(pos.bar[1], pos.bar[2], pos.bar[3], pos.bar[4], gifSpeed)
 
-	loadingBar.gif = loadGif
-	loadingBar.bar = pixelTextures
-	loadingBar.changeIcon = changeIcon
-	loadingBar.hide = hide
-	loadingBar.setProgress = setProgress
-	loadingBar.isIdle = isIdle
-	loadingBar.setDone = setDone
-	loadingBar.setWaiting = setWaiting
+	LoadingBar.gif = loadGif
+	LoadingBar.bar = pixelTextures
+	LoadingBar.changeIcon = changeIcon
+	LoadingBar.hide = hide
+	LoadingBar.setProgress = setProgress
+	LoadingBar.isIdle = isIdle
+	LoadingBar.setDone = setDone
+	LoadingBar.setWaiting = setWaiting
 end
 addEventHandler ("onClientResourceStart", resourceRoot, initializeLoadingBar)

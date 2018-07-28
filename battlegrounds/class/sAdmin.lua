@@ -4,3 +4,5 @@ local function forceMatchStart(player, _, quickTick)
 	lobby:checkIfMatchShouldStart()
 end
 addCommandHandler("forceMatchStart", forceMatchStart, true, true)
+
+--ACL: command.forceMatchStart

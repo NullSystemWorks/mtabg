@@ -810,7 +810,9 @@ function getInventoryAction(itemName)
 			elseif getWeaponSlot(itemName) == 2 then
 				return "equipSecondary"
 			end
-		elseif isItemMedicine(itemName) or isItemArmor(itemName) or isItemBackpack(itemName) then
+		elseif isItemMedicine(itemName)
+		or isItemArmor(itemName)
+		or isItemBackpack(itemName) then
 			return "useItem"
 		else
 			return false
@@ -821,27 +823,33 @@ function getInventoryAction(itemName)
 end
 
 function getItemWeight(itemName)
-	-- iprint("Weight for " ..itemName.. " is " ..ITEM_DEFINITIONS[itemName]["inventoryItem"]["weight"])
-	return ITEM_DEFINITIONS[itemName]["inventoryItem"]["weight"]*100 --NOTE: beware the float arithmetic!
+	-- iprint("Weight for " ..itemName.. " is "
+	-- 	..ITEM_DEFINITIONS[itemName]["inventoryItem"]["weight"])
+	--NOTE: beware the float arithmetic!
+	return ITEM_DEFINITIONS[itemName]["inventoryItem"]["weight"]*100
 end
 
 function getItemModel(itemName)
-	-- iprint("Model for " ..itemName.. " is " ..ITEM_DEFINITIONS[itemName]["worldObject"]["model"])
+	-- iprint("Model for " ..itemName.. " is "
+	-- 	..ITEM_DEFINITIONS[itemName]["worldObject"]["model"])
 	return ITEM_DEFINITIONS[itemName]["worldObject"]["model"]
 end
 
 function getItemModelRotation(itemName)
-	-- iprint("Rotation for " ..itemName.. " is " ..ITEM_DEFINITIONS[itemName]["worldObject"]["rotation"])
+	-- iprint("Rotation for " ..itemName.. " is "
+	-- 	..ITEM_DEFINITIONS[itemName]["worldObject"]["rotation"])
 	return ITEM_DEFINITIONS[itemName]["worldObject"]["rotation"]
 end
 
 function getItemModelScale(itemName)
-	-- iprint("Scale for " ..itemName.. " is " ..ITEM_DEFINITIONS[itemName]["worldObject"]["scale"])
+	-- iprint("Scale for " ..itemName.. " is "
+	-- 	..ITEM_DEFINITIONS[itemName]["worldObject"]["scale"])
 	return ITEM_DEFINITIONS[itemName]["worldObject"]["scale"]
 end
 
 function getItemSpawnChance(lootClass, itemName)
-	-- iprint("SpanwChance[" ..lootClass.. "] for " ..itemName.. " is " ..ITEM_DEFINITIONS[itemName]["spawnChance"][lootClass])
+	-- iprint("SpanwChance[" ..lootClass.. "] for " ..itemName.. " is "
+	-- 	..ITEM_DEFINITIONS[itemName]["spawnChance"][lootClass])
 	return ITEM_DEFINITIONS[itemName]["spawnChance"][lootClass]
 end
 
@@ -855,27 +863,32 @@ function isItemWeapon(itemName)
 end
 
 function getWeaponDamage(weapon)
-	-- iprint("Damage for " ..weapon.. " is " ..ITEM_DEFINITIONS[weapon]["weapon"]["damage"])
+	-- iprint("Damage for " ..weapon.. " is "
+	-- 	..ITEM_DEFINITIONS[weapon]["weapon"]["damage"])
 	return ITEM_DEFINITIONS[weapon]["weapon"]["damage"]
 end
 
 function getWeaponID(weapon)
-	-- iprint("ID for " ..weapon.. " is " ..ITEM_DEFINITIONS[weapon]["weapon"]["weaponID"])
+	-- iprint("ID for " ..weapon.. " is "
+	-- 	..ITEM_DEFINITIONS[weapon]["weapon"]["weaponID"])
 	return ITEM_DEFINITIONS[weapon]["weapon"]["weaponID"]
 end
 
 function getWeaponAmmoType(weapon)
-	-- iprint("Ammo for " ..weapon.. " is " ..ITEM_DEFINITIONS[weapon]["weapon"]["ammo"])
+	-- iprint("Ammo for " ..weapon.. " is "
+	-- 	..ITEM_DEFINITIONS[weapon]["weapon"]["ammo"])
 	return ITEM_DEFINITIONS[weapon]["weapon"]["ammo"]
 end
 
 function getWeaponSlot(weapon)
-	-- iprint("Slot for " ..weapon.. " is " ..ITEM_DEFINITIONS[weapon]["weapon"]["slot"])
+	-- iprint("Slot for " ..weapon.. " is "
+	-- 	..ITEM_DEFINITIONS[weapon]["weapon"]["slot"])
 	return ITEM_DEFINITIONS[weapon]["weapon"]["slot"]
 end
 
 function getWeaponImagePath(weapon)
-	-- iprint("Image path for " ..weapon.. " is " ..ITEM_DEFINITIONS[weapon]["weapon"]["imagePath"])
+	-- iprint("Image path for " ..weapon.. " is "
+	-- 	..ITEM_DEFINITIONS[weapon]["weapon"]["imagePath"])
 	return ITEM_DEFINITIONS[weapon]["weapon"]["imagePath"]
 end
 
@@ -898,27 +911,32 @@ local imgPos =
 }
 
 function getWeaponGuiName(weapon)
-	-- iprint("guiName for " ..weapon.. " is " ..ITEM_DEFINITIONS[weapon]["weapon"]["guiName"])
+	-- iprint("guiName for " ..weapon.. " is "
+	-- 	..ITEM_DEFINITIONS[weapon]["weapon"]["guiName"])
 	return imgPos[getWeaponSlot(weapon)]["guiName"]
 end
 
 function getWeaponImageSizeX(weapon)
-	-- iprint("guiSizeX for " ..weapon.. " is " ..ITEM_DEFINITIONS[weapon]["weapon"]["guiSizeX"])
+	-- iprint("guiSizeX for " ..weapon.. " is "
+	-- 	..ITEM_DEFINITIONS[weapon]["weapon"]["guiSizeX"])
 	return imgPos[getWeaponSlot(weapon)]["guiSizeX"]
 end
 
 function getWeaponImageSizeY(weapon)
-	-- iprint("guiSizeY for " ..weapon.. " is " ..ITEM_DEFINITIONS[weapon]["weapon"]["guiSizeY"])
+	-- iprint("guiSizeY for " ..weapon.. " is "
+	-- 	..ITEM_DEFINITIONS[weapon]["weapon"]["guiSizeY"])
 	return imgPos[getWeaponSlot(weapon)]["guiSizeY"]
 end
 
 function getWeaponImagePositionX(weapon)
-	-- iprint("guiPositionX for " ..weapon.. " is " ..ITEM_DEFINITIONS[weapon]["weapon"]["guiPositionX"])
+	-- iprint("guiPositionX for " ..weapon.. " is "
+	-- 	..ITEM_DEFINITIONS[weapon]["weapon"]["guiPositionX"])
 	return imgPos[getWeaponSlot(weapon)]["guiPositionX"]
 end
 
 function getWeaponImagePositionY(weapon)
-	-- iprint("guiPositionY for " ..weapon.. " is " ..ITEM_DEFINITIONS[weapon]["weapon"]["guiPositionY"])
+	-- iprint("guiPositionY for " ..weapon.. " is "
+	-- 	..ITEM_DEFINITIONS[weapon]["weapon"]["guiPositionY"])
 	return imgPos[getWeaponSlot(weapon)]["guiPositionY"]
 end
 
@@ -932,7 +950,8 @@ function isItemAmmo(itemName)
 end
 
 function getAmmoClipSize(ammo)
-	-- iprint("ClipSize for " ..ammo.. " is " ..ITEM_DEFINITIONS[ammo]["ammo"]["clipSize"])
+	-- iprint("ClipSize for " ..ammo.. " is "
+	-- 	..ITEM_DEFINITIONS[ammo]["ammo"]["clipSize"])
 	return ITEM_DEFINITIONS[ammo]["ammo"]["clipSize"]
 end
 
@@ -946,7 +965,8 @@ function isItemMedicine(itemName)
 end
 
 function getMedicineHealValue(medicine)
-	iprint(medicine.. " heals for " ..ITEM_DEFINITIONS[medicine]["medicine"]["healAmount"].. " points")
+	-- iprint(medicine.. " heals for "
+	-- 	..ITEM_DEFINITIONS[medicine]["medicine"]["healAmount"].. " points")
 	return ITEM_DEFINITIONS[medicine]["medicine"]["healAmount"]
 end
 
@@ -960,8 +980,10 @@ function isItemBackpack(itemName)
 end
 
 function getBackpackSlotCount(backpack)
-	iprint(backpack.. " has " ..ITEM_DEFINITIONS[backpack]["backpack"]["slotCount"].. " slots")
-	return ITEM_DEFINITIONS[backpack]["backpack"]["slotCount"]*100 --NOTE: beware the float arithmetic!
+	-- iprint(backpack.. " has "
+	-- 	..ITEM_DEFINITIONS[backpack]["backpack"]["slotCount"].. " slots")
+	--NOTE: beware the float arithmetic!
+	return ITEM_DEFINITIONS[backpack]["backpack"]["slotCount"]*100
 end
 
 --ARMOR
@@ -974,7 +996,8 @@ function isItemArmor(itemName)
 end
 
 function getArmorAbsorption(armor)
-	iprint(armor.. " absorbs " ..ITEM_DEFINITIONS[armor]["armor"]["absorption"].. " damage")
+	-- iprint(armor.. " absorbs "
+	-- 	..ITEM_DEFINITIONS[armor]["armor"]["absorption"].. " damage")
 	return ITEM_DEFINITIONS[armor]["armor"]["absorption"]
 end
 

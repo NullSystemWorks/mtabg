@@ -32,7 +32,8 @@ local function writeLanguageEntries()
 			langFile:write(" = ")
 			langFile:write("\"")
 			if LanguageParser.stringsOfALanguage[language][number] then
-				langFile:write(LanguageParser.stringsOfALanguage[language][number])
+				langFile:write(
+					LanguageParser.stringsOfALanguage[language][number])
 			elseif LanguageParser.stringsOfALanguage["en"][number] then
 				langFile:write(LanguageParser.stringsOfALanguage["en"][number])
 			else

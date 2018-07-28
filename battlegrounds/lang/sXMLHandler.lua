@@ -56,11 +56,13 @@ local function saveValue()
 end
 
 local function findTableTableRowNode()
-	tableTableRowNode = tableTableNode:findChild("table:table-row", workingRow - 1)
+	tableTableRowNode =
+		tableTableNode:findChild("table:table-row", workingRow - 1)
 end
 
 local function findTextNode()
-	local cellNode = tableTableRowNode:findChild("table:table-cell", workingColumn - 1)
+	local cellNode =
+		tableTableRowNode:findChild("table:table-cell", workingColumn - 1)
 	if cellNode then
 		local colRepeat = cellNode:getAttribute("table:number-columns-repeated")
 		textNode = cellNode:findChild("text:p", 0)
@@ -80,7 +82,8 @@ local function saveSpreadsheetHash()
 end
 
 local function getPreviousSpreadsheetHash()
-	LanguageParser.previousSpreadsheetHash = tableTableNode:getAttribute("table:hash")
+	LanguageParser.previousSpreadsheetHash =
+		tableTableNode:getAttribute("table:hash")
 end
 
 local function hashSpreadsheet()
@@ -99,7 +102,8 @@ local function compareSpreadSheetHash()
 		LanguageParser.isLanguageTableUpToDate = false
 		saveSpreadsheetHash()
 	end
-	-- iprint(LanguageParser.spreadsheetHash.. " : " ..tostring(not LanguageParser.isLanguageTableUpToDate))
+	-- iprint(LanguageParser.spreadsheetHash.. " : "
+	-- 	..tostring(not LanguageParser.isLanguageTableUpToDate))
 end
 
 function LanguageParser.checkIfSpreadSheetChanged()

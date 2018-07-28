@@ -30,7 +30,7 @@ local function register()
 end
 
 local function extractNames()
- 	repeat
+	repeat
 		luaWorkingFile = metaFile:findChild("script", luaWorkingFileNumber - 1 )
 		register()
 		luaWorkingFileNumber = luaWorkingFileNumber + 1

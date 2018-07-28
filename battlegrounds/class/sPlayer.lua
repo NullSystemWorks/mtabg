@@ -636,9 +636,9 @@ addEventHandler("onPlayerUseItem", root, handleItemUse)
 
 function Player:sendInventoryItems()
 	local self = Remote.getSuperFromRemote(client)
-	self.remote:send("onClearInventoryItemList", 1)
+	self.remote:send("onClearInventory")
 	for itemName in pairs(self.inventory:getItemList()) do
-		self.remote:send("onPopulateGridListWithItems", 1, "inventory", "inventoryamount", itemName, self.inventory:getItemCount(itemName))
+		self.remote:send("onPopulateInventory", itemName, self.inventory:getItemCount(itemName))
 		if self.inventory:getItemCount(itemName) < 0 then
 			outputDebugString("Item with negative amount in " ..tostring(self.remote:getRemote()).. "'s inventory: " ..itemName, 2)
 		end
@@ -651,9 +651,9 @@ local function sendLootItems(loot)
 	local player = Remote.getSuperFromRemote(client)
 	local loot = Remote.getSuperFromRemote(loot)
 	if loot then
-		player.remote:send("onClearInventoryItemList", 2)
+		player.remote:send("onClearInventoryLoot")
 		for itemName in pairs(loot.inventory:getItemList()) do
-			player.remote:send("onPopulateGridListWithItems", 2, "loot", "lootamount", itemName, loot.inventory:getItemCount(itemName))
+			player.remote:send("onPopulateLoot", itemName, loot.inventory:getItemCount(itemName))
 			 --FIXME: destroy worldModels for taken items
 		end
 	end

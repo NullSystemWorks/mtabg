@@ -1,10 +1,12 @@
-function loadModels()
+local function loadModels()
 	for itemName in pairs(getItemNames()) do
 		if doesItemHaveTexture(itemName) then
 			local textureName = getItemTextureName(itemName)
-			local model = getItemModel(itemName)
-			engineImportTXD(engineLoadTXD("model/items/txd/"..textureName..".txd"), model)
-			engineReplaceModel(engineLoadDFF("model/items/dff/"..textureName..".dff"), model)
+			local modelName = getItemModel(itemName)
+			local txd = engineLoadTXD("model/items/txd/" ..textureName.. ".txd")
+			local dff = engineLoadDFF("model/items/dff/" ..textureName.. ".dff")
+			engineImportTXD(txd, modelName)
+			engineReplaceModel(dff, modelName)
 		end
 	end
 end

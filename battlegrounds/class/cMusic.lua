@@ -32,7 +32,7 @@ local function playMusic(path, volume)
 end
 
 function Music.mainMenu.play()
-	local rng = math.random(1,2)
+	local rng = math.random(1, #url.mainMenu)
 	playMusic(url.mainMenu[rng], 0.4)
 end
 
