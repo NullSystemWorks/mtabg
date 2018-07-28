@@ -71,5 +71,6 @@ end
 function Remote:send(event, ...)
 	-- iprint(self.remote, event)
 	self.remote:triggerEvent(event, self.remote, unpack(arg))
-	iprint("Sent \"" ..tostring(event).. "\": " ..tostring(unpack(arg)).. " to " ..tostring(self.remote.name))
+	iprint("Sent \"" ..tostring(event).. "\": " ..tostring(unpack(arg) or nil)
+	       .. " to " ..tostring(self.remote.name))
 end
