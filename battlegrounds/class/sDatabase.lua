@@ -80,8 +80,8 @@ function Database.saveAccount(ip, serial, data)
 		`coinsSpent`=?
 	WHERE `serial`=?;]],
 		ip,
-		data.gamesPlayed,
 		data.language,
+		data.gamesPlayed,
 		data.wins,
 		data.losses,
 		data.deaths,
