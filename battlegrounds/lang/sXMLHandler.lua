@@ -1,4 +1,6 @@
 local tableTableRowNode, textNode, cellString
+local repeatCount = 0
+local repeatString
 local workingRow, workingColumn
 local tableTableNode, tableTableChildren
 local rootNode
@@ -40,7 +42,9 @@ local function countRowsAndColumns()
 end
 
 local function checkForValue()
-	if textNode then
+	if repeatCount > 0 then
+		cellString = repeatString
+	elseif textNode then
 		cellString = textNode:getValue()
 	else
 		cellString = false
@@ -58,7 +62,13 @@ end
 local function findTextNode()
 	local cellNode = tableTableRowNode:findChild("table:table-cell", workingColumn - 1)
 	if cellNode then
+		local colRepeat = cellNode:getAttribute("table:number-columns-repeated")
 		textNode = cellNode:findChild("text:p", 0)
+		if textNode
+		and colRepeat then
+			repeatCount = tonumber(colRepeat)
+			repeatString = textNode:getValue()
+		end
 	else
 		textNode = false
 	end
@@ -109,11 +119,21 @@ function LanguageParser.XMLunpackToStringTable()
 	for row = 1, LanguageParser.rowCount do
 		workingRow = row
 		findTableTableRowNode()
+		local filledColumns = 0
 		for column = 1, LanguageParser.columnCount do
 			workingColumn = column
 			findTextNode()
-			checkForValue()
-			saveValue()
+			repeat
+				if repeatCount > 0 then
+					repeatCount = repeatCount - 1
+				end
+				checkForValue()
+				saveValue()
+				filledColumns = filledColumns + 1
+			until repeatCount == 0
+			if filledColumns == LanguageParser.columnCount then
+				break
+			end
 		end
 	end
 	unloadXML()
