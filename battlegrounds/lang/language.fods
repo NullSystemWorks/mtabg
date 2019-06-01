@@ -281,7 +281,7 @@
             </style:header>
             <style:header-left style:display="false" />
             <style:footer>
-                <text:p>Page 
+                <text:p>Page &#x0A;                    
                     <text:page-number>1</text:page-number>
                 </text:p>
             </style:footer>
@@ -291,21 +291,21 @@
             <style:header>
                 <style:region-left>
                     <text:p>
-                        <text:sheet-name>???</text:sheet-name> ( 
-                        <text:title>???</text:title>) 
+                        <text:sheet-name>???</text:sheet-name> ( &#x0A;                        
+                        <text:title>???</text:title>) &#x0A;                    
                     </text:p>
                 </style:region-left>
                 <style:region-right>
                     <text:p>
-                        <text:date style:data-style-name="N2" text:date-value="2017-12-29">00/00/0000</text:date>, 
+                        <text:date style:data-style-name="N2" text:date-value="2017-12-29">00/00/0000</text:date>, &#x0A;                        
                         <text:time style:data-style-name="N2" text:time-value="09:54:47.537402907">00:00:00</text:time>
                     </text:p>
                 </style:region-right>
             </style:header>
             <style:header-left style:display="false" />
             <style:footer>
-                <text:p>Page 
-                    <text:page-number>1</text:page-number> / 
+                <text:p>Page &#x0A;                    
+                    <text:page-number>1</text:page-number> / &#x0A;                    
                     <text:page-count>99</text:page-count>
                 </text:p>
             </style:footer>
@@ -315,7 +315,7 @@
     <office:body>
         <office:spreadsheet>
             <table:calculation-settings table:automatic-find-labels="false" table:use-regular-expressions="false" table:use-wildcards="true" />
-            <table:table table:name="Sheet1" table:style-name="ta1" table:hash="e583a74619e7de7bde4cd0eea31d26e7">
+            <table:table table:name="Sheet1" table:style-name="ta1" table:hash="f96f6cafd93a18e60b69e1e4429effb5">
                 <table:table-column table:style-name="co1" table:default-cell-style-name="ce1" />
                 <table:table-column table:style-name="co2" table:default-cell-style-name="ce3" />
                 <table:table-column table:style-name="co3" table:default-cell-style-name="Default" />
