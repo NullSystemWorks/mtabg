@@ -3,27 +3,28 @@
 <office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:css3t="http://www.w3.org/TR/css3-text/" office:version="1.2" office:mimetype="application/vnd.oasis.opendocument.spreadsheet">
     <office:meta>
         <meta:creation-date>2017-09-29T17:18:18.264057974</meta:creation-date>
-        <dc:date>2017-12-29T09:55:11.208346739</dc:date>
-        <meta:editing-duration>PT8H4M</meta:editing-duration>
-        <meta:editing-cycles>111</meta:editing-cycles>
-        <meta:generator>LibreOffice/5.2.7.2$Linux_X86_64 LibreOffice_project/20m0$Build-2</meta:generator>
+        <dc:date>2019-06-01T21:42:28.964411812</dc:date>
+        <meta:editing-duration>PT8H8M9S</meta:editing-duration>
+        <meta:editing-cycles>112</meta:editing-cycles>
+        <meta:generator>LibreOffice/6.1.5.2$Linux_X86_64 LibreOffice_project/10$Build-2</meta:generator>
         
         
-        <meta:document-statistic meta:table-count="1" meta:cell-count="422" meta:object-count="0" />
+        
+        <meta:document-statistic meta:table-count="1" meta:cell-count="498" meta:object-count="0" />
     </office:meta>
     <office:settings>
         <config:config-item-set config:name="ooo:view-settings">
             <config:config-item config:name="VisibleAreaTop" config:type="int">0</config:config-item>
             <config:config-item config:name="VisibleAreaLeft" config:type="int">0</config:config-item>
-            <config:config-item config:name="VisibleAreaWidth" config:type="int">50757</config:config-item>
+            <config:config-item config:name="VisibleAreaWidth" config:type="int">59836</config:config-item>
             <config:config-item config:name="VisibleAreaHeight" config:type="int">37514</config:config-item>
             <config:config-item-map-indexed config:name="Views">
                 <config:config-item-map-entry>
                     <config:config-item config:name="ViewId" config:type="string">view1</config:config-item>
                     <config:config-item-map-named config:name="Tables">
                         <config:config-item-map-entry config:name="Sheet1">
-                            <config:config-item config:name="CursorPositionX" config:type="int">0</config:config-item>
-                            <config:config-item config:name="CursorPositionY" config:type="int">69</config:config-item>
+                            <config:config-item config:name="CursorPositionX" config:type="int">4</config:config-item>
+                            <config:config-item config:name="CursorPositionY" config:type="int">0</config:config-item>
                             <config:config-item config:name="HorizontalSplitMode" config:type="short">0</config:config-item>
                             <config:config-item config:name="VerticalSplitMode" config:type="short">0</config:config-item>
                             <config:config-item config:name="HorizontalSplitPosition" config:type="int">0</config:config-item>
@@ -32,15 +33,16 @@
                             <config:config-item config:name="PositionLeft" config:type="int">0</config:config-item>
                             <config:config-item config:name="PositionRight" config:type="int">0</config:config-item>
                             <config:config-item config:name="PositionTop" config:type="int">0</config:config-item>
-                            <config:config-item config:name="PositionBottom" config:type="int">65</config:config-item>
+                            <config:config-item config:name="PositionBottom" config:type="int">0</config:config-item>
                             <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
                             <config:config-item config:name="ZoomValue" config:type="int">150</config:config-item>
                             <config:config-item config:name="PageViewZoomValue" config:type="int">60</config:config-item>
                             <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
+                            <config:config-item config:name="AnchoredTextOverflowLegacy" config:type="boolean">false</config:config-item>
                         </config:config-item-map-entry>
                     </config:config-item-map-named>
                     <config:config-item config:name="ActiveTable" config:type="string">Sheet1</config:config-item>
-                    <config:config-item config:name="HorizontalScrollbarWidth" config:type="int">1303</config:config-item>
+                    <config:config-item config:name="HorizontalScrollbarWidth" config:type="int">1346</config:config-item>
                     <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
                     <config:config-item config:name="ZoomValue" config:type="int">150</config:config-item>
                     <config:config-item config:name="PageViewZoomValue" config:type="int">60</config:config-item>
@@ -48,7 +50,7 @@
                     <config:config-item config:name="ShowZeroValues" config:type="boolean">true</config:config-item>
                     <config:config-item config:name="ShowNotes" config:type="boolean">true</config:config-item>
                     <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
-                    <config:config-item config:name="GridColor" config:type="long">12632256</config:config-item>
+                    <config:config-item config:name="GridColor" config:type="int">12632256</config:config-item>
                     <config:config-item config:name="ShowPageBreaks" config:type="boolean">true</config:config-item>
                     <config:config-item config:name="HasColumnRowHeaders" config:type="boolean">true</config:config-item>
                     <config:config-item config:name="HasSheetTabs" config:type="boolean">true</config:config-item>
@@ -61,39 +63,41 @@
                     <config:config-item config:name="RasterSubdivisionX" config:type="int">1</config:config-item>
                     <config:config-item config:name="RasterSubdivisionY" config:type="int">1</config:config-item>
                     <config:config-item config:name="IsRasterAxisSynchronized" config:type="boolean">true</config:config-item>
+                    <config:config-item config:name="AnchoredTextOverflowLegacy" config:type="boolean">false</config:config-item>
                 </config:config-item-map-entry>
             </config:config-item-map-indexed>
         </config:config-item-set>
         <config:config-item-set config:name="ooo:configuration-settings">
             <config:config-item config:name="SyntaxStringRef" config:type="short">7</config:config-item>
-            <config:config-item config:name="IsDocumentShared" config:type="boolean">false</config:config-item>
-            <config:config-item config:name="LoadReadonly" config:type="boolean">false</config:config-item>
             <config:config-item config:name="AllowPrintJobCancel" config:type="boolean">true</config:config-item>
-            <config:config-item config:name="UpdateFromTemplate" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="SaveVersionOnClose" config:type="boolean">false</config:config-item>
             <config:config-item config:name="IsKernAsianPunctuation" config:type="boolean">false</config:config-item>
-            <config:config-item config:name="EmbedFonts" config:type="boolean">false</config:config-item>
-            <config:config-item config:name="IsSnapToRaster" config:type="boolean">false</config:config-item>
-            <config:config-item config:name="RasterResolutionX" config:type="int">1270</config:config-item>
-            <config:config-item config:name="RasterResolutionY" config:type="int">1270</config:config-item>
-            <config:config-item config:name="HasSheetTabs" config:type="boolean">true</config:config-item>
-            <config:config-item config:name="IsRasterAxisSynchronized" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="CharacterCompressionType" config:type="short">0</config:config-item>
+            <config:config-item config:name="ApplyUserData" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="PrinterSetup" config:type="base64Binary">rgH+/0Rlc2tqZXQtMTUxMC1zZXJpZXMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ1VQUzpEZXNramV0LTE1MTAtc2VyaWVzAAAAAAAAAAAWAAMAywAAAAAAAAAIAFZUAAAkbQAASm9iRGF0YSAxCnByaW50ZXI9RGVza2pldC0xNTEwLXNlcmllcwpvcmllbnRhdGlvbj1Qb3J0cmFpdApjb3BpZXM9MQpjb2xsYXRlPWZhbHNlCm1hcmdpbmRhanVzdG1lbnQ9MCwwLDAsMApjb2xvcmRlcHRoPTI0CnBzbGV2ZWw9MApwZGZkZXZpY2U9MQpjb2xvcmRldmljZT0wClBQRENvbnRleERhdGEKSW5wdXRTbG90OkF1dG8AUGFnZVNpemU6TGV0dGVyAAASAENPTVBBVF9EVVBMRVhfTU9ERRMARHVwbGV4TW9kZTo6VW5rbm93bg==</config:config-item>
+            <config:config-item config:name="PrinterName" config:type="string">Deskjet-1510-series</config:config-item>
+            <config:config-item config:name="AutoCalculate" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="LinkUpdateMode" config:type="short">3</config:config-item>
+            <config:config-item config:name="HasColumnRowHeaders" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="LoadReadonly" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="UpdateFromTemplate" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="ShowZeroValues" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="GridColor" config:type="int">12632256</config:config-item>
             <config:config-item config:name="ShowPageBreaks" config:type="boolean">true</config:config-item>
             <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
-            <config:config-item config:name="ShowNotes" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="PrinterPaperFromSetup" config:type="boolean">false</config:config-item>
             <config:config-item config:name="IsOutlineSymbolsSet" config:type="boolean">true</config:config-item>
-            <config:config-item config:name="ShowZeroValues" config:type="boolean">true</config:config-item>
-            <config:config-item config:name="SaveVersionOnClose" config:type="boolean">false</config:config-item>
-            <config:config-item config:name="GridColor" config:type="long">12632256</config:config-item>
-            <config:config-item config:name="RasterIsVisible" config:type="boolean">false</config:config-item>
-            <config:config-item config:name="PrinterName" config:type="string">Deskjet-1510-series</config:config-item>
-            <config:config-item config:name="LinkUpdateMode" config:type="short">3</config:config-item>
-            <config:config-item config:name="RasterSubdivisionX" config:type="int">1</config:config-item>
-            <config:config-item config:name="HasColumnRowHeaders" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="IsDocumentShared" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="ShowNotes" config:type="boolean">true</config:config-item>
+            <config:config-item config:name="EmbedFonts" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="HasSheetTabs" config:type="boolean">true</config:config-item>
             <config:config-item config:name="RasterSubdivisionY" config:type="int">1</config:config-item>
-            <config:config-item config:name="AutoCalculate" config:type="boolean">true</config:config-item>
-            <config:config-item config:name="PrinterSetup" config:type="base64Binary">qQH+/0Rlc2tqZXQtMTUxMC1zZXJpZXMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ1VQUzpEZXNramV0LTE1MTAtc2VyaWVzAAAAAAAAAAAWAAMAywAAAAAAAAAIAFZUAAAkbQAASm9iRGF0YSAxCnByaW50ZXI9RGVza2pldC0xNTEwLXNlcmllcwpvcmllbnRhdGlvbj1Qb3J0cmFpdApjb3BpZXM9MQpjb2xsYXRlPWZhbHNlCm1hcmdpbmRhanVzdG1lbnQ9MCwwLDAsMApjb2xvcmRlcHRoPTI0CnBzbGV2ZWw9MApwZGZkZXZpY2U9MQpjb2xvcmRldmljZT0wClBQRENvbnRleERhdGEKUGFnZVNpemU6TGV0dGVyAElucHV0U2xvdDpBdXRvAAASAENPTVBBVF9EVVBMRVhfTU9ERQ4ARFVQTEVYX1VOS05PV04=</config:config-item>
-            <config:config-item config:name="ApplyUserData" config:type="boolean">true</config:config-item>
-            <config:config-item config:name="CharacterCompressionType" config:type="short">0</config:config-item>
+            <config:config-item config:name="RasterIsVisible" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="RasterResolutionX" config:type="int">1270</config:config-item>
+            <config:config-item config:name="RasterResolutionY" config:type="int">1270</config:config-item>
+            <config:config-item config:name="IsSnapToRaster" config:type="boolean">false</config:config-item>
+            <config:config-item config:name="RasterSubdivisionX" config:type="int">1</config:config-item>
+            <config:config-item config:name="IsRasterAxisSynchronized" config:type="boolean">true</config:config-item>
         </config:config-item-set>
     </office:settings>
     <office:scripts>
@@ -108,6 +112,7 @@
         <style:font-face style:name="Liberation Sans" svg:font-family="&apos;Liberation Sans&apos;" style:font-family-generic="swiss" style:font-pitch="variable" />
         <style:font-face style:name="DejaVu Sans" svg:font-family="&apos;DejaVu Sans&apos;" style:font-family-generic="system" style:font-pitch="variable" />
         <style:font-face style:name="FreeSans" svg:font-family="FreeSans" style:font-family-generic="system" style:font-pitch="variable" />
+        <style:font-face style:name="Lohit Devanagari" svg:font-family="&apos;Lohit Devanagari&apos;" style:font-family-generic="system" style:font-pitch="variable" />
     </office:font-face-decls>
     <office:styles>
         <style:default-style style:family="table-cell">
@@ -135,15 +140,8 @@
         <style:style style:name="Default" style:family="table-cell">
             <style:text-properties style:font-name-complex="FreeSans" style:font-family-complex="FreeSans" style:font-family-generic-complex="system" style:font-pitch-complex="variable" />
         </style:style>
-        <style:style style:name="Result" style:family="table-cell" style:parent-style-name="Default">
-            <style:text-properties fo:font-style="italic" style:text-underline-style="solid" style:text-underline-width="auto" style:text-underline-color="font-color" fo:font-weight="bold" />
-        </style:style>
-        <style:style style:name="Result2" style:family="table-cell" style:parent-style-name="Result" style:data-style-name="N104" />
         <style:style style:name="Heading" style:family="table-cell" style:parent-style-name="Default">
             <style:text-properties fo:color="#000000" fo:font-size="24pt" fo:font-style="normal" fo:font-weight="bold" />
-        </style:style>
-        <style:style style:name="Heading1" style:family="table-cell" style:parent-style-name="Heading">
-            <style:table-cell-properties style:rotation-angle="90" />
         </style:style>
         <style:style style:name="Heading_20_1" style:display-name="Heading 1" style:family="table-cell" style:parent-style-name="Heading">
             <style:text-properties fo:color="#000000" fo:font-size="18pt" fo:font-style="normal" fo:font-weight="normal" />
@@ -158,6 +156,9 @@
         </style:style>
         <style:style style:name="Footnote" style:family="table-cell" style:parent-style-name="Text">
             <style:text-properties fo:color="#808080" fo:font-size="10pt" fo:font-style="italic" fo:font-weight="normal" />
+        </style:style>
+        <style:style style:name="Hyperlink" style:family="table-cell" style:parent-style-name="Text">
+            <style:text-properties fo:color="#0000ee" fo:font-size="10pt" fo:font-style="normal" style:text-underline-style="solid" style:text-underline-width="auto" style:text-underline-color="#0000ee" fo:font-weight="normal" />
         </style:style>
         <style:style style:name="Status" style:family="table-cell" style:parent-style-name="Default" />
         <style:style style:name="Good" style:family="table-cell" style:parent-style-name="Status">
@@ -193,6 +194,13 @@
         <style:style style:name="Accent_20_3" style:display-name="Accent 3" style:family="table-cell" style:parent-style-name="Accent">
             <style:table-cell-properties fo:background-color="#dddddd" />
         </style:style>
+        <style:style style:name="Result" style:family="table-cell" style:parent-style-name="Default">
+            <style:text-properties fo:font-style="italic" style:text-underline-style="solid" style:text-underline-width="auto" style:text-underline-color="font-color" fo:font-weight="bold" />
+        </style:style>
+        <style:style style:name="Result2" style:family="table-cell" style:parent-style-name="Result" style:data-style-name="N104" />
+        <style:style style:name="Heading1" style:family="table-cell" style:parent-style-name="Heading">
+            <style:table-cell-properties style:rotation-angle="90" />
+        </style:style>
     </office:styles>
     <office:automatic-styles>
         <style:style style:name="co1" style:family="table-column">
@@ -208,7 +216,7 @@
             <style:table-column-properties fo:break-before="auto" style:column-width="327.8pt" />
         </style:style>
         <style:style style:name="co5" style:family="table-column">
-            <style:table-column-properties fo:break-before="auto" style:column-width="226.4pt" />
+            <style:table-column-properties fo:break-before="auto" style:column-width="483.76pt" />
         </style:style>
         <style:style style:name="co6" style:family="table-column">
             <style:table-column-properties fo:break-before="auto" style:column-width="237.26pt" />
@@ -277,12 +285,14 @@
             <style:header>
                 <text:p>
                     <text:sheet-name>???</text:sheet-name>
+                    <text:s />
                 </text:p>
             </style:header>
             <style:header-left style:display="false" />
             <style:footer>
-                <text:p>Page &#x0A;                    
+                <text:p>Page 
                     <text:page-number>1</text:page-number>
+                    <text:s />
                 </text:p>
             </style:footer>
             <style:footer-left style:display="false" />
@@ -291,22 +301,26 @@
             <style:header>
                 <style:region-left>
                     <text:p>
-                        <text:sheet-name>???</text:sheet-name> ( &#x0A;                        
-                        <text:title>???</text:title>) &#x0A;                    
+                        <text:sheet-name>???</text:sheet-name>
+                        <text:s />( 
+                        <text:title>???</text:title>) 
                     </text:p>
                 </style:region-left>
                 <style:region-right>
                     <text:p>
-                        <text:date style:data-style-name="N2" text:date-value="2017-12-29">00/00/0000</text:date>, &#x0A;                        
-                        <text:time style:data-style-name="N2" text:time-value="09:54:47.537402907">00:00:00</text:time>
+                        <text:date style:data-style-name="N2" text:date-value="2019-06-01">00/00/0000</text:date>, 
+                        <text:time style:data-style-name="N2" text:time-value="21:38:20.614864933">00:00:00</text:time>
+                        <text:s />
                     </text:p>
                 </style:region-right>
             </style:header>
             <style:header-left style:display="false" />
             <style:footer>
-                <text:p>Page &#x0A;                    
-                    <text:page-number>1</text:page-number> / &#x0A;                    
+                <text:p>Page 
+                    <text:page-number>1</text:page-number>
+                    <text:s />/ 
                     <text:page-count>99</text:page-count>
+                    <text:s />
                 </text:p>
             </style:footer>
             <style:footer-left style:display="false" />
@@ -315,7 +329,7 @@
     <office:body>
         <office:spreadsheet>
             <table:calculation-settings table:automatic-find-labels="false" table:use-regular-expressions="false" table:use-wildcards="true" />
-            <table:table table:name="Sheet1" table:style-name="ta1" table:hash="f96f6cafd93a18e60b69e1e4429effb5">
+            <table:table table:name="Sheet1" table:style-name="ta1" table:hash="d20a615801782de36ed0e36f5e507d81">
                 <table:table-column table:style-name="co1" table:default-cell-style-name="ce1" />
                 <table:table-column table:style-name="co2" table:default-cell-style-name="ce3" />
                 <table:table-column table:style-name="co3" table:default-cell-style-name="Default" />
@@ -395,7 +409,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Voltar ao menu principal</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Вернуться домой</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Regresar a inicio</text:p>
                     </table:table-cell>
@@ -413,7 +429,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Assassinatos:</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Убийства:</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Asesinatos:</text:p>
                     </table:table-cell>
@@ -431,7 +449,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Colocação:</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Ранг:</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Rango:</text:p>
                     </table:table-cell>
@@ -449,7 +469,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Você perdeu!</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Ты проиграла!</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Perdiste!</text:p>
                     </table:table-cell>
@@ -467,7 +489,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Você venceu!</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Ты выиграл!</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Ganaste!</text:p>
                     </table:table-cell>
@@ -485,7 +509,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Capacidade %s/%s</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Вместимость %s/%s</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Capacidad %s/%s</text:p>
                     </table:table-cell>
@@ -503,7 +529,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Equipar arma primária %s</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Оборудовать основное оружие %s</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Equipar arma primaria %s</text:p>
                     </table:table-cell>
@@ -521,7 +549,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Equipar arma secundária %s</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Оборудовать вторичное оружие %s</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Equipar arma secundaria %s</text:p>
                     </table:table-cell>
@@ -539,7 +569,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Equipar arma especial %s</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Оборудовать специальное оружие %s</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Equipar arma especial %s</text:p>
                     </table:table-cell>
@@ -557,7 +589,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Quantidade</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Количество</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Cantidad</text:p>
                     </table:table-cell>
@@ -575,7 +609,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Vida cheia</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Здоровье полно</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Vida llena</text:p>
                     </table:table-cell>
@@ -593,7 +629,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Mochila cheia</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Инвентарь полон</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Inventario lleno</text:p>
                     </table:table-cell>
@@ -611,7 +649,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Sem munição</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Нет боеприпасов</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Sin munición</text:p>
                     </table:table-cell>
@@ -629,7 +669,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Usou %s</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Используемый %s</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Has usado %s</text:p>
                     </table:table-cell>
@@ -644,11 +686,7 @@
                     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
                         <text:p>%s</text:p>
                     </table:table-cell>
-                    <table:table-cell office:value-type="string" calcext:value-type="string">
-                        <text:p>%s</text:p>
-                    </table:table-cell>
-                    <table:table-cell />
-                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                    <table:table-cell table:number-columns-repeated="3" office:value-type="string" calcext:value-type="string">
                         <text:p>%s</text:p>
                     </table:table-cell>
                 </table:table-row>
@@ -662,7 +700,9 @@
                     <table:table-cell table:number-columns-repeated="2" office:value-type="string" calcext:value-type="string">
                         <text:p>Status</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>государственный</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Estado</text:p>
                     </table:table-cell>
@@ -680,7 +720,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Usar %s</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>использование %s</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Usar %s</text:p>
                     </table:table-cell>
@@ -698,7 +740,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Itens no chão</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Добыча окрестностей</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Botín</text:p>
                     </table:table-cell>
@@ -716,7 +760,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Seus itens</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Ваша добыча</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Su Botín</text:p>
                     </table:table-cell>
@@ -734,7 +780,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Contador: %s</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>обратный отсчет: %s</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Contador: %s</text:p>
                     </table:table-cell>
@@ -752,7 +800,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>O círculo azul mostra o próximo avanço da zona vermelha.</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Синий круг показывает, где будет красная зона!</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>El círculo azul muestra donde se movera la zona roja!</text:p>
                     </table:table-cell>
@@ -770,7 +820,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Pressione F11 para ver a zona vermelha no mapa.</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Карта F11 показывает радиус опасной зоны!</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Presion F11 para ver el radio de la zona de peligro!</text:p>
                     </table:table-cell>
@@ -788,7 +840,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Pressione Tab para abrir o inventário durante a partida.</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Нажмите «Tab», чтобы открыть инвентарь после начала матча!</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Presione Tab para abrir el inventario</text:p>
                     </table:table-cell>
@@ -806,7 +860,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Partidas só começarão na presença de dois ou mais jogadores.</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Матчи могут начаться только в том случае, если в лобби есть как минимум два игрока.</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Para comenzar una partida deben haber al menos 2 jugadores</text:p>
                     </table:table-cell>
@@ -824,7 +880,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Você está no salão de espera.</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Лобби - это остров, по которому вы сейчас гуляете.</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Estas en la sala de espera</text:p>
                     </table:table-cell>
@@ -842,7 +900,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>A zona vermelha significa perigo – você levará dano se ficar for a dela!</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Красная зона указывает на опасную зону - вы получите урон, если будете стоять за ее пределами!</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>La zona roja indica la zona de peligro - recibirás daño dentro</text:p>
                     </table:table-cell>
@@ -880,7 +940,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Há outra partida em progresso</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Матч уже запущен</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Hay otra partida en progreso!</text:p>
                     </table:table-cell>
@@ -898,7 +960,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Jogadores no salão de espera: %s</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Игроки в лобби: %s</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Jugadores esperando: %s</text:p>
                     </table:table-cell>
@@ -916,7 +980,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>A partida começará em %s segundos</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Матч начнется в %s секунд</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>La partida comenzará en: %s segundos</text:p>
                     </table:table-cell>
@@ -934,7 +1000,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Por favor, entre com a chave alfa</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Пожалуйста, введите альфа-ключ</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Por favor ingrese su clave de acceso alpha</text:p>
                     </table:table-cell>
@@ -949,7 +1017,9 @@
                     <table:table-cell table:number-columns-repeated="2" office:value-type="string" calcext:value-type="string">
                         <text:p>ID</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>удостоверение личности</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>ID</text:p>
                     </table:table-cell>
@@ -967,7 +1037,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Por favor digite uma senha</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Пожалуйста, введите пароль</text:p>
+                    </table:table-cell>
                     <table:table-cell table:style-name="ce8" office:value-type="string" calcext:value-type="string">
                         <text:p>Por favor ingrese una contraseña</text:p>
                     </table:table-cell>
@@ -985,7 +1057,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Por favor digite a senha correta</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Пожалуйста, введите правильный пароль</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Por favor ingrese una contraseña válida</text:p>
                     </table:table-cell>
@@ -1003,7 +1077,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Entre com uma chave alfa válida</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Пожалуйста, введите правильный альфа-ключ</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Por favor ingrese una clave de acceso alpha válida</text:p>
                     </table:table-cell>
@@ -1021,7 +1097,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Chave</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>ключ</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Clave</text:p>
                     </table:table-cell>
@@ -1039,7 +1117,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Chave alfa já foi usada</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Альфа-ключ был использован</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Esa clave ya fue usada</text:p>
                     </table:table-cell>
@@ -1057,7 +1137,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Entrar</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Авторизоваться</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Loguear</text:p>
                     </table:table-cell>
@@ -1075,7 +1157,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Serial ausente</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Нет серийный</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Serial ausente</text:p>
                     </table:table-cell>
@@ -1093,7 +1177,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Senha</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>пароль</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Contraseña</text:p>
                     </table:table-cell>
@@ -1111,7 +1197,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Registrar</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>регистр</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Registrarse</text:p>
                     </table:table-cell>
@@ -1129,7 +1217,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Lembrar senha</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Помнить пароль</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Recordar contraseña</text:p>
                     </table:table-cell>
@@ -1147,7 +1237,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Erro desconhecido</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Неизвестная ошибка</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Error desconocido</text:p>
                     </table:table-cell>
@@ -1165,7 +1257,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Bem-vind@!</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Добро пожаловать!</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Bienvenido/a</text:p>
                     </table:table-cell>
@@ -1183,7 +1277,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Personagem</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>действующее лицо</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Personaje</text:p>
                     </table:table-cell>
@@ -1201,7 +1297,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Início</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Главная</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Inicio</text:p>
                     </table:table-cell>
@@ -1253,11 +1351,7 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>mainMenuPlayerName</text:p>
                     </table:table-cell>
-                    <table:table-cell table:number-columns-repeated="2" office:value-type="string" calcext:value-type="string">
-                        <text:p>%s</text:p>
-                    </table:table-cell>
-                    <table:table-cell />
-                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                    <table:table-cell table:number-columns-repeated="4" office:value-type="string" calcext:value-type="string">
                         <text:p>%s</text:p>
                     </table:table-cell>
                 </table:table-row>
@@ -1274,7 +1368,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Em breve</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Скоро</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Pronto</text:p>
                     </table:table-cell>
@@ -1292,7 +1388,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Estatísticas</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Статистика</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Estadísticas</text:p>
                     </table:table-cell>
@@ -1310,7 +1408,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Jogadores vivos: </text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Живые игроки: </text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Jugadores vivos:</text:p>
                     </table:table-cell>
@@ -1328,7 +1428,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Jogador %s morreu - %s restam</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>игрок %s уже умер - %s остаток</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>%s ha muerto - %s restantes</text:p>
                     </table:table-cell>
@@ -1346,7 +1448,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Jogador %s foi morto por %s - %s restam</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>игрок %s был убит %s - %s остаток</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>%s fue asesinado por %s - %s restantes</text:p>
                     </table:table-cell>
@@ -1364,7 +1468,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Caixas comuns</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Общие ящики</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Cajas comunes</text:p>
                     </table:table-cell>
@@ -1382,7 +1488,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Caixas épicas</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Эпические ящики</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Cajas épicas</text:p>
                     </table:table-cell>
@@ -1400,7 +1508,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Caixas legendárias</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Легендарные ящики</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Cajas legendarias</text:p>
                     </table:table-cell>
@@ -1418,7 +1528,9 @@
                     <table:table-cell table:style-name="ce6" office:value-type="string" calcext:value-type="string">
                         <text:p>Caixas incomuns</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Необычные ящики</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Cajas descomunales</text:p>
                     </table:table-cell>
@@ -1456,7 +1568,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Examinar corpo</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Проверьте тело</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Examinar cuerpo</text:p>
                     </table:table-cell>
@@ -1474,7 +1588,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Corpo (%s)</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Труп (%s)</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Cuerpo (%s)</text:p>
                     </table:table-cell>
@@ -1492,7 +1608,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Itens</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Запасы</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Items</text:p>
                     </table:table-cell>
@@ -1510,7 +1628,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Esconder corpo</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Спрятать тело</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Esconder cuerpo</text:p>
                     </table:table-cell>
@@ -1528,7 +1648,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Pegar %s</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>принимать %s</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Recoger %s</text:p>
                     </table:table-cell>
@@ -1546,7 +1668,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Não disponível</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Пока недоступно</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>No disponible aun</text:p>
                     </table:table-cell>
@@ -1564,7 +1688,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Skins padronizadas</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Предустановленные скины</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Skins preestablecidas</text:p>
                     </table:table-cell>
@@ -1582,7 +1708,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>BattlePoints</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Боевые Очки</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>BattlePoints</text:p>
                     </table:table-cell>
@@ -1600,7 +1728,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>BattlePoints gastos</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Потраченные боевые очки</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>BattlePoints gastados</text:p>
                     </table:table-cell>
@@ -1618,7 +1748,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Mortes</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Смертей</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Muertes</text:p>
                     </table:table-cell>
@@ -1636,7 +1768,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Partidas jogadas</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Игр сыграно</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Partidas jugadas</text:p>
                     </table:table-cell>
@@ -1654,7 +1788,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Tiros na cabeça</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>голову</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Disparos a la cabeza</text:p>
                     </table:table-cell>
@@ -1666,11 +1802,7 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>statisticsMenuID</text:p>
                     </table:table-cell>
-                    <table:table-cell table:number-columns-repeated="2" office:value-type="string" calcext:value-type="string">
-                        <text:p>ID</text:p>
-                    </table:table-cell>
-                    <table:table-cell />
-                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                    <table:table-cell table:number-columns-repeated="4" office:value-type="string" calcext:value-type="string">
                         <text:p>ID</text:p>
                     </table:table-cell>
                 </table:table-row>
@@ -1687,7 +1819,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Assassinatos/Mortes</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Убийство/Смерть</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Asesinatos/Muertes</text:p>
                     </table:table-cell>
@@ -1705,7 +1839,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Assassinatos</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Убийства</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Asesinatos</text:p>
                     </table:table-cell>
@@ -1723,7 +1859,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Derrotas</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>потери</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Derrotas</text:p>
                     </table:table-cell>
@@ -1738,10 +1876,9 @@
                     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
                         <text:p>N/A</text:p>
                     </table:table-cell>
-                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                    <table:table-cell table:number-columns-repeated="2" office:value-type="string" calcext:value-type="string">
                         <text:p>N/A</text:p>
                     </table:table-cell>
-                    <table:table-cell />
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>N/D</text:p>
                     </table:table-cell>
@@ -1753,11 +1890,7 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>statisticsMenuPlayerName</text:p>
                     </table:table-cell>
-                    <table:table-cell table:number-columns-repeated="2" office:value-type="string" calcext:value-type="string">
-                        <text:p>%s</text:p>
-                    </table:table-cell>
-                    <table:table-cell />
-                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                    <table:table-cell table:number-columns-repeated="4" office:value-type="string" calcext:value-type="string">
                         <text:p>%s</text:p>
                     </table:table-cell>
                 </table:table-row>
@@ -1774,7 +1907,9 @@
                     <table:table-cell table:style-name="ce7" office:value-type="string" calcext:value-type="string">
                         <text:p>Vitórias/Derrotas</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Выиграть/потеря соотношение</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Victorias/Derrotas</text:p>
                     </table:table-cell>
@@ -1792,7 +1927,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Vitórias</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>Выиграть</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Victorias</text:p>
                     </table:table-cell>
@@ -1810,7 +1947,9 @@
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Combustível: %s L</text:p>
                     </table:table-cell>
-                    <table:table-cell />
+                    <table:table-cell office:value-type="string" calcext:value-type="string">
+                        <text:p>топливо: %s L</text:p>
+                    </table:table-cell>
                     <table:table-cell office:value-type="string" calcext:value-type="string">
                         <text:p>Combustible: %s L.</text:p>
                     </table:table-cell>
