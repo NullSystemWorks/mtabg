@@ -13,7 +13,7 @@ Remeber to keep your fork in sync, more info: http://www.youtube.com/watch?v=-zv
 
 ### Links ###
 Discord: https://discord.gg/th86Tmw
-Issues: https://github.com/ciber96/mtabg/issues
+Issues: https://github.com/NullSystemWorks/mtabg/issues
 Donations: Contact CiBeR on Discord.
 
 ### Contact ###
