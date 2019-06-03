@@ -188,9 +188,9 @@ local function setVisible(state)
 		copyright:setAlpha(0.35)
 		copyright:setHorizontalAlign("left", true)
 		local sourceDownload =
-			GuiLabel(0.00, 0.95, 0.46, 0.03,
+			GuiLabel(0.00, 0.94, 0.49, 0.03,
 			         "Gamemode source code can be found at: "
-				         .."https://github.com/ciber96/mtabg", true,
+				         .."https://github.com/NullSystemWorks/mtabg", true,
 			         imgBackground)
 		sourceDownload:setAlpha(0.35)
 		sourceDownload:setHorizontalAlign("left", true)
