@@ -493,7 +493,7 @@ function Player:getFinalDamageAndDeduceArmor(damage)
 	return damage
 end
 
-function Player:hanldeDamage(attacker, weapon, bodypart, loss)
+function Player:handleDamage(attacker, weapon, bodypart, loss)
 	iprint(tostring(Player.getNameOrNil(attacker)).. " attacked " ..self.name)
 	if self:getInMatch() then
 		local damage = 0
@@ -513,13 +513,13 @@ function Player:hanldeDamage(attacker, weapon, bodypart, loss)
 	end
 end
 
-local function hanldePlayerDamage(attacker, weapon, bodypart, loss)
+local function handlePlayerDamage(attacker, weapon, bodypart, loss)
 	local player = Remote.getSuperFromRemote(client)
 	local attacker = Remote.getSuperFromRemote(attacker)
-	Player.hanldeDamage(player, attacker, weapon, bodypart, loss)
+	Player.handleDamage(player, attacker, weapon, bodypart, loss)
 end
 addEvent("onDamagePlayer", true) --onPlayerDamage is taken by MTA
-addEventHandler("onDamagePlayer", resourceRoot, hanldePlayerDamage)
+addEventHandler("onDamagePlayer", resourceRoot, handlePlayerDamage)
 
 function Player:getMatchReward()
 	return self:getKills()*10 + self:getHeadshots()*5 + 10
