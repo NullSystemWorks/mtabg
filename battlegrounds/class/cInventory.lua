@@ -1,5 +1,11 @@
 Inventory = {}
 
+local aspectRatio
+do
+	local x, y = guiGetScreenSize()
+	aspectRatio = x/y
+end
+
 local fontInventory = GuiFont("/font/bebas.otf", 13)
 local fontPlayerName = GuiFont("/font/bebas.otf", 20)
 
@@ -221,7 +227,7 @@ addEventHandler("onUnequipWeapon", localPlayer, removeEquippedWeaponGui)
 local function changeEquippedWeaponGui(itemName)
 	local imagePath = getWeaponImagePath(itemName)
 	--TODO: size and position depend only on weapon class
-	local relX = getWeaponImageSizeX(itemName)
+	local relX = getWeaponImageSizeX(itemName)/aspectRatio
 	local relY = getWeaponImageSizeY(itemName)
 	local posX = getWeaponImagePositionX(itemName)
 	local posY = getWeaponImagePositionY(itemName)

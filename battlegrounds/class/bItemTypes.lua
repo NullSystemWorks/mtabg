@@ -930,14 +930,14 @@ local imgPos =
 {
 	{
 		["guiName"] = "rifles",
-		["guiSizeX"] = 0.25,
+		["guiSizeX"] = 0.17*2,
 		["guiSizeY"] = 0.17,
 		["guiPositionX"] = 0.58,
 		["guiPositionY"] = 0.40,
 	},
 	{
 		["guiName"] = "handsub",
-		["guiSizeX"] = 0.13,
+		["guiSizeX"] = 0.17,
 		["guiSizeY"] = 0.17,
 		["guiPositionX"] = 0.58,
 		["guiPositionY"] = 0.59,
