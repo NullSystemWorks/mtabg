@@ -179,7 +179,7 @@ local ITEM_DEFINITIONS = {
 			["damage"] = 27,
 			["ammo"] = "Machine gun ammo",
 			["slot"] = 2,
-			["imagePath"] = "mp5a5.png",
+			["imagePath"] = "mp5.png",
 		},
 	},
 
