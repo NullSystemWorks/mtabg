@@ -178,7 +178,7 @@ local ITEM_DEFINITIONS = {
 			["weaponID"] = 29,
 			["damage"] = 27,
 			["ammo"] = "Machine gun ammo",
-			["slot"] = 2,
+			["slot"] = 1,
 			["imagePath"] = "mp5.png",
 		},
 	},
