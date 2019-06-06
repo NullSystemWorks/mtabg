@@ -186,23 +186,16 @@ end
 addEvent("onLogin", true)
 addEventHandler("onLogin", root, handlePlayerLogin)
 
-function Player:createAccount(password, alphaKey)
+function Player:createAccount(password)
 	self.account:register(password)
-	AlphaKey.useKey(alphaKey, self.account:getSerial())
 	self.remote:send("onSendLoginStatus", "success")
 end
 
-function Player:register(plainPassword, alphaKey)
+function Player:register(plainPassword)
 	if not self.account:getRegistered() then
-		local keyUsage = AlphaKey.getUsed(alphaKey)
-		iprint("Player " ..self.name.. " entered alphaKey: '" ..alphaKey.. "': " ..tostring(keyUsage))
 		if string.len(plainPassword) > 0 then
-			if keyUsage == "unclaimed" then
-				local salt = Hash.generateSalt()
-				Hash.getHash(plainPassword, salt, Player.createAccount, self, alphaKey)
-			else
-				self.remote:send("onSendLoginStatus", keyUsage)
-			end
+			local salt = Hash.generateSalt()
+			Hash.getHash(plainPassword, salt, Player.createAccount, self)
 		else
 			self.remote:send("onSendLoginStatus", "noPassword")
 		end
@@ -211,10 +204,10 @@ function Player:register(plainPassword, alphaKey)
 	end
 end
 
-local function handlePlayerRegister(plainPassword, alphaKey)
+local function handlePlayerRegister(plainPassword)
 	if Remote.isLegitPlayer(client, source) then
 		local player = Remote.getSuperFromRemote(client)
-		player:register(plainPassword, alphaKey)
+		player:register(plainPassword)
 	end
 end
 addEvent("onRegister", true)

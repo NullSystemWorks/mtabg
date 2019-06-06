@@ -9,9 +9,9 @@ local isIdle = true
 local currentClient
 local thread
 
-function Hash.enqueue(password, salt, callback, player, alphaKey)
+function Hash.enqueue(password, salt, callback, player)
 	if not player.account:getInHashQueue() then
-		queue:push({password, salt, callback, player, alphaKey})
+		queue:push({password, salt, callback, player})
 		player.account:setInHashQueue(true)
 		iprint("Player " ..player.name.. " joined the hash queue")
 	else
@@ -56,7 +56,7 @@ function Hash.setCurrentClient(_player)
 	currentClient = _player
 end
 
-function Hash.compute(password, salt, callback, player, alphaKey)
+function Hash.compute(password, salt, callback, player)
 	local hash = hash
 	local mod = math.mod
 	local getTickCount = getTickCount
@@ -86,7 +86,7 @@ function Hash.compute(password, salt, callback, player, alphaKey)
 	iprint("Hashed " ..iterationCount.. " times in " ..totalIterationTime.. "ms") --output processing time
 	iprint(string.format( "Hashing password took: %dms. Thread: %d%%",
 	totalDuration, totalIterationTime/(totalDuration)*100))
-	callback(player, salt.. "$" ..hashedString, alphaKey)
+	callback(player, salt.. "$" ..hashedString)
 	Hash.removePlayerFromQueue(player)
 end
 
@@ -114,8 +114,8 @@ function Hash.removePlayerFromQueue(player)
 	end
 end
 
-function Hash.getHash(password, salt, callback, player, alphaKey)
-	Hash.enqueue(password, salt, callback, player, alphaKey)
+function Hash.getHash(password, salt, callback, player)
+	Hash.enqueue(password, salt, callback, player)
 	if Hash.getIdle() then
 		Hash.hashNext()
 	end

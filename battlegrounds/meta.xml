@@ -53,7 +53,6 @@ type="gamemode"
 <script src="class/sRandom.lua" type="server" />
 <script src="class/sDatabase.lua" type="server" />
 <script src="class/sAccount.lua" type="server" />
-<script src="class/sAlphaKey.lua" type="server" />
 <script src="class/bConstant.lua" type="shared" cache="false" />
 <script src="class/sLootSpot.lua" type="server" />
 <script src="class/sWorldObject.lua" type="server" />

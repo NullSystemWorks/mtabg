@@ -33,14 +33,6 @@ function Database.init()
 			PRIMARY KEY (`ID`)
 		)
 		ENGINE=InnoDB DEFAULT CHARSET=latin1;]])
-		connection:exec([[CREATE TABLE IF NOT EXISTS `alpha`
-		(
-			`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-			`joinKey` CHAR(16) NOT NULL UNIQUE,
-			`serial` VARCHAR(32) NOT NULL,
-			PRIMARY KEY (`ID`)
-		)
-		ENGINE=InnoDB DEFAULT CHARSET=latin1;]])
 	else
 		outputDebugString("Error connecting to MySQL Database. Stoping Resource...", 1)
 		cancelEvent()
@@ -103,17 +95,4 @@ function Database.createAccount(ip, serial, password)
 		serial,
 		password
 	)
-end
-
-function Database.getAlphaKeyUser(alphaKey)
-	local query = connection:query("SELECT serial FROM alpha WHERE `joinKey`=?;", alphaKey)
-	return query:poll(-1)[1]
-end
-
-function Database.setAlphaKeyAsUsed(alphaKey, serial)
-	connection:exec("UPDATE alpha SET `serial`=? WHERE `joinKey`=?;", serial, alphaKey)
-end
-
-function Database.insertNewAlphaKey(alphaKey)
-	connection:exec("INSERT INTO alpha SET `joinKey`=?, `serial`='unclaimed';", alphaKey)
 end

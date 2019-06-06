@@ -24,13 +24,6 @@ lblPassword:setHorizontalAlign("center", false)
 local editPassword = GuiEdit(0.35, 0.50, 0.29, 0.05, "", true, imgBackground)
 editPassword:setMasked(true)
 
-local editAlphaKey = GuiEdit(0.35, 0.32, 0.29, 0.05, "", true, imgBackground)
-
-local lblKey =
-	GuiLabel(0.27, 0.33, 0.08, 0.04, str("loginPanelKey"), true, imgBackground)
-lblKey:setFont("default-bold-small")
-lblKey:setHorizontalAlign("center", false)
-
 local checkRememberPassword = GuiCheckBox(0.35, 0.56, 0.21, 0.02,
 	str("loginPanelRememberPassword"), false, true, imgBackground)
 
@@ -74,9 +67,8 @@ end
 local function clickRegisterButton()
 	if LoadingBar.isIdle() then
 		local password = editPassword:getText()
-		local alphaKey = editAlphaKey:getText()
 		loginStart()
-		triggerServerEvent("onRegister", localPlayer, password, alphaKey)
+		triggerServerEvent("onRegister", localPlayer, password)
 	end
 end
 
@@ -136,9 +128,6 @@ end
 local loginMessage =
 {
 	success = str("loginPanelWelcomeMessage"),
-	keyAlreadyUsed = str("loginPanelKeyAlreadyUsedError"),
-	invalidAlphaKey = str("loginPanelInvlidAlphaKeyError"),
-	blankAlphaKey = str("loginPanelBlankAlphaKeyError"),
 	noPassword = str("loginPanelEmptyPasswordError"),
 	noSerial = str("loginPanelNoSerialError"),
 	wrongPass = str("loginPanelInvalidAccountOrPasswordError"),
@@ -315,13 +304,9 @@ local function loadLoginScreen(serial, account)
 	showCursor(true)
 	hasAccount = account
 	if not account then
-		editAlphaKey:setVisible(true)
-		lblKey:setVisible(true)
 		loginButton:setVisible(false)
 		registerButton:setVisible(true)
 	else
-		editAlphaKey:setVisible(false)
-		lblKey:setVisible(false)
 		loginButton:setVisible(true)
 		registerButton:setVisible(false)
 	end
@@ -338,7 +323,6 @@ addEventHandler("onClientResourceStart", resourceRoot,
 
 local function changeLanguage(newLang)
 	lblID:setText(str("loginPanelID"))
-	lblKey:setText(str("loginPanelKey"))
 	lblPassword:setText(str("loginPanelPassword"))
 	checkRememberPassword:setText(str("loginPanelRememberPassword"))
 	lblLoginButton:setText(str("loginPanelLoginButton"))
