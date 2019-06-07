@@ -327,6 +327,14 @@ local function changeLanguage(newLang)
 	checkRememberPassword:setText(str("loginPanelRememberPassword"))
 	lblLoginButton:setText(str("loginPanelLoginButton"))
 	lblRegisterButton:setText(str("loginPanelRegisterButton"))
+	loginMessage =
+	{
+		success = str("loginPanelWelcomeMessage"),
+		noPassword = str("loginPanelEmptyPasswordError"),
+		noSerial = str("loginPanelNoSerialError"),
+		wrongPass = str("loginPanelInvalidAccountOrPasswordError"),
+		unknownError = str("loginPanelUnknownError"),
+	}
 	showMessage()
 end
 addEventHandler("onUserLanguageChange", resourceRoot, changeLanguage)
