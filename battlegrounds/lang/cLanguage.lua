@@ -28,10 +28,14 @@ function Language.set(newLang)
 	if newLang ~= Language.getCurrent() then
 		currentLanguage = newLang
 		triggerEvent("onUserLanguageChange", resourceRoot, newLang)
+		if not (eventName == "onSetUserLanguage") then
+			triggerServerEvent("onPlayerLanguageChange", resourceRoot, newLang)
+		end
 	end
 end
-addEvent("onUserLanguageChange", true)
-addEventHandler("onUserLanguageChange", resourceRoot, Language.set)
+addEvent("onUserLanguageChange", false)
+addEvent("onSetUserLanguage", true)
+addEventHandler("onSetUserLanguage", localPlayer, Language.set)
 
 function str(stringName, ...)
 	if arg.n == 0 then

@@ -38,6 +38,7 @@ function Player.new()
 	instances[newInst] = true
 	count = count + 1
 	newInst.remote:setSuper(newInst)
+	newInst:sendLanguage()
 	newInst:askCredentials()
 	newInst.inventory:setCapacity(Player.DEFAULT_INVENTORY_SIZE)
 	newInst:giveInitialItems()
@@ -451,6 +452,19 @@ local function handlePlayerWeaponFire()
 	player:handleWeaponFire()
 end
 addEventHandler("onPlayerWeaponFire", root, handlePlayerWeaponFire)
+
+function Player:sendLanguage()
+	self.remote:send("onSetUserLanguage", self.account:getLanguage())
+end
+
+local function handleLanguageChange(language)
+	local player = Remote.getSuperFromRemote(client)
+	iprint(player.name.. " changed language from "
+		..player.account:getLanguage().. " to " ..tostring(language))
+	player.account:setLanguage(language)
+end
+addEvent("onPlayerLanguageChange", true)
+addEventHandler("onPlayerLanguageChange", resourceRoot, handleLanguageChange)
 
 function Player:handleWeaponThrow()
 	local currentWeapon = self:getCurrentWeapon()
