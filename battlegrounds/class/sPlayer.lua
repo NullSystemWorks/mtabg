@@ -454,7 +454,9 @@ end
 addEventHandler("onPlayerWeaponFire", root, handlePlayerWeaponFire)
 
 function Player:sendLanguage()
-	self.remote:send("onSetUserLanguage", self.account:getLanguage())
+	if self.account:getRegistered() then
+		self.remote:send("onSetUserLanguage", self.account:getLanguage())
+	end
 end
 
 local function handleLanguageChange(language)
