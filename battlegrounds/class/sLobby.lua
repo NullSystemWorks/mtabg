@@ -37,13 +37,14 @@ function Lobby:getPlayers()
 	return self.participants
 end
 
-function Lobby:addPlayer(player)
+function Lobby:addPlayer(player, skin)
 	self:removePlayer(player)
 	player:spawn(0,0,0) --FIXME: find somewhere else to spawn the player, only teleport here
 	player:setDimension(self:getDimension())
 	player:setInterior(self:getInterior())
 	player:setPosition(self:getPosition())
 	player:setLobby(self)
+	player:setModel(skin)
 	self:setPlayerCount(self:getPlayerCount() + 1)
 	self.participants[player] = true
 	self:sendPlayerCount()

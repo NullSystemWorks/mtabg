@@ -98,9 +98,9 @@ function Player:setLobby(_lobby)
 	self.remote:send("onSetInLobby", self:getInLobby())
 end
 
-local function handleSendPlayerToLobby()
+local function handleSendPlayerToLobby(selectedSkin)
 	local player = Remote.getSuperFromRemote(client)
-	lobby:addPlayer(player)
+	lobby:addPlayer(player, selectedSkin)
 end
 addEvent("onSendPlayerToLobby", true)
 addEventHandler("onSendPlayerToLobby", root, handleSendPlayerToLobby)

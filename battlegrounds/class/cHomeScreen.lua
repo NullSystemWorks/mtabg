@@ -390,36 +390,6 @@ addEventHandler("onClientGUIClick", imgStatsPanel,
 	end
 )
 
-local savedTime
-
-local function fadeInCamera()
-	Timer(function()
-		iprint("Fading "..((getTickCount() - savedTime)/1000).." seconds after")
-		showChat(true)
-		Camera.fade(true, 0.5)
-	end, 1000, 1)
-	removeEventHandler("onSetInLobby", localPlayer, fadeInCamera)
-end
-
-local FADEOUT_TIME = 200
-local function sendPlayerToLobby(button)
-	if button == "left" then
-		Timer(function()
-			triggerServerEvent("onSendPlayerToLobby", localPlayer)
-			Camera.setTarget(localPlayer)
-		end, FADEOUT_TIME + 100, 1)
-		Camera.fade(false, FADEOUT_TIME*0.001)
-		LanguageSelection.setShowing(false)
-		imgBackground:setVisible(false)
-		hideStatsPanel()
-		Music.stop()
-		showCursor(false)
-		savedTime = getTickCount()
-		addEventHandler("onSetInLobby", localPlayer, fadeInCamera)
-	end
-end
-addEventHandler("onClientGUIClick", lblPlayButton, sendPlayerToLobby, false)
-
 local sm = {}
 sm.moov = 0
 sm.object1, sm.object2 = nil, nil
@@ -578,6 +548,36 @@ addEventHandler("onClientGUIClick", lblPrevSkinButton,
                 changeCharacterOnArrowClick, false)
 addEventHandler("onClientGUIClick", lblSkinNextButton,
                 changeCharacterOnArrowClick, false)
+
+local savedTime
+local function fadeInCamera()
+	Timer(function()
+		iprint("Fading "..((getTickCount() - savedTime)/1000).." seconds after")
+		showChat(true)
+		Camera.fade(true, 0.5)
+	end, 1000, 1)
+	removeEventHandler("onSetInLobby", localPlayer, fadeInCamera)
+end
+
+local FADEOUT_TIME = 200
+local function sendPlayerToLobby(button)
+	if button == "left" then
+		Timer(function()
+			triggerServerEvent("onSendPlayerToLobby", localPlayer,
+			                   temporarySkinTable[currentSkinID])
+			Camera.setTarget(localPlayer)
+		end, FADEOUT_TIME + 100, 1)
+		Camera.fade(false, FADEOUT_TIME*0.001)
+		LanguageSelection.setShowing(false)
+		imgBackground:setVisible(false)
+		hideStatsPanel()
+		Music.stop()
+		showCursor(false)
+		savedTime = getTickCount()
+		addEventHandler("onSetInLobby", localPlayer, fadeInCamera)
+	end
+end
+addEventHandler("onClientGUIClick", lblPlayButton, sendPlayerToLobby, false)
 
 local function moveBackgroundBack()
 	imgBackground:moveToBack()
