@@ -48,3 +48,7 @@ end
 function Element:getModel()
 	return self.remote:getRemote():getModel()
 end
+
+function Element:setModel(model)
+	self.remote:getRemote():setModel(model)
+end

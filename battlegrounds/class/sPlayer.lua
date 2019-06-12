@@ -3,6 +3,7 @@ local MtaPlayer = ClassStash.get("Player")
 
 Player = {}
 setmetatable(Player, {__index = Element}) --Player inherits from Element
+local super = Element
 local player_mt = {__index = Player}
 
 local instances = {}
@@ -216,6 +217,13 @@ addEventHandler("onRegister", root, handlePlayerRegister)
 
 function Player:getModel()
 	return self.skin
+end
+
+function Player:setModel(skin)
+	self.skin = skin
+	--FIXME: Element is manipulating an attribute that it does not
+	--have: remote. Maybe move it to the parent class
+	super.setModel(self, skin)
 end
 
 function Player:getWearingArmor()
