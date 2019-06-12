@@ -214,7 +214,7 @@ end
 addEvent("onRegister", true)
 addEventHandler("onRegister", root, handlePlayerRegister)
 
-function Player:getSkin()
+function Player:getModel()
 	return self.skin
 end
 

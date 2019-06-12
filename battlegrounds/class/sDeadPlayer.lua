@@ -4,7 +4,7 @@ local deadplayer_mt = {__index = DeadPlayer}
 function DeadPlayer.new(player)
 	local pos = player:getPosition()
 	local rotZ = player:getZRotation()
-	local skin = player:getSkin()
+	local skin = player:getModel()
 	local dim = player:getDimension()
 
 	local newInst =
