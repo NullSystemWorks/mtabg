@@ -43,6 +43,7 @@ addEventHandler("onClientPlayerDamage", localPlayer, delegatePlayerDamage)
 function treatProjectileCreation(creator)
 	if creator == localPlayer
 	and source:getType() == 16 then --Only for grenades
+		source:setCounter(3000)
 		triggerServerEvent("onPlayerWeaponThrow", resourceRoot)
 	end
 end
