@@ -67,6 +67,7 @@ type="gamemode"
 <script src="class/sPermission.lua" type="server" />
 <script src="class/sBackpack.lua" type="server" />
 <script src="class/sInventory.lua" type="server" />
+<script src="class/cGrenade.lua" type="client" cache="false"/>
 <script src="class/cPlayer.lua" type="client" cache="false"/>
 <script src="class/cMusic.lua" type="client" cache="false"/>
 <script src="class/cAmbient.lua" type="client" cache="false"/>
@@ -99,6 +100,7 @@ type="gamemode"
 <file src="font/tahomab.ttf" />
 
 <!-- Gui -->
+<file src="gui/img/grenadeHud.png" />
 <file src="gui/img/radius.png" />
 <file src="gui/img/radius2.png" />
 <file src="gui/img/running.png" />
